@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://123.52.74.73:82/SALES_Personalize.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+
+<META http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+<STYLE>BODY { font-size: 10.5pt } TD { font-size: 10.5pt } SELECT { font-size: 9pt }</STYLE>
+
+<SCRIPT>document.write('<body bgcolor="'+parent.eB_PageBgColor+'" text="'+parent.eB_TextColor+'">');</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY>
+<CENTER>
+<TABLE width="600" border="0" cellspacing="1">
+  <FORM name="personal" onsubmit="return personalize()"></FORM>
+  <TBODY>
+  <TR>
+    <TD width="50%">首页：<SELECT name="HomePage"></SELECT> <BR>缺省货位：<SELECT 
+      name="s1"></SELECT> <BR>价格策略：<SELECT name="s2"><OPTION 
+        value="0">零售价</OPTION><OPTION value="1">批发价１</OPTION><OPTION 
+        value="2">批发价２</OPTION><OPTION value="3">批发价３</OPTION></SELECT> 
+      <BR>开票方式：<SELECT name="s3"></SELECT> 
+<BR>缺省折扣：<INPUT name="s4" type="text" size="4" value="1.00"> 
+<BR>超期应收款：<INPUT name="s7" type="TEXT" size="4" value="10">天</TD>
+    <TD width="50%"><INPUT name="AP_Sale" type="checkbox">销售单保存后自动审核 
+      <BR><INPUT name="AP_InStore" type="checkbox">入库单保存后自动审核 <BR><INPUT name="AP_StoreToStore" 
+      type="checkbox">调拨单保存后自动审核 <BR><INPUT name="AP_Money" 
+      type="checkbox">凭证保存后自动审核 <BR><INPUT name="Warn_PSL" 
+      type="checkbox">启用库存上下限报警 <BR><INPUT name="Warn_PSN" 
+      type="checkbox">启用负库存报警</TD></TR>
+  <TR>
+    <TD colspan="2">销售单收款方式：<SELECT 
+        name="moneytype"><OPTION>标准</OPTION><OPTION>商场</OPTION></SELECT></TD></TR>
+  <TR>
+    <TD colspan="2">缺省客户：<INPUT name="s5" style="width: 350px;" type="TEXT"> 
+      <BR>缺省供应商：<INPUT name="s6" style="width: 336px;" type="TEXT"></TD></TR>
+  <TR>
+    <TD colspan="2"><INPUT name="Sel_AutoTrace" 
+      type="checkbox">自动价格跟踪（销售、采购、调拨）　<INPUT name="Sel_BarCode" 
+      type="checkbox">启用条码方式（价格跟踪关闭） <BR>打印行数：<INPUT name="Print_Cols" type="text" size="4" value="20">　打印位置：<SELECT 
+      name="Print_Pos"></SELECT>　<INPUT name="print_memo" type="checkbox">智能打印备注 
+      <BR>商品页显示行数：<INPUT name="ViewCols" type="text" size="2" value="20">　查找页显示行数：<INPUT name="FindCols" type="text" size="2" value="20">　打开页显示行数：<INPUT name="OpenCols" type="text" size="2" value="20"> 
+      <BR><INPUT name="serial_ver" type="checkbox">智能序列号校验　<INPUT name="Menu_Style" 
+      type="checkbox">启用新风格菜单　<INPUT type="submit" value="确认"></TD></TR></TBODY></TABLE></CENTER>
+<SCRIPT src="SALES_Personalize_files/Personalize.js"></SCRIPT>
+ 
+<SCRIPT title="myreplace" language="JavaScript">
+parent.Run.iHomePage='入库开单';
+SetHomePage();
+DefaultCheckType='其它';
+f('增值税');
+f('其它');
+obj.Print_Cols.value='40';
+iViewCols='50';
+obj.ViewCols.value=iViewCols;
+if(isNaN(parseInt(iViewCols)))iViewCols=15;else iViewCols=parseInt(iViewCols);
+if(iViewCols<=0)iViewCols=15;
+parent.Run.prepage=iViewCols;
+obj.FindCols.value='50';
+obj.OpenCols.value='50';
+PrintPos='0';
+obj.s4.value='1.00';
+obj.s5.value='';
+obj.s6.value='';
+obj.s7.value='10';
+if('0'=='1') obj.AP_Sale.checked=true;
+if('0'=='1') obj.AP_InStore.checked=true;
+if('0'=='1') obj.AP_StoreToStore.checked=true;
+if('0'=='1') obj.AP_Money.checked=true;
+if('0'=='1') obj.Warn_PSL.checked=true;
+if('0'=='1') obj.Warn_PSN.checked=true;
+if('1'=='1') obj.Menu_Style.checked=true;
+if('0'=='1') obj.Sel_AutoTrace.checked=true;
+if('0'=='1') obj.Sel_BarCode.checked=true;
+if('1'=='1') obj.print_memo.checked=true;
+if('0'=='1'){parent.Run.iSerialVer='1';obj.serial_ver.checked=true;}else parent.Run.iSerialVer='0';
+obj.Print_Cols.value='40';
+defstore='7';
+setSelect('');
+obj.moneytype.selectedIndex=parseInt('0');
+o=document.personal.s1;
+e('7','总库');
+
+o=document.personal.Print_Pos;
+v('0','中上');
+v('1','左上');
+v('2','中中');
+v('3','右上');
+v('4','左中');
+v('5','右中');
+v('6','左下');
+v('7','中下');
+v('8','右下');
+alertex('');
+</SCRIPT>
+ </BODY></HTML>

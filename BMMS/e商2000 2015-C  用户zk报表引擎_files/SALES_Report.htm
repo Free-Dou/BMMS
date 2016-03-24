@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0039)http://123.52.74.73:82/SALES_Report.htm -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+		 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">		 
+<STYLE type="text/css">TD {FONT-SIZE: 9pt}</STYLE>
+	 
+<SCRIPT>document.write('<body bgcolor="'+parent.eB_PageBgColor+'" text="'+parent.eB_TextColor+'">');</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY>
+<CENTER>
+<TABLE width="90%" border="0">
+  <TBODY>
+  <TR height="30">
+    <TD align="center"></TD></TR>
+  <TR>
+    <TD align="center">
+      <TABLE width="300" border="0">
+        <FORM name="Search"></FORM>
+        <TBODY>
+        <TR>
+          <TD align="center">
+<SCRIPT>document.write('<font color="'+parent.eB_TitleTextColor+'" style="font-size: 20pt"><b>报　表　引　擎</b>');</SCRIPT>
+          </TD></TR>
+        <TR>
+          <TD align="center"><A onclick="setTimeout('parent.Run.EnterSales()',100)" 
+            href="javascript:void(0)">销售开单</A>　<A onclick="setTimeout('parent.Run.EnterInStore()')" 
+            href="javascript:void(0)">采购开单</A>　<A onclick="setTimeout('parent.Run.EnterStoreToStore()')" 
+            href="javascript:void(0)">调拨开单</A>　<A onclick="setTimeout('parent.Run.EnterCheckIn()')" 
+            href="javascript:void(0)">填写凭证</A></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR size="1" noshade="">
+    </TD></TR>
+  <TR>
+    <TD align="center">
+      <TABLE border="0">
+        <TBODY>
+        <TR>
+          <TD width="100%" valign="top" colspan="3"><SPAN style="font-size: 12pt;">排行榜</SPAN><BR><A 
+            onclick="go('sale',3)" 
+href="javascript:void(0)">商品销售排行榜...</A></TD></TR>
+        <TR height="10">
+          <TD align="center"></TD></TR>
+        <TR>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">销售汇总报表</SPAN><BR><A onclick="go('sale',1)" 
+            href="javascript:void(0)">客户销售汇总报表、业务员销售汇总表<BR>商品销售汇总表、部门（货位）销售毛利汇总表...<BR>销售日报表、销售月报表、销售单据汇总表...</A></TD>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">采购汇总报表</SPAN><BR><A onclick="go('instore',1)" 
+            href="javascript:void(0)">供应商供货汇总表、采购员采购汇总表<BR>商品采购汇总表...<BR>采购日报表、采购月报表、采购单据汇总表...</A></TD>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">调拨汇总报表</SPAN><BR><A onclick="go('sts',1)" 
+            href="javascript:void(0)">仓库调拨汇总表、库管员调拨汇总表<BR>商品调拨汇总表...</A></TD></TR>
+        <TR height="10">
+          <TD align="center"></TD></TR>
+        <TR>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">销售明细报表</SPAN><BR><A onclick="go('sale',2)" 
+            href="javascript:void(0)">客户销售明细表、业务员销售明细表<BR>部门（货位）销售毛利明细表...</A></TD>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">采购明细报表</SPAN><BR><A onclick="go('instore',2)" 
+            href="javascript:void(0)">供应商供货明细表、商品采购明细表<BR>采购员采购汇总表...</A></TD>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">调拨明细报表</SPAN><BR><A onclick="go('sts',2)" 
+            href="javascript:void(0)">仓库调拨明细表、商品调拨明细表<BR>库管员调拨明细表...</A></TD></TR>
+        <TR height="10">
+          <TD align="center"></TD></TR>
+        <TR>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">财务报表</SPAN><BR><A onclick="go('paymoney',1)" 
+            href="javascript:void(0)">资产负债表、损益表</A><BR><A onclick="go('paymoney',2)" 
+            href="javascript:void(0)">科目明细帐</A><BR><A onclick="go('paymoney',3)" 
+            href="javascript:void(0)">科目汇总表</A>...</TD>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">物流明细报表</SPAN><BR><A onclick="go('io',1)" 
+            href="javascript:void(0)">物流明细报表</A>、<A onclick="go('io',2)" href="javascript:void(0)">进销存汇总表</A>...</TD>
+          <TD width="33%" valign="top"><SPAN 
+            style="font-size: 12pt;">库存报表</SPAN><BR><A onclick="go('store',1)" 
+            href="javascript:void(0)">仓库库存汇总表</A>、<A onclick="go('store',2)" 
+            href="javascript:void(0)">仓库库存明细表</A><BR><A onclick="go('store',3)" 
+            href="javascript:void(0)">商品货位表</A>...</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></CENTER>
+<SCRIPT>
+function rep(str){setTimeout('document.location.replace(\''+str+'\')',100);}
+function go(id,val){
+switch(id){
+	case 'sale':
+		switch(val){
+			case 1:
+				rep('find/sale.htm');
+				break;
+			case 2:
+				rep('find/saleList.htm');
+				break;
+			case 3:
+				rep('find/saleTopList.htm');
+				break;
+			}
+		break;
+	case 'instore':
+		if(val==1)rep('find/instore.htm');
+		else rep('find/instoreList.htm');
+		break;
+	case 'sts':
+		if(val==1)rep('find/sts.htm');
+		else rep('find/stsList.htm');
+		break;
+	case 'io':
+		switch(val){
+			case 1:
+				setTimeout('parent.Run.EnterIOProcess()',100);
+				break;
+			case 2:
+				setTimeout('parent.Run.EnterIORProcess()',100);
+				break;
+			}
+		break;
+	case 'store':
+		switch(val){
+			case 1:
+				setTimeout('parent.Run.EnterStoreProcess(2,1,\'\',0)',100);
+				break;
+			case 2:
+				setTimeout('parent.Run.EnterStoreProcess(0,1,\'\')',100);
+				break;
+			case 3:
+				setTimeout('parent.Run.EnterStoreProcess(2,1,\'\')',100);
+				break;
+			}
+		break;
+	case 'paymoney':
+		switch(val){
+			case 1:
+				setTimeout('parent.Run.EnterTblSel()',100);
+				break;
+			case 2:
+				setTimeout('parent.Run.EnterAccount()',100);
+				break;
+			case 3:
+				setTimeout('parent.Run.EnterAccount(1)',100);
+				break;
+			}
+		break;
+	}
+}
+</SCRIPT>
+ </BODY></HTML>

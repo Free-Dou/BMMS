@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0032)http://123.52.74.73:82/Login.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+		 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+		 <TITLE>e商2000 2015-C</TITLE>		 
+<STYLE type="text/css">
+			<!--A {text-decoration: none;}
+			A:hover {text-decoration: underline;}
+			SELECT { font-size: 10.5pt } -->
+		</STYLE>
+	 
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD>	 
+<BODY scroll="no" bgcolor="#000000"><SPAN id="logdiv" style="left: 10px; top: 10px; width: 420px; height: 400px; visibility: hidden; position: relative; ZINDEX: 1;"><BR>
+<TABLE width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD align="center"><IMG width="276" height="213" src="e商2000%202015-C&nbsp;&nbsp;用户zk_files/eBlogo.gif">&reg;</TD></TR>
+  <TR height="20">
+    <TD></TD></TR>
+  <TR>
+    <TD>
+      <FORM name="LogCorp"></FORM>
+  <TR>
+    <TD align="center">使用单位：<SELECT name="logname" style="width: 224px;" 
+      onchange="CheckCorp(logname)"></SELECT></TD></TR>
+  <FORM name="LogForm" onsubmit="return CheckForm()"></FORM>
+  <TR>
+    <TD width="100%" align="center">
+      <TABLE border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD>用户：<INPUT name="LogName" style="width: 136px;" onfocus="select()" size="20" maxlength="16"><BR>密码：<INPUT name="LogPass" style="width: 136px;" onfocus="select()" type="password" size="20" maxlength="16">　<INPUT name="subbtn" type="submit" value="确认"></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD width="100%" align="center"><BR>版权所有：北京综艺达软件技术有限公司<BR><LABEL style="font-size: 16pt;">&copy;</LABEL> 
+      2000-2016 All rights reserved. <BR><BR><BR></TD></TR>
+  <TR>
+    <TD align="center"><IMG width="350" height="50" id="LogonLogo" src="e商2000%202015-C&nbsp;&nbsp;用户zk_files/logonlogo.jpg"><BR></TD></TR></TBODY></TABLE></SPAN>
+		 <IFRAME name="AutoReload" src="e商2000%202015-C&nbsp;&nbsp;用户zk_files/TopBanner.htm" 
+style="left: 0px; top: 0px; width: 0px; height: 0px;"></IFRAME>		 <IFRAME name="LoginFrame" 
+src="e商2000%202015-C&nbsp;&nbsp;用户zk_files/SALES_LeftMenu.htm" style="left: 0px; top: 0px; width: 0px; height: 0px;"></IFRAME>
+		 
+<SCRIPT title="myreplace" language="JavaScript">
+var BodyWidth=document.body.clientWidth,BodyHeight=document.body.clientHeight,
+	LoginWidth=420,LoginHeight=400,LoginYOff=0,LoginXOff=-11
+	
+function LoginReturn(Result)
+{
+	Result =parseInt(Result);
+	switch(Result){
+		case 1:
+			document.LogForm.subbtn.disabled=false;
+			parent.document.location.replace('Main.asp?t='+new Date().valueOf());
+			break;
+		case 0:
+			alert('用户名或者密码错误!');document.LogForm.subbtn.disabled=false;
+			break;
+		case -1:
+			alert('用户数不能超过购买的授权数:'+ 3 +"个!");
+			document.LogForm.subbtn.disabled=false;
+			break;
+		case -2:
+			CheckCorp(LogCorp.logname);
+			document.LogForm.subbtn.disabled=false;
+			break;
+		case -3:
+			alert('一个用户不能同时登录两次, 如果正常退出, 请两分钟后再登录!');
+			document.LogForm.subbtn.disabled=false;
+			break;
+		case -4:
+			alert('用户数不足，请和系统管理员联系!');
+			document.LogForm.subbtn.disabled=false;
+			break;
+		default:
+			document.LogForm.subbtn.disabled=false;
+			parent.document.location.replace('login.asp?time='+new Date().valueOf());
+			break;
+	}
+}
+
+function getLoginStatus()
+{
+
+	try 
+	{
+		getLoginStatusEx();
+	}
+	catch (e)
+	{
+		throw(e);
+	}
+	finally 
+	{
+		setTimeout('getLoginStatus()',500);
+	}
+}
+
+
+function getLoginStatusEx()
+{
+	if(document.LogForm.subbtn.disabled)
+	{
+		for(var i=0;i<LoginFrame.document.forms.length;i++)
+		{
+			switch(LoginFrame.document.forms[i].name)
+			{
+				case 'loginOK':
+					LoginReturn(1);
+					break;
+				case 'loginErrUserPwd':
+					LoginReturn(0);
+					break;
+				case 'loginErrUserNum':
+					LoginReturn(-1);
+					break;
+				case 'loginErrCorp':
+					LoginReturn(-2);
+					break;
+				case 'loginErr2Users':
+					LoginReturn(-3);
+					break;	
+				case 'loginErr4Users':
+					LoginReturn(-4);
+					break;	
+				case 'loginError':
+					LoginReturn(-10);
+					break;			
+				default:
+					break;			
+			}
+		}
+	}
+}
+
+function resize()
+{
+	window.onresize=null;
+	BodyWidth=document.body.clientWidth;
+	BodyHeight=document.body.clientHeight;
+	logdiv.style.left=(BodyWidth-LoginWidth)/2+LoginXOff;
+	logdiv.style.top=(BodyHeight-LoginHeight)/2+LoginYOff;
+	window.onresize=resize;
+}
+
+function CheckCorp()
+{
+	document.title='e商2000 - '+LogCorp.logname.value;
+	document.LogForm.LogName.focus();
+}
+
+function CheckForm()
+{
+	if(document.LogForm.LogName.value.length == 0)
+	{
+		alert('请输入您的用户名！');
+		document.LogForm.LogName.focus();
+		return false;
+	}
+	
+	if(document.LogForm.LogPass.value.length == 0)
+	{
+		alert('请输入您的口令！');
+		document.LogForm.LogPass.focus();
+		return false;
+	}
+	
+	document.LogForm.subbtn.disabled=true;
+	var tarobj=LoginFrame;
+	tarobj.document.close();
+	tarobj.document.open();
+	tarobj.document.writeln('<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>');
+	tarobj.document.writeln('<body><form method="POST" action="logintestex.asp" name="LogForm">');
+	tarobj.document.writeln('<input type="hidden" name="LogCorp" value="'+escape(document.LogCorp.logname.value)+'">');
+	tarobj.document.writeln('<input type="hidden" name="LogName" value="'+escape(document.LogForm.LogName.value)+'">');
+	tarobj.document.writeln('<input type="hidden" name="LogPass" value="'+escape(document.LogForm.LogPass.value)+'">');
+	tarobj.document.writeln('<input type="hidden" name="ClientType" value="MSIE">');
+	tarobj.document.writeln('</form></body></html>');
+	tarobj.document.close();
+	tarobj.document.LogForm.submit();
+	setTimeout('getLoginStatus()',1000);
+	return false;
+}
+
+window.onresize=resize;
+o=document.LogCorp.logname;
+var nindex =-1;
+var ssname ='';
+function d(id, vname)
+{
+	o.options[o.length] = new Option(vname, vname, false, false);
+	if (ssname==vname) nindex =o.length-1;	
+}
+startUp();
+
+function startUp(){
+	document.bgColor='EFF0E2';document.fgColor='#000000';
+	logdiv.style.left=(BodyWidth-LoginWidth)/2+LoginXOff;
+	logdiv.style.top=(BodyHeight-LoginHeight)/2+LoginYOff;
+	logdiv.style.visibility='visible';
+	document.LogForm.LogName.focus();
+	d('1', '2010-C');
+d('2', '2011-C');
+d('3', '2012-C');
+d('4', '2013-C');
+d('5', '2014-C');
+d('6', '2015-C');
+d('7', '2016-C');
+
+	if (nindex >=0) o.selectedIndex =nindex;
+}
+
+ getXML ("GetLogo.asp");
+    function getXML(url) {
+        //debugger;
+        var xmlhttp,islogo,isurl,str;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest(); //FF   
+        } else if (window.ActiveXObject) {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); //IE 
+        }
+        xmlhttp.open("GET", url + "?t=" + new Date().valueOf(), false);
+        xmlhttp.setRequestHeader("Cache-Control","no-cache");
+        xmlhttp.send();
+         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                
+                try{
+                    str=xmlhttp.responseText; 
+                    str=str.split("#")             
+                    LogonLogo.src = str[0];//if(isurl)alert(isurl);
+                    LogonLogo.onclick=function(){window.open(str[1]);}
+                    LogonLogo.style.cursor="hand";
+                    }
+
+                 catch(err)  {
+                    LogonLogo.src = "image/logonlogo.jpg";//if(isurl)alert(isurl);
+                    LogonLogo.onclick=function(){window.open("http://www.zydsoft.com");}
+                    LogonLogo.style.cursor="hand";
+                 
+                 }
+               
+            }
+        }
+    </SCRIPT>
+	 </BODY></HTML>

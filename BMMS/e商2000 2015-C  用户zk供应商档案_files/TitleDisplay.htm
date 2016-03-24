@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://123.52.74.73:82/TitleDisplay.htm -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+		 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">	 
+<SCRIPT>
+function eB_onMouseOver(obj){}function eB_onMouseUp(obj){}function eB_onMouseDown(obj){}function eB_onMouseOut(obj){}
+function request(idstr){
+if (idstr.length==0)return '';
+if (document.URL.indexOf('?')==-1)return '';
+var rsr=document.URL.substr(document.URL.indexOf('?')+1);
+var pos=rsr.indexOf(idstr+'=');
+if (pos==-1)return '';
+pos+=idstr.length+1;
+var pos1=rsr.indexOf('&',pos);
+if (pos1==-1)return rsr.substr(pos);
+else return rsr.substring(pos,pos1);
+}
+if (request('colorscheme')=='page') s='<body bgcolor="'+parent.eB_PageBgColor+'" text="'+parent.eB_TextColor+'">';
+else s='<body bgcolor="'+parent.eB_TitleBgColor+'" text="'+parent.eB_TextTitleColor+'">';
+s+='<table border="0" cellspacing="0" width="100%" height="100%"><tr>';
+if (request('Function')=='StoreView')s+='<td width="150"></td>';
+if (request('colorscheme')=='page') s+='<td align="center" valign="center" width="100%"><font color="'+parent.eB_PageTitleColor+'" style="font-size: 20pt">'+request('String')+'</td>';
+else s+='<td align="center" valign="center" width="100%"><font color="'+parent.eB_TitleTextColor+'" style="font-size: 20pt"><b>'+request('String')+'</b></td>';
+if (request('Function')=='StoreView')s+='<td align="right">'+parent.Run.SetStoreNew()+'</td>';
+s+='</tr></table></body>';
+document.writeln(s)</SCRIPT>
+
+<SCRIPT src="TitleDisplay_files/eBMouse.js"></SCRIPT>
+
+<SCRIPT src="TitleDisplay_files/ocm.js"></SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY></BODY></HTML>

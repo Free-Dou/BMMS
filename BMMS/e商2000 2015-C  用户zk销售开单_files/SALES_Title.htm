@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0066)http://123.52.74.73:82/SALES_Title.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+		 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">		 
+<STYLE>A:link, A:visited, A:active, A:hover { text-decoration: none } A:link, A:visited, A:active { color: blue } A:hover { color: red } SELECT {font-size:9pt} INPUT {font-size:9pt;border-left-style:solid;border-left-width:1;border-right:1 solid #FFFFFF;border-top-style:solid;border-top-width:1;border-bottom:1 solid #FFFFFF}
+		</STYLE>
+	 
+<SCRIPT>
+	function eB_onMouseOver(obj){}function eB_onMouseUp(obj){}function eB_onMouseDown(obj){}function eB_onMouseOut(obj){}
+	document.write('<body bgcolor="'+parent.eB_TitleBgColor+'" text="'+parent.eB_TextTitleColor+'">');</SCRIPT>
+
+<SCRIPT src="SALES_Title_files/print.js"></SCRIPT>
+
+<SCRIPT src="SALES_Title_files/printHid.js"></SCRIPT>
+
+<SCRIPT src="SALES_Title_files/eBMouse.js"></SCRIPT>
+
+<SCRIPT>
+	function printURL(url){
+	window.onprintcomplete = function(){ 
+		var i=1;
+		}
+	printHidden(url);
+	}
+</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD>				 
+<BODY>
+<FORM name="Title" 
+onsubmit="return (false)"><INPUT name="SalesID" type="hidden" value="NULL"> 
+<TABLE width="100%" style="font-size: 11pt;" border="0" cellspacing="1">
+  <TBODY>
+  <TR>
+    <TD width="35%" nowrap=""></TD>
+    <TD width="35%" align="center" nowrap="">
+<SCRIPT>document.write('<font color="'+parent.eB_TitleTextColor+'">');</SCRIPT>
+      <SPAN style="font-size: 12pt;">销　售　单</SPAN>　（未保存）</TD>
+    <TD width="30%" 
+nowrap="">日期：<INPUT name="pz_year" style="width: 30px;" type="text" value="2016">年<INPUT name="pz_month" style="width: 18px;" type="text" value="3">月<INPUT name="pz_day" style="width: 18px;" type="text" value="24">日</TD></TR>
+  <TR>
+    <TD nowrap="">客户：<INPUT name="Custom" style="width: 78%;" onfocus="select()" onblur="setTimeout('parent.Bottom.extra_url=\'object='+Custom.value.split('\'').join('')+'\'',0)" type="text"><A 
+      onclick="getcsulist('Custom',5,Custom.value)" 
+      href="javascript:void(0)">&gt;&gt;</A></TD>
+    <TD>货位：
+      <DIV id="divStore" style="position: absolute;"></DIV></TD>
+    <TD>业务员：
+      <DIV id="divUser" style="width: 96px; position: absolute;"></DIV></TD></TR>
+  <TR>
+    <TD nowrap="">备注：<INPUT name="memo" style="width: 80%;" type="text"></TD>
+    <TD nowrap="">
+      <TABLE width="100%">
+        <TBODY>
+        <TR>
+          <TD width="40%" nowrap="">开票：<SELECT name="CheckType"><OPTION 
+              value="增值税">增值税</OPTION><OPTION value="其它">其它</OPTION></SELECT></TD>
+          <TD width="30%" 
+nowrap="">折扣：<INPUT name="discount" type="text" size="3" value="1.00"></TD>
+          <TD width="30%" nowrap=""><INPUT name="moneyType" style="border: 0px currentColor; border-image: none;" 
+            type="checkbox">商场</TD></TR></TBODY></TABLE></TD>
+    <TD width="25%" nowrap="">
+<SCRIPT>document.write(parent.Run.SetProduceNew('Sale'))</SCRIPT>
+    </TD></TR></TBODY></TABLE></FORM>
+<SCRIPT src="SALES_Title_files/Title_Sale.js"></SCRIPT>
+ 
+<SCRIPT>
+var defStore='7';
+var defUser ='zk';
+var defCheckType='其它';
+var userlist ='sssxlsystemzk';
+var storelist ='7总库';
+SetSelectValue(document.Title.CheckType,defCheckType);
+SetSelect(divStore, "Store", defStore, storelist);
+SetSelect2(divUser, "maker", defUser, userlist);
+var varstr =document.Title.Custom.value;
+if(varstr.length>0)parent.Bottom.extra_url='object='+varstr;
+
+parent.produce_ready=1;
+
+document.Title.memo.value ='';
+</SCRIPT>
+ </BODY></HTML>

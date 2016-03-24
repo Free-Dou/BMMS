@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0066)http://123.52.74.73:82/SALES_InStoreSelect.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+		 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">		 
+<STYLE>
+			A:link, A:visited, A:active, A:hover { text-decoration: none }
+			A:link, A:visited, A:active { color: blue }
+			A:hover { color: red }
+			TD { font-size: 10.5pt }
+			SELECT { font-size: 9pt }
+			INPUT { font-size: 9pt }
+		</STYLE>
+	 
+<SCRIPT>document.write('<body bgcolor="'+parent.eB_PageBgColor+'" text="'+parent.eB_ListTextColor1+'">');</SCRIPT>
+
+<SCRIPT language="VBScript">
+function IsVBDate(v)
+	if IsDate(v) then IsVBDate = 1 else IsVBDate = 0
+end function
+</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY>
+<CENTER>
+<TABLE width="500" border="0" cellspacing="1" cellpadding="3">
+  <FORM name="search" onsubmit="return startsearch()"></FORM>
+<SCRIPT>eB_ListColor=parent.eB_PageBgColor;document.write('<tr bgcolor="'+eB_ListColor+'">');</SCRIPT>
+
+  <TBODY>
+  <TR>
+    <TD> <INPUT name="datetest" type="checkbox" checked=""><SPAN onclick="datetest.click()">日期：</SPAN>开始日期：<INPUT name="date1" type="text" size="18" value="2016-3-23 0:0:0">&nbsp;结束日期：<INPUT name="date2" type="text" size="18" value="2016-3-24 22:3:32"> 
+    </TD></TR>
+<SCRIPT>
+s='<tr bgcolor="'+eB_ListColor+'"><td>方法：<input type="text" name="funtext" style="width:250px">　<a href="JavaScript:sending()">保存</a><br>　　　<select name="funlist" style="width:250px"></select>　<a href="JavaScript:loading()">装载</a>　<a href="JavaScript:deleteitem()">删除</a></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="storetest"><span OnClick="storetest.click()">显示货位：</span><input type="text" name="storetext" style="width:200px"><select name="storelist" style="width:200px" OnChange="addto(document.search.storetext,document.search.storelist)"></select></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="usertest"><span OnClick="usertest.click()">显示用户：</span><input type="text" name="usertext" style="width:200px"><select name="userlist" style="width:200px" OnChange="addto(document.search.usertext,document.search.userlist)"></select></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="usertest1"><span OnClick="usertest1.click()">显示业务员：</span><input type="text" name="usertext1" style="width:186px"><select name="userlist1" style="width:200px" OnChange="addto(document.search.usertext1,document.search.userlist1)"></select></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="customtest"><span OnClick="customtest.click()">显示供应商：</span><input type="text" name="customtext" style="width:186px">搜索：<input type="text" style="WIDTH: 108px" name="customlist">　<input type="button" value="搜索" onclick="csufind(6,customlist.value)"></td></tr>';
+
+if (parent.Run.cVersion==0){
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="producttest"><span OnClick="producttest.click()">显示商品：</span><input type="text" name="producttext" style="width:372px"></td></tr>';
+}else{
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="producttest"><span OnClick="producttest.click()">显示商品分类：</span><input type="text" name="producttext" style="width:372px"></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td>　<input type="checkbox" name="colortest"><span OnClick="colortest.click()">商品颜色：</span><input type="text" name="colortext" style="width:186px"><select name="colorlist" style="width:200px" OnChange="addto(document.search.colortext,document.search.colorlist)"></select></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td>　<input type="checkbox" name="sizetest"><span OnClick="sizetest.click()">商品尺码：</span><input type="text" name="sizetext" style="width:186px"><select name="sizelist" style="width:200px" OnChange="addto(document.search.sizetext,document.search.sizelist)"></select></td></tr>';
+}
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="memotest"><span OnClick="memotest.click()">显示备注（序列号）：</span><input type="text" name="memo" style="width: 330px"></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="gbtest"><span OnClick="gbtest.click()">分类聚集：</span><select name="gblist" style="width:80px"><option value="id">商品编号</option><option value="name">商品名称</option><option value="spec">商品规格</option><option value="src">供应商</option><option value="org">商品产地</option><option value="store">货位</option></select>　从第<input type="text" name="gbfrom" style="width: 28px" value="1" OnFocus="select()">个文字开始，共<input type="text" name="gblen" style="width: 28px" value="0" OnFocus="select()">个文字（0为全部）</td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td>统计方式：<select name="fos"><option value="" selected>已审核</option><option value="not">未审核</option><option value="all">全部</option></select>　<input type="checkbox" name="calc"><span OnClick="calc.click()">按月合计</span>　<input type="checkbox" name="list" value="1"><span OnClick="list.click()">按日合计</span>　<input type="checkbox" name="list1" value="1"><span OnClick="list1.click()">按单合计</span></td></tr>';
+s+='<tr bgcolor="'+eB_ListColor+'"><td><input type="checkbox" name="newface" checked><span OnClick="newface.click()">使用分页显示</span>　<input type="submit" value="开始查询"></td></tr>';
+document.write(s);
+</SCRIPT>
+   </TBODY></TABLE><IFRAME width="100%" height="180" id="csulist" src="SALES_InStoreSelect_files/blank.htm" 
+border="0" frameborder="0"></IFRAME></CENTER><IFRAME name="dynload" width="0" 
+height="0" src="about:blank" border="0"></IFRAME> 
+<FORM name="senddata"><INPUT name="senddata" type="hidden"></FORM>
+<SCRIPT src="SALES_InStoreSelect_files/vbjsSyncObject.js"></SCRIPT>
+ 
+<SCRIPT src="SALES_InStoreSelect_files/InStoreSelect.js"></SCRIPT>
+ 
+<SCRIPT title="myreplace" language="JavaScript">
+pagebgcolor='#C0C0C0';
+
+vbjsFillForm(document.search, '');
+o = document.search.funlist;
+
+o = document.search.storelist;
+e('***请选择***');
+f('7','总库');
+
+o = document.search.userlist;
+e('***请选择***');
+e('ss');
+e('sxl');
+e('system');
+e('zk');
+
+o = document.search.userlist1;
+e('***请选择***');
+e('ss');
+e('sxl');
+e('system');
+e('zk');
+
+
+if (parent.Run.cVersion==8888){
+o = document.search.colorlist;
+e('***请选择***');
+
+}
+if (parent.Run.cVersion==8888){
+o = document.search.sizelist;
+e('***请选择***');
+
+}
+</SCRIPT>
+ </BODY></HTML>
