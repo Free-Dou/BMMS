@@ -8,8 +8,31 @@
 			body
 			{
 				text-align: center;
+				height: 100%;
+				margin: 0px;
+				width: 100%;
+				padding: 0px;
+				position: absolute;
+				font-family: "Microsoft YaHei";
+			}
+			.main-background
+			{
 				background: url(5_mohu.jpg) no-repeat;
-				background-size: 100%;
+				background-size: cover;
+				margin: 0px;
+				padding: 0px;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background-position: center;
+				position: relative;
+			}
+			.banner-background
+			{
+				width: 100%;
+				height: 200px;
+				background-color: rgba(0, 0, 0, 0.55);
 			}
 			.login-background
 			{
@@ -19,6 +42,7 @@
 				width: 400px;
 				text-align: middle;
 				line-height: 20px;
+				padding-top: 6px;
 			}
 			.space
 			{
@@ -40,6 +64,7 @@
 				text-align: right;
 				width: 80px;
 				height: 20px;
+				color: #FFFFFF;
 			}
 			.float-right
 			{
@@ -52,22 +77,33 @@
 				width: 250px;
 			}
 		</style>
+		<script type="text/javascript">
+			function login_click()
+			{
+				element = document.getElementById('test');
+				element.style.background = "#FFFFFF";
+			}
+		</script>
 	</head>
-	<body >
-		<div class="space"></div>
-		<h2>用户登录</h2>
-		<div class="login-background">
-			<div style="height: 30px;">
-				<div class="float-left">用户名：</div>
-				<div class="float-right"><input class="textbox-common" type="text" name="usr"></div>
-			</div>
-			<div style="height: 30px;">
-				<div class="float-left">密码：</div>
-				<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
-			</div>
-			<div style="height: 30px; text-align: right;">
-				<div style="float: right; margin-right: 66px;">
-					<button>登录</button>
+	<body>
+		<div class="main-background">
+			<div class="space"></div>
+			<div class="banner-background" id="test">
+				<div class="login-background">
+					<h2 style="color: #FFFFFF">用户登录</h2>
+					<div style="height: 30px;">
+						<div class="float-left">用户名：</div>
+						<div class="float-right"><input class="textbox-common" type="text" name="usr"></div>
+					</div>
+					<div style="height: 30px;">
+						<div class="float-left">密码：</div>
+						<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
+					</div>
+					<div style="height: 30px; text-align: right;">
+						<div style="float: right; margin-right: 66px;">
+							<button id="login-button" onclick="login_click()">登录</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
