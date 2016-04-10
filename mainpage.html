@@ -7,28 +7,98 @@
 		<style type="text/css">
 			body
 			{
-				/*position: absolute;*/
+				position: absolute;
 				height: 100%;
 				width: 100%;
 				padding: 0px;
 				margin: 0px;
+				font-family: "Microsoft YaHei";
 			}
 			.main-background
 			{
 				background: url("5.jpg") no-repeat;
 				background-size: cover;
+				background-position: center;
 				margin: 0px;
 				padding: 0px;
 				width: 100%;
 				height: 100%;
 				top: 0;
 				left: 0;
-				background-position: center;
-				position: absolute;
+				position: relative;
+				text-align: center;
+				overflow: hidden;
 			}
-			
+			.main
+			{
+				margin: 10px;
+				background-color: rgba(0,0,0,0.55);
+				overflow: hidden;
+				min-width: 1000px;
+				position: relative;
+			}
+			.model
+			{
+				float: left;
+				padding: 10px;
+				width: 20px;
+				color: white;
+				/*background-color: rgba(192,192,255,0.6);*/
+				position: relative;
+				height: 100%;
+				cursor: pointer;
+			}
 		</style>
 		<script type="text/javascript">
+			var main_width = 0;
+			var now_display = "m1";
+			var change_to_display = "";
+			var onchange = false;
+
+			setTimeout("set_main()", 1);
+			function set_main()
+			{
+				var e = document.getElementById("main_c");
+				var e_b = document.getElementById("test-back");
+				e.style.height = e_b.offsetHeight - 20 + "px";
+				e.style.width = e_b.offsetWidth - 20 + "px";
+
+				main_width = e.offsetWidth;
+
+				var e_m = document.getElementById(now_display);
+				e_m.style.width = e.offsetWidth - 320 + "px";
+			}
+			function title_onclick(arg1)
+			{
+				// alert(arg1);
+				if(onchange == false)
+				{
+					change_to_display = arg1;
+					if(change_to_display == now_display)
+						return;
+
+					onchange = true;
+					setTimeout(model_change, 10);
+				}
+			}
+			function model_change()
+			{
+				var e_new = document.getElementById(change_to_display);
+				var e_old = document.getElementById(now_display);
+
+				var v = (main_width - 320 - e_new.offsetWidth) / 6;
+				if(v < 1)
+				{
+					e_new.style.width = main_width - 320 + "px";
+					e_old.style.width = 0 + "px";
+					now_display = change_to_display;
+					onchange = false;
+					return;
+				}
+				e_new.style.width = e_new.offsetWidth + v + "px";
+				e_old.style.width = main_width - 321 - e_new.offsetWidth + "px";
+				setTimeout("model_change()", 10);
+			}
 			// setTimeout("myInterval()",10);
 			// function myInterval()
 			// {
@@ -41,11 +111,58 @@
 			// }
 		</script>
 	</head>
-	<body>
+	<body onresize="set_main()">
 		<div class="main-background" id="test-back">
 			<!-- <div id="test" style="background-color: rgba(0,0,0,0.5); height: 0px;"> -->
-			<div>
-
+			<div class="main" id="main_c">
+				<div class="model" onclick="title_onclick('m1')">
+					信息中心
+				</div>
+				<div id="m1" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m2')">
+					产品
+				</div>
+				<div id="m2" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m3')">
+					销售
+				</div>
+				<div id="m3" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m4')">
+					采购
+				</div>
+				<div id="m4" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m5')">
+					仓储
+				</div>
+				<div id="m5" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m6')">
+					辅助工具
+				</div>
+				<div id="m6" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m7')">
+					会议室
+				</div>
+				<div id="m7" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m8')">
+					监视工具
+				</div>
+				<div id="m8" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
 			</div>
 		</div>
 	</body>

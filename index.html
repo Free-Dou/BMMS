@@ -25,7 +25,6 @@
 				height: 100%;
 				top: 0;
 				left: 0;
-				background-position: center;
 				/*overflow: hidden;*/
 				position: absolute;
 			}
@@ -89,8 +88,8 @@
 			setTimeout("login_banner_show()", 10);
 			function login_banner_show()
 			{
-				x = document.getElementById("test");
-				v = (200 - x.offsetHeight) / 6;
+				var x = document.getElementById("test");
+				var v = (200 - x.offsetHeight) / 6;
 				if(v < 1)
 					return;
 				x.style.height = x.offsetHeight + v + "px";
@@ -99,6 +98,30 @@
 			function login_click()
 			{
 				location.href='mainpage.html';
+			}
+			function button_mouseenter()
+			{
+				var x = document.getElementById("login_button");
+				x.style.color = "black";
+				x.style.backgroundColor = "white";
+			}
+			function button_mouseleave()
+			{
+				var x = document.getElementById("login_button");
+				x.style.color = "white";
+				x.style.backgroundColor = "#0078D7";
+			}
+			function button_mousedown()
+			{
+				var x = document.getElementById("login_button");
+				x.style.color = "black";
+				x.style.backgroundColor = "#F7F7F7";
+			}
+			function button_mouseup()
+			{
+				var x = document.getElementById("login_button");
+				x.style.color = "black";
+				x.style.backgroundColor = "white";
 			}
 		</script>
 	</head>
@@ -117,10 +140,11 @@
 						<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
 					</div>
 					<div style="height: 30px; text-align: right;">
-						<div style="float: right; margin-right: 66px;">
-							<button id="login-button" onclick="login_click()">登录</button>
+						<div id="login_button" style="float: right; margin-right: 66px; background-color: #0078D7; height: 30px; width: 60px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter()" onmouseleave="button_mouseleave()" onmousedown="button_mousedown()" onmouseup="button_mouseup()" onclick="login_click()">
+							<p style="top: 50%; transform: translateY(-50%);">登录</p>
+							<!-- <button id="login-button" onclick="login_click()">登录</button> -->
 						</div>
-					</div>
+ 					</div>
 				</div>
 			</div>
 			<div style="left: 0px; bottom: 0px; position: fixed; width: 100%; color: #A0A0A0; font-size: 12px;">
