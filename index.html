@@ -3,7 +3,7 @@
 
 <html>
 	<head>
-		<title>hello</title>
+		<title>BMMSへよこそ！</title>
 		<style>
 			body
 			{
@@ -76,12 +76,15 @@
 			{
 				width: 250px;
 			}
+			.normal-line
+			{
+				height: 35px;
+			}
 		</style>
 		<script type="text/javascript">
 			function login_click()
 			{
-				element = document.getElementById('test');
-				element.style.background = "#FFFFFF";
+				location.href='mainpage.html';
 			}
 		</script>
 	</head>
@@ -91,11 +94,11 @@
 			<div class="banner-background" id="test">
 				<div class="login-background">
 					<h2 style="color: #FFFFFF">用户登录</h2>
-					<div style="height: 30px;">
+					<div class="normal-line">
 						<div class="float-left">用户名：</div>
 						<div class="float-right"><input class="textbox-common" type="text" name="usr"></div>
 					</div>
-					<div style="height: 30px;">
+					<div class="normal-line">
 						<div class="float-left">密码：</div>
 						<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
 					</div>
