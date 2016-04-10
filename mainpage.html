@@ -4,8 +4,45 @@
 <html>
 	<head>
 		<title>主要界面</title>
+		<style type="text/css">
+			body
+			{
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			.main-background
+			{
+				background: url("5.jpg") no-repeat;
+				background-size: cover;
+				margin: 0px;
+				padding: 0px;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background-position: center;
+				position: relative;
+			}
+		</style>
+		<script type="text/javascript">
+			setTimeout("myInterval()",10);
+			function myInterval()
+			{
+				aim = document.getElementById("test-back");
+				ele = document.getElementById("test");
+				ele.style.height = 1 + ele.offsetHeight + 'px';
+				if(ele.offsetHeight < aim.offsetHeight)
+					setTimeout("myInterval()",10);
+				// ele.innerHTML="Hello JavaScript";
+			}
+		</script>
 	</head>
 	<body>
-		
+		<div class="main-background" id="test-back">
+			<div id="test" style="background-color: rgba(0,0,0,0.5); height: 0px;">
+		</div>
 	</body>
 </html>

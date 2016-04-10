@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title>BMMSへようこそ！</title>
-		<style>
+		<style type="text/css">
 			body
 			{
 				text-align: center;
@@ -17,7 +17,7 @@
 			}
 			.main-background
 			{
-				background: url(5_mohu.jpg) no-repeat;
+				background: url("5_mohu.jpg") no-repeat;
 				background-size: cover;
 				margin: 0px;
 				padding: 0px;
@@ -26,13 +26,16 @@
 				top: 0;
 				left: 0;
 				background-position: center;
-				position: relative;
+				overflow: hidden;
 			}
 			.banner-background
 			{
+				margin-top: 200px;
 				width: 100%;
-				height: 200px;
+				/*height: 200px;*/
+				height: 0px;
 				background-color: rgba(0, 0, 0, 0.55);
+				overflow: hidden;
 			}
 			.login-background
 			{
@@ -82,6 +85,16 @@
 			}
 		</style>
 		<script type="text/javascript">
+			setTimeout("login_banner_show()", 10);
+			function login_banner_show()
+			{
+				x = document.getElementById("test");
+				v = (200 - x.offsetHeight) / 6;
+				if(v < 1)
+					return;
+				x.style.height = x.offsetHeight + v + "px";
+				setTimeout("login_banner_show()", 10);
+			}
 			function login_click()
 			{
 				location.href='mainpage.html';
@@ -90,7 +103,7 @@
 	</head>
 	<body>
 		<div class="main-background">
-			<div class="space"></div>
+			<!-- <div class="space"></div> -->
 			<div class="banner-background" id="test">
 				<div class="login-background">
 					<h2 style="color: #FFFFFF">用户登录</h2>
@@ -108,6 +121,10 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div style="margin-bottom: 0px; left: 0px; bottom: 0px; width: 100%; color: #A0A0A0; position: fixed; font-size: 12px;">
+				<p>Copyright:BMMS Project Team</p>
+				<p>All Right Reserved</p>
 			</div>
 		</div>
 	</body>
