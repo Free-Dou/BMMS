@@ -1,9 +1,75 @@
-<<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta charset="utf-8">
+
 <html>
-<head>
-	<title>hello</title>
-</head>
-<body>
-    <h2>hello wolrd</h2>
-</body>
+	<head>
+		<title>hello</title>
+		<style>
+			body
+			{
+				text-align: center;
+				background: url(5_mohu.jpg) no-repeat;
+				background-size: 100%;
+			}
+			.login-background
+			{
+				margin-right: auto;
+				margin-left: auto;
+				height: 200px;
+				width: 400px;
+				text-align: middle;
+				line-height: 20px;
+			}
+			.space
+			{
+				margin-left: auto;
+				margin-right: auto;
+				width: 400px;
+				height: 200px;
+			}
+			.space-small
+			{
+				margin-left: auto;
+				margin-right: auto;
+				width: 400px;
+				height: 20px;
+			}
+			.float-left
+			{
+				float: left;
+				text-align: right;
+				width: 80px;
+				height: 20px;
+			}
+			.float-right
+			{
+				float: left;
+				text-align: left;
+				height: 20px;
+			}
+			.textbox-common
+			{
+				width: 250px;
+			}
+		</style>
+	</head>
+	<body >
+		<div class="space"></div>
+		<h2>用户登录</h2>
+		<div class="login-background">
+			<div style="height: 30px;">
+				<div class="float-left">用户名：</div>
+				<div class="float-right"><input class="textbox-common" type="text" name="usr"></div>
+			</div>
+			<div style="height: 30px;">
+				<div class="float-left">密码：</div>
+				<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
+			</div>
+			<div style="height: 30px; text-align: right;">
+				<div style="float: right; margin-right: 66px;">
+					<button>登录</button>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
