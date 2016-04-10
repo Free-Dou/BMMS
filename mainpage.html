@@ -49,67 +49,6 @@
 				cursor: pointer;
 			}
 		</style>
-		<script type="text/javascript">
-			var main_width = 0;
-			var now_display = "m1";
-			var change_to_display = "";
-			var onchange = false;
-
-			setTimeout("set_main()", 1);
-			function set_main()
-			{
-				var e = document.getElementById("main_c");
-				var e_b = document.getElementById("test-back");
-				e.style.height = e_b.offsetHeight - 20 + "px";
-				e.style.width = e_b.offsetWidth - 20 + "px";
-
-				main_width = e.offsetWidth;
-
-				var e_m = document.getElementById(now_display);
-				e_m.style.width = e.offsetWidth - 320 + "px";
-			}
-			function title_onclick(arg1)
-			{
-				// alert(arg1);
-				if(onchange == false)
-				{
-					change_to_display = arg1;
-					if(change_to_display == now_display)
-						return;
-
-					onchange = true;
-					setTimeout(model_change, 10);
-				}
-			}
-			function model_change()
-			{
-				var e_new = document.getElementById(change_to_display);
-				var e_old = document.getElementById(now_display);
-
-				var v = (main_width - 320 - e_new.offsetWidth) / 6;
-				if(v < 1)
-				{
-					e_new.style.width = main_width - 320 + "px";
-					e_old.style.width = 0 + "px";
-					now_display = change_to_display;
-					onchange = false;
-					return;
-				}
-				e_new.style.width = e_new.offsetWidth + v + "px";
-				e_old.style.width = main_width - 321 - e_new.offsetWidth + "px";
-				setTimeout("model_change()", 10);
-			}
-			// setTimeout("myInterval()",10);
-			// function myInterval()
-			// {
-			// 	aim = document.getElementById("test-back");
-			// 	ele = document.getElementById("test");
-			// 	ele.style.height = 1 + ele.offsetHeight + 'px';
-			// 	if(ele.offsetHeight < aim.offsetHeight)
-			// 		setTimeout("myInterval()",10);
-			// 	// ele.innerHTML="Hello JavaScript";
-			// }
-		</script>
 	</head>
 	<body onresize="set_main()">
 		<div class="main-background" id="test-back">
@@ -165,5 +104,66 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			var main_width = 0;
+			var onchange_flag = false;
+			var now_display = "m1";
+			var change_to_display = "";
+
+			setTimeout("set_main()", 1);
+			function set_main()
+			{
+				var e = document.getElementById("main_c");
+				var e_b = document.getElementById("test-back");
+				e.style.height = e_b.offsetHeight - 20 + "px";
+				e.style.width = e_b.offsetWidth - 20 + "px";
+
+				main_width = e.offsetWidth;
+				onchange = "0";
+
+				var e_m = document.getElementById(now_display);
+				e_m.style.width = e.offsetWidth - 320 + "px";
+			}
+			function title_onclick(arg1)
+			{
+				if(onchange_flag == false)
+				{
+					change_to_display = arg1;
+					if(change_to_display == now_display)
+						return;
+
+					onchange_flag = true;
+					setTimeout(model_change, 10);
+				}
+			}
+			function model_change()
+			{
+				var e_new = document.getElementById(change_to_display);
+				var e_old = document.getElementById(now_display);
+
+				var v = (main_width - 320 - e_new.offsetWidth) / 6;
+				if(v < 1)
+				{
+					e_new.style.width = main_width - 320 + "px";
+					e_old.style.width = 0 + "px";
+					now_display = change_to_display;
+					onchange_flag = false;
+					return;
+				}
+				e_new.style.width = e_new.offsetWidth + v + "px";
+				e_old.style.width = main_width - 321 - e_new.offsetWidth + "px";
+				setTimeout("model_change()", 10);
+			}
+			// setTimeout("myInterval()",10);
+			// function myInterval()
+			// {
+			// 	aim = document.getElementById("test-back");
+			// 	ele = document.getElementById("test");
+			// 	ele.style.height = 1 + ele.offsetHeight + 'px';
+			// 	if(ele.offsetHeight < aim.offsetHeight)
+			// 		setTimeout("myInterval()",10);
+			// 	// ele.innerHTML="Hello JavaScript";
+			// }
+		</script>
 	</body>
 </html>
