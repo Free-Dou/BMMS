@@ -43,74 +43,29 @@
 				padding: 10px;
 				width: 20px;
 				color: white;
-				/*background-color: rgba(192,192,255,0.6);*/
 				position: relative;
 				height: 100%;
 				cursor: pointer;
 			}
+			.model_title
+			{
+				float: left;
+				width: 0px;
+				height: 100%;
+
+				position: relative;
+				overflow: hidden;
+				background-color: rgba(192,192,192,0.5);
+			}
 		</style>
-	</head>
-	<body onresize="set_main()">
-		<div class="main-background" id="test-back">
-			<!-- <div id="test" style="background-color: rgba(0,0,0,0.5); height: 0px;"> -->
-			<div class="main" id="main_c">
-				<div class="model" onclick="title_onclick('m1')">
-					信息中心
-				</div>
-				<div id="m1" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m2')">
-					产品
-				</div>
-				<div id="m2" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m3')">
-					销售
-				</div>
-				<div id="m3" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m4')">
-					采购
-				</div>
-				<div id="m4" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m5')">
-					仓储
-				</div>
-				<div id="m5" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m6')">
-					辅助工具
-				</div>
-				<div id="m6" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m7')">
-					会议室
-				</div>
-				<div id="m7" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m8')">
-					监视工具
-				</div>
-				<div id="m8" style="float: left; width: 0px; height: 100%; position: relative; overflow: hidden; background-color: rgba(192,192,192,0.5);">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-			</div>
-		</div>
 		<script type="text/javascript">
 			var main_width = 0;
-			var onchange_flag = false;
+			var onchange_flag = true;
 			var now_display = "m1";
 			var change_to_display = "";
 
 			setTimeout("set_main()", 1);
+			setTimeout("model_load()", 10);
 			function set_main()
 			{
 				var e = document.getElementById("main_c");
@@ -121,8 +76,11 @@
 				main_width = e.offsetWidth;
 				onchange = "0";
 
-				var e_m = document.getElementById(now_display);
-				e_m.style.width = e.offsetWidth - 320 + "px";
+				if(onchange_flag == false)
+				{
+					var e_m = document.getElementById(now_display);
+					e_m.style.width = e.offsetWidth - 320 + "px";
+				}
 			}
 			function title_onclick(arg1)
 			{
@@ -154,6 +112,19 @@
 				e_old.style.width = main_width - 321 - e_new.offsetWidth + "px";
 				setTimeout("model_change()", 10);
 			}
+			function model_load()
+			{
+				var e = document.getElementById(now_display);
+				var v = (main_width - 320 - e.offsetWidth) / 6;
+				if(v < 1)
+				{
+					e.style.width = main_width - 320 + "px";
+					onchange_flag = false;
+					return;
+				}
+				e.style.width = e.offsetWidth + v + "px";
+				setTimeout("model_load()", 10);
+			}
 			// setTimeout("myInterval()",10);
 			// function myInterval()
 			// {
@@ -165,5 +136,60 @@
 			// 	// ele.innerHTML="Hello JavaScript";
 			// }
 		</script>
+	</head>
+	<body onresize="set_main()">
+		<div class="main-background" id="test-back">
+			<!-- <div id="test" style="background-color: rgba(0,0,0,0.5); height: 0px;"> -->
+			<div class="main" id="main_c">
+				<div class="model" onclick="title_onclick('m1')">
+					信息中心
+				</div>
+				<div id="m1" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m2')">
+					产品
+				</div>
+				<div id="m2" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m3')">
+					销售
+				</div>
+				<div id="m3" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m4')">
+					采购
+				</div>
+				<div id="m4" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m5')">
+					仓储
+				</div>
+				<div id="m5" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m6')">
+					辅助工具
+				</div>
+				<div id="m6" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m7')">
+					会议室
+				</div>
+				<div id="m7" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m8')">
+					监视工具
+				</div>
+				<div id="m8" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
