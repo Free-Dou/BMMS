@@ -5,126 +5,196 @@
 	<head>
 		<title>主要界面</title>
 		<style type="text/css">
-			body
-			{
-				position: absolute;
-				height: 100%;
-				width: 100%;
-				padding: 0px;
-				margin: 0px;
-				font-family: "Microsoft YaHei";
-			}
-			.main-background
+			@import url(CSS/common-style.css);
+		</style>
+		<style type="text/css">
+			.main-background-img
 			{
 				background: url("5.jpg") no-repeat;
-				background-size: cover;
-				background-position: center;
-				margin: 0px;
-				padding: 0px;
+				position: relative;
+			}
+			.page-title
+			{
+				height: 48px;
+				background-color: rgba(0,48,128,0.6);
+			}
+			.page-main
+			{
+				height: 100%;
+				position: relative;
+				overflow: hidden;
+			}
+			.left-menu
+			{
+				float: left;
+				width: 250px;
+				height: 100%;
+
+				background-color: rgba(0,0,0,0.6);
+
+				text-align: left;
+				overflow: hidden;
+				position: relative;
+			}
+			.right-page-main
+			{
+				float: left;
+
 				width: 100%;
 				height: 100%;
-				top: 0;
-				left: 0;
-				position: relative;
-				text-align: center;
+
+				background-color: rgba(0,0,0,0.7);
+				position: absolute;
 				overflow: hidden;
+
+				color: #FFFFFF;
+				opacity: 0.0;
+
+				transform: translateX(-20px);
 			}
-			.main
+			.left-item
 			{
-				margin: 10px;
-				background-color: rgba(0,0,0,0.55);
-				overflow: hidden;
-				min-width: 1000px;
-				position: relative;
-			}
-			.model
-			{
-				float: left;
-				padding: 10px;
-				width: 20px;
-				color: white;
-				position: relative;
-				height: 100%;
+				padding-top: 8px;
+				padding-left: 15px;
+				height: 36px;
+				background-color: rgba(128,128,128,0.2);
+				font-size: 20px;
+				color: #B0B0FF;
+				font-weight: 100;
 				cursor: pointer;
 			}
-			.model_title
+			.right-page-base
 			{
 				float: left;
-				width: 0px;
+
+				width: 1000px;
 				height: 100%;
 
 				position: relative;
 				overflow: hidden;
-				background-color: rgba(192,192,192,0.5);
+
+				color: #FFFFFF;
+				overflow: hidden;
 			}
 		</style>
 		<script type="text/javascript">
-			var main_width = 0;
+			var page_now = "page_right_0";
+			var page_change_to = "";
 			var onchange_flag = true;
-			var now_display = "m1";
-			var change_to_display = "";
+			var selected = 0;
 
 			setTimeout("set_main()", 1);
 			setTimeout("model_load()", 10);
+
 			function set_main()
 			{
-				var e = document.getElementById("main_c");
-				var e_b = document.getElementById("test-back");
-				e.style.height = e_b.offsetHeight - 20 + "px";
-				e.style.width = e_b.offsetWidth - 20 + "px";
+				// var e = document.getElementById("page_main");
+				var e_b = document.getElementById("main_back");
+				// var e_f = document.getElementById("page_footer");
+				// var e_t = document.getElementById("page_title");
+				var e_n = document.getElementById("right_base");
 
-				main_width = e.offsetWidth;
-				onchange = "0";
+				// e.style.height = e_b.offsetHeight - e_f.offsetHeight - e_t.offsetHeight + "px";
+				e_n.style.width = e_b.offsetWidth - 250 + "px";
 
-				if(onchange_flag == false)
-				{
-					var e_m = document.getElementById(now_display);
-					e_m.style.width = e.offsetWidth - 320 + "px";
-				}
+				var x = document.getElementById("base_title_0");
+				x.style.color = "#FFFFB0";
+				x.style.backgroundColor = "rgba(255,255,255,0.4)";
 			}
-			function title_onclick(arg1)
+			function title_onclick(aim)
 			{
 				if(onchange_flag == false)
 				{
-					change_to_display = arg1;
-					if(change_to_display == now_display)
+					page_change_to = "page_right_" + aim;
+					if(page_change_to == page_now)
 						return;
 
 					onchange_flag = true;
-					setTimeout(model_change, 10);
+					setTimeout(page_change, 10);
 				}
 			}
-			function model_change()
+			function page_change()
 			{
-				var e_new = document.getElementById(change_to_display);
-				var e_old = document.getElementById(now_display);
+				var p_old = document.getElementById(page_now);
+				var p_new = document.getElementById(page_change_to);
 
-				var v = (main_width - 320 - e_new.offsetWidth) / 6;
-				if(v < 1)
+				p_new.style.opacity = Number(p_new.style.opacity) + 0.03;
+				p_new.style.transform = "translateX(" + (-20) * (1 - p_new.style.opacity) + "px" + ")";
+
+				p_old.style.opacity = Number(p_old.style.opacity) - 0.03;
+				p_old.style.transform = "translateX(" + (-20) * (1 - p_old.style.opacity) + "px" + ")";
+
+				if(p_new.style.opacity >= 1)
 				{
-					e_new.style.width = main_width - 320 + "px";
-					e_old.style.width = 0 + "px";
-					now_display = change_to_display;
+					p_new.style.transform = "translateX(0px)";
+					p_new.style.opacity = 1;
+
+					p_old.style.transform = "translateX(-20px)";
+					p_old.style.opacity = 0;
+
+					page_now = page_change_to;
 					onchange_flag = false;
+
 					return;
 				}
-				e_new.style.width = e_new.offsetWidth + v + "px";
-				e_old.style.width = main_width - 321 - e_new.offsetWidth + "px";
-				setTimeout("model_change()", 10);
+				setTimeout("page_change()", 10);
 			}
 			function model_load()
 			{
-				var e = document.getElementById(now_display);
-				var v = (main_width - 320 - e.offsetWidth) / 6;
-				if(v < 1)
+				var e = document.getElementById(page_now);
+
+				e.style.opacity = Number(e.style.opacity) + 0.03;
+				e.style.transform = "translateX(" + (-20) * (1 - e.style.opacity) + "px" + ")";
+				if(e.style.opacity >= 1)
 				{
-					e.style.width = main_width - 320 + "px";
+					e.style.transform = "translateX(0px)";
+					e.style.opacity = 1;
 					onchange_flag = false;
 					return;
 				}
-				e.style.width = e.offsetWidth + v + "px";
 				setTimeout("model_load()", 10);
 			}
+			function body_onload()
+			{
+
+			}
+			function title_mouseenter(index)
+			{
+				if(selected != index)
+				{
+					var x = document.getElementById("base_title_" + index);
+					x.style.color = "#B0B0FF";
+					x.style.backgroundColor = "rgba(128,128,128,0.4)";
+				}
+			}
+			function title_mouseleave(index)
+			{
+				if(selected != index)
+				{
+					var x = document.getElementById("base_title_" + index);
+					x.style.color = "#B0B0FF";
+					x.style.backgroundColor = "rgba(128,128,128,0.2)";
+				}
+			}
+			function title_mousedown(index)
+			{
+				var x = document.getElementById("base_title_" + index);
+				x.style.color = "#FFFFB0";
+				x.style.backgroundColor = "rgba(255,255,255,0.4)";
+			}
+			function title_mouseup(index)
+			{
+				var temp = selected;
+				selected = index;
+				title_mouseleave(temp);
+				// if(selected != index)
+				// {
+				// 	var x = document.getElementById("base_title_" + index);
+				// 	x.style.color = "#B0B0FF";
+				// 	x.style.backgroundColor = "rgba(128,128,128,0.4)";
+				// }
+			}
+
 			// setTimeout("myInterval()",10);
 			// function myInterval()
 			// {
@@ -137,59 +207,38 @@
 			// }
 		</script>
 	</head>
-	<body onresize="set_main()">
-		<div class="main-background" id="test-back">
-			<!-- <div id="test" style="background-color: rgba(0,0,0,0.5); height: 0px;"> -->
-			<div class="main" id="main_c">
-				<div class="model" onclick="title_onclick('m1')">
-					信息中心
+	<body onresize="set_main()" onload="">
+		<div class="main-background main-background-img" id="main_back">
+			<div class="page-title" id="page_title">
+				<div style="float: left; color: #FFFFFF; padding-left: 10px; font-size: 36px; font-weight: 300;" >BMMS</div>
+				<div style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;">ようこそ！</div>
+			</div>
+			<div class="page-main" id="page_main">
+				<div class="left-menu">
+					<div class="left-item" id="base_title_0" onclick="title_onclick('0')" onmouseenter="title_mouseenter('0')" onmouseleave="title_mouseleave('0')" onmousedown="title_mousedown('0')" onmouseup="title_mouseup('0')"> 信息中心 </div>
+					<div class="left-item" id="base_title_1" onclick="title_onclick('1')" onmouseenter="title_mouseenter('1')" onmouseleave="title_mouseleave('1')" onmousedown="title_mousedown('1')" onmouseup="title_mouseup('1')"> 产品 </div>
+					<div class="left-item" id="base_title_2" onclick="title_onclick('2')" onmouseenter="title_mouseenter('2')" onmouseleave="title_mouseleave('2')" onmousedown="title_mousedown('2')" onmouseup="title_mouseup('2')"> 销售 </div>
+					<div class="left-item" id="base_title_3" onclick="title_onclick('3')" onmouseenter="title_mouseenter('3')" onmouseleave="title_mouseleave('3')" onmousedown="title_mousedown('3')" onmouseup="title_mouseup('3')"> 采购 </div>
+					<div class="left-item" id="base_title_4" onclick="title_onclick('4')" onmouseenter="title_mouseenter('4')" onmouseleave="title_mouseleave('4')" onmousedown="title_mousedown('4')" onmouseup="title_mouseup('4')"> 仓储 </div>
+					<div class="left-item" id="base_title_5" onclick="title_onclick('5')" onmouseenter="title_mouseenter('5')" onmouseleave="title_mouseleave('5')" onmousedown="title_mousedown('5')" onmouseup="title_mouseup('5')"> 辅助工具 </div>
+					<div class="left-item" id="base_title_6" onclick="title_onclick('6')" onmouseenter="title_mouseenter('6')" onmouseleave="title_mouseleave('6')" onmousedown="title_mousedown('6')" onmouseup="title_mouseup('6')"> 会议室 </div>
+					<div class="left-item" id="base_title_7" onclick="title_onclick('7')" onmouseenter="title_mouseenter('7')" onmouseleave="title_mouseleave('7')" onmousedown="title_mousedown('7')" onmouseup="title_mouseup('7')"> 监视工具 </div>
 				</div>
-				<div id="m1" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m2')">
-					产品
-				</div>
-				<div id="m2" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m3')">
-					销售
-				</div>
-				<div id="m3" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m4')">
-					采购
-				</div>
-				<div id="m4" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m5')">
-					仓储
-				</div>
-				<div id="m5" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m6')">
-					辅助工具
-				</div>
-				<div id="m6" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m7')">
-					会议室
-				</div>
-				<div id="m7" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
-				</div>
-				<div class="model" onclick="title_onclick('m8')">
-					监视工具
-				</div>
-				<div id="m8" class="model_title">
-					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				<div class="right-page-base" id="right_base">
+					<div class="right-page-main" id="page_right_0">Project in building! This is page 0.</div>
+					<div class="right-page-main" id="page_right_1">Project in building! This is page 1.</div>
+					<div class="right-page-main" id="page_right_2">Project in building! This is page 2.</div>
+					<div class="right-page-main" id="page_right_3">Project in building! This is page 3.</div>
+					<div class="right-page-main" id="page_right_4">Project in building! This is page 4.</div>
+					<div class="right-page-main" id="page_right_5">Project in building! This is page 5.</div>
+					<div class="right-page-main" id="page_right_6">Project in building! This is page 6.</div>
+					<div class="right-page-main" id="page_right_7">Project in building! This is page 7.</div>
 				</div>
 			</div>
+<!-- 			<div class="page-footer" id="page_footer">
+				<p>Copyright © BMMS Project™</p>
+				<p>All Right Reserved</p>
+			</div> -->
 		</div>
 	</body>
 </html>
