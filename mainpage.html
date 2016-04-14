@@ -8,414 +8,124 @@
 			@import url(CSS/common-style.css);
 		</style>
 		<style type="text/css">
-			.main-background-img
-			{
-				background: url("5.jpg") no-repeat;
-				position: relative;
-			}
-			.page-title
-			{
-				height: 48px;
-				background-color: rgba(0,48,128,0.6);
-			}
-			.page-main
-			{
-				height: 100%;
-				position: relative;
-				overflow: hidden;
-			}
-			.left-menu
-			{
-				float: left;
-				width: 250px;
-				height: 100%;
-
-				background-color: rgba(0,0,0,0.6);
-
-				text-align: left;
-				overflow: hidden;
-				position: relative;
-			}
-			.right-page-main
-			{
-				float: left;
-
-				width: 100%;
-				height: 100%;
-
-				background-color: rgba(0,0,0,0.7);
-				position: absolute;
-				overflow: hidden;
-
-				color: #FFFFFF;
-				opacity: 0.0;
-
-				transform: translateX(-250px);
-			}
-			.left-item
-			{
-				padding-top: 8px;
-				padding-left: 15px;
-				height: 36px;
-				background-color: rgba(128,128,128,0.2);
-				/*background-color: rgba(255,255,255,0.1);*/
-				font-size: 20px;
-				color: #B0B0FF;
-				font-weight: 100;
-				cursor: pointer;
-			}
-			.right-page-base
-			{
-				float: left;
-
-				width: 1000px;
-				height: 100%;
-
-				position: relative;
-				overflow: hidden;
-
-				color: #FFFFFF;
-				overflow: hidden;
-			}
-			.left-item-lv2
-			{
-				padding-top: 4px;
-				padding-left: 21px;
-				height: 22px;
-
-				background-color: rgba(255,255,255,0.0);
-				/*background-color: rgba(255,255,255,0.8);*/
-
-				color: #FFFFFF;
-				/*color: #000000;*/
-
-				font-size: 14px;
-				font-weight: 300;
-				cursor: pointer;
-			}
-			.left-item-lv2-for-test
-			{
-				padding-top: 4px;
-				padding-left: 21px;
-				height: 22px;
-
-				/*background-color: rgba(255,255,255,0.6);*/
-				background-color: rgba(255,255,255,0.3);
-
-				/*color: #FFFFFF;*/
-				color: #FFFFB0;
-
-				font-size: 14px;
-				font-weight: 100;
-				cursor: pointer;
-			}
-			.left-item-lv2-pad
-			{
-				height: 0px;
-
-				position: relative;
-				overflow: hidden;
-			}
+			@import url(CSS/mainpage.css);
 		</style>
-		<script type="text/javascript">
-			var page_now = "";
-			var page_change_to = "";
-			var onchange_flag = false;
-			var selected = [-1, -1];
-
-			var left_base_status = new Array();
-
-			for(var i = 0; i < 8; i++)
-				left_base_status[i] = 0;
-
-			setTimeout("set_main()", 1);
-			// setTimeout("page_change_continue()", 10);
-
-			function set_main()
-			{
-				var e_b = document.getElementById("main_back");
-				var e_n = document.getElementById("right_base");
-
-				e_n.style.width = e_b.offsetWidth - 250 + "px";
-			}
-			function title_onclick(base, index)
-			{
-				if(onchange_flag == false)
-				{
-					page_change_to = "page_right_" + base + "_" + index;
-					if(page_change_to == page_now)
-						return;
-
-					onchange_flag = true;
-
-					if(page_now == "")
-					{
-						page_now = page_change_to;
-						setTimeout("page_change_continue()", 10);
-						return;
-					}
-					else
-						setTimeout(page_change, 10);
-				}
-			}
-			function page_change()
-			{
-				var p_old = document.getElementById(page_now);
-				var v = p_old.style.opacity / 6;
-
-				p_old.style.opacity = Number(p_old.style.opacity) - v;
-				p_old.style.transform = "translateX(" + (-250) * (1 - p_old.style.opacity) + "px" + ")";
-
-				if(p_old.style.opacity <= 0 || v < 0.001)
-				{
-
-					p_old.style.transform = "translateX(-250px)";
-					p_old.style.opacity = 0;
-
-					page_now = page_change_to;
-					setTimeout("page_change_continue()", 10);
-
-					return;
-				}
-				setTimeout("page_change()", 10);
-			}
-			function page_change_continue()
-			{
-				var e = document.getElementById(page_now);
-				var v = (1 - e.style.opacity) / 6;
-
-				e.style.opacity = Number(e.style.opacity) + v;
-				e.style.transform = "translateX(" + (-250) * (1 - e.style.opacity) + "px" + ")";
-
-				if(e.style.opacity >= 1 || v < 0.001)
-				{
-					e.style.transform = "translateX(0px)";
-					e.style.opacity = 1;
-					onchange_flag = false;
-					return;
-				}
-				setTimeout("page_change_continue()", 10);
-			}
-			function body_onload()
-			{
-				// var x = document.getElementById("base_title_0");
-				// x.style.color = "#FFFFB0";
-				// x.style.backgroundColor = "rgba(255,255,255,0.4)";
-			}
-			function title_mouseenter(index)
-			{
-				// if(selected != index)
-				// {
-				if(left_base_status[index] == 0)
-				{
-					var x = document.getElementById("base_title_" + index);
-					x.style.color = "#B0B0FF";
-					x.style.backgroundColor = "rgba(128,128,128,0.4)";
-				}
-				// }
-			}
-			function title_mouseleave(index)
-			{
-				// if(selected != index)
-				// {
-				if(left_base_status[index] == 0)
-				{
-					var x = document.getElementById("base_title_" + index);
-					x.style.color = "#B0B0FF";
-					x.style.backgroundColor = "rgba(128,128,128,0.2)";
-				}
-				// }
-			}
-			function title_mousedown(index)
-			{
-				var x = document.getElementById("base_title_" + index);
-				x.style.color = "#A0A0EE";
-				x.style.backgroundColor = "rgba(128,128,128,0.3)";
-			}
-			function title_mouseup(index)
-			{
-				if(left_base_status[index] == 0)
-				{
-					var x = document.getElementById("base_title_" + index);
-					x.style.color = "#FFFFB0";
-					x.style.backgroundColor = "rgba(255,255,255,0.4)";
-
-					var x_1 = document.getElementById("base_" + index + "_lv2");
-					var x_1_end = document.getElementById("base_" + index + "_lv2_end");
-
-					x_1.style.height = x_1_end.offsetTop + "px";
-
-					left_base_status[index] = 1;
-				}
-				else
-				{
-					var x = document.getElementById("base_title_" + index);
-					x.style.color = "#B0B0FF";
-					x.style.backgroundColor = "rgba(128,128,128,0.4)";
-
-					var x_1 = document.getElementById("base_" + index + "_lv2");
-					x_1.style.height = 0 + "px";
-
-					left_base_status[index] = 0;
-				}
-				// if(onchange_flag == false)
-				// {
-				// 	var temp = selected;
-				// 	selected = index;
-				// 	title_mouseleave(temp);
-
-				// 	var x = document.getElementById("base_title_" + index);
-				// 	x.style.color = "#FFFFB0";
-				// 	x.style.backgroundColor = "rgba(255,255,255,0.4)";
-
-				// 	title_onclick(index);
-				// }
-				// else if(selected != index)
-				// {
-				// 	var x = document.getElementById("base_title_" + index);
-				// 	x.style.color = "#B0B0FF";
-				// 	x.style.backgroundColor = "rgba(128,128,128,0.4)";
-				// }
-			}
-
-			function lv2_mouseenter(base, index)
-			{
-				if(selected[0] != base || selected[1] != index)
-				{
-					var x = document.getElementById("base_" + base + "_lv2_" + index);
-					x.style.color = "#FFFFFF";
-					x.style.backgroundColor = "rgba(255,255,255,0.2)";
-				}
-			}
-			function lv2_mouseleave(base, index)
-			{
-				if(selected[0] != base || selected[1] != index)
-				{
-					var x = document.getElementById("base_" + base + "_lv2_" + index);
-					x.style.color = "#FFFFFF";
-					x.style.backgroundColor = "rgba(255,255,255,0.0)";
-				}
-			}
-			function lv2_mousedown(base, index)
-			{
-				var x = document.getElementById("base_" + base + "_lv2_" + index);
-				x.style.color = "#DDDDDD";
-				x.style.backgroundColor = "rgba(0,0,0,0.5)";
-			}
-			function lv2_mouseup(base, index)
-			{
-				if(onchange_flag == false)
-				{
-					var temp = new Array();
-					temp[0] = selected[0];
-					temp[1] = selected[1];
-
-					selected[0] = base;
-					selected[1] = index;
-
-					if(temp[0] != -1)
-						lv2_mouseleave(temp[0], temp[1]);
-
-					var x = document.getElementById("base_" + base + "_lv2_" + index);
-					x.style.color = "#FFFFB0";
-					x.style.backgroundColor = "rgba(255,192,128,0.3)";
-
-					title_onclick(base, index);
-				}
-				else if(selected[0] != base || selected[1] != index)
-				{
-					var x = document.getElementById("base_" + base + "_lv2_" + index);
-					x.style.color = "#FFFFFF";
-					x.style.backgroundColor = "rgba(255,255,255,0.2)";
-				}
-			}
-
-			// setTimeout("myInterval()",10);
-			// function myInterval()
-			// {
-			// 	aim = document.getElementById("test-back");
-			// 	ele = document.getElementById("test");
-			// 	ele.style.height = 1 + ele.offsetHeight + 'px';
-			// 	if(ele.offsetHeight < aim.offsetHeight)
-			// 		setTimeout("myInterval()",10);
-			// 	// ele.innerHTML="Hello JavaScript";
-			// }
-		</script>
+		<script type="text/javascript" src="JS/mainpage.js"> </script>
 	</head>
 	<body onresize="set_main()" onload="body_onload()">
 		<div class="main-background main-background-img" id="main_back">
 			<div class="page-title" id="page_title">
 				<div style="float: left; color: #FFFFFF; padding-left: 10px; font-size: 36px; font-weight: 300;" >BMMS-Project™</div>
-				<div style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;">ようこそ！</div>
+				<div style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;"> Welcome, Mr.Administer! </div>
 			</div>
 			<div class="page-main" id="page_main">
-				<div class="left-menu">
-					<div class="left-item" id="base_title_0" onmouseenter="title_mouseenter('0')" onmouseleave="title_mouseleave('0')" onmousedown="title_mousedown('0')" onmouseup="title_mouseup('0')"> 信息中心 </div>
-					<div class="left-item-lv2-pad" id="base_0_lv2">
-						<div class="left-item-lv2" id="base_0_lv2_0" onmouseenter="lv2_mouseenter('0','0')" onmouseleave="lv2_mouseleave('0','0')" onmousedown="lv2_mousedown('0','0')" onmouseup="lv2_mouseup('0','0')"> 系统消息 </div>
-						<div class="left-item-lv2" id="base_0_lv2_1" onmouseenter="lv2_mouseenter('0','1')" onmouseleave="lv2_mouseleave('0','1')" onmousedown="lv2_mousedown('0','1')" onmouseup="lv2_mouseup('0','1')"> 个人消息 </div>
-						<div id="base_0_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_1" onmouseenter="title_mouseenter('1')" onmouseleave="title_mouseleave('1')" onmousedown="title_mousedown('1')" onmouseup="title_mouseup('1')"> 产品 </div>
-					<div class="left-item-lv2-pad" id="base_1_lv2">
-						<div class="left-item-lv2" id="base_1_lv2_0" onmouseenter="lv2_mouseenter('1','0')" onmouseleave="lv2_mouseleave('1','0')" onmousedown="lv2_mousedown('1','0')" onmouseup="lv2_mouseup('1','0')"> 修改目录信息 </div>
-						<div id="base_1_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_2" onmouseenter="title_mouseenter('2')" onmouseleave="title_mouseleave('2')" onmousedown="title_mousedown('2')" onmouseup="title_mouseup('2')"> 销售 </div>
-					<div class="left-item-lv2-pad" id="base_2_lv2">
-						<div class="left-item-lv2" id="base_2_lv2_0" onmouseenter="lv2_mouseenter('2','0')" onmouseleave="lv2_mouseleave('2','0')" onmousedown="lv2_mousedown('2','0')" onmouseup="lv2_mouseup('2','0')"> 销售开单 </div>
-						<div class="left-item-lv2" id="base_2_lv2_1" onmouseenter="lv2_mouseenter('2','1')" onmouseleave="lv2_mouseleave('2','1')" onmousedown="lv2_mousedown('2','1')" onmouseup="lv2_mouseup('2','1')"> 销售分析 </div>
-						<div class="left-item-lv2" id="base_2_lv2_2" onmouseenter="lv2_mouseenter('2','2')" onmouseleave="lv2_mouseleave('2','2')" onmousedown="lv2_mousedown('2','2')" onmouseup="lv2_mouseup('2','2')"> 客户档案 </div>
-						<div id="base_2_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_3" onmouseenter="title_mouseenter('3')" onmouseleave="title_mouseleave('3')" onmousedown="title_mousedown('3')" onmouseup="title_mouseup('3')"> 采购 </div>
-					<div class="left-item-lv2-pad" id="base_3_lv2">
-						<div class="left-item-lv2" id="base_3_lv2_0" onmouseenter="lv2_mouseenter('3','0')" onmouseleave="lv2_mouseleave('3','0')" onmousedown="lv2_mousedown('3','0')" onmouseup="lv2_mouseup('3','0')"> 入库开单 </div>
-						<div class="left-item-lv2" id="base_3_lv2_1" onmouseenter="lv2_mouseenter('3','1')" onmouseleave="lv2_mouseleave('3','1')" onmousedown="lv2_mousedown('3','1')" onmouseup="lv2_mouseup('3','1')"> 采购分析 </div>
-						<div class="left-item-lv2" id="base_3_lv2_2" onmouseenter="lv2_mouseenter('3','2')" onmouseleave="lv2_mouseleave('3','2')" onmousedown="lv2_mousedown('3','2')" onmouseup="lv2_mouseup('3','2')"> 供应商档案 </div>
-						<div id="base_3_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_4" onmouseenter="title_mouseenter('4')" onmouseleave="title_mouseleave('4')" onmousedown="title_mousedown('4')" onmouseup="title_mouseup('4')"> 仓储 </div>
-					<div class="left-item-lv2-pad" id="base_4_lv2">
-						<div class="left-item-lv2" id="base_4_lv2_0" onmouseenter="lv2_mouseenter('4','0')" onmouseleave="lv2_mouseleave('4','0')" onmousedown="lv2_mousedown('4','0')" onmouseup="lv2_mouseup('4','0')"> 仓储信息 </div>
-						<div id="base_4_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_5" onmouseenter="title_mouseenter('5')" onmouseleave="title_mouseleave('5')" onmousedown="title_mousedown('5')" onmouseup="title_mouseup('5')"> 辅助工具 </div>
-					<div class="left-item-lv2-pad" id="base_5_lv2">
-						<div class="left-item-lv2" id="base_5_lv2_0" onmouseenter="lv2_mouseenter('5','0')" onmouseleave="lv2_mouseleave('5','0')" onmousedown="lv2_mousedown('5','0')" onmouseup="lv2_mouseup('5','0')"> 辅助工具管理 </div>
-						<div id="base_5_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_6" onmouseenter="title_mouseenter('6')" onmouseleave="title_mouseleave('6')" onmousedown="title_mousedown('6')" onmouseup="title_mouseup('6')"> 会议室 </div>
-					<div class="left-item-lv2-pad" id="base_6_lv2">
-						<div class="left-item-lv2" id="base_6_lv2_0" onmouseenter="lv2_mouseenter('6','0')" onmouseleave="lv2_mouseleave('6','0')" onmousedown="lv2_mousedown('6','0')" onmouseup="lv2_mouseup('6','0')"> 会议室 1 </div>
-						<div class="left-item-lv2" id="base_6_lv2_1" onmouseenter="lv2_mouseenter('6','1')" onmouseleave="lv2_mouseleave('6','1')" onmousedown="lv2_mousedown('6','1')" onmouseup="lv2_mouseup('6','1')"> 会议室 2 </div>
-						<div class="left-item-lv2" id="base_6_lv2_2" onmouseenter="lv2_mouseenter('6','2')" onmouseleave="lv2_mouseleave('6','2')" onmousedown="lv2_mousedown('6','2')" onmouseup="lv2_mouseup('6','2')"> 会议室 3 </div>
-						<div id="base_6_lv2_end"></div>
-					</div>
-					<div class="left-item" id="base_title_7" onmouseenter="title_mouseenter('7')" onmouseleave="title_mouseleave('7')" onmousedown="title_mousedown('7')" onmouseup="title_mouseup('7')"> 监视工具 </div>
-					<div class="left-item-lv2-pad" id="base_7_lv2">
-						<div class="left-item-lv2" id="base_7_lv2_0" onmouseenter="lv2_mouseenter('7','0')" onmouseleave="lv2_mouseleave('7','0')" onmousedown="lv2_mousedown('7','0')" onmouseup="lv2_mouseup('7','0')"> 仓库监视 </div>
-						<div class="left-item-lv2" id="base_7_lv2_1" onmouseenter="lv2_mouseenter('7','1')" onmouseleave="lv2_mouseleave('7','1')" onmousedown="lv2_mousedown('7','1')" onmouseup="lv2_mouseup('7','1')"> 人员监视 </div>
-						<div id="base_7_lv2_end"></div>
-					</div>
+				<div class="left-menu" id="left_menu">
 				</div>
 				<div class="right-page-base" id="right_base">
-					<div class="right-page-main" id="page_right_0_0">Project in building! This is page 0.</div>
-					<div class="right-page-main" id="page_right_0_1">Project in building! This is page 1.</div>
-					<div class="right-page-main" id="page_right_1_0">Project in building! This is page 2.</div>
-					<div class="right-page-main" id="page_right_2_0">Project in building! This is page 3.</div>
-					<div class="right-page-main" id="page_right_2_1">Project in building! This is page 4.</div>
-					<div class="right-page-main" id="page_right_2_2">Project in building! This is page 5.</div>
-					<div class="right-page-main" id="page_right_3_0">Project in building! This is page 6.</div>
-					<div class="right-page-main" id="page_right_3_1">Project in building! This is page 7.</div>
-					<div class="right-page-main" id="page_right_3_2">Project in building! This is page 8.</div>
-					<div class="right-page-main" id="page_right_4_0">Project in building! This is page 9.</div>
-					<div class="right-page-main" id="page_right_5_0">Project in building! This is page 10.</div>
-					<div class="right-page-main" id="page_right_6_0">Project in building! This is page 11.</div>
-					<div class="right-page-main" id="page_right_6_1">Project in building! This is page 12.</div>
-					<div class="right-page-main" id="page_right_6_2">Project in building! This is page 13.</div>
-					<div class="right-page-main" id="page_right_7_0">Project in building! This is page 14.</div>
-					<div class="right-page-main" id="page_right_7_1">Project in building! This is page 15.</div>
+					<div class="right-page-main" id="page_right_0_0">
+						<div id="sys_message_pad">
+							<div style="padding-bottom: 20px; background-color: rgba(255, 255, 255, 0.2);">
+								<div style="font-size: 24px; padding-left: 35px; padding-top: 18px;"> BMMS项目会议记录 </div>
+								<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;"> 
+									&emsp;&emsp;BMMS项目组全体成员就页面风格问题和工期问题展开讨论，期间成员竞争激烈，激情澎湃，主要就配色、界面流程、数据库设计方面展开了多重讨论。<br>
+									&emsp;&emsp;其中意见分歧最大的部分是页面背景和主题问题，窦总和谢总建议将页面设置为明色基调，并且去掉背景图，其中窦总还建议页面要设计为定宽模式，而不是现在的动态调整模式。但是王总认为，目前项目的基调基本已经确定，如果突然间进行修改改动太大，并且会造成风格不统一。<br>
+									&emsp;&emsp;最终各方保留意见，先按照当前页面风格和主题进行设计。
+								</div>
+								<div style="font-size: 14px; padding-left: 35px; padding-top: 18px; padding-right: 35px; text-align: right;"> User:System Time:2016-04-14 </div>
+							</div>
+							<div style="padding-bottom: 20px; background-color: rgba(255, 255, 255, 0.1);">
+								<div style="font-size: 24px; padding-left: 35px; padding-top: 18px;"> BMMS项目第一次会议记录 </div>
+								<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;">
+									&emsp;&emsp;项目组今日就各部分分工问题进行了简单讨论。<br>
+									&emsp;&emsp;简单讨论之后，最终决定，目前分工：谢总：数据库交互部分，窦总：后台java部分，王总：前端页面业务逻辑部分。各部分成员相互协调，互相帮助。 <br>
+									&emsp;&emsp;会后对项目的基本配置管理信息进行了创建。
+								</div>
+								<div style="font-size: 14px; padding-left: 35px; padding-top: 18px; padding-right: 35px; text-align: right;"> User:System Time:2016-04-08 </div>
+							</div>
+							<div style="padding-bottom: 20px; background-color: rgba(255, 255, 255, 0.2);">
+								<div style="font-size: 24px; padding-left: 35px; padding-top: 18px;"> BMMS项目开工 </div>
+								<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;">
+									&emsp;&emsp;BMMS项目正式开工，BMMS-Project™ 设立，其中成员有：窦峥、王克强、谢腾飞（按姓氏首字母排序），成员表示保证完成组织交给的任务，以最快最优最稳定的方式完成项目需求，使项目尽善尽美，满足客户需求，解决客户难题。
+								</div>
+								<div style="font-size: 14px; padding-left: 35px; padding-top: 18px; padding-right: 35px; text-align: right;"> User:System Time:2016-04-07 </div>
+							</div>
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_0_1">
+						<div id="usr_message_pad">
+							<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;"> 您暂时还没有收到任何消息 </div>
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_1_0">
+						<div id="item_info_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_2_0">
+						<div id="sale_make_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_2_1">
+						<div id="sale_analyze_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_2_2">
+						<div id="custom_info_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_3_0">
+						<div id="buy_make_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_3_1">
+						<div id="buy_analyze_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_3_2">
+						<div id="orderation_info_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_4_0">
+						<div id="storehouse_info_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_5_0">
+						<div id="assistant_tools_pad">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_6_0">
+						<div id="meeting_room_1">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_6_1">
+						<div id="meeting_room_2">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_6_2">
+						<div id="meeting_room_3">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_7_0">
+						<div id="storehouse_take_on">
+
+						</div>
+					</div>
+					<div class="right-page-main" id="page_right_7_1">
+						<div id="people_take_on">
+
+						</div>
+					</div>
 				</div>
 			</div>
 <!-- 			<div class="page-footer" id="page_footer">
