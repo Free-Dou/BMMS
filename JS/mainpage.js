@@ -44,6 +44,10 @@ function title_onclick(base, index)
 		{
 			page_now = page_change_to;
 			setTimeout("page_change_continue()", 10);
+
+			var e = document.getElementById(page_now);
+			e.style.visibility = "visible";
+
 			return;
 		}
 		else
@@ -63,8 +67,13 @@ function page_change()
 
 		p_old.style.transform = "translateX(-250px)";
 		p_old.style.opacity = 0;
+		p_old.style.visibility = "hidden";
 
 		page_now = page_change_to;
+
+		var e = document.getElementById(page_now);
+		e.style.visibility = "visible";
+
 		setTimeout("page_change_continue()", 10);
 
 		return;
@@ -74,6 +83,7 @@ function page_change()
 function page_change_continue()
 {
 	var e = document.getElementById(page_now);
+
 	var v = (1 - e.style.opacity) / 6;
 
 	e.style.opacity = Number(e.style.opacity) + v;
@@ -83,6 +93,7 @@ function page_change_continue()
 	{
 		e.style.transform = "translateX(0px)";
 		e.style.opacity = 1;
+
 		onchange_flag = false;
 		return;
 	}
@@ -106,7 +117,6 @@ function body_onload()
 		{
 			control_string += "<div class=\"left-item-lv2\" id=\"base_" + i + "_lv2_" + j + "\" onmouseenter=\"lv2_mouseenter('" + i + "','" + j + "')\" onmouseleave=\"lv2_mouseleave('" + i + "','" + j + "')\" onmousedown=\"lv2_mousedown('" + i + "','" + j + "')\" onmouseup=\"lv2_mouseup('" + i + "','" + j + "')\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>";
 			var x1 = document.getElementById("page_right_" + i + "_" + j);
-			console.info(x1);
 			x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
 		}
 		control_string += "<div id=\"base_" + i + "_lv2_end\"></div>";
