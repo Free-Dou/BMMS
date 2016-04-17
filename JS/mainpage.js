@@ -116,8 +116,12 @@ function body_onload()
 		for(j = 0; j < LEFT_BASE_LV2_TITLE[i].length; j++)
 		{
 			control_string += "<div class=\"left-item-lv2\" id=\"base_" + i + "_lv2_" + j + "\" onmouseenter=\"lv2_mouseenter('" + i + "','" + j + "')\" onmouseleave=\"lv2_mouseleave('" + i + "','" + j + "')\" onmousedown=\"lv2_mousedown('" + i + "','" + j + "')\" onmouseup=\"lv2_mouseup('" + i + "','" + j + "')\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>";
-			var x1 = document.getElementById("page_right_" + i + "_" + j);
-			x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
+			if(!(i == 2 && j == 0) && !(i == 3 && j == 0))
+			{
+				console.info(i + "  " + j)
+				var x1 = document.getElementById("page_right_" + i + "_" + j);
+				x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
+			}
 		}
 		control_string += "<div id=\"base_" + i + "_lv2_end\"></div>";
 

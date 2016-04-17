@@ -238,3 +238,13 @@
 	width: 26px;
 	height: 26px;
 }
+
+.title-button
+{
+	padding-left: 10px;
+	padding-right: 5px;
+	float: right;
+	height: 67px;
+	/*float: left;*/
+	overflow: hidden;
+}
