@@ -18,34 +18,12 @@ function login_banner_show()
 	x.style.height = x.offsetHeight + v + "px";
 	setTimeout("login_banner_show()", 10);
 }
+
 function login_click()
 {
 	login_show();
 }
-function button_mouseenter()
-{
-	var x = document.getElementById("login_button");
-	x.style.color = "black";
-	x.style.backgroundColor = "white";
-}
-function button_mouseleave()
-{
-	var x = document.getElementById("login_button");
-	x.style.color = "white";
-	x.style.backgroundColor = "#0078D7";
-}
-function button_mousedown()
-{
-	var x = document.getElementById("login_button");
-	x.style.color = "black";
-	x.style.backgroundColor = "#F7F7F7";
-}
-function button_mouseup()
-{
-	var x = document.getElementById("login_button");
-	x.style.color = "black";
-	x.style.backgroundColor = "white";
-}
+
 function login_success(hold_time)
 {
 	var e = document.getElementById("process_tip");

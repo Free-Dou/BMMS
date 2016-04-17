@@ -11,8 +11,8 @@
 			@import url(CSS/common-style.css);
 		</style>
 
-		<script type="text/javascript" src="JS/index.js">
-		</script>
+		<script type="text/javascript" src="JS/index.js"> </script>
+		<script type="text/javascript" src="JS/common-js.js"> </script>
 	</head>
 	<body>
 		<div class="main-background main-background-img">
@@ -29,7 +29,7 @@
 						<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
 					</div>
 					<div style="height: 30px; text-align: right;">
-						<div id="login_button" style="float: right; margin-right: 66px; background-color: #0078D7; height: 30px; width: 60px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter()" onmouseleave="button_mouseleave()" onmousedown="button_mousedown()" onmouseup="button_mouseup()" onclick="login_click()">
+						<div id="login_button" style="float: right; margin-right: 66px; background-color: #0078D7; height: 30px; width: 60px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter('login_button')" onmouseleave="button_mouseleave('login_button')" onmousedown="button_mousedown('login_button')" onmouseup="button_mouseup('login_button')" onclick="login_click()">
 							<p style="top: 50%; transform: translateY(-50%);">登录</p>
 						</div>
  					</div>
@@ -40,7 +40,7 @@
                 <p>电话：13266618140 邮箱：wkqcom@live.com</p>
             </div> -->
 			<div class="page-footer">
-				<p>Copyright © TrashInc. BMMS-Project™</p>
+				<p>Copyright © Trash Inc. BMMS-Project™</p>
 				<p>All Right Reserved</p>
 			</div>
 		</div>

@@ -207,4 +207,23 @@
 
 	font-weight: 100;
 }
+.main-page-footer
+{
+	margin-bottom: 0px;
+	padding-left: 0px;
+	text-align: center;
+}
 
+.footer-button
+{
+	padding-top: 12px;
+	padding-right: 15px;
+	float: right;
+	padding-left: 15px;
+}
+
+.footer-button-img
+{
+	width: 26px;
+	height: 26px;
+}
