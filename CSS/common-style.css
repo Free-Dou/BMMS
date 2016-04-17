@@ -10,7 +10,7 @@ body
 	position: absolute;
 	font-family: "Microsoft YaHei";
 
-	min-width: 1250px;
+	min-width: 1366px;
 }
 .main-background
 {
@@ -41,10 +41,4 @@ body
 .textbox-common
 {
 	width: 250px;
-}
-.main-page-footer
-{
-	margin-bottom: 0px;
-	padding-left: 0px;
-	text-align: center;
 }

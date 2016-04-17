@@ -166,7 +166,7 @@
 .table-title-cell
 {
 	float: left;
-	width: 48%;
+	width: 47%;
 	text-align: center;
 	background-color: rgba(255,255,255,0.6);
 	height: 30px;
@@ -183,7 +183,7 @@
 .table-cell-1
 {
 	float: left;
-	width: 48%;
+	width: 47%;
 	text-align: center;
 	background-color: rgba(255,255,255,0.1);
 	height: 30px;
@@ -197,7 +197,7 @@
 .table-cell-2
 {
 	float: left;
-	width: 48%;
+	width: 47%;
 	text-align: center;
 	background-color: rgba(255,255,255,0.2);
 	height: 30px;
@@ -207,19 +207,30 @@
 
 	font-weight: 100;
 }
+
+.cell-head
+{
+	width: 3%;
+	cursor: pointer;
+}
+
 .main-page-footer
 {
+	position: relative;
+	background-color: rgba(255,255,255,0);
 	margin-bottom: 0px;
 	padding-left: 0px;
 	text-align: center;
+	overflow: hidden;
 }
 
 .footer-button
 {
 	padding-top: 12px;
-	padding-right: 15px;
-	float: right;
-	padding-left: 15px;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-bottom: 12px;
+	/*float: left;*/
 }
 
 .footer-button-img
