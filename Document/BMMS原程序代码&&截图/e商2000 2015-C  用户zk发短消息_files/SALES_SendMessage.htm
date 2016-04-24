@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://123.52.74.73:82/SALES_SendMessage.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT>document.write('<body bgcolor="'+parent.eB_PageBgColor+'" text="'+parent.eB_TextColor+'">');</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY><BR>
+<CENTER>
+<TABLE border="0">
+  <FORM name="Msg" action="SALES_SendMessage.asp?ID=Send" method="POST"></FORM>
+  <TBODY>
+  <TR>
+    <TD width="100%">收件人：<SELECT name="username" 
+      style="width: 300px;"></SELECT><INPUT name="allpeople" type="checkbox" 
+      value="1">所有人</TD></TR>
+  <TR>
+    <TD width="100%">内容：</TD></TR>
+  <TR>
+    <TD 
+  width="100%"><TEXTAREA name="text" rows="15" cols="60"></TEXTAREA></TD></TR>
+  <TR>
+    <TD 
+width="100%"><INPUT type="submit" value="发送留言"></TD></TR></TBODY></TABLE></CENTER>
+<SCRIPT title="myreplace" language="JavaScript">
+var testUndefined;
+function e(id,cus){
+if(cus==testUndefined)cus=id;
+o.options[o.length] = new Option(cus, id, false, (o.length)?false:true);
+if(id=='')o.selectedIndex=o.length-1;
+}
+o = document.Msg.username;
+e('ss');
+e('sxl');
+e('system');
+e('zk');
+
+if (0==-1) alert('发送完毕!');
+</SCRIPT>
+ </BODY></HTML>

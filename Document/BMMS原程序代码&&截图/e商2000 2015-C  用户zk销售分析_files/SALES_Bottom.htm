@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0039)http://123.52.74.73:82/SALES_Bottom.htm -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+
+<META http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+<STYLE>
+A:link, A:visited, A:active, A:hover { text-decoration: none }
+A:link, A:visited, A:active { color: blue }
+A:hover { color: red }
+BODY { font-size: 10.5pt }
+SELECT { font-size: 9pt }
+INPUT {font-size:9pt }
+</STYLE>
+ 
+<SCRIPT>document.write('<body bgcolor="'+parent.eB_PageBgColor+'" onload="BottomLoadOK()">')</SCRIPT>
+ 
+<SCRIPT>
+var defurl = 'SALES_View.asp?find=', searchurl, helpid='', helpstr='', defhelpstr;
+searchurl = defurl;
+extra_url = '';
+Ex=0;
+defhelpstr = '请使用屏幕左边的系统菜单，完成您的工作！';
+
+function EnterFlashHelp(urlFlash){window.open('SALES_Help.asp?ID='+urlFlash,'动态求助','fullscreen=1,toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,width=0,height=0');}
+function BottomLoadOK(){parent.BottomLoadOK=1;}
+function helpme(){
+	window.open('/Help/','帮助');
+//if(helpstr.indexOf('Flash://')==0){EnterFlashHelp(helpstr.substr(8));}
+//else{if (helpstr.length>0) alert(helpstr);else alert(defhelpstr);}
+}
+
+function SetSearchURL(url){
+extra_url='';
+if (url.length<8) {
+searchurl = defurl;
+document.Search.subbtn.disabled=true;
+}
+else {
+searchurl = url;
+document.Search.subbtn.disabled=false;
+}
+Ex=0;
+}
+function SetSearchURLEx(url)
+{
+	extra_url='';
+	if(url.length<8)
+	{
+		searchurl = defurl;
+		document.Search.subbtn.disabled=true;
+	}
+	else
+	{
+		searchurl = url;
+		document.Search.subbtn.disabled=false;
+	}
+	Ex=1;
+}
+
+function search()
+{
+	str=document.Search.find.value;
+	if(str.indexOf('\'')==0)
+	{
+		parent.Run.parseFunctionString(str.substr(1));
+		document.Search.find.blur();
+		document.Search.find.focus();
+		return (false);
+	}
+	if(document.Search.subbtn.disabled)return(false);
+	parent.Search_Value = str;
+	t=new Date().valueOf();
+	urlex=searchurl+escape(str)+'&ntype='+Search.ntype.value+'&'+extra_url;
+	if(Ex==0)parent.View.document.location.replace(urlex+'&time='+t);
+	else parent.Recv.document.location.replace(urlex+'&time='+t);
+	document.Search.find.focus();
+	return (false);
+}
+
+function logoff(){
+t=new Date().valueOf();
+parent.document.location.replace('login.asp?time='+t);
+}
+
+</SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD>
+<BODY>
+<FORM name="Search" onsubmit="return search()"> <INPUT name="ntype" type="hidden" value="0"><INPUT name="find" class="text" onfocus="select()" type="text" size="32">&nbsp;<INPUT name="subbtn" disabled="" class="button" type="submit" value="搜索">　<INPUT 
+name="newtodel" id="newtodel" type="checkbox" checked=""><SPAN onclick="document.Search.newtodel.click()">自动清除</SPAN>　<FONT 
+color="#0000ff"><SPAN id="curuser"></SPAN></FONT>　<A onclick="parent.document.location.replace('SALES_Logoff.asp?time='+new Date().valueOf())" 
+href="javascript:void(0)">注销</A> </FORM>
+<SCRIPT>document.Search.find.focus();curuser.innerText='用户：'+parent.CurrentUserName;</SCRIPT>
+ </BODY></HTML>

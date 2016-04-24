@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0066)http://123.52.74.73:82/InfoCenter/IC_Entry.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<STYLE type="text/css"><!-- TD { font-size: 9pt } A {text-decoration: none;} A:hover {text-decoration: underline;} --></STYLE>
+
+<SCRIPT src="IC_Entry_files/eBColor.js"></SCRIPT>
+
+<SCRIPT src="IC_Entry_files/jsBBS.js"></SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY>
+<CENTER>
+<TABLE width="94%" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD height="10"></TD></TR>
+<SCRIPT title="myreplace" language="JavaScript">
+var rooturl='',gc,glc=3;
+function dh(){gc=0;	return '<table border=0 cellpadding=0 width=100% cellspacing=0><tr>';}
+function d(id,name){gc++;return '<td width='+parseInt(100/glc)+'%><a href="'+rooturl+id+'">'+name+'</a></td>'+(gc%glc==0?'</tr><tr>':'');}
+function de(){var s='';while(gc%glc!=0){s+='<td>　</td>';gc++;}return s+'</tr></table>';}
+
+gs='<font color="#FF0000">尊敬的用户：<br>　　当前版本信息中心的功能仅为OA版中部分功能的预览，不包含多层的用户授权管理、会议室、备忘录、日程安排、电子邮件、全文检索以及操作日志等方面的内容。</font>';
+document.write('<tr><td align=center>'+CreateWindow('信息中心重要提示',gs,2,1,'100%','')+'</td></tr>');
+document.write('<tr><td height=10></td></tr>');
+
+rooturl='IC_Group.asp?id=';
+gs=dh();
+gs+=d(-1,'合同文档');
+gs+=d(-2,'人事档案');
+gs+=d(-3,'固定资产档案');
+gs+=de();
+document.write('<tr><td align=center>'+CreateWindow('重要文档',gs,2,1,'100%','')+'</td></tr>');
+document.write('<tr><td height=10></td></tr>');
+
+rooturl='IC_Group.asp?id=';
+gs=dh();gs+=de();
+document.write('<tr><td align=center>'+CreateWindow('分类文档',gs,2,1,'100%','')+'</td></tr>');
+
+document.write('<tr><td height=10></td></tr>');
+
+document.write('<tr><td align=left>'+CreateWindow('添加分类',CreateAddGroupCtrl('IC_AddGroup.asp',1),2,1,'','')+'</td></tr>');
+
+</SCRIPT>
+   </TBODY></TABLE></CENTER></BODY></HTML>

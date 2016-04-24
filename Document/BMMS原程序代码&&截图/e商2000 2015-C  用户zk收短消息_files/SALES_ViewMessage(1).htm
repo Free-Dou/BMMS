@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://123.52.74.73:82/SALES_ViewMessage.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+		 
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">	 
+<SCRIPT>document.write('<body bgcolor="'+parent.eB_PageBgColor+'" text="'+parent.eB_TextColor+'">');</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY><BR>
+<CENTER>
+<FORM name="msg" onsubmit="return CheckMsg()">
+<SCRIPT>
+setTimeout('parent.AutoRecv.document.location.reload()',100);
+function msgDo(flag,type,id){if(flag=='Remind')parent.Run.parseFunctionString(type+id);}
+var s1='<table border="0" width="627" cellspacing="1" style="font-size: 9pt;table-layout:fixed;"><input type="hidden" name="cb" id="0" value="0">';
+s1+='<tr bgcolor="'+parent.eB_ListColor+'">';
+s1+='<td width="150" align="center"><font color="'+parent.eB_ListTextColor+'">时间（<span OnClick="SelectAll()" onmouseover="this.style.cursor=\'hand\'"><u>全选</u></span>）</td>';
+s1+='<td width="387" align="center"><font color="'+parent.eB_ListTextColor+'">消息</td>';
+s1+='<td width="80" align="center"><font color="'+parent.eB_ListTextColor+'">发件人</td></tr>';
+document.writeln(s1);
+function sm(un){document.location='/SALES_SendMessage.asp?username='+un;}
+var icount=1;
+function SelectAll(){
+	test=0;
+	for (i=1;i<icount;i++)
+		test+=(document.msg.cb[i].checked?1:0);
+	if (test == icount-1)
+		for (i=1;i<icount;i++)
+			document.msg.cb[i].checked = 0;
+	else
+		for (i=1;i<icount;i++)
+			document.msg.cb[i].checked = 1;
+}
+
+function CheckMsg(){
+	checksum=0;
+	for (i=1;i<icount;i++)
+		if (document.msg.cb[i].checked)
+			checksum++;
+	if (checksum==0){
+		alert('没有选择！');
+		return (false);
+	}
+	tarobj = parent.Send;
+	tarobj.document.close();
+	tarobj.document.open();
+	tarobj.document.writeln('<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>');
+	tarobj.document.writeln('<body><form method="POST" action="SALES_ViewMessage.asp" name="check" target="View">');
+	//发送列表
+	checksum=0;
+	for (i=0;i<icount;i++)
+		if (document.msg.cb[i].checked){
+			tarobj.document.writeln('<input type="hidden" name="id'+checksum+'" value="'+document.msg.cb[i].value+'">');
+			checksum++;
+			}
+	tarobj.document.writeln('<input type="hidden" name="checksum" value="'+checksum+'">');
+	tarobj.document.writeln('</form></body></html>');
+	tarobj.document.close();
+	tarobj.document.check.submit();
+	return (false);
+}
+function validInt(v)
+{
+	v =parseInt(v);
+	return (isNaN(v)?0:v);
+}
+
+function fnCvtOrder(msgID)
+{
+	msgID = validInt(msgID, 0);
+	var o =parent.Run;
+	parent.FormAll.rows='72,*,22';
+	o.SetLoc(parent.Title,'SALES_Title.asp?ID=Sales&msgID='+msgID);
+	o.SetHelp('Sale');
+	var bAutoDel = parent.Bottom.Search.newtodel.checked;
+	o.delall();	 
+	o.buy_enable=1;
+	if (o.igoods>0)  o.unsave=1; else o.unsave=0;
+	o.delay();
+	delete(o);
+}
+
+function d(n1,n2,n3,n4,isorder){
+if((icount-1)%2==0){colorstr=parent.eB_ListColor1;colorfont=parent.eB_ListTextColor1;}
+else{colorstr=parent.eB_ListColor2;colorfont=parent.eB_ListTextColor2;}
+var s='<tr bgcolor="'+colorstr+'">';
+s+='<td><input type="checkbox" name="cb" id="'+icount+'" value="'+n4+'"><font color="'+colorfont+'">'+n1+'</td>\n';
+s+='<td><font color="'+colorfont+'">'+n2+'</td>\n';
+s+='<td align="center"><font color="'+colorfont+'"><a href="/SALES_SendMessage.asp?username='+n3+'">'+n3+'</a>';
+if (isorder==1)s+='<br><input type ="button" onclick="fnCvtOrder('+n4+')" value="转销售单">';
+s+='</td>\n';
+s+='</tr>\n';
+document.write(s);
+icount++;
+}
+function viewall(){
+	var tarobj = parent.Send;
+	tarobj.document.close();
+	tarobj.document.open();
+	tarobj.document.writeln('<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>');
+	tarobj.document.writeln('<body><form method="POST" action="SALES_ViewMessage.asp" name="check" target="View">');
+	tarobj.document.writeln('<input type="hidden" name="vall" value="1">');
+	tarobj.document.writeln('</form></body></html>');
+	tarobj.document.close();
+	tarobj.document.check.submit();
+	return (false);	
+}
+
+</SCRIPT>
+ 
+<TABLE width="627" style="font-size: 9pt;" border="0" cellspacing="1">
+  <TBODY>
+  <TR>
+    <TD align="left">
+      <HR>
+<INPUT type="submit" value="删除"> <INPUT name="fnviewall" onclick="viewall()" type="button" value="查看全部信息">
+      		 </TD></TR></TBODY></TABLE></FORM></CENTER></BODY></HTML>

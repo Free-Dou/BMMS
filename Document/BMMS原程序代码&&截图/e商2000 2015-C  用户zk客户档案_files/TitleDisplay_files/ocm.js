@@ -1,0 +1,1 @@
+function _intocm(){return(false);}document.oncontextmenu=_intocm;

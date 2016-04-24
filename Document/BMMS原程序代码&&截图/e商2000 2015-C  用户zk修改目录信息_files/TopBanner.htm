@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://123.52.74.73:82/TopBanner.asp -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT>
+function tb_web(){
+parent.FormAll.rows='0,*,0';
+var strhttp ='http://www.zydsoft.com'.toString();
+if (strhttp =='_') 
+	alert("请在账套信息中设置网站地址.");
+else
+	parent.View.location.replace(strhttp);
+}
+function tb_cancel(){parent.document.location.replace('SALES_Logoff.asp?time='+new Date().valueOf());}
+function tb_help(){parent.Bottom.helpme();}
+function tb_dir(){parent.Run.EnterGuide();}
+function tb_main(){parent.Run.EnterHomePage();}
+function onover(o,im){
+o.style.cursor='hand';
+eval('tbimg_'+im+'.src=\'image/'+im+'over.gif\'');
+eval('tbfnt_'+im+'.style.color=\'#FFE000\'');
+}
+function onout(o,im){
+eval('tbimg_'+im+'.src=\'image/'+im+'up.gif\'');
+eval('tbfnt_'+im+'.style.color=\'#004E8A\'');
+}
+function d(im,txt){
+img=new Image();
+img.src='image/'+im+'over.jpg';
+s='<td width=25 height=30 onmouseover="onover(this,\''+im+'\')" onmouseout="onout(this,\''+im+'\')">';
+s+='<img id="tbimg_'+im+'" src="image/'+im+'up.gif" onclick="tb_'+im+'()">';
+s+='</td><td width=65 height=30 valign=baseline onclick="tb_'+im+'()" onmouseover="onover(this,\''+im+'\')" onmouseout="onout(this,\''+im+'\')"><font id="tbfnt_'+im+'" color=#004E8A>&nbsp;'+txt+'</td>';
+document.write(s);
+}
+</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 11.00.9600.17239"></HEAD> 
+<BODY background="TopBanner_files/top.jpg" bgproperties="fixed" style="background-repeat: no-repeat;" 
+bgcolor="#ffffff">
+<TABLE width="100%" height="40" border="0" cellspacing="0" cellpadding="0">
+  <TBODY>
+  <TR>
+    <TD width="135" nowrap=""></TD>
+    <TD width="145" height="100%" nowrap="" valign="baseline" style="font-size: 9pt;"><FONT 
+      color="#ffffff">
+<SCRIPT>document.write(parent.strversion);</SCRIPT>
+      </FONT></TD>
+    <TD height="100%" align="right" nowrap="" valign="center">
+      <TABLE height="20" border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR style="font-size: 9pt;">
+<SCRIPT>d('main','首页');d('dir','导航');d('help','帮助');d('cancel','注销');d('web','网站');</SCRIPT>
+
+          <TD 
+width="20"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></BODY></HTML>

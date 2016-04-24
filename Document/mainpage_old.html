@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta charset="utf-8">
+
+<html>
+	<head>
+		<title>主要界面</title>
+		<style type="text/css">
+			body
+			{
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+				font-family: "Microsoft YaHei";
+			}
+			.main-background
+			{
+				background: url("5.jpg") no-repeat;
+				background-size: cover;
+				background-position: center;
+				margin: 0px;
+				padding: 0px;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				position: relative;
+				text-align: center;
+				overflow: hidden;
+			}
+			.main
+			{
+				margin: 10px;
+				background-color: rgba(0,0,0,0.55);
+				overflow: hidden;
+				min-width: 1000px;
+				position: relative;
+			}
+			.model
+			{
+				float: left;
+				padding: 10px;
+				width: 20px;
+				color: white;
+				position: relative;
+				height: 100%;
+				cursor: pointer;
+			}
+			.model_title
+			{
+				float: left;
+				width: 0px;
+				height: 100%;
+
+				position: relative;
+				overflow: hidden;
+				background-color: rgba(192,192,192,0.5);
+			}
+		</style>
+		<script type="text/javascript">
+			var main_width = 0;
+			var onchange_flag = true;
+			var now_display = "m1";
+			var change_to_display = "";
+
+			setTimeout("set_main()", 1);
+			setTimeout("model_load()", 10);
+			function set_main()
+			{
+				var e = document.getElementById("main_c");
+				var e_b = document.getElementById("test-back");
+				e.style.height = e_b.offsetHeight - 20 + "px";
+				e.style.width = e_b.offsetWidth - 20 + "px";
+
+				main_width = e.offsetWidth;
+				onchange = "0";
+
+				if(onchange_flag == false)
+				{
+					var e_m = document.getElementById(now_display);
+					e_m.style.width = e.offsetWidth - 320 + "px";
+				}
+			}
+			function title_onclick(arg1)
+			{
+				if(onchange_flag == false)
+				{
+					change_to_display = arg1;
+					if(change_to_display == now_display)
+						return;
+
+					onchange_flag = true;
+					setTimeout(model_change, 10);
+				}
+			}
+			function model_change()
+			{
+				var e_new = document.getElementById(change_to_display);
+				var e_old = document.getElementById(now_display);
+
+				var v = (main_width - 320 - e_new.offsetWidth) / 6;
+				if(v < 1)
+				{
+					e_new.style.width = main_width - 320 + "px";
+					e_old.style.width = 0 + "px";
+					now_display = change_to_display;
+					onchange_flag = false;
+					return;
+				}
+				e_new.style.width = e_new.offsetWidth + v + "px";
+				e_old.style.width = main_width - 321 - e_new.offsetWidth + "px";
+				setTimeout("model_change()", 10);
+			}
+			function model_load()
+			{
+				var e = document.getElementById(now_display);
+				var v = (main_width - 320 - e.offsetWidth) / 6;
+				if(v < 1)
+				{
+					e.style.width = main_width - 320 + "px";
+					onchange_flag = false;
+					return;
+				}
+				e.style.width = e.offsetWidth + v + "px";
+				setTimeout("model_load()", 10);
+			}
+			// setTimeout("myInterval()",10);
+			// function myInterval()
+			// {
+			// 	aim = document.getElementById("test-back");
+			// 	ele = document.getElementById("test");
+			// 	ele.style.height = 1 + ele.offsetHeight + 'px';
+			// 	if(ele.offsetHeight < aim.offsetHeight)
+			// 		setTimeout("myInterval()",10);
+			// 	// ele.innerHTML="Hello JavaScript";
+			// }
+		</script>
+	</head>
+	<body onresize="set_main()">
+		<div class="main-background" id="test-back">
+			<!-- <div id="test" style="background-color: rgba(0,0,0,0.5); height: 0px;"> -->
+			<div class="main" id="main_c">
+				<div class="model" onclick="title_onclick('m1')">
+					信息中心
+				</div>
+				<div id="m1" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m2')">
+					产品
+				</div>
+				<div id="m2" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m3')">
+					销售
+				</div>
+				<div id="m3" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m4')">
+					采购
+				</div>
+				<div id="m4" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m5')">
+					仓储
+				</div>
+				<div id="m5" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m6')">
+					辅助工具
+				</div>
+				<div id="m6" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m7')">
+					会议室
+				</div>
+				<div id="m7" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+				<div class="model" onclick="title_onclick('m8')">
+					监视工具
+				</div>
+				<div id="m8" class="model_title">
+					<p style="top: 50%; transform: translateY(-50%);">BMMS Version 1.0 Procceeding</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
