@@ -1,4 +1,4 @@
-package dou.WebServlet;
+package dou.webServlet;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 		logger.info("[LoginServlet.java:doPost] Username: " + username + " |  password: " + password);
 
 		if (SqlUtilsInterface.verifyPwd(username, password)){
-			req.getRequestDispatcher("/mainpage.html").forward(req, resp);
+			req.getRequestDispatcher("/mainpage.jsp").forward(req, resp);
 			logger.info("[LoginServlet.java:doPost] login success !!! Dispatcher to MainPage ");
 		}
 		else{

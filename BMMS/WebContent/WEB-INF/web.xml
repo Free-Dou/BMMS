@@ -24,7 +24,7 @@
 
   <servlet>
   <servlet-name>LoginServlet</servlet-name>
-  <servlet-class>dou.WebServlet.LoginServlet</servlet-class>
+  <servlet-class>dou.webServlet.LoginServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
