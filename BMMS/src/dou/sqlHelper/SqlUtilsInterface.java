@@ -1,16 +1,14 @@
 package dou.sqlHelper;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
-import dou.BeanObject.WebPageObejct;
-import dou.config.Config;
-
 public class SqlUtilsInterface {
 
+	public static boolean verifyPwd(String userName, String pwd){
+		return new MySqlIO().verifyPwd(userName, pwd);
+	}
+	
+/*
+ * 
 	public static Logger logger = Config.getLogger(new SqlUtilsInterface().getClass());
-		
 	
 	public static boolean dropTable(String table_name){
 		return new MySqlIO().dropTable(table_name);
@@ -54,6 +52,6 @@ public class SqlUtilsInterface {
 		}
 		return result;
 	}
-	
+	*/
 	
 }

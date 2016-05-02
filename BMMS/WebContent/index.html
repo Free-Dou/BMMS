@@ -20,19 +20,23 @@
 			<div class="banner-background" id="test">
 				<div class="login-background">
 					<h2 style="color: #FFFFFF">用户登录</h2>
-					<div class="normal-line">
-						<div class="float-left">用户名：</div>
-						<div class="float-right"><input class="textbox-common" type="text" name="usr"></div>
-					</div>
-					<div class="normal-line">
-						<div class="float-left">密码：</div>
-						<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
-					</div>
-					<div style="height: 30px; text-align: right;">
-						<div id="login_button" style="float: right; margin-right: 66px; background-color: #0078D7; height: 30px; width: 60px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter('login_button')" onmouseleave="button_mouseleave('login_button')" onmousedown="button_mousedown('login_button')" onmouseup="button_mouseup('login_button')" onclick="login_click()">
-							<p style="top: 50%; transform: translateY(-50%);">登录</p>
+					<form action="/BMMS/LoginServlet" method="post">
+						<div class="normal-line">
+							<div class="float-left">用户名：</div>
+							<div class="float-right"><input class="textbox-common" type="text" name="username"></div>
 						</div>
- 					</div>
+						<div class="normal-line">
+							<div class="float-left">密码：</div>
+							<div class="float-right"><input class="textbox-common" type="password" name="password"></div>
+						</div>
+						<div style="height: 30px; text-align: right;">
+							<div id="login_button" style="float: right; margin-right: 66px; background-color: #0078D7; height: 30px; width: 60px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter('login_button')" onmouseleave="button_mouseleave('login_button')" onmousedown="button_mousedown('login_button')" onmouseup="button_mouseup('login_button')" onclick="login_click()">
+								<p style="top: 50%; transform: translateY(-50%);">
+									<input type="submit" name="登录"/>
+								</p>
+							</div>
+ 						</div>
+ 					</form>
 				</div>
 			</div>
 <!-- 			<div class="page-footer">
