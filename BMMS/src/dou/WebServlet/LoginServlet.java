@@ -24,8 +24,12 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		
 		logger.info("[LoginServlet.java:doPost] Username: " + username + " |  password: " + password);
-
-		if (SqlUtilsInterface.verifyPwd(username, password)){
+		req.setCharacterEncoding("utf-8");
+		
+		if (true == SqlUtilsInterface.verifyPwd(username, password)){
+			req.getSession().setMaxInactiveInterval(20 * 60);	/* 设置session失效时间(发呆时间)，单位是秒 */
+			req.getSession().setAttribute("username", username);
+			
 			req.getRequestDispatcher("/mainpage.jsp").forward(req, resp);
 			logger.info("[LoginServlet.java:doPost] login success !!! Dispatcher to MainPage ");
 		}

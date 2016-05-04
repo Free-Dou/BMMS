@@ -16,11 +16,18 @@
 <body onresize="set_main()" onload="body_onload()">
 	<div class="main-background main-background-img" id="main_back">
 		<div class="page-title" id="page_title">
-			<div
-				style="float: left; color: #FFFFFF; padding-left: 10px; font-size: 36px; font-weight: 300;">BMMS-Project™</div>
-			<div
-				style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;">
-				Welcome, Mr.Administer!</div>
+			<div style="float: left; color: #FFFFFF; padding-left: 10px; font-size: 36px; font-weight: 300;">BMMS-Project™</div>
+			<div style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;">
+				<%
+					String username = (String)session.getAttribute("username");
+					if (null == username){
+						out.print("<script>alert('登录失效，请重新登录'); window.document.location.href = 'index.html'</script>");
+					}
+					else{
+						out.print("Welcome, Mr." + username);
+					}
+				%>
+			</div>
 		</div>
 		<div class="page-main" id="page_main">
 			<div class="left-menu" id="left_menu"></div>
