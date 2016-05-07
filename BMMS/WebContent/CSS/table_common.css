@@ -1,0 +1,52 @@
+.table-line
+{
+	padding-left: 35px;
+	height: 38px;
+}
+.table-title-cell
+{
+	float: left;
+	width: 47%;
+	text-align: center;
+	background-color: rgba(255,255,255,0.6);
+	height: 30px;
+	padding-top: 6px;
+/*	border: 1px solid #FFFFFF;
+	border-bottom: 0px solid #FFFFFF;
+*/
+	color: #000000;
+
+	margin-left: 2px;
+	font-weight: 900;
+}
+.table-cell-1
+{
+	float: left;
+	width: 47%;
+	text-align: center;
+	background-color: rgba(255,255,255,0.1);
+	height: 30px;
+	padding-top: 6px;
+	/*border: 1px solid #FFFFFF;*/
+	margin-left: 2px;
+
+	font-weight: 100;
+}
+.table-cell-2
+{
+	float: left;
+	width: 47%;
+	text-align: center;
+	background-color: rgba(255,255,255,0.2);
+	height: 30px;
+	padding-top: 6px;
+	/*border: 1px solid #FFFFFF;*/
+	margin-left: 2px;
+
+	font-weight: 100;
+}
+.cell-head
+{
+	width: 3%;
+	cursor: pointer;
+}

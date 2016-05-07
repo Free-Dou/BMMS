@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta charset="utf-8">
+
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			@import url(CSS/right_common_style.css);
+		</style>
+		<style type="text/css">
+			@import url(CSS/table_common.css);
+		</style>
+		<script type="text/javascript" src="JS/personal_message.js"> </script>
+		<script type="text/javascript" src="JS/common-js.js"> </script>
+	</head>
+	<body>
+		<div style="padding-right: 40px; height: 67px; overflow: hidden;">
+			<div class="right-page-title" style="float: left;"> 入库开单 </div>
+			<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')">
+				<div style="float: right; padding-top: 20px;"> <img src="IMG/send.png" class="footer-button-img"> </div>
+				<div style="float: right; padding-top: 24px; padding-right: 5px;"> 开单 </div>
+			</div>
+		</div>
+		<div id="buy_make_pad">
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;"> 供应商 </div>
+				<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
+				<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+				<div style="float: right; padding-right: 40px; height: 24px;"> <input type="date" value="2016-04-10" style="width: 130px"></input> </div>
+				<div style="float: right; padding-right: 15px; height: 24px;"> 日期 </div>
+			</div>
+			<div style="height: 36px; padding-left: 50px;">
+				<div style="float:left; height: 24px;"> 货位 </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px;">
+						<option value="1">总库
+						<option value="2">仓库1
+						<option value="3">仓库2
+					</select>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 开票 </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px;">
+						<option value="1">其他
+						<option value="2">普通
+						<option value="3">电子
+					</select>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 折扣 </div>
+				<div style="float:left; padding-left: 15px; height: 24px; "> <input style="width: 35px;" value="1.00"></input> </div>
+				<div style="float: right; padding-right: 40px; height: 24px;">
+					<select style="width: 135px;">
+						<option value="1">admin
+						<option value="2">user1
+						<option value="3">user2
+					</select>
+				</div>
+				<div style="float: right; padding-right: 15px; height: 24px;"> 业务员 </div>
+			</div>
+			<div>
+				<div class="table-line">
+					<div class="table-title-cell" style="width: 8%;">  </div>
+					<div class="table-title-cell" style="width: 20%;"> 编号 </div>
+					<div class="table-title-cell" style="width: 20%;"> 商品 </div>
+					<div class="table-title-cell" style="width: 8%;"> 数量 </div>
+					<div class="table-title-cell" style="width: 8%;"> 单价 </div>
+					<div class="table-title-cell" style="width: 8%;"> 金额 </div>
+					<div class="table-title-cell" style="width: 25%;"> 备注 </div>
+				</div>
+				<div class="table-line">
+					<div class="table-cell-1" style="width: 8%;"> 合计 </div>
+					<div class="table-cell-1" style="width: 20%;"> / </div>
+					<div class="table-cell-1" style="width: 20%;"> / </div>
+					<div class="table-cell-1" style="width: 8%;"> 0 </div>
+					<div class="table-cell-1" style="width: 8%;"> ￥ </div>
+					<div class="table-cell-1" style="width: 8%;"> ￥ </div>
+					<div class="table-cell-1" style="width: 25%;"> / </div>
+				</div>
+			</div>
+			<dir class="page-footer main-page-footer">
+				<div class="footer-button" id="buy_footer_button_1" onmouseenter="button_mouseenter_footer('buy_footer_button_1')" onmouseleave="button_mouseleave_footer('buy_footer_button_1')" onmousedown="button_mousedown_footer('buy_footer_button_1')" onmouseup="button_mouseup_footer('buy_footer_button_1')">
+					<img src="IMG/add.png" class="footer-button-img">
+					<p>添加</p>
+				</div>
+			</dir>
+		</div>
+	</body>
+</html>

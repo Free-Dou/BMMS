@@ -5,7 +5,7 @@ var selected = [-1, -1];
 
 var left_base_status = new Array();
 
-var LEFT_BASE_TITLE = new Array("信息中心", "产品", "销售", "采购", "仓储", "辅助工具", "会议室", "监视工具");
+var LEFT_BASE_TITLE = new Array("信息中心", "产品", "销售", "采购", "仓储", "工程量");
 var LEFT_BASE_LV2_TITLE = new Array();
 
 LEFT_BASE_LV2_TITLE[0] = new Array("系统消息", "个人消息");
@@ -13,9 +13,9 @@ LEFT_BASE_LV2_TITLE[1] = new Array("修改目录信息");
 LEFT_BASE_LV2_TITLE[2] = new Array("销售开单", "销售分析", "客户档案");
 LEFT_BASE_LV2_TITLE[3] = new Array("入库开单", "采购分析", "供应商档案");
 LEFT_BASE_LV2_TITLE[4] = new Array("仓储信息");
-LEFT_BASE_LV2_TITLE[5] = new Array("辅助工具管理");
-LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
-LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");
+LEFT_BASE_LV2_TITLE[5] = new Array("工程量管理");
+// LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
+// LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");
 
 for(var i = 0; i < LEFT_BASE_TITLE.length; i++)
 	left_base_status[i] = 0;
@@ -116,12 +116,12 @@ function body_onload()
 		for(j = 0; j < LEFT_BASE_LV2_TITLE[i].length; j++)
 		{
 			control_string += "<div class=\"left-item-lv2\" id=\"base_" + i + "_lv2_" + j + "\" onmouseenter=\"lv2_mouseenter('" + i + "','" + j + "')\" onmouseleave=\"lv2_mouseleave('" + i + "','" + j + "')\" onmousedown=\"lv2_mousedown('" + i + "','" + j + "')\" onmouseup=\"lv2_mouseup('" + i + "','" + j + "')\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>";
-			if(!(i == 2 && j == 0) && !(i == 3 && j == 0))
-			{
-				console.info(i + "  " + j)
-				var x1 = document.getElementById("page_right_" + i + "_" + j);
-				x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
-			}
+			// if(!(i == 2 && j == 0) && !(i == 3 && j == 0))
+			// {
+			// 	console.info(i + "  " + j)
+			// 	var x1 = document.getElementById("page_right_" + i + "_" + j);
+			// 	x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
+			// }
 		}
 		control_string += "<div id=\"base_" + i + "_lv2_end\"></div>";
 

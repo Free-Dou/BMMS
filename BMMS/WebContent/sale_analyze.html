@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta charset="utf-8">
+
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			@import url(CSS/right_common_style.css);
+		</style>
+		<style type="text/css">
+			@import url(CSS/table_common.css);
+		</style>
+		<script type="text/javascript" src="JS/personal_message.js"> </script>
+		<script type="text/javascript" src="JS/common-js.js"> </script>
+	</head>
+	<body>
+		<div id="sale_analyze_pad" class="right-page-contains">
+			<div class="right-page-title"> 销售分析 </div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 日期： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 开始日期： </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 结束日期： </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px; padding-left: 25px;"> 方法： </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">
+						<option value="2">方法 1
+						<option value="3">方法 2
+					</select>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 显示货位： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">选择货位
+						<option value="2">总库
+						<option value="3">仓库 1
+						<option value="4">仓库 2
+					</select>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 显示制单： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">选择制单
+						<option value="2">其他
+						<option value="3">普通
+						<option value="4">电子
+					</select>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 显示业务员： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 搜索： </div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 显示客户： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input class="textbox-common"></input> </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">选择业务员
+						<option value="2">admin
+						<option value="3">user1
+						<option value="4">user2
+					</select>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 显示商品： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input style="width: 500px;"></input> </div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 显示备注： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> <input style="width: 500px;"></input> </div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 分类聚集： </input>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">商品编号
+						<option value="2">客户
+						<option value="3">供应商
+						<option value="4">业务员
+						<option value="5">日期
+						<option value="6">货位
+						<option value="7">制单
+					</select>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+			<div style="float:left; height: 24px; padding-left: 25px;"> 统计方式： </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">已审核
+						<option value="2">未审核
+					</select>
+				</div>
+				<div style="float:left; padding-left: 15px; height: 24px;"> 商场模式： </div>
+				<div style="float:left; padding-left: 15px; height: 24px;">
+					<select style="width: 254px">
+						<option value="1">全部
+						<option value="2">商场
+						<option value="2">非商场
+					</select>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 按月合计 </input>
+				</div>
+				<div style="float:left; height: 24px; padding-left: 15px;">
+					<input type="checkbox"> 按日合计 </input>
+				</div>
+				<div style="float:left; height: 24px; padding-left: 15px;">
+					<input type="checkbox"> 按单合计 </input>
+				</div>
+				<div style="float:left; height: 24px; padding-left: 15px;">
+					<input type="checkbox"> 考核价成本 </input>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div style="float:left; height: 24px;">
+					<input type="checkbox"> 使用分页显示 </input>
+				</div>
+			</div>
+			<div style="height: 36px; padding-left: 35px;">
+				<div id="search_button" style="float: left; margin-right: 66px; background-color: #0078D7; height: 30px; width: 100px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter('search_button')" onmouseleave="button_mouseleave('search_button')" onmousedown="button_mousedown('search_button')" onmouseup="button_mouseup('search_button')">
+					<p style="top: 50%; transform: translateY(-50%);">开始查询</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

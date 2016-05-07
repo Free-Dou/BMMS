@@ -21,7 +21,9 @@ function login_banner_show()
 
 function login_click()
 {
-	login_show();
+	document.forms["login_form"].submit();
+	// console.info("clicked");
+	// login_show();
 }
 
 function login_success(hold_time)
