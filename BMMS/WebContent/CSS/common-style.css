@@ -12,6 +12,7 @@ body
 
 	min-width: 1366px;
 }
+
 .main-background
 {
 	background-size: cover;
@@ -41,4 +42,37 @@ body
 .textbox-common
 {
 	width: 250px;
+}
+.blue_button
+{
+	float: right;
+	margin-right: 66px;
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(0, 120, 215);
+}
+.red_button
+{
+	float: right;
+	margin-right: 66px;
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(192, 120, 120);
+}
+.green_button
+{
+	float: right;
+	margin-right: 66px;
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(96, 160, 96);
 }
