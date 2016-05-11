@@ -14,6 +14,16 @@ LEFT_BASE_LV2_TITLE[2] = new Array("销售开单", "销售分析", "客户档案
 LEFT_BASE_LV2_TITLE[3] = new Array("入库开单", "采购分析", "供应商档案");
 LEFT_BASE_LV2_TITLE[4] = new Array("仓储信息");
 LEFT_BASE_LV2_TITLE[5] = new Array("工程量管理");
+
+var RIGHT_PAGE_NAME = new Array();
+
+RIGHT_PAGE_NAME[0] = new Array("system_message.html", "personal_message.html");
+RIGHT_PAGE_NAME[1] = new Array("item_info.html");
+RIGHT_PAGE_NAME[2] = new Array("sale_make.html", "sale_analyze.html", "custom_info.html");
+RIGHT_PAGE_NAME[3] = new Array("buy_make.html", "buy_analyze.html", "orderation_info.html");
+RIGHT_PAGE_NAME[4] = new Array("storehouse_info.html");
+RIGHT_PAGE_NAME[5] = new Array("project_info.html");
+
 // LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
 // LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");
 
@@ -29,75 +39,6 @@ function set_main()
 
 	e_n.style.width = e_b.offsetWidth - 250 + "px";
 	page_main.style.height = e_b.offsetHeight - 48 + "px";
-}
-function title_onclick(base, index)
-{
-	if(onchange_flag == false)
-	{
-		page_change_to = "page_right_" + base + "_" + index;
-		if(page_change_to == page_now)
-			return;
-
-		onchange_flag = true;
-
-		if(page_now == "")
-		{
-			page_now = page_change_to;
-			setTimeout("page_change_continue()", 10);
-
-			var e = document.getElementById(page_now);
-			e.style.visibility = "visible";
-
-			return;
-		}
-		else
-			setTimeout(page_change, 10);
-	}
-}
-function page_change()
-{
-	var p_old = document.getElementById(page_now);
-	var v = p_old.style.opacity / 6;
-
-	p_old.style.opacity = Number(p_old.style.opacity) - v;
-	p_old.style.transform = "translateX(" + (-250) * (1 - p_old.style.opacity) + "px" + ")";
-
-	if(p_old.style.opacity <= 0 || v < 0.001)
-	{
-
-		p_old.style.transform = "translateX(-250px)";
-		p_old.style.opacity = 0;
-		p_old.style.visibility = "hidden";
-
-		page_now = page_change_to;
-
-		var e = document.getElementById(page_now);
-		e.style.visibility = "visible";
-
-		setTimeout("page_change_continue()", 10);
-
-		return;
-	}
-	setTimeout("page_change()", 10);
-}
-function page_change_continue()
-{
-	var e = document.getElementById(page_now);
-
-	var v = (1 - e.style.opacity) / 6;
-
-	e.style.opacity = Number(e.style.opacity) + v;
-	e.style.transform = "translateX(" + (-250) * (1 - e.style.opacity) + "px" + ")";
-
-	if(e.style.opacity >= 1 || v < 0.001)
-	{
-		e.style.transform = "translateX(0px)";
-		e.style.opacity = 1;
-
-		onchange_flag = false;
-		return;
-	}
-	setTimeout("page_change_continue()", 10);
 }
 function body_onload()
 {
@@ -233,7 +174,79 @@ function lv2_mouseup(base, index)
 		x.style.backgroundColor = "rgba(128,128,128,0.3)";
 	}
 }
+function title_onclick(base, index)
+{
+	if(onchange_flag == false)
+	{
+		// page_change_to = "page_right_" + base + "_" + index;
+		page_change_to = RIGHT_PAGE_NAME[base][index];
+		if(page_change_to == page_now)
+			return;
 
+		onchange_flag = true;
+
+		if(page_now == "")
+		{
+			page_now = page_change_to;
+			setTimeout("page_change_continue()", 10);
+
+			// var e = document.getElementById(page_now);
+			// e.style.visibility = "visible";
+			var e = document.getElementById("page_right_0_0");
+			e.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>";
+			e.style.visibility = "visible";
+
+			return;
+		}
+		else
+			setTimeout("page_change()", 10);
+	}
+}
+function page_change()
+{
+	// var p_old = document.getElementById(page_now);
+	var p_old = document.getElementById("page_right_0_0");
+	var v = p_old.style.opacity / 6;
+
+	p_old.style.opacity = Number(p_old.style.opacity) - v;
+	p_old.style.transform = "translateX(" + (-250) * (1 - p_old.style.opacity) + "px" + ")";
+
+	if(p_old.style.opacity <= 0 || v < 0.001)
+	{
+		p_old.style.transform = "translateX(-250px)";
+		p_old.style.opacity = 0;
+		// p_old.style.visibility = "hidden";
+
+		page_now = page_change_to;
+		p_old.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>"
+		// var e = document.getElementById(page_now);
+		// e.style.visibility = "visible";
+
+		setTimeout("page_change_continue()", 10);
+
+		return;
+	}
+	setTimeout("page_change()", 10);
+}
+function page_change_continue()
+{
+	// var e = document.getElementById(page_now);
+	var e = document.getElementById("page_right_0_0");
+	var v = (1 - e.style.opacity) / 6;
+
+	e.style.opacity = Number(e.style.opacity) + v;
+	e.style.transform = "translateX(" + (-250) * (1 - e.style.opacity) + "px" + ")";
+
+	if(e.style.opacity >= 1 || v < 0.001)
+	{
+		e.style.transform = "translateX(0px)";
+		e.style.opacity = 1;
+
+		onchange_flag = false;
+		return;
+	}
+	setTimeout("page_change_continue()", 10);
+}
 // setTimeout("myInterval()",10);
 // function myInterval()
 // {

@@ -1,6 +1,9 @@
+var color_store = "";
+
 function button_mouseenter(button_id)
 {
 	var x = document.getElementById(button_id);
+	color_store = x.style.backgroundColor;
 	x.style.color = "black";
 	x.style.backgroundColor = "white";
 }
@@ -8,7 +11,8 @@ function button_mouseleave(button_id)
 {
 	var x = document.getElementById(button_id);
 	x.style.color = "white";
-	x.style.backgroundColor = "#0078D7";
+	// x.style.backgroundColor = "#0078D7";
+	x.style.backgroundColor = color_store;
 }
 function button_mousedown(button_id)
 {

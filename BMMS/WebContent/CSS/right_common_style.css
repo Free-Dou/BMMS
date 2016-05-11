@@ -22,7 +22,21 @@ body
 	text-align: left;
 	color: #FFFFFF;
 
-	position: relative;
+/*	模糊效果
+    -webkit-filter: blur(0px);
+	-moz-filter: blur(0px);
+	-ms-filter: blur(0px);
+	filter: blur(0px);
+*/
+
+/*  黑白效果
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+*/    
+	position: absolute;
 }
 .right-page-title
 {
@@ -75,7 +89,25 @@ body
 	/*float: left;*/
 	overflow: hidden;
 }
-.textbox-common
+
+.new_float_window
 {
-	width: 250px;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.6);
+	opacity: 0.0;
+
+	visibility: hidden;
+	position: absolute;
+}
+
+.set_center
+{
+	position: relative;
+	top: 50%;
+	transform: translateY(-65%);
+
+	margin-left: auto;
+	margin-right: auto;
 }
