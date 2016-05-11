@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<meta charset="utf-8">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<title>主要界面</title>
@@ -13,22 +13,22 @@
 		<script type="text/javascript" src="JS/mainpage.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 	</head>
-	<body onresize="set_main()" onload="body_onload()">
+	<body onresize="set_main()" onload="body_onload()" class="body_main">
 		<div class="main-background main-background-img" id="main_back">
 			<div class="page-title" id="page_title">
 				<div style="float: left; color: #FFFFFF; padding-left: 10px; font-size: 36px; font-weight: 300;" >BMMS-Project™</div>
-				<div style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;">
+				<div style="float: right; color: #FFFFFF; padding-right: 10px; padding-top: 12px; font-size: 18px; font-weight: 100;"> 
 				
-				<%
-					String username = (String)session.getAttribute("username");
-					if (null == username){
-						out.print("<script>alert('登录失效，请重新登录'); window.document.location.href = 'index.html'</script>");
-					}
-					else{
-						out.print("Welcome, Mr." + username);
-					}
-				%>
-				
+					<%
+						String username = (String)session.getAttribute("username");
+						if (null == username){
+							out.print("<script>alert('登录失效，请重新登录'); window.document.location.href = 'index.html'</script>");
+						}
+						else{
+							out.print("Welcome, Mr." + username);
+						}
+					%>
+					
 				</div>
 			</div>
 			<div class="page-main" id="page_main">
@@ -38,6 +38,7 @@
 					<div class="right-page-main" id="page_right_0_0">
 						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="system_message.html"></iframe>
 					</div>
+					<!--
 					<div class="right-page-main" id="page_right_0_1">
 						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="personal_message.html"></iframe>
 					</div>
@@ -72,7 +73,8 @@
 							<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;"> 此页面需求确认中 </div>
 						</div>
 					</div>
-				</div>
+ 					-->	
+ 				</div>
 			</div>
 		</div>
 	</body>
