@@ -19,7 +19,7 @@ public class Customer {
 	private String cRemark;
 	
 	public Customer(String cName, String cTel, String cFax, String cEmail, String cAddress, String cContact1,
-			String cContact2, String cContact3, String cRemark) {
+			String cContact2, String cRemark) {
 		super();
 		this.cName = cName;
 		this.cTel = cTel;
@@ -28,14 +28,13 @@ public class Customer {
 		this.cAddress = cAddress;
 		this.cContact1 = cContact1;
 		this.cContact2 = cContact2;
-		this.cContact3 = cContact3;
 		this.cRemark = cRemark;
 		
 		logger.info("[Customer.java:Customer] Create a new customer object ： "
 				+ cName);
 	}
 	
-	public ArrayList<Customer> getAllCustomerInfo(){
+	public static ArrayList<Customer> getAllCustomerInfo(){
 		ArrayList<Customer> customerList = null;
 		
 		/* 从数据库获取全部数据 */

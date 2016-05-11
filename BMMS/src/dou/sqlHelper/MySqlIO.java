@@ -52,7 +52,7 @@ public class MySqlIO {
 		
 		ArrayList<Customer> customerList = null;
 		Customer customerObject = null;
-		String sql = "select * from tb_custome";
+		String sql = "select * from tb_custom";
 		ResultSet rs = null;
 		
 		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
@@ -67,14 +67,13 @@ public class MySqlIO {
 				String cAddress = rs.getString("cadress");
 				String cContact1 = rs.getString("contact1");
 				String cContact2 = rs.getString("contact2");
-				String cContact3 = rs.getString("contact3");
 				String cRemark = rs.getString("remark");
 				
 				if (null == customerList){
 					customerList = new ArrayList<Customer>();
 				}
 								
-				customerObject = new Customer(cName, cTel, cFax, cEmail, cAddress, cContact1, cContact2, cContact3, cRemark);
+				customerObject = new Customer(cName, cTel, cFax, cEmail, cAddress, cContact1, cContact2, cRemark);
 				customerList.add(customerObject);
 			}
 			
