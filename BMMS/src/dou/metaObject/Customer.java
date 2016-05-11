@@ -1,69 +1,86 @@
 package dou.metaObject;
 
+import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import dou.config.Config;
+import dou.sqlHelper.SqlUtilsInterface;
 
 public class Customer {
 	
 	private Logger logger = Config.getLogger(this.getClass());
-	private String sName;
-	private String sFax;
-	private String sEmail;
-	private String sAddress;
-	private String sContact1;
-	private String sContact2;
-	private String sContact3;
-	private String sRemark;
+	private String cName;
+	private String cTel;
+	private String cFax;
+	private String cEmail;
+	private String cAddress;
+	private String cContact1;
+	private String cContact2;
+	private String cContact3;
+	private String cRemark;
 	
-	public Customer(String sName, String sFax, String sEmail, String sAddress, String sContact1, String sContact2,
-			String sContact3, String sRemark) {
+	public Customer(String cName, String cTel, String cFax, String cEmail, String cAddress, String cContact1,
+			String cContact2, String cContact3, String cRemark) {
 		super();
-		this.sName = sName;
-		this.sFax = sFax;
-		this.sEmail = sEmail;
-		this.sAddress = sAddress;
-		this.sContact1 = sContact1;
-		this.sContact2 = sContact2;
-		this.sContact3 = sContact3;
-		this.sRemark = sRemark;
+		this.cName = cName;
+		this.cTel = cTel;
+		this.cFax = cFax;
+		this.cEmail = cEmail;
+		this.cAddress = cAddress;
+		this.cContact1 = cContact1;
+		this.cContact2 = cContact2;
+		this.cContact3 = cContact3;
+		this.cRemark = cRemark;
 		
 		logger.info("[Customer.java:Customer] Create a new customer object ： "
-				+ sName + sFax + sEmail + sAddress + sContact1 + sContact2 + sContact3 + sRemark);
+				+ cName);
+	}
+	
+	public ArrayList<Customer> getAllCustomerInfo(){
+		ArrayList<Customer> customerList = null;
+		
+		/* 从数据库获取全部数据 */
+		customerList = SqlUtilsInterface.getAllCustomerInfo();
+		
+		return customerList;
+	}
+	
+	public void deleteCustomerBy(){
+		
 	}
 
-	public Logger getLogger() {
-		return logger;
+	public String getcName() {
+		return cName;
 	}
 
-	public String getsName() {
-		return sName;
+	public String getcTel() {
+		return cTel;
 	}
 
-	public String getsFax() {
-		return sFax;
+	public String getcFax() {
+		return cFax;
 	}
 
-	public String getsEmail() {
-		return sEmail;
+	public String getcEmail() {
+		return cEmail;
 	}
 
-	public String getsAddress() {
-		return sAddress;
+	public String getcAddress() {
+		return cAddress;
 	}
 
-	public String getsContact1() {
-		return sContact1;
+	public String getcContact1() {
+		return cContact1;
 	}
 
-	public String getsContact2() {
-		return sContact2;
+	public String getcContact2() {
+		return cContact2;
 	}
 
-	public String getsContact3() {
-		return sContact3;
+	public String getcContact3() {
+		return cContact3;
 	}
 
-	public String getsRemark() {
-		return sRemark;
+	public String getcRemark() {
+		return cRemark;
 	}
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import dou.config.Config;
+import dou.metaObject.Customer;
 
 public class MySqlIO {
 
@@ -44,6 +45,50 @@ public class MySqlIO {
 		}
 		
 		return result;
+	}
+	
+	/* 获取全部客户信息 */
+	public ArrayList<Customer> getAllCustomerInfo(){
+		
+		ArrayList<Customer> customerList = null;
+		Customer customerObject = null;
+		String sql = "select * from tb_custome";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String cName = rs.getString("cname");
+				String cTel = rs.getString("ctel");
+				String cFax = rs.getString("cfax");
+				String cEmail = rs.getString("cemail");
+				String cAddress = rs.getString("cadress");
+				String cContact1 = rs.getString("contact1");
+				String cContact2 = rs.getString("contact2");
+				String cContact3 = rs.getString("contact3");
+				String cRemark = rs.getString("remark");
+				
+				if (null == customerList){
+					customerList = new ArrayList<Customer>();
+				}
+								
+				customerObject = new Customer(cName, cTel, cFax, cEmail, cAddress, cContact1, cContact2, cContact3, cRemark);
+				customerList.add(customerObject);
+			}
+			
+			logger.info("[MySqlIO.java:getCustomerInfo] Get all Customer Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getCustomerInfo] Get Customer Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return customerList; 
 	}
 	
 	// 判断某张表是否存在

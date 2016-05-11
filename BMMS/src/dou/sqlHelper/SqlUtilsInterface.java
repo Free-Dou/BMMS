@@ -1,11 +1,17 @@
 package dou.sqlHelper;
 
+import java.util.ArrayList;
+import dou.metaObject.Customer;
+
 public class SqlUtilsInterface {
 
 	public static boolean verifyPwd(String userName, String pwd){
 		return new MySqlIO().verifyPwd(userName, pwd);
 	}
 	
+	public static ArrayList<Customer> getAllCustomerInfo(){
+		return new MySqlIO().getAllCustomerInfo();
+	}
 /*
  * 
 	public static Logger logger = Config.getLogger(new SqlUtilsInterface().getClass());
