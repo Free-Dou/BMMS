@@ -35,7 +35,7 @@
 				</div>
 				<div class="right-page-base" id="right_base">
 					<div class="right-page-main" id="page_right_0_0">
-						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px; position: absolute;" src="system_message.html" onload="iframe_load_complete()"></iframe>
+						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px; position: absolute;" src=""></iframe>
 					</div>					
 					<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0);" id="process_message">
 						<div class="login-process-inner" id="pi_parent">
@@ -47,42 +47,6 @@
 						</div>
 						<p id="process_tip" style="top: 460px; width: 100%; position: absolute;"> 页面加载中 </p>
 					</div>
-					<!--
-					<div class="right-page-main" id="page_right_0_1">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="personal_message.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_1_0">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="item_info.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_2_0">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="sale_make.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_2_1">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="sale_analyze.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_2_2">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="custom_info.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_3_0">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="buy_make.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_3_1">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="buy_analyze.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_3_2">
-						<iframe style="height: 100%; width: 100%; border-width: 0px;" src="orderation_info.html"></iframe>
-					</div>
-					<div class="right-page-main" id="page_right_4_0">
-						<div id="storehouse_info_pad">
-							<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;"> 此页面需求确认中 </div>
-						</div>
-					</div>
-					<div class="right-page-main" id="page_right_5_0">
-						<div id="assistant_tools_pad">
-							<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;"> 此页面需求确认中 </div>
-						</div>
-					</div>
- 					-->	
  				</div>
 			</div>
 		</div>
