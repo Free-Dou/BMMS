@@ -24,8 +24,18 @@
 				</div>
 				<div class="right-page-base" id="right_base">
 					<div class="right-page-main" id="page_right_0_0">
-						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px;" src="system_message.html"></iframe>
-					</div>
+						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px; position: absolute;" src="system_message.html" onload="iframe_load_complete()" ></iframe>
+						<div class="login-process-cover" style="text-align: center;" id="process_message">
+							<div class="login-process-inner" id="pi_parent">
+								<div id="pi0" class="process-item"></div>
+								<div id="pi1" class="process-item"></div>
+								<div id="pi2" class="process-item"></div>
+								<div id="pi3" class="process-item"></div>
+								<div id="pi4" class="process-item"></div>
+							</div>
+							<p id="process_tip" style="top: 460px; width: 100%; position: absolute;"> 页面加载中 </p>
+						</div>
+					</div>					
  				</div>
 			</div>
 		</div>

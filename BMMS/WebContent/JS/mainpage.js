@@ -31,6 +31,18 @@ for(var i = 0; i < LEFT_BASE_TITLE.length; i++)
 	left_base_status[i] = 0;
 setTimeout("set_main()", 1);
 
+var process_time_last = 0;
+var pi_pos = new Array();
+var center_y = 50;
+var center_x = 50;
+var cover_alpha = 0;
+var s_load_timer = 0;
+var s_unload_timer = 0;
+var s_process_timer = 0;
+
+for(var i = 0; i < 5; i++)
+	pi_pos[i] = 0;
+
 function myBrowser()
 {
 	var userAgent = navigator.userAgent;
@@ -226,6 +238,11 @@ function title_onclick(base, index)
 
 			var e1 = document.getElementById("page_loader");
 			e1.src = page_now;
+
+			process_message.style.visibility = "visible";
+			s_process_timer = setInterval("process_anime()", 10);
+			s_load_timer = setInterval("login_show_anime()", 10);
+
 			return;
 		}
 		else
@@ -254,6 +271,10 @@ function page_change()
 		var e1 = document.getElementById("page_loader");
 		e1.src = page_now;
 
+		process_message.style.visibility = "visible";
+		s_process_timer = setInterval("process_anime()", 10);
+		s_load_timer = setInterval("login_show_anime()", 10);
+
 		setTimeout("page_change_continue()", 10);
 
 		return;
@@ -278,4 +299,67 @@ function page_change_continue()
 		return;
 	}
 	setTimeout("page_change_continue()", 10);
+}
+
+function login_show_anime()
+{
+	var e = document.getElementById("process_message");
+	cover_alpha = cover_alpha + 0.03;
+	e.style.backgroundColor = "rgba(0,0,0," + cover_alpha + ")";
+	if(cover_alpha >= 0.6)
+	{
+		clearInterval(s_load_timer);
+		return;
+	}
+}
+
+function process_anime()
+{
+	process_time_last = process_time_last + 1;
+	var need_change = parseInt(process_time_last / 10);
+	if(need_change > 5)
+		need_change = 5;
+	for(var i = 0; i < need_change; i++)
+	{
+		var e = document.getElementById("pi" + i);
+		if (pi_pos[i] > 360) 
+			pi_pos[i] = pi_pos[i] - 360;
+
+		if(pi_pos[i] < 180)
+			pi_pos[i] = pi_pos[i] + (pi_pos[i] + 10) / 20;
+		else if(pi_pos[i] < 360)
+			pi_pos[i] = pi_pos[i] + (360 - pi_pos[i] + 10) / 20;
+
+		var new_x = center_x + Math.sin(2 * Math.PI / 360 * pi_pos[i]) * 50;
+		var new_y = center_y - Math.cos(2 * Math.PI / 360 * pi_pos[i]) * 50;
+
+		e.style.top = new_y + "px";
+		e.style.left = new_x + "px";
+		console.info("processtimer running.");
+	}
+}
+
+function iframe_load_complete()
+{
+	if (!page_loader.readyState || page_loader.readyState == "complete")
+	{
+		clearInterval(s_process_timer);
+		clearInterval(s_load_timer);
+		s_unload_timer = setInterval("load_complete_anime()");
+		console.info("load complete stop loadtimer & processtimer.");
+	}
+}
+
+function load_complete_anime()
+{
+	var e = document.getElementById("process_message");
+	cover_alpha = cover_alpha - 0.03;
+	e.style.backgroundColor = "rgba(0,0,0," + cover_alpha + ")";
+	if(cover_alpha <= 0.0)
+	{
+		clearInterval(s_unload_timer);
+		process_message.style.visibility = "hidden";
+		console.info("hiddened");
+		return;
+	}
 }

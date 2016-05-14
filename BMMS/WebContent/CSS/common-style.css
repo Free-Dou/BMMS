@@ -76,3 +76,48 @@ body
 	color: white;
 	background-color: rgb(96, 160, 96);
 }
+.login-process-cover
+{
+	padding: 0px;
+
+	background-color: rgba(0,0,0,0);
+
+	height: 100%;
+	width: 100%;
+
+	position: absolute;
+	visibility: hidden;
+
+	cursor: wait;
+	color: #FFFFFF;
+}
+.login-process-inner
+{
+	padding: 0px;
+
+	top: 350px;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	
+	position: absolute;
+	color: #FFFFFF;
+	transform: translateX(-50%);
+}
+.login_success_image
+{
+	background: url('../IMG/Success.png');
+	background-size: cover;
+	transform: translateX(-50%) scale(0,0);
+}
+.process-item
+{
+	background: url('../IMG/process-item.png') no-repeat;
+	background-size: cover;
+	top: 0px;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	transform: translateX(-50%) translateY(-50%);
+}

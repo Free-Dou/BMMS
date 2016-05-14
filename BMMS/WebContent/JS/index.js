@@ -49,6 +49,7 @@ function login_show()
 	setTimeout("login_show_anime()", 10);
 	setTimeout("process_going('" + s_id + "')", 10);
 }
+
 function login_show_anime()
 {
 	var e = document.getElementById("process_message");
@@ -58,6 +59,7 @@ function login_show_anime()
 		return;
 	setTimeout("login_show_anime()", 10);
 }
+
 function process_anime()
 {
 	var need_change = parseInt(process_time_last / 10);
