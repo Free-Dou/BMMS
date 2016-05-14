@@ -31,6 +31,34 @@ for(var i = 0; i < LEFT_BASE_TITLE.length; i++)
 	left_base_status[i] = 0;
 setTimeout("set_main()", 1);
 
+function myBrowser()
+{
+	var userAgent = navigator.userAgent;
+	console.info(navigator.userAgent);
+	if (userAgent.indexOf("Opera") > -1)
+		return "Opera"
+	if (userAgent.indexOf("Firefox") > -1)
+		return "FF";
+	if (userAgent.indexOf("Chrome") > -1)
+		return "Chrome";
+	if (userAgent.indexOf("Safari") > -1)
+		return "Safari";
+	if (userAgent.indexOf(".NET4.0C; .NET4.0E;") > -1)
+		return "IE";
+}
+var mb = myBrowser();
+if ("IE" == mb) {
+	location.href='IE404.html';
+}
+if ("FF" == mb) {
+}
+if ("Chrome" == mb) {
+}
+if ("Opera" == mb) {
+}
+if ("Safari" == mb) {
+}
+
 function set_main()
 {
 	var e_b = document.getElementById("main_back");
