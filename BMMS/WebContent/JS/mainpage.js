@@ -228,7 +228,7 @@ function title_onclick(base, index)
 		if(page_now == "")
 		{
 			page_now = page_change_to;
-			setTimeout("page_change_continue()", 10);
+			// setTimeout("page_change_continue()", 10);
 
 			// var e = document.getElementById(page_now);
 			// e.style.visibility = "visible";
@@ -274,8 +274,6 @@ function page_change()
 		process_message.style.visibility = "visible";
 		s_process_timer = setInterval("process_anime()", 10);
 		// s_load_timer = setInterval("login_show_anime()", 10);
-
-		setTimeout("page_change_continue()", 10);
 
 		return;
 	}
@@ -347,6 +345,8 @@ function iframe_load_complete()
 		// clearInterval(s_load_timer);
 		// s_unload_timer = setInterval("load_complete_anime()");
 		process_message.style.visibility = "hidden";
+		setTimeout("page_change_continue()", 10);
+		
 		console.info("load complete stop loadtimer & processtimer.");
 	}
 }
