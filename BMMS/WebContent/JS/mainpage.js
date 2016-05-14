@@ -221,9 +221,11 @@ function title_onclick(base, index)
 			// var e = document.getElementById(page_now);
 			// e.style.visibility = "visible";
 			var e = document.getElementById("page_right_0_0");
-			e.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>";
+			// e.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>";
 			e.style.visibility = "visible";
 
+			var e1 = document.getElementById("page_loader");
+			e1.src = page_now;
 			return;
 		}
 		else
@@ -246,9 +248,11 @@ function page_change()
 		// p_old.style.visibility = "hidden";
 
 		page_now = page_change_to;
-		p_old.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>"
+		// p_old.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>"
 		// var e = document.getElementById(page_now);
 		// e.style.visibility = "visible";
+		var e1 = document.getElementById("page_loader");
+		e1.src = page_now;
 
 		setTimeout("page_change_continue()", 10);
 
@@ -275,15 +279,3 @@ function page_change_continue()
 	}
 	setTimeout("page_change_continue()", 10);
 }
-// setTimeout("myInterval()",10);
-// function myInterval()
-// {
-// 	aim = document.getElementById("test-back");
-// 	ele = document.getElementById("test");
-// 	ele.style.height = 1 + ele.offsetHeight + 'px';
-// 	if(ele.offsetHeight < aim.offsetHeight)
-// 		setTimeout("myInterval()",10);
-// 	// ele.innerHTML="Hello JavaScript";
-// }
-
-
