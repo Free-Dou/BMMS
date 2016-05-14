@@ -233,11 +233,11 @@ function title_onclick(base, index)
 			// var e = document.getElementById(page_now);
 			// e.style.visibility = "visible";
 			var e = document.getElementById("page_right_0_0");
-			// e.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>";
+			e.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
 			e.style.visibility = "visible";
 
-			var e1 = document.getElementById("page_loader");
-			e1.src = page_now;
+			// var e1 = document.getElementById("page_loader");
+			// e1.src = page_now;
 
 			process_message.style.visibility = "visible";
 			s_process_timer = setInterval("process_anime()", 10);
@@ -265,11 +265,11 @@ function page_change()
 		// p_old.style.visibility = "hidden";
 
 		page_now = page_change_to;
-		// p_old.innerHTML = "<iframe style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\"></iframe>"
+		p_old.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
 		// var e = document.getElementById(page_now);
 		// e.style.visibility = "visible";
-		var e1 = document.getElementById("page_loader");
-		e1.src = page_now;
+		// var e1 = document.getElementById("page_loader");
+		// e1.src = page_now;
 
 		process_message.style.visibility = "visible";
 		s_process_timer = setInterval("process_anime()", 10);
