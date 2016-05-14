@@ -15,7 +15,6 @@ public class Customer {
 	private String cAddress;
 	private String cContact1;
 	private String cContact2;
-	private String cContact3;
 	private String cRemark;
 	
 	public Customer(String cName, String cTel, String cFax, String cEmail, String cAddress, String cContact1,
@@ -73,10 +72,6 @@ public class Customer {
 
 	public String getcContact2() {
 		return cContact2;
-	}
-
-	public String getcContact3() {
-		return cContact3;
 	}
 
 	public String getcRemark() {

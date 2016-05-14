@@ -2,6 +2,8 @@ package dou.sqlHelper;
 
 import java.util.ArrayList;
 import dou.metaObject.Customer;
+import dou.metaObject.Product;
+import dou.metaObject.Supplier;
 
 public class SqlUtilsInterface {
 
@@ -12,6 +14,16 @@ public class SqlUtilsInterface {
 	public static ArrayList<Customer> getAllCustomerInfo(){
 		return new MySqlIO().getAllCustomerInfo();
 	}
+	
+	public static ArrayList<Product> getAllProductInfo() {
+		return new MySqlIO().getAllProductInfo();
+	}
+	
+	public static ArrayList<Supplier> getAllSupplierInfo() {
+		return new MySqlIO().getAllSupplierInfo();
+	}
+
+	
 /*
  * 
 	public static Logger logger = Config.getLogger(new SqlUtilsInterface().getClass());
@@ -59,5 +71,6 @@ public class SqlUtilsInterface {
 		return result;
 	}
 	*/
-	
+
+
 }

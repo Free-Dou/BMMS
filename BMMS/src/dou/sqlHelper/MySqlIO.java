@@ -11,6 +11,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.metaObject.Customer;
+import dou.metaObject.Product;
+import dou.metaObject.Supplier;
 
 public class MySqlIO {
 
@@ -49,7 +51,6 @@ public class MySqlIO {
 	
 	/* 获取全部客户信息 */
 	public ArrayList<Customer> getAllCustomerInfo(){
-		
 		ArrayList<Customer> customerList = null;
 		Customer customerObject = null;
 		String sql = "select * from tb_custom";
@@ -90,6 +91,85 @@ public class MySqlIO {
 		return customerList; 
 	}
 	
+	/* 获得全部产品信息 */
+	public ArrayList<Product> getAllProductInfo() {
+		ArrayList<Product> productList = null;
+		Product productObject = null;
+		String sql = "select * from tb_product";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String pName = rs.getString("pname");
+				String pSpec = rs.getString("pspec");
+				Integer pPrice = rs.getInt("pprice");
+				
+				if (null == productList){
+					productList = new ArrayList<Product>();
+				}
+				
+				productObject = new Product(pSpec, pName, pPrice);
+				productList.add(productObject);
+			}
+			
+			logger.info("[MySqlIO.java:getProductInfo] Get all Product Info Success!!!");
+		} catch (Exception e) {
+			logger.error("[MySqlIO.java:getProductInfo] Get Product Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return productList;
+	}
+	
+	/* 获取全部供应商信息 */
+	public ArrayList<Supplier> getAllSupplierInfo() {
+		ArrayList<Supplier> supplierList = null;
+		Supplier supplierObject = null;
+		String sql = "select * from tb_suply";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String sName = rs.getString("sname");
+				String sTel = rs.getString("stel");
+				String sFax = rs.getString("sfax");
+				String sEmail = rs.getString("smail");
+				String sAddress = rs.getString("sadress");
+				String sContact1 = rs.getString("contact1");
+				String sContact2 = rs.getString("contact2");
+				String sRemark = rs.getString("remark");
+				
+				if (null == supplierList){
+					supplierList = new ArrayList<Supplier>();
+				}
+								
+				supplierObject = new Supplier(sName, sTel, sFax, sEmail, sAddress, sContact1, sContact2, sRemark);
+				supplierList.add(supplierObject);
+			}
+			
+			logger.info("[MySqlIO.java:getSupplierInfo] Get all Supplier Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getSupplierInfo] Get Supplier Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return supplierList; 
+	}
+	
 	// 判断某张表是否存在
 	public boolean checkTablesLife(String table_name) {
 
@@ -110,6 +190,8 @@ public class MySqlIO {
 		}
 		return result;
 	}
+
+
 
 //	public List<WebPageObejct> getWebPageObejct_List(String table_name) {
 //
