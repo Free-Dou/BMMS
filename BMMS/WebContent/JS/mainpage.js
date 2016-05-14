@@ -241,7 +241,7 @@ function title_onclick(base, index)
 
 			process_message.style.visibility = "visible";
 			s_process_timer = setInterval("process_anime()", 10);
-			s_load_timer = setInterval("login_show_anime()", 10);
+			// s_load_timer = setInterval("login_show_anime()", 10);
 
 			return;
 		}
@@ -273,7 +273,7 @@ function page_change()
 
 		process_message.style.visibility = "visible";
 		s_process_timer = setInterval("process_anime()", 10);
-		s_load_timer = setInterval("login_show_anime()", 10);
+		// s_load_timer = setInterval("login_show_anime()", 10);
 
 		setTimeout("page_change_continue()", 10);
 
@@ -344,8 +344,9 @@ function iframe_load_complete()
 	if (!page_loader.readyState || page_loader.readyState == "complete")
 	{
 		clearInterval(s_process_timer);
-		clearInterval(s_load_timer);
-		s_unload_timer = setInterval("load_complete_anime()");
+		// clearInterval(s_load_timer);
+		// s_unload_timer = setInterval("load_complete_anime()");
+		process_message.style.visibility = "hidden";
 		console.info("load complete stop loadtimer & processtimer.");
 	}
 }
