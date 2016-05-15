@@ -364,3 +364,12 @@ function load_complete_anime()
 		return;
 	}
 }
+
+function refresh_now_page()
+{
+	if(onchange_flag == false)
+	{
+		page_change_to = page_now;
+		setTimeout("page_change()", 10);
+	}
+}

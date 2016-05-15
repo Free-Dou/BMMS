@@ -9,13 +9,13 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
-function dispose()
-{
-	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
-	{
-		location.reload();
-	}
-}
+// function dispose()
+// {
+// 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
+// 	{
+// 		location.reload();
+// 	}
+// }
 
 function confirm_click()
 {
@@ -42,7 +42,7 @@ function confirm_click()
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = dispose;
+		myxmlhttp.onreadystatechange = parent.refresh_now_page;
 		myxmlhttp.send(data);
 	}
 }
@@ -72,7 +72,7 @@ function del_click(key)
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = dispose;
+		myxmlhttp.onreadystatechange = parent.refresh_now_page;
 		myxmlhttp.send(data);
 	}
 
