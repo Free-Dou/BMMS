@@ -7,9 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-
 import org.apache.log4j.Logger;
-
 import dou.config.Config;
 
 public class SqlHelper {
@@ -116,6 +114,55 @@ public class SqlHelper {
 			//throw new RuntimeException(e);
 		} finally {
 			/* 关闭资源 */
+			closeDB(resultSet, preparedStatement, connect);
+		}
+	}
+	
+	/* 如果有多个update/delete/insert[需要考虑事务] */
+	public void executeUpdateForSqls(String[] sql, String[][] parameters) {
+
+		/* 1.得到连接
+		 * 2.创建一个preparedStatement
+		 * 3.设置事务方法
+		 * 4.挨个sql语句设置参数并执行
+		 * 5.
+		 */
+		connect = getConnection();
+		try {
+			connect.setAutoCommit(false);
+
+			for (int i = 0; i < sql.length; i++) {
+				preparedStatement = connect.prepareStatement(sql[i]);
+				/* 设置参数 */
+				if (parameters[i] != null) {
+					for (int j = 0; j < parameters[i].length; j++) {
+						preparedStatement.setString(j + 1, parameters[i][j]);
+					}
+				}
+				
+				logger.info("[SqlHelper.java:executeUpdateForSqls] Sql Update success!!!  sql:" + sql);
+				preparedStatement.executeUpdate();
+			}
+
+			connect.commit();
+			logger.info("[SqlHelper.java:executeUpdateForSqls] All Sql Update success!!! num : " + sql.length);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			logger.error("[SqlHelper.java:executeUpdateForSqls] Sqls Update has Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			// 如果sql语句中任何一句出错了，则可以整体回滚
+			try {
+				connect.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				logger.error("[SqlHelper.java:executeUpdateForSqls] Rollback Failed!!!");
+				logger.error("Error Message : " + e1.getMessage());
+			}
+			// 开发期间如果出错，返回一个
+			// 给调用该函数的函数提供选择，可以处理，也可以不处理
+			//throw new RuntimeException(e);
+		} finally {
+			// 关闭资源
 			closeDB(resultSet, preparedStatement, connect);
 		}
 	}

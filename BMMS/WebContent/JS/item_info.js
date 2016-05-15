@@ -1,3 +1,28 @@
+function getXmlHttpObject()
+{
+	var xmlhttp;
+	/* 不同浏览器获取xmlhttp对象的方法不同 */
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	return xmlhttp;
+}
+
+var myxmlhttp = "";
+function dispose()
+{
+	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
+	{
+		location.reload();
+	}
+}
+
 function confirm_click()
 {
 	if(input_add_spec.value == "")
@@ -10,7 +35,21 @@ function confirm_click()
 		input_add_name.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
-	document.forms["form_post"].submit();
+	
+	myxmlhttp = getXmlHttpObject();
+	
+	if (myxmlhttp)
+	{
+		var url = "/BMMS/AddProductInfo?time=" + new Date();
+		var data = "input_add_spec=" + document.getElementById("input_add_spec").value
+					+ "&input_add_name=" + document.getElementById("input_add_name").value;
+		
+		myxmlhttp.open("post", url, true);
+		myxmlhttp.onreadystatechange = dispose;
+		myxmlhttp.send(data);
+	}
+	
+	//document.forms["form_post"].submit();
 }
 
 function cancle_click()
