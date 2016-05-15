@@ -60,7 +60,7 @@ public class Customer {
 	
 
 	public static void delCustomerFromDB(String cKeyName) {
-		String sql = "delete from tb_custom where cname='?';";
+		String sql = "delete from tb_custom where cname=?;";
 		String params[] = {cKeyName};
 		
 		/* 删除数据 */

@@ -39,7 +39,7 @@ public class Product {
 	}
 
 	public static void delProductFromDB(String pKeyName) {
-		String sql = "delete from tb_product where pname='?';";
+		String sql = "delete from tb_product where pname=?;";
 		String params[] = {pKeyName};
 		
 		SqlUtilsInterface.delInfoFromDB(sql, params);
