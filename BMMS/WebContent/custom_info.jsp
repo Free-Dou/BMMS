@@ -16,6 +16,7 @@
 		<style type="text/css">
 			@import url(CSS/right_common_style.css);
 		</style>
+		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
 		<script type="text/javascript" src="JS/custom_info.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>

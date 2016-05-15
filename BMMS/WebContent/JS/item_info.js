@@ -1,20 +1,5 @@
 var myxmlhttp = "";
 
-function getXmlHttpObject()
-{
-	var xmlhttp;
-	/* 不同浏览器获取xmlhttp对象的方法不同 */
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// code for IE6, IE5
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	return xmlhttp;
-}
-
 function dispose()
 {
 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
@@ -44,7 +29,7 @@ function confirm_click()
 		var data = "input_add_spec=" + document.getElementById("input_add_spec").value + "&input_add_name=" + document.getElementById("input_add_name").value;
 		
 		myxmlhttp.open("post", aim_url, true);
-        myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}
@@ -71,7 +56,7 @@ function del_click(key)
 		var data = "del_product_name=" + key;
 		
 		myxmlhttp.open("post", aim_url, true);
-        myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}

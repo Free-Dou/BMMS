@@ -4,6 +4,7 @@ var center_y = 50;
 var center_x = 50;
 var cover_alpha = 0;
 var pi_parent_scale = 1;
+var myxmlhttp = "";
 
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
@@ -21,9 +22,10 @@ function login_banner_show()
 
 function login_click()
 {
-	document.forms["login_form"].submit();
+	myxmlhttp = getXmlHttpObject();
+	// document.forms["login_form"].submit();
 	// console.info("clicked");
-	// login_show();
+	login_show();
 }
 
 function login_success(hold_time)
