@@ -23,13 +23,12 @@
 	<body>
 		<div id="item_info_pad" class="right-page-contains">
 			<div class="right-page-title"> 修改目录信息 </div>
-			<div>
-				<div class="table-line">
-					<div class="table-title-cell cell-head"></div>
-					<div class="table-title-cell"> 编号 </div>
-					<div class="table-title-cell"> 产品名称 </div>
-				</div>
-				<div id="table_inner">
+			<div class="table-line">
+				<div class="table-title-cell cell-head"></div>
+				<div class="table-title-cell"> 编号 </div>
+				<div class="table-title-cell"> 产品名称 </div>
+			</div>
+			<div id="table_inner">
 				<%
 				/* 输出产品信息 */
 				ArrayList<Product> productList = Product.getAllProductInfo();
@@ -46,6 +45,7 @@
 					}
 				}
 				%>
+			</div>
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="add_click('item_info_pad')">
 					<img src="IMG/add.png" class="footer-button-img">
