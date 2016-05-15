@@ -24,3 +24,21 @@ function cancle_click()
 	input_add_phone2.value = "";
 	setTimeout("hide_window()", 10);
 }
+
+function del_click(key)
+{
+	var postForm = document.createElement("form");
+	postForm.method = "post";
+	postForm.action = '/BMMS/DelCustomerInfo';
+
+	var postInput = document.createElement("input");
+	postInput.name = "del_customer_name";
+	postInput.value = key;
+	// emailInput.setAttribute("name", "email");
+	// emailInput.setAttribute("value", email);
+	postForm.appendChild(postInput);
+
+	document.body.appendChild(postForm);
+	postForm.submit();
+	document.body.removeChild(postForm);
+}
