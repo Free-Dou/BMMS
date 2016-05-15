@@ -32,9 +32,12 @@ public class AddSupplierServlet extends HttpServlet{
 		String sContact2 = req.getParameter("input_add_phone2");
 		String sRemark = null;
 		
-		logger.info("[AddSupplierServlet.java:doPost] Supplier: " + sName + " |  Tel: " + sTel + " |  Fax: " + sFax);
-		
-		Supplier supplierObject = new Supplier(sName, sTel, sFax, sEmail, sAddress, sContact1, sContact2, sRemark);
-		supplierObject.addSupplierToDB();
+		if (("" != sName) && (null != sName)){
+			logger.info("[AddSupplierServlet.java:doPost] Supplier: " + sName + " |  Tel: " + sTel + " |  Fax: " + sFax);
+			Supplier supplierObject = new Supplier(sName, sTel, sFax, sEmail, sAddress, sContact1, sContact2, sRemark);
+			supplierObject.addSupplierToDB();
+		} else {
+			logger.info("[AddSupplierServlet.java:doPost] Supplier Name is null or \"\" !!! Name:" + sName + " |  Tel: " + sTel + " |  Fax: " + sFax);
+		}
 	}
 }

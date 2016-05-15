@@ -27,9 +27,12 @@ public class AddProductServlet extends HttpServlet{
 		String pSpec = req.getParameter("input_add_spec");
 		Integer pPrice = 0;
 		
-		logger.info("[AddProductServlet.java:doPost] Product name: " + pName + " |  Product Spec: " + pSpec);
-		
-		Product productObejct = new Product(pSpec, pName, pPrice);
-		productObejct.addProductToDB();
+		if (("" != pName) && (null != pName)){
+			logger.info("[AddProductServlet.java:doPost] Product name: " + pName + " |  Product Spec: " + pSpec);
+			Product productObejct = new Product(pSpec, pName, pPrice);
+			productObejct.addProductToDB();
+		} else {
+			logger.info("[AddProductServlet.java:doPost] Product Name is null or \"\" !!!  name: " + pName + " |  Product Spec: " + pSpec);
+		}
 	}
 }

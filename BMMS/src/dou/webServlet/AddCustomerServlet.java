@@ -35,9 +35,12 @@ public class AddCustomerServlet extends HttpServlet{
 		String cContact2 = req.getParameter("input_add_phone2");
 		String cRemark = null;
 		
-		logger.info("[AddCustomerServlet.java:doPost] Customer: " + cName + " |  Tel: " + cTel + " |  Fax: " + cFax);
-		
-		Customer customer = new Customer(cName, cTel, cFax, cEmail, cAddress, cContact1, cContact2, cRemark);
-		customer.addCustomerToDB();
+		if (("" != cName) && (null != cName)){
+			logger.info("[AddCustomerServlet.java:doPost] Customer: " + cName + " |  Tel: " + cTel + " |  Fax: " + cFax);
+			Customer customer = new Customer(cName, cTel, cFax, cEmail, cAddress, cContact1, cContact2, cRemark);
+			customer.addCustomerToDB();
+		} else {
+			logger.info("[AddCustomerServlet.java:doPost] Customer name is null or \"\" !!! Name : " + cName + " |  Tel: " + cTel + " |  Fax: " + cFax);
+		}
 	}
 }
