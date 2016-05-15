@@ -9,7 +9,7 @@ var LEFT_BASE_TITLE = new Array("信息中心", "产品", "销售", "采购", "�
 var LEFT_BASE_LV2_TITLE = new Array();
 
 LEFT_BASE_LV2_TITLE[0] = new Array("系统消息", "个人消息");
-LEFT_BASE_LV2_TITLE[1] = new Array("修改目录信息");
+LEFT_BASE_LV2_TITLE[1] = new Array("产品信息");
 LEFT_BASE_LV2_TITLE[2] = new Array("销售开单", "销售分析", "客户档案");
 LEFT_BASE_LV2_TITLE[3] = new Array("入库开单", "采购分析", "供应商档案");
 LEFT_BASE_LV2_TITLE[4] = new Array("仓储信息");

@@ -36,16 +36,12 @@
 					<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
 					<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
 					<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
-					<div style="float: right; padding-right: 40px; height: 24px;"> <input type="date" value="2016-04-10" style="width: 130px"></input> </div>
-					<div style="float: right; padding-right: 15px; height: 24px;"> 日期 </div>
 				</div>
 				<div style="height: 36px; padding-left: 50px;">
 					<div style="float:left; height: 24px;"> 仓库 </div>
 					<div style="float:left; padding-left: 15px; height: 24px;">
 						<select style="width: 254px;">
 							<option value="1">总库</option>
-							<option value="2">仓库1</option>
-							<option value="3">仓库2</option>
 						</select>
 					</div>
 					<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>

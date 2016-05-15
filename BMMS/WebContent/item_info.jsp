@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		<div id="item_info_pad" class="right-page-contains">
-			<div class="right-page-title"> 修改目录信息 </div>
+			<div class="right-page-title"> 产品信息 </div>
 			<div class="table-line">
 				<div class="table-title-cell cell-head"></div>
 				<div class="table-title-cell"> 编号 </div>
@@ -32,7 +32,6 @@
 				<%
 				/* 输出产品信息 */
 				ArrayList<Product> productList = Product.getAllProductInfo();
-			
 				if (null != productList){
 					for (int i = 0; i < productList.size(); i++){
 						Product productObject = productList.get(i);
