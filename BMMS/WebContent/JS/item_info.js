@@ -1,3 +1,5 @@
+var myxmlhttp = "";
+
 function getXmlHttpObject()
 {
 	var xmlhttp;
@@ -10,11 +12,9 @@ function getXmlHttpObject()
 	{// code for IE6, IE5
 	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
 	return xmlhttp;
 }
 
-var myxmlhttp = "";
 function dispose()
 {
 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
@@ -40,16 +40,13 @@ function confirm_click()
 	
 	if (myxmlhttp)
 	{
-		var url = "/BMMS/AddProductInfo?time=" + new Date();
-		var data = "input_add_spec=" + document.getElementById("input_add_spec").value
-					+ "&input_add_name=" + document.getElementById("input_add_name").value;
+		var aim_url = "/BMMS/AddProductInfo?time=" + new Date();
+		var data = "input_add_spec=" + document.getElementById("input_add_spec").value + "&input_add_name=" + document.getElementById("input_add_name").value;
 		
-		myxmlhttp.open("post", url, true);
+		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}
-	
-	//document.forms["form_post"].submit();
 }
 
 function cancle_click()
@@ -65,18 +62,30 @@ function cancle_click()
 
 function del_click(key)
 {
-	var postForm = document.createElement("form");
-	postForm.method = "post";
-	postForm.action = '/BMMS/DelProductInfo';
+	myxmlhttp = getXmlHttpObject();
+	
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
+		var data = "del_product_name=" + key;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.onreadystatechange = dispose;
+		myxmlhttp.send(data);
+	}
 
-	var postInput = document.createElement("input");
-	postInput.name = "del_product_name";
-	postInput.value = key;
-	// emailInput.setAttribute("name", "email");
-	// emailInput.setAttribute("value", email);
-	postForm.appendChild(postInput);
+	// var postForm = document.createElement("form");
+	// postForm.method = "post";
+	// postForm.action = '/BMMS/DelProductInfo';
 
-	document.body.appendChild(postForm);
-	postForm.submit();
-	document.body.removeChild(postForm); 
+	// var postInput = document.createElement("input");
+	// postInput.name = "del_product_name";
+	// postInput.value = key;
+	// // emailInput.setAttribute("name", "email");
+	// // emailInput.setAttribute("value", email);
+	// postForm.appendChild(postInput);
+
+	// document.body.appendChild(postForm);
+	// postForm.submit();
+	// document.body.removeChild(postForm); 
 }
