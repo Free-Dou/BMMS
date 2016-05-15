@@ -30,12 +30,12 @@
 				<div style="height: 80px;">
 					<div style="float: left; padding: 0px;">
 						<div style="height: 36px; padding-left: 35px;">
-							<div style="float:left; height: 24px;"> 供应商 </div>
+							<div style="float:left; height: 24px;"> 客户 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
 						</div>
-						<div style="height: 36px; padding-left: 50px;">
+						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 仓库 </div>
 							<div style="float:left; padding-left: 15px; height: 24px;">
 								<select style="width: 254px;">
