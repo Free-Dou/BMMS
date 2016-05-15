@@ -1,4 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@page import="java.util.ArrayList"%>
+<%@page import="dou.metaObject.Product"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta charset="utf-8">
 
 <html>
@@ -101,22 +105,35 @@
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 200px; width: 400px;">
 				<h2> 添加 </h2>
-				<div style="height: 30px; text-align: left;">
+				<%
+					ArrayList<Product> productList = Product.getAllProductInfo();
+				%>
+		  		<div style="height: 30px; text-align: left;">
 					<span> 编号： </span>
 					<select style="width: 300px;" onchange="item_index_changed()" id="select_add_index">
-						<option value="1">SWSS</option>
-						<option value="2">SWSM</option>
-						<option value="3">CL-D</option>
+						<%
+							if (null != productList){
+								for (int i = 0; i < productList.size(); i++){
+									String pSpec = productList.get(i).getpSpec();
+									out.print("<option name=\"" + pSpec + "\" value=\"" + pSpec + "\">" + pSpec + "</option>");
+								}
+							}
+						%>
 					</select>
 				</div>
 				<div style="height: 30px; text-align: left;">
 					<span> 商品： </span>
 					<select style="width: 300px;" onchange="item_type_changed()" id="select_add_name">
-						<option value="1">水稳碎石</option>
-						<option value="2">水稳石沫</option>
-						<option value="3">粗料（吨）</option>
+						<%
+							if (null != productList){
+								for (int i = 0; i < productList.size(); i++){
+									String pName = productList.get(i).getpName();
+									out.print("<option name=\"" + pName + "\" value=\"" + pName + "\">" + pName + "</option>");
+								}
+							}
+						%>
 					</select>
-				</div>
+				</div>	
 				<div style="height: 30px; text-align: left;">
 					<span> 数量： </span> <span> <input style="width: 50px;" id="input_add_num" value="0"></input> </span>
 					<span style="margin-left: 10px;"> 单价： </span> <span> <input style="width: 50px;" id="input_add_price" value="0"></input> </span> <span> ￥ </span>
