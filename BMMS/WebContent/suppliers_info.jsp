@@ -80,15 +80,15 @@
 					<div style="height: 40px; text-align: left;">
 						<span> 联系人 2： </span> <input id="input_add_phone2" class="textbox-common" name="input_add_phone2"></input>
 					</div>
-					  <div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
-						<p style="top: 50%; transform: translateY(-50%);">
-							确定
-						</p>
-					</div>
 					<!-- <input type="submit" value="确定"> -->
-					<div id="cancle_button" class="red_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
+					<div id="cancle_button" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
 						<p style="top: 50%; transform: translateY(-50%);">
 							取消
+						</p>
+					</div>
+					<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							确定
 						</p>
 					</div>
 				</form>
