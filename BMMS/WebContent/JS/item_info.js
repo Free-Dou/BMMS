@@ -1,5 +1,14 @@
 var myxmlhttp = "";
 
+var process_time_last = 0;
+var pi_pos = new Array();
+var center_y = 50;
+var center_x = 50;
+var s_process_timer = 0;
+
+for(var i = 0; i < 5; i++)
+	pi_pos[i] = 0;
+
 function dispose()
 {
 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
@@ -21,6 +30,9 @@ function confirm_click()
 		return;
 	}
 	
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
 	myxmlhttp = getXmlHttpObject();
 	
 	if (myxmlhttp)
@@ -48,6 +60,9 @@ function cancle_click()
 
 function del_click(key)
 {
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
 	myxmlhttp = getXmlHttpObject();
 	
 	if (myxmlhttp)
