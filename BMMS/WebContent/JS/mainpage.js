@@ -31,6 +31,8 @@ for(var i = 0; i < LEFT_BASE_TITLE.length; i++)
 	left_base_status[i] = 0;
 setTimeout("set_main()", 1);
 
+var myxmlhttp = "";
+
 var process_time_last = 0;
 var pi_pos = new Array();
 var center_y = 50;

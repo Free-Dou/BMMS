@@ -1,5 +1,3 @@
-var myxmlhttp = "";
-
 var process_time_last = 0;
 var pi_pos = new Array();
 var center_y = 50;
@@ -31,19 +29,19 @@ function confirm_click()
 	}
 	
 	process_message.style.visibility = "visible";
-	s_process_timer = setInterval("process_anime_on_item_info()", 10);
+	s_process_timer = setInterval("process_anime()", 10);
 
-	myxmlhttp = getXmlHttpObject();
+	parent.myxmlhttp = getXmlHttpObject();
 	
-	if (myxmlhttp)
+	if (parent.myxmlhttp)
 	{
 		var aim_url = "/BMMS/AddProductInfo?time=" + new Date();
 		var data = "input_add_spec=" + document.getElementById("input_add_spec").value + "&input_add_name=" + document.getElementById("input_add_name").value;
 		
-		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = parent.refresh_now_page;
-		myxmlhttp.send(data);
+		parent.myxmlhttp.open("post", aim_url, true);
+		parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
+		parent.myxmlhttp.send(data);
 	}
 }
 
@@ -61,19 +59,19 @@ function cancle_click()
 function del_click(key)
 {
 	process_message.style.visibility = "visible";
-	s_process_timer = setInterval("process_anime_on_item_info()", 10);
+	s_process_timer = setInterval("process_anime()", 10);
 
-	myxmlhttp = getXmlHttpObject();
+	parent.myxmlhttp = getXmlHttpObject();
 	
-	if (myxmlhttp)
+	if (parent.myxmlhttp)
 	{
 		var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
 		var data = "del_product_name=" + key;
 		
-		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = parent.refresh_now_page;
-		myxmlhttp.send(data);
+		parent.myxmlhttp.open("post", aim_url, true);
+		parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
+		parent.myxmlhttp.send(data);
 	}
 
 	// var postForm = document.createElement("form");
@@ -92,7 +90,7 @@ function del_click(key)
 	// document.body.removeChild(postForm); 
 }
 
-function process_anime_on_item_info()
+function process_anime()
 {
 	process_time_last = process_time_last + 1;
 	var need_change = parseInt(process_time_last / 10);
