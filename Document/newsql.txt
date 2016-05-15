@@ -1,0 +1,51 @@
+﻿产品信息添加需要执行两条sql语句，一条是添加在产品信息表中的，一条是添加在仓库表中的：
+添加在产品信息表：INSERT INTO tb_product(pname,pspec) VALUES('80#liqing','LQ-#80')
+添加在仓库表：INSERT INTO tb_materialstock(mpspec,mname,number) VALUES ('LQ-#80','80#liqing',0)(number必须为0哈)
+
+
+入库：
+SELECT mname,mid,username FROM tb_materiain WHERE mname ='shuimoshi'/SELECT * FROM tb_materiain
+
+
+开单操作（往个人信息表插入数据，发往审批）：
+INSERT INTO `tb_personmessage` (`orderid`, `mname`, `mpspec`, `number`, `carNum`,  `stockLoca`, `price`, `totalPrice`, `creatTime`, `relationName`, `approval`) VALUES ('222', '70#沥青', 'LQ-70#\n', '2', '京A001', '1', '100', '200', '2016-05-15 16:04:23', 'BmmsProduct', '0')，
+('223', '70#沥青', 'LQ-70#\n', '2', '京A001', '1', '100', '200', '2016-05-15 16:04:23', 'BmmsProduct', '0')//一单的多条数据可以批量插入（approval必须为0）
+
+审批通过3步操作：
+（入库单）INSERT INTO `tb_materiain` (`mid`, `mpspec`, `mname`, `number`, `carNum`,  `stockLoca`, `price`, `totalPrice`, `intime`, `sname`, `username`, `approval`) VALUES ('222', 'www', '王总', '2', '京A001', '1', '300', '600', '2016-05-15 15:34:28', 'BmmsProduct', 'dou', '1')（入库approval必须为1）
+
+（入仓库表）UPDATE tb_materialstock SET number =(
+SELECT sum(a.number) FROM(
+SELECT number FROM tb_materiain WHERE mname='王总'
+UNION ALL
+SELECT number FROM tb_materialstock WHERE mname='王总')a)WHERE (mname='王总')
+
+删除个人信息表中的数据：
+DELETE FROM tb_personmessage WHERE orderid = '223'
+
+
+审批不通过，个人信息表删除数据，按照单号删除：DELETE FROM tb_personmessage WHERE orderid = '223'
+
+
+出库：
+SELECT mname,mid,username FROM tb_materiaout WHERE mname ='70#沥青'
+
+开单操作（往个人信息表插入数据，发往审批）：
+INSERT INTO `tb_personmessage` (`orderid`, `mname`, `carNum`, `mpspec`, `number`, `stockLoca`, `price`, `totalPrice`, `creatTime`, `relationName`, `approval`) VALUES ('333', '70#沥青', '京A666', 'LQ-70#\n', '1', '1', '200', '300', '2016-05-13 20:37:00', '谢腾飞', '0'),
+('333', '70#沥青', '京A666', 'LQ-70#\n', '1', '1', '200', '600', '2016-05-13 20:40:00', '谢腾飞', '0')//一单的多条数据可以批量插入（approval必须为0）
+
+
+审批通过3步操作：
+（入库单）INSERT INTO `tb_materiaout` (`mid`, `mpspec`, `mname`, `number`, `carNum`, `stockloca`, `price`, `totalPrice`, `outTime`, `username`, `cname`, `approval`) VALUES ('333', 'LQ-70#\n', '70#沥青', '3', '京A666', '1', '200', '300', '2016-05-13 20:37:00', 'dou', '谢腾飞', '1')
+
+（如仓库表）UPDATE tb_materialstock SET number =(
+SELECT sum(a.number) FROM(
+SELECT number FROM tb_materiaout WHERE mname='70#沥青'
+UNION ALL
+SELECT number FROM tb_materialstock WHERE mname='70#沥青')a)WHERE (mname='70#沥青')
+
+删除个人信息表中的数据：
+DELETE FROM tb_personmessage WHERE orderid = '223'
+
+
+审批不通过，个人信息表删除数据，按照单号删除：DELETE FROM tb_personmessage WHERE orderid = '223'
