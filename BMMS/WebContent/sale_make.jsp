@@ -25,10 +25,6 @@
 		<div id="buy_make_pad" class="right-page-contains">
 			<div style="padding-right: 40px; height: 67px; overflow: hidden;">
 				<div class="right-page-title" style="float: left;"> 销售开单 </div>
-				<div class="title-button" id="make_sale" onmouseenter="button_mouseenter_footer('make_sale')" onmouseleave="button_mouseleave_footer('make_sale')" onmousedown="button_mousedown_footer('make_sale')" onmouseup="button_mouseup_footer('make_sale')">
-					<div style="float: right; padding-top: 20px;"> <img src="IMG/send.png" class="footer-button-img"> </div>
-					<div style="float: right; padding-top: 24px; padding-right: 5px;"> 开单 </div>
-				</div>
 			</div>
 			<div id="sale_make_pad_inner">
 				<div style="height: 80px;">
