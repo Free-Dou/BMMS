@@ -4,6 +4,15 @@ var total_count = 0;
 var total_money = 0;
 var added_item = new Array();
 var now_index = 0;
+var myxmlhttp = "";
+
+function dispose()
+{
+	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
+	{
+		location.reload();
+	}
+}
 
 function confirm_click()
 {
@@ -141,6 +150,23 @@ function cancle_click()
 	input_add_num.style.backgroundColor = "#FFFFFF";
 	input_add_price.style.backgroundColor = "#FFFFFF";
 	setTimeout("hide_window()", 10);
+}
+
+function make_sale()
+{
+	myxmlhttp = getXmlHttpObject();
+
+	if (myxmlhttp)
+	{
+		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
+		var data = JSON.stringify(added_item);
+		alert(data);
+		// createXMLHttpRequest();
+		// myxmlhttp.open("post", aim_url, true);
+		// myxmlhttp.onreadystatechange = dispose;
+		// myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		// myxmlhttp.send(data);
+	}
 }
 
 //Select 控件相关
