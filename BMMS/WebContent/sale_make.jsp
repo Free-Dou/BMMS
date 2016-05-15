@@ -120,7 +120,7 @@
 				<div style="height: 30px; text-align: left;">
 					<span> 备注： </span> <span> <input style="width: 297px;" id="input_add_others"></input> </span>
 				</div>
-				<div id="cancle_button" class="red_button" style="margin-right: 48px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
+				<div id="cancle_button" class="red_button" style="margin-right: 46px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						取消
 					</p>
