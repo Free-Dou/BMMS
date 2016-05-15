@@ -39,6 +39,7 @@ function confirm_click()
 		var data = "input_add_name=" + document.getElementById("input_add_name").value + "&input_add_tel=" + document.getElementById("input_add_tel").value + "&input_add_fix=" + document.getElementById("input_add_fix").value + "&input_add_phone1=" + document.getElementById("input_add_phone1").value + "&input_add_phone2=" + document.getElementById("input_add_phone2").value;
 		
 		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}
@@ -66,6 +67,7 @@ function del_click(key)
 		var data = "del_customer_name=" + key;
 		
 		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}
