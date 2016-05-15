@@ -31,7 +31,7 @@ function confirm_click()
 	}
 	
 	process_message.style.visibility = "visible";
-	s_process_timer = setInterval("process_anime()", 10);
+	s_process_timer = setInterval("process_anime_on_item_info()", 10);
 
 	myxmlhttp = getXmlHttpObject();
 	
@@ -61,7 +61,7 @@ function cancle_click()
 function del_click(key)
 {
 	process_message.style.visibility = "visible";
-	s_process_timer = setInterval("process_anime()", 10);
+	s_process_timer = setInterval("process_anime_on_item_info()", 10);
 
 	myxmlhttp = getXmlHttpObject();
 	
@@ -92,7 +92,7 @@ function del_click(key)
 	// document.body.removeChild(postForm); 
 }
 
-function process_anime()
+function process_anime_on_item_info()
 {
 	process_time_last = process_time_last + 1;
 	var need_change = parseInt(process_time_last / 10);

@@ -367,6 +367,7 @@ function load_complete_anime()
 
 function refresh_now_page()
 {
+	setTimeout();
 	if(onchange_flag == false)
 	{
 		page_change_to = page_now;
