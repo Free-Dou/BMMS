@@ -38,6 +38,13 @@ public class Product {
 		SqlUtilsInterface.addInfoToDB(sql, params);
 	}
 
+	public static void delProductFromDB(String pKeyName) {
+		String sql = "delete from tb_product where pname='?';";
+		String params[] = {pKeyName};
+		
+		SqlUtilsInterface.delInfoFromDB(sql, params);
+	}
+	
 	public String getpSpec() {
 		return pSpec;
 	}
@@ -49,6 +56,5 @@ public class Product {
 	public Integer getpPrice() {
 		return pPrice;
 	}
-	
 	
 }

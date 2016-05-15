@@ -57,6 +57,13 @@ public class Supplier {
 		SqlUtilsInterface.addInfoToDB(sql, params);
 	}
 	
+	public static void delSupplierFromDB(String sKeyName) {
+		String sql = "delete from supply where sname='?'";
+		String params[] = {sKeyName};
+		
+		SqlUtilsInterface.delInfoFromDB(sql, params);
+	}
+	
 	public String getsName() {
 		return sName;
 	}

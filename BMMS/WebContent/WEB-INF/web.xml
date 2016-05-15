@@ -67,4 +67,37 @@
   <url-pattern>/AddSupplierInfo</url-pattern>
   </servlet-mapping>
   
+<!-- 删除客户信息 -->
+  <servlet>
+  <servlet-name>DelCustomerInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelCustomerServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelCustomerInfo</servlet-name>
+  <url-pattern>/DelCustomerInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除产品信息 -->
+  <servlet>
+  <servlet-name>DelProductInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelProductServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProductInfo</servlet-name>
+  <url-pattern>/DelProductInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除供应商信息 -->
+  <servlet>
+  <servlet-name>DelSupplierInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelSupplierServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelSupplierInfo</servlet-name>
+  <url-pattern>/DelSupplierInfo</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

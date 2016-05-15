@@ -24,8 +24,11 @@ public class SqlUtilsInterface {
 	}
 
 	public static void addInfoToDB(String sql, String[] params) {
-		// TODO Auto-generated method stub
 		new MySqlIO().addInfoToDB(sql, params);
+	}
+
+	public static void delInfoFromDB(String sql, String[] params) {
+		new MySqlIO().delInfoFromDB(sql, params);
 	}
 
 	

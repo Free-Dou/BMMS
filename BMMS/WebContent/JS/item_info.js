@@ -39,5 +39,5 @@ function del_click(key)
 
 	document.body.appendChild(postForm);
 	postForm.submit();
-	document.body.removeChild(postForm);
+	document.body.removeChild(postForm); 
 }

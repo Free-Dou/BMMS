@@ -172,7 +172,6 @@ public class MySqlIO {
 
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
-		// TODO Auto-generated method stub
 		
 		logger.info("[MySqlIO.java:addInfoToDB] Add info to DB: " + sql);
 		for (int i = 0; i <  parameters.length; i++){
@@ -182,6 +181,17 @@ public class MySqlIO {
 		sqlHelper.executeUpdate(sql, parameters);
 	}
 	
+	/* 从数据库删除数据 */
+	public void delInfoFromDB(String sql, String[] parameters) {
+		
+		logger.info("[MySqlIO.java:delInfoFromDB] del info from DB: " + sql);
+		for (int i = 0; i <  parameters.length; i++){
+			logger.info("[MySqlIO.java:delInfoFromDB] info " + i + " : " + parameters[i]);
+		}
+		
+		sqlHelper.executeUpdate(sql, parameters);
+	}
+
 	// 判断某张表是否存在
 	public boolean checkTablesLife(String table_name) {
 
