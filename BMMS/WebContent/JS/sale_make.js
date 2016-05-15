@@ -17,7 +17,8 @@ function dispose()
 function confirm_click()
 {
 	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
-	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
+	// if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
+	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0)
 	{
 		input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
