@@ -114,6 +114,6 @@ function process_anime_on_item_info()
 
 		e.style.top = new_y + "px";
 		e.style.left = new_x + "px";
-		console.info("processtimer running.");
+		console.info("item info processtimer running.");
 	}
 }
