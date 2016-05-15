@@ -71,7 +71,7 @@ public class SqlHelper {
 
 			if (parameters != null) {
 				for (int i = 0; i < parameters.length; i++){
-					preparedStatement.setString(i+1, parameters[i]);
+					preparedStatement.setString(i + 1, parameters[i]);
 				}
 			}
 
@@ -107,6 +107,7 @@ public class SqlHelper {
 			}
 
 			preparedStatement.executeUpdate();
+			logger.info("[SqlHelper.java:executeUpdate] Sql Update success!!!  sql:" + sql);
 		} catch (SQLException e) {
 			logger.error("[SqlHelper.java:executeUpdate] Sql Update Failed!!!");
 			logger.error("Error Message : " + e.getMessage());

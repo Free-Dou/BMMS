@@ -58,7 +58,7 @@ public class Supplier {
 	}
 	
 	public static void delSupplierFromDB(String sKeyName) {
-		String sql = "delete from supply where sname='?'";
+		String sql = "delete from tb_supply where sname=?";
 		String params[] = {sKeyName};
 		
 		SqlUtilsInterface.delInfoFromDB(sql, params);
