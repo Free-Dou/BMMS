@@ -5,6 +5,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.Product;
 import dou.metaObject.Supplier;
+import dou.metaObject.SystemMessage;
 
 public class SqlUtilsInterface {
 
@@ -34,6 +35,10 @@ public class SqlUtilsInterface {
 
 	public static ArrayList<MaterialInStock> getAllMaterialInStockInfo() {
 		return new MySqlIO().getAllMatrialInStockInfo();
+	}
+
+	public static ArrayList<SystemMessage> getAllSystemMessageInfo() {
+		return new MySqlIO().getAllSystemMessageInfo();
 	}
 
 	

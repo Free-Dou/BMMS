@@ -14,6 +14,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.Product;
 import dou.metaObject.Supplier;
+import dou.metaObject.SystemMessage;
 
 public class MySqlIO {
 
@@ -209,6 +210,44 @@ public class MySqlIO {
 		}
 		
 		return materialInStockList;
+	}
+	
+	/* 获取系统消息 */
+	public ArrayList<SystemMessage> getAllSystemMessageInfo() {
+		ArrayList<SystemMessage> systemMessageList = null;
+		SystemMessage systemMessageObject = null;
+		String sql = "SELECT * FROM tb_systemmessage ORDER BY id DESC;";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllSystemMessageInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String sMessageName = rs.getString("sMessagename");
+				String sMessage = rs.getString("sMessage");
+				String userName = rs.getString("userName");
+				String time = rs.getString("time");
+				
+				if (null == systemMessageList){
+					systemMessageList = new ArrayList<SystemMessage>();
+				}
+								
+				systemMessageObject = new SystemMessage(sMessageName, sMessage, time, userName);
+				systemMessageList.add(systemMessageObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllSystemMessageInfo] Get all SystemMessage Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllSystemMessageInfo] Get SystemMessage Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return systemMessageList;
 	}
 	
 	/* 添加信息到数据库 */

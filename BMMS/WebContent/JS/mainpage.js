@@ -17,7 +17,7 @@ LEFT_BASE_LV2_TITLE[5] = new Array("工程量管理");
 
 var RIGHT_PAGE_NAME = new Array();
 
-RIGHT_PAGE_NAME[0] = new Array("system_message.html", "personal_message.html");
+RIGHT_PAGE_NAME[0] = new Array("system_message.jsp", "personal_message.html");
 RIGHT_PAGE_NAME[1] = new Array("item_info.jsp");
 RIGHT_PAGE_NAME[2] = new Array("sale_make.jsp", "sale_analyze.html", "custom_info.jsp");
 RIGHT_PAGE_NAME[3] = new Array("buy_make.jsp", "buy_analyze.html", "suppliers_info.jsp");
