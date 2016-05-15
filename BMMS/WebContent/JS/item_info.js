@@ -76,3 +76,29 @@ function del_click(key)
 	// postForm.submit();
 	// document.body.removeChild(postForm); 
 }
+
+function process_anime()
+{
+	process_time_last = process_time_last + 1;
+	var need_change = parseInt(process_time_last / 10);
+	if(need_change > 5)
+		need_change = 5;
+	for(var i = 0; i < need_change; i++)
+	{
+		var e = document.getElementById("pi" + i);
+		if (pi_pos[i] > 360) 
+			pi_pos[i] = pi_pos[i] - 360;
+
+		if(pi_pos[i] < 180)
+			pi_pos[i] = pi_pos[i] + (pi_pos[i] + 10) / 20;
+		else if(pi_pos[i] < 360)
+			pi_pos[i] = pi_pos[i] + (360 - pi_pos[i] + 10) / 20;
+
+		var new_x = center_x + Math.sin(2 * Math.PI / 360 * pi_pos[i]) * 50;
+		var new_y = center_y - Math.cos(2 * Math.PI / 360 * pi_pos[i]) * 50;
+
+		e.style.top = new_y + "px";
+		e.style.left = new_x + "px";
+		console.info("processtimer running.");
+	}
+}

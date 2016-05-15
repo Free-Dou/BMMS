@@ -36,7 +36,7 @@
 				<div class="right-page-base" id="right_base">
 					<div class="right-page-main" id="page_right_0_0">
 						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px; position: absolute;" src=""></iframe>
-					</div>					
+					</div>
 					<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0);" id="process_message">
 						<div class="login-process-inner" id="pi_parent">
 							<div id="pi0" class="process-item"></div>

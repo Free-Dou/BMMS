@@ -4,11 +4,13 @@ var total_count = 0;
 var total_money = 0;
 var added_item = new Array();
 var now_index = 0;
+var myxmlhttp = "";
 
 function confirm_click()
 {
 	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
-	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
+	// if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
+	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0)
 	{
 		input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
@@ -33,7 +35,7 @@ function confirm_click()
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + item.Name + " </div>";
 	// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_index.value + " </div>";
 	// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_name.value + " </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Count).toFixed(0) + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Count).toFixed(3) + " </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Price).toFixed(2) + "￥ </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.TotalPrice).toFixed(2) + "￥ </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + item.Others + " </div>";
@@ -42,7 +44,7 @@ function confirm_click()
 
 	table_inner.innerHTML = table_inner.innerHTML + add_item_text;
 
-	total_count = Number(Number(total_count) + Number(input_add_num.value)).toFixed(0);
+	total_count = Number(Number(total_count) + Number(input_add_num.value)).toFixed(3);
 	total_money = Number(Number(total_money) + Number(input_add_num.value) * Number(input_add_price.value)).toFixed(2);
 
 	// console.info(total_count + "   " + total_money);
@@ -56,7 +58,7 @@ function confirm_click()
 		e.className = "table-cell-" + now_line_style;
 
 		if(i == 3)
-			e.innerHTML = Number(total_count).toFixed(0);
+			e.innerHTML = Number(total_count).toFixed(3);
 		else if(i == 5)
 			e.innerHTML = Number(total_money).toFixed(2) + "￥";
 	}
@@ -90,7 +92,7 @@ function rebuild_table()
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + added_item[i].Name + " </div>";
 		// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_index.value + " </div>";
 		// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_name.value + " </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Count).toFixed(0) + " </div>";
+		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Count).toFixed(3) + " </div>";
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Price).toFixed(2) + "￥ </div>";
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].TotalPrice).toFixed(2) + "￥ </div>";
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + added_item[i].Others + " </div>";
@@ -98,7 +100,7 @@ function rebuild_table()
 
 		table_inner.innerHTML = table_inner.innerHTML + add_item_text;
 
-		total_count = Number(Number(total_count) + Number(added_item[i].Count)).toFixed(0);
+		total_count = Number(Number(total_count) + Number(added_item[i].Count)).toFixed(3);
 		total_money = Number(Number(total_money) + Number(added_item[i].TotalPrice)).toFixed(2);
 		
 		now_line_style = now_line_style + 1;
@@ -112,7 +114,7 @@ function rebuild_table()
 		e.className = "table-cell-" + now_line_style;
 
 		if(i == 3)
-			e.innerHTML = Number(total_count).toFixed(0);
+			e.innerHTML = Number(total_count).toFixed(3);
 		else if(i == 5)
 			e.innerHTML = Number(total_money).toFixed(2) + "￥";
 	}
@@ -141,6 +143,25 @@ function cancle_click()
 	input_add_num.style.backgroundColor = "#FFFFFF";
 	input_add_price.style.backgroundColor = "#FFFFFF";
 	setTimeout("hide_window()", 10);
+}
+
+function make_buy()
+{
+	// myxmlhttp = getXmlHttpObject();
+
+	// if (myxmlhttp)
+	// {
+	// 	var aim_url = "/BMMS/DelProductInfo?time=" + new Date(); //未定
+		console.info(added_item);
+		// var data = "{";
+		// data = data + "data:";
+		// var data = "del_product_name=" + key;
+		
+		// myxmlhttp.open("post", aim_url, true);
+		// myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		// myxmlhttp.onreadystatechange = dispose;
+		// myxmlhttp.send(data);
+	// }
 }
 
 //Select 控件相关
