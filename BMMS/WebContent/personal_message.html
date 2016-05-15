@@ -5,7 +5,13 @@
 	<head>
 		<title></title>
 		<style type="text/css">
+			@import url(CSS/common-style.css);
+		</style>
+		<style type="text/css">
 			@import url(CSS/message_common.css);
+		</style>
+		<style type="text/css">
+			@import url(CSS/table_common.css);
 		</style>
 		<style type="text/css">
 			@import url(CSS/right_common_style.css);
@@ -16,15 +22,123 @@
 	<body>
 		<div class="right-page-contains" id="sys_message_pad">
 			<div class="right-page-title"> 个人消息 </div>
-			<!-- <div id="usr_message_pad" class="right-page-contains"> -->
-				<div style="font-size: 18px; padding-left: 35px; padding-top: 18px; padding-right: 35px;"> 您暂时还没有收到任何消息 </div>
-				<dir class="page-footer main-page-footer">
-					<div class="footer-button" id="message_footer_button_2" onmouseenter="button_mouseenter_footer('message_footer_button_2')" onmouseleave="button_mouseleave_footer('message_footer_button_2')" onmousedown="button_mousedown_footer('message_footer_button_2')" onmouseup="button_mouseup_footer('message_footer_button_2')">
-						<img src="IMG/refresh.png" class="footer-button-img">
-						<p>刷新</p>
+			<div class="message-box-1">
+				<div class="message-title"> 销售单：201605152125001 </div>
+				<div class="message-contains"> 
+					<div> &emsp;&emsp;客户：窦总&emsp;&emsp;仓库：总库&emsp;&emsp;车号：豫A-888888&emsp;&emsp; </div>
+					<div>
+						<div class="table-line" style="margin-left: 0px;">
+							<div class="table-title-cell" style="width: 8%;">  </div>
+							<div class="table-title-cell" style="width: 20%;"> 编号 </div>
+							<div class="table-title-cell" style="width: 20%;"> 商品 </div>
+							<div class="table-title-cell" style="width: 8%;"> 数量 </div>
+							<div class="table-title-cell" style="width: 8%;"> 单价 </div>
+							<div class="table-title-cell" style="width: 8%;"> 金额 </div>
+							<div class="table-title-cell" style="width: 25%;"> 备注 </div>
+						</div>
+						<div id="table_inner">
+							<div class="table-line" style="margin-left: 0px;">
+								<div id="final_cell_0" class="table-cell-1" style="width: 8%;"> </div>
+								<div id="final_cell_1" class="table-cell-1" style="width: 20%;"> LQ </div>
+								<div id="final_cell_2" class="table-cell-1" style="width: 20%;"> 沥青 </div>
+								<div id="final_cell_3" class="table-cell-1" style="width: 8%;"> 10 </div>
+								<div id="final_cell_4" class="table-cell-1" style="width: 8%;"> 10.00￥ </div>
+								<div id="final_cell_5" class="table-cell-1" style="width: 8%;"> 100.00￥ </div>
+								<div id="final_cell_6" class="table-cell-1" style="width: 25%;">  </div>
+							</div>
+							<div class="table-line" style="margin-left: 0px;">
+								<div id="final_cell_0" class="table-cell-2" style="width: 8%;"> </div>
+								<div id="final_cell_1" class="table-cell-2" style="width: 20%;"> LQ </div>
+								<div id="final_cell_2" class="table-cell-2" style="width: 20%;"> 沥青 </div>
+								<div id="final_cell_3" class="table-cell-2" style="width: 8%;"> 10 </div>
+								<div id="final_cell_4" class="table-cell-2" style="width: 8%;"> 10.00￥ </div>
+								<div id="final_cell_5" class="table-cell-2" style="width: 8%;"> 100.00￥ </div>
+								<div id="final_cell_6" class="table-cell-2" style="width: 25%;"> </div>
+							</div>
+						</div>
+						<div class="table-line" style="margin-left: 0px;">
+							<div id="final_cell_0" class="table-cell-1" style="width: 8%;"> 合计 </div>
+							<div id="final_cell_1" class="table-cell-1" style="width: 20%;"> / </div>
+							<div id="final_cell_2" class="table-cell-1" style="width: 20%;"> / </div>
+							<div id="final_cell_3" class="table-cell-1" style="width: 8%;"> 20 </div>
+							<div id="final_cell_4" class="table-cell-1" style="width: 8%;"> / </div>
+							<div id="final_cell_5" class="table-cell-1" style="width: 8%;"> 200.00￥ </div>
+							<div id="final_cell_6" class="table-cell-1" style="width: 25%;"> / </div>
+						</div>
 					</div>
-				</dir>
-			<!-- </div> -->
+					<div> &emsp;&emsp;备注：这是一条测试消息备注 </div>
+				</div>
+				<div class="message-time"> User:System Time:2016-04-14 </div>
+				<div style="height: 32px;">
+					<div id="cancle_button" class="red_button" style="margin-right: 34px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							打回
+						</p>
+					</div>
+					<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							通过
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="message-box-2">
+				<div class="message-title"> 入库单：201605152125001 </div>
+				<div class="message-contains"> 
+					<div> &emsp;&emsp;供应商：窦总&emsp;&emsp;仓库：总库&emsp;&emsp;车号：豫A-888888&emsp;&emsp; </div>
+					<div>
+						<div class="table-line" style="margin-left: 0px;">
+							<div class="table-title-cell" style="width: 8%;">  </div>
+							<div class="table-title-cell" style="width: 20%;"> 编号 </div>
+							<div class="table-title-cell" style="width: 20%;"> 商品 </div>
+							<div class="table-title-cell" style="width: 8%;"> 数量 </div>
+							<div class="table-title-cell" style="width: 8%;"> 单价 </div>
+							<div class="table-title-cell" style="width: 8%;"> 金额 </div>
+							<div class="table-title-cell" style="width: 25%;"> 备注 </div>
+						</div>
+						<div id="table_inner">
+							<div class="table-line" style="margin-left: 0px;">
+								<div id="final_cell_0" class="table-cell-1" style="width: 8%;"> </div>
+								<div id="final_cell_1" class="table-cell-1" style="width: 20%;"> LQ </div>
+								<div id="final_cell_2" class="table-cell-1" style="width: 20%;"> 沥青 </div>
+								<div id="final_cell_3" class="table-cell-1" style="width: 8%;"> 10 </div>
+								<div id="final_cell_4" class="table-cell-1" style="width: 8%;"> 10.00￥ </div>
+								<div id="final_cell_5" class="table-cell-1" style="width: 8%;"> 100.00￥ </div>
+								<div id="final_cell_6" class="table-cell-1" style="width: 25%;">  </div>
+							</div>
+							<div class="table-line" style="margin-left: 0px;">
+								<div id="final_cell_0" class="table-cell-2" style="width: 8%;"> </div>
+								<div id="final_cell_1" class="table-cell-2" style="width: 20%;"> LQ </div>
+								<div id="final_cell_2" class="table-cell-2" style="width: 20%;"> 沥青 </div>
+								<div id="final_cell_3" class="table-cell-2" style="width: 8%;"> 10 </div>
+								<div id="final_cell_4" class="table-cell-2" style="width: 8%;"> 10.00￥ </div>
+								<div id="final_cell_5" class="table-cell-2" style="width: 8%;"> 100.00￥ </div>
+								<div id="final_cell_6" class="table-cell-2" style="width: 25%;"> </div>
+							</div>
+						</div>
+						<div class="table-line" style="margin-left: 0px;">
+							<div id="final_cell_0" class="table-cell-1" style="width: 8%;"> 合计 </div>
+							<div id="final_cell_1" class="table-cell-1" style="width: 20%;"> / </div>
+							<div id="final_cell_2" class="table-cell-1" style="width: 20%;"> / </div>
+							<div id="final_cell_3" class="table-cell-1" style="width: 8%;"> 20 </div>
+							<div id="final_cell_4" class="table-cell-1" style="width: 8%;"> / </div>
+							<div id="final_cell_5" class="table-cell-1" style="width: 8%;"> 200.00￥ </div>
+							<div id="final_cell_6" class="table-cell-1" style="width: 25%;"> / </div>
+						</div>
+					</div>
+					<div> &emsp;&emsp;备注：这是一条测试消息备注 </div>
+				</div>
+				<div class="message-time"> User:System Time:2016-04-14 </div>
+				<div style="height: 32px;">
+					<div style="text-align: right; margin-right: 34px;"> 已审核 </div>
+				</div>
+			</div>
+			<dir class="page-footer main-page-footer">
+				<div class="footer-button" id="message_footer_button_2" onmouseenter="button_mouseenter_footer('message_footer_button_2')" onmouseleave="button_mouseleave_footer('message_footer_button_2')" onmousedown="button_mousedown_footer('message_footer_button_2')" onmouseup="button_mouseup_footer('message_footer_button_2')">
+					<img src="IMG/refresh.png" class="footer-button-img">
+					<p>刷新</p>
+				</div>
+			</dir>
 		</div>
 	</body>
 </html>
