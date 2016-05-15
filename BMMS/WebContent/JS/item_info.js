@@ -44,6 +44,7 @@ function confirm_click()
 		var data = "input_add_spec=" + document.getElementById("input_add_spec").value + "&input_add_name=" + document.getElementById("input_add_name").value;
 		
 		myxmlhttp.open("post", aim_url, true);
+        myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}
@@ -70,6 +71,7 @@ function del_click(key)
 		var data = "del_product_name=" + key;
 		
 		myxmlhttp.open("post", aim_url, true);
+        myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = dispose;
 		myxmlhttp.send(data);
 	}
