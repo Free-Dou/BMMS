@@ -2,6 +2,7 @@ package dou.sqlHelper;
 
 import java.util.ArrayList;
 import dou.metaObject.Customer;
+import dou.metaObject.MaterialInStock;
 import dou.metaObject.Product;
 import dou.metaObject.Supplier;
 
@@ -29,6 +30,10 @@ public class SqlUtilsInterface {
 
 	public static void delInfoFromDB(String sql, String[] params) {
 		new MySqlIO().delInfoFromDB(sql, params);
+	}
+
+	public static ArrayList<MaterialInStock> getAllMaterialInStockInfo() {
+		return new MySqlIO().getAllMatrialInStockInfo();
 	}
 
 	

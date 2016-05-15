@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.metaObject.Customer;
+import dou.metaObject.MaterialInStock;
 import dou.metaObject.Product;
 import dou.metaObject.Supplier;
 
@@ -53,7 +54,7 @@ public class MySqlIO {
 	public ArrayList<Customer> getAllCustomerInfo(){
 		ArrayList<Customer> customerList = null;
 		Customer customerObject = null;
-		String sql = "select * from tb_custom";
+		String sql = "select * from tb_custom order by CONVERT(cname using GBK);";
 		ResultSet rs = null;
 		
 		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
@@ -95,7 +96,7 @@ public class MySqlIO {
 	public ArrayList<Product> getAllProductInfo() {
 		ArrayList<Product> productList = null;
 		Product productObject = null;
-		String sql = "select * from tb_product";
+		String sql = "select * from tb_product order by CONVERT(pname using GBK);";
 		ResultSet rs = null;
 		
 		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
@@ -132,7 +133,7 @@ public class MySqlIO {
 	public ArrayList<Supplier> getAllSupplierInfo() {
 		ArrayList<Supplier> supplierList = null;
 		Supplier supplierObject = null;
-		String sql = "select * from tb_supply";
+		String sql = "select * from tb_supply order by CONVERT(sname using GBK);";
 		ResultSet rs = null;
 		
 		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
@@ -170,6 +171,46 @@ public class MySqlIO {
 		return supplierList; 
 	}
 
+	/* 提取库存信息 */
+	public ArrayList<MaterialInStock> getAllMatrialInStockInfo() {
+		ArrayList<MaterialInStock> materialInStockList = null;
+		MaterialInStock materialInStockObject = null;
+		String sql = "select * from tb_materialstock";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllMatrialInStockInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String mPSpec = rs.getString("mpspec");
+				String mName = rs.getString("mname");
+				Float number = rs.getFloat("number");
+				String ctime = rs.getString("ctime");
+				String stockloca = rs.getString("stockloca");
+				String remark = rs.getString("remark");
+				
+				if (null == materialInStockList){
+					materialInStockList = new ArrayList<MaterialInStock>();
+				}
+								
+				materialInStockObject = new MaterialInStock(mPSpec, mName, number, ctime, stockloca, remark);
+				materialInStockList.add(materialInStockObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllMatrialInStockInfo] Get all MatrialInStock Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllMatrialInStockInfo] Get MatrialInStock Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return materialInStockList;
+	}
+	
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
 		
