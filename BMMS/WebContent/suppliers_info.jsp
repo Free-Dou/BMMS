@@ -34,7 +34,6 @@
 					<div class="table-title-cell" style="width: 15%;"> 联系人 2 </div>
 				</div>
 				<div id="table_inner">
-				
 					<%
 						ArrayList<Supplier> supplierList = Supplier.getAllSupplierInfo();
 					
@@ -65,36 +64,34 @@
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 300px; width: 400px;">
 				<h2> 添加供应商 </h2>
-				
-				<form action="/BMMS/AddSupplierInfo" method="post">
-				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 30px;"> 名称： </span> <input id="input_add_name" class="textbox-common" name="input_add_name"></input>
-				</div>
-				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 30px;"> 电话： </span> <input id="input_add_tel" class="textbox-common" name="input_add_tel"></input>
-				</div>
-				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 30px;"> 传真： </span> <input id="input_add_fix" class="textbox-common" name="input_add_fix"></input>
-				</div>
-				<div style="height: 40px; text-align: left;">
-					<span> 联系人 1： </span> <input id="input_add_phone1" class="textbox-common" name="input_add_phone1"></input>
-				</div>
-				<div style="height: 40px; text-align: left;">
-					<span> 联系人 2： </span> <input id="input_add_phone2" class="textbox-common" name="input_add_phone2"></input>
-				</div>
-				<!--  <div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						确定
-					</p>
-				</div>-->
-				<input type="submit" value="确定">
-				<div id="cancle_button" class="red_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						取消
-					</p>
-				</div>
+				<form action="/BMMS/AddSupplierInfo" method="post" id="form_post">
+					<div style="height: 40px; text-align: left;">
+						<span style="margin-left: 30px;"> 名称： </span> <input id="input_add_name" class="textbox-common" name="input_add_name"></input>
+					</div>
+					<div style="height: 40px; text-align: left;">
+						<span style="margin-left: 30px;"> 电话： </span> <input id="input_add_tel" class="textbox-common" name="input_add_tel"></input>
+					</div>
+					<div style="height: 40px; text-align: left;">
+						<span style="margin-left: 30px;"> 传真： </span> <input id="input_add_fix" class="textbox-common" name="input_add_fix"></input>
+					</div>
+					<div style="height: 40px; text-align: left;">
+						<span> 联系人 1： </span> <input id="input_add_phone1" class="textbox-common" name="input_add_phone1"></input>
+					</div>
+					<div style="height: 40px; text-align: left;">
+						<span> 联系人 2： </span> <input id="input_add_phone2" class="textbox-common" name="input_add_phone2"></input>
+					</div>
+					  <div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							确定
+						</p>
+					</div>
+					<!-- <input type="submit" value="确定"> -->
+					<div id="cancle_button" class="red_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							取消
+						</p>
+					</div>
 				</form>
-				
 			</div>
 		</div>
 	</body>
