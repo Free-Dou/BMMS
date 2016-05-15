@@ -25,48 +25,31 @@
 		<div id="buy_make_pad" class="right-page-contains">
 			<div style="padding-right: 40px; height: 67px; overflow: hidden;">
 				<div class="right-page-title" style="float: left;"> 入库开单 </div>
-				<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')">
-					<div style="float: right; padding-top: 20px;"> <img src="IMG/send.png" class="footer-button-img"> </div>
-					<div style="float: right; padding-top: 24px; padding-right: 5px;"> 开单 </div>
-				</div>
 			</div>
 			<div id="buy_make_pad_inner">
-				<div style="height: 36px; padding-left: 35px;">
-					<div style="float:left; height: 24px;"> 供应商 </div>
-					<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
-					<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
-					<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
-				</div>
-				<div style="height: 36px; padding-left: 50px;">
-					<div style="float:left; height: 24px;"> 仓库 </div>
-					<div style="float:left; padding-left: 15px; height: 24px;">
-						<select style="width: 254px;">
-							<option value="1">总库</option>
-						</select>
+				<div style="height: 80px;">
+					<div style="float: left; padding: 0px;">
+						<div style="height: 36px; padding-left: 35px;">
+							<div style="float:left; height: 24px;"> 供应商 </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+						</div>
+						<div style="height: 36px; padding-left: 50px;">
+							<div style="float:left; height: 24px;"> 仓库 </div>
+							<div style="float:left; padding-left: 15px; height: 24px;">
+								<select style="width: 254px;">
+									<option value="1">总库</option>
+								</select>
+							</div>
+							<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+						</div>
 					</div>
-					<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>
-					<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
-					<!-- 
-					<div style="float:left; padding-left: 15px; height: 24px;">
-						<select style="width: 254px;">
-							<option value="1">其他
-							<option value="2">普通
-							<option value="3">电子
-						</select>
+					<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')">
+						<div style="float: right; padding-top: 10px;"> <img src="IMG/send.png" class="footer-button-img"> </div>
+						<div style="float: right; padding-top: 14px; padding-right: 5px;"> 开单 </div>
 					</div>
-					-->
-					<!-- <div style="float:left; padding-left: 15px; height: 24px;"> 折扣 </div> -->
-					<!-- <div style="float:left; padding-left: 15px; height: 24px; "> <input style="width: 35px;" value="1.00"></input> </div> -->
-					<!--
-					<div style="float: right; padding-right: 40px; height: 24px;">
-						<select style="width: 135px;">
-							<option value="1">admin
-							<option value="2">user1
-							<option value="3">user2
-						</select>
-					</div>
-					-->
- 				<!-- <div style="float: right; padding-right: 15px; height: 24px;"> 业务员 </div> -->
 				</div>
 				<div>
 					<div class="table-line">
