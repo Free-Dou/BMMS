@@ -42,7 +42,7 @@
 							 	Supplier supplierObject = supplierList.get(i);
 						
 								out.print("<div class=\"table-line\">");
-								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + " cell-head\"> - </div>");
+								out.print("<div id=\"" + supplierObject.getsName() + "\" onclick=\"del_click('" + supplierObject.getsName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
 								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 35%;\">" + supplierObject.getsName() + "</div>");
 								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsTel() + "</div>");
 								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsFax() + "</div>");

@@ -48,6 +48,30 @@
 					%>
 				</div>
 			</div>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+			
+			<%
+				/* 输出产品信息 */
+				ArrayList<Product> productList = Product.getAllProductInfo();
+			
+				if (null != productList){
+					for (int i = 0; i < productList.size(); i++){
+						Product productObject = productList.get(i);
+						
+						out.print("<div class=\"table-line\">");
+						out.print("<div id=\"" + productObject.getpName() + "\" onclick=\"del_click('" + productObject.getpName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
+						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpSpec() + " </div>");
+						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpName() + " </div>");
+						out.print("</div>");
+					}
+				}
+			%>
+			
+=======
+>>>>>>> origin/feature
+>>>>>>> Stashed changes
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="add_click('item_info_pad')">
 					<img src="IMG/add.png" class="footer-button-img">
