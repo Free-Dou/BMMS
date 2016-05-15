@@ -22,8 +22,8 @@ function login_banner_show()
 
 function login_click()
 {
-	myxmlhttp = getXmlHttpObject();
-	// document.forms["login_form"].submit();
+	// myxmlhttp = getXmlHttpObject();
+	document.forms["login_form"].submit();
 	// console.info("clicked");
 	login_show();
 }
