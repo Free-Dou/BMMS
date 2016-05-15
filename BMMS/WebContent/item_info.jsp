@@ -56,22 +56,27 @@
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 200px; width: 400px;">
 				<h2> 添加产品 </h2>
+				
+				<form action="/BMMS/AddProductInfo" method="post">
 				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 32px;"> 编号： </span> <input class="textbox-common"></input>
+					<span style="margin-left: 32px;"> 编号： </span> <input class="textbox-common" name="input_add_spec"></input>
 				</div>
 				<div style="height: 40px; text-align: left;">
-					<span> 产品名称： </span> <input class="textbox-common"></input>
+					<span> 产品名称： </span> <input class="textbox-common" name="input_add_name"></input>
 				</div>
-				<div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+				<!-- <div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						确定
 					</p>
-				</div>
+				</div> -->
+				<input type="submit" value="确定"/>
 				<div id="cancle_button" class="red_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						取消
 					</p>
 				</div>
+				</form>
+				
 			</div>
 		</div>
 	</body>

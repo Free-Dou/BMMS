@@ -8,14 +8,14 @@ import dou.sqlHelper.SqlUtilsInterface;
 public class Customer {
 	
 	private Logger logger = Config.getLogger(this.getClass());
-	private String cName;
-	private String cTel;
-	private String cFax;
-	private String cEmail;
-	private String cAddress;
-	private String cContact1;
-	private String cContact2;
-	private String cRemark;
+	private String cName = null;
+	private String cTel = null;
+	private String cFax = null;
+	private String cEmail = null;
+	private String cAddress = null;
+	private String cContact1 = null;
+	private String cContact2 = null;
+	private String cRemark = null;
 	
 	public Customer(String cName, String cTel, String cFax, String cEmail, String cAddress, String cContact1,
 			String cContact2, String cRemark) {
@@ -40,6 +40,22 @@ public class Customer {
 		customerList = SqlUtilsInterface.getAllCustomerInfo();
 		
 		return customerList;
+	}
+	
+	public void addCustomerToDB(){
+		String params[] = {this.cName, 
+						   this.cTel, 
+						   this.cFax, 
+						   this.cEmail, 
+						   this.cAddress, 
+						   this.cContact1, 
+						   this.cContact2, 
+						   this.cRemark};
+		
+		String sql = "insert into tb_custom values(?,?,?,?,?,?,?,?);";
+		
+		/* 添加当前对象的信息到数据库 */
+		SqlUtilsInterface.addInfoToDB(sql, params);
 	}
 	
 	public void deleteCustomerBy(){

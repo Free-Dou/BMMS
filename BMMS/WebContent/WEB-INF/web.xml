@@ -11,6 +11,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
+<!-- 初始化配置文件 -->
   <servlet>
   <servlet-name>SetConfigServlet</servlet-name>
   <servlet-class>dou.config.SetConfigServlet</servlet-class>
@@ -22,6 +23,7 @@
   <url-pattern>/SetConfigServlet</url-pattern>
   </servlet-mapping>
 
+<!-- 登录验证 -->
   <servlet>
   <servlet-name>LoginServlet</servlet-name>
   <servlet-class>dou.webServlet.LoginServlet</servlet-class>
@@ -30,6 +32,39 @@
   <servlet-mapping>
   <servlet-name>LoginServlet</servlet-name>
   <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+
+<!-- 添加客户信息 -->
+  <servlet>
+  <servlet-name>AddCustomerInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddCustomerServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddCustomerInfo</servlet-name>
+  <url-pattern>/AddCustomerInfo</url-pattern>
+  </servlet-mapping>
+  
+<!-- 添加产品信息 -->
+  <servlet>
+  <servlet-name>AddProductInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddProductServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProductInfo</servlet-name>
+  <url-pattern>/AddProductInfo</url-pattern>
+  </servlet-mapping>
+ 
+<!-- 添加供应商信息 -->
+  <servlet>
+  <servlet-name>AddSupplierInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddSupplierServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddSupplierInfo</servlet-name>
+  <url-pattern>/AddSupplierInfo</url-pattern>
   </servlet-mapping>
   
 </web-app>

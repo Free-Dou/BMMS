@@ -53,32 +53,6 @@
 							}
 						}
 					%>
-					<!--
- 					<div class="table-line">
-						<div class="table-cell-1 cell-head"> - </div>
-						<div class="table-cell-1" style="width: 35%;"> 001-2016040201 Trash Inc. BMMS™ 项目组 </div>
-						<div class="table-cell-1" style="width: 15%;"> / </div>
-						<div class="table-cell-1" style="width: 15%;"> / </div>
-						<div class="table-cell-1" style="width: 15%;"> 13266618140 </div>
-						<div class="table-cell-1" style="width: 15%;"> 18215600298 </div>
-					</div>
-					<div class="table-line">
-						<div class="table-cell-2 cell-head"> - </div>
-						<div class="table-cell-2" style="width: 35%;"> 002-20160040802 Alibaba Inc. AliCloud™ </div>
-						<div class="table-cell-2" style="width: 15%;"> / </div>
-						<div class="table-cell-2" style="width: 15%;"> / </div>
-						<div class="table-cell-2" style="width: 15%;"> / </div>
-						<div class="table-cell-2" style="width: 15%;"> / </div>
-					</div>
-					<div class="table-line">
-						<div class="table-cell-1 cell-head"> - </div>
-						<div class="table-cell-1" style="width: 35%;"> 003-20160040903 Huawei Inc. </div>
-						<div class="table-cell-1" style="width: 15%;"> / </div>
-						<div class="table-cell-1" style="width: 15%;"> / </div>
-						<div class="table-cell-1" style="width: 15%;"> / </div>
-						<div class="table-cell-1" style="width: 15%;"> / </div>
-					</div>
-					-->
 				</div>
 			</div>
 			<dir class="page-footer main-page-footer">
@@ -91,31 +65,36 @@
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 300px; width: 400px;">
 				<h2> 添加供应商 </h2>
+				
+				<form action="/BMMS/AddSupplierInfo" method="post">
 				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 30px;"> 名称： </span> <input id="input_add_name" class="textbox-common"></input>
+					<span style="margin-left: 30px;"> 名称： </span> <input id="input_add_name" class="textbox-common" name="input_add_name"></input>
 				</div>
 				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 30px;"> 电话： </span> <input id="input_add_tel" class="textbox-common"></input>
+					<span style="margin-left: 30px;"> 电话： </span> <input id="input_add_tel" class="textbox-common" name="input_add_tel"></input>
 				</div>
 				<div style="height: 40px; text-align: left;">
-					<span style="margin-left: 30px;"> 传真： </span> <input id="input_add_fix" class="textbox-common"></input>
+					<span style="margin-left: 30px;"> 传真： </span> <input id="input_add_fix" class="textbox-common" name="input_add_fix"></input>
 				</div>
 				<div style="height: 40px; text-align: left;">
-					<span> 联系人 1： </span> <input id="input_add_phone1" class="textbox-common"></input>
+					<span> 联系人 1： </span> <input id="input_add_phone1" class="textbox-common" name="input_add_phone1"></input>
 				</div>
 				<div style="height: 40px; text-align: left;">
-					<span> 联系人 2： </span> <input id="input_add_phone2" class="textbox-common"></input>
+					<span> 联系人 2： </span> <input id="input_add_phone2" class="textbox-common" name="input_add_phone2"></input>
 				</div>
-				<div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+				<!--  <div id="confirm_button" class="blue_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						确定
 					</p>
-				</div>
+				</div>-->
+				<input type="submit" value="确定">
 				<div id="cancle_button" class="red_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						取消
 					</p>
 				</div>
+				</form>
+				
 			</div>
 		</div>
 	</body>

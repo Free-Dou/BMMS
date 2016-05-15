@@ -30,6 +30,13 @@ public class Product {
 		
 		return productList;
 	}
+	
+	public void addProductToDB(){
+		String params[] = {this.pName, this.pSpec};
+		String sql = "INSERT INTO tb_product(pname,pspec) VALUES(?,?);";
+		
+		SqlUtilsInterface.addInfoToDB(sql, params);
+	}
 
 	public String getpSpec() {
 		return pSpec;

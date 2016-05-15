@@ -110,9 +110,9 @@ public class SqlHelper {
 		} catch (SQLException e) {
 			logger.error("[SqlHelper.java:executeUpdate] Sql Update Failed!!!");
 			logger.error("Error Message : " + e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 			/* 开发期间如果出错，返回一个。给调用该函数的函数提供选择，可以处理，也可以不处理 */
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 		} finally {
 			/* 关闭资源 */
 			closeDB(resultSet, preparedStatement, connect);

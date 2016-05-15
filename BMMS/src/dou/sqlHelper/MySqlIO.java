@@ -132,7 +132,7 @@ public class MySqlIO {
 	public ArrayList<Supplier> getAllSupplierInfo() {
 		ArrayList<Supplier> supplierList = null;
 		Supplier supplierObject = null;
-		String sql = "select * from tb_suply";
+		String sql = "select * from tb_supply";
 		ResultSet rs = null;
 		
 		logger.info("[MySqlIO.java:getCustomerInfo] " + sql);
@@ -169,6 +169,18 @@ public class MySqlIO {
 		
 		return supplierList; 
 	}
+
+	/* 添加信息到数据库 */
+	public void addInfoToDB(String sql, String[] parameters) {
+		// TODO Auto-generated method stub
+		
+		logger.info("[MySqlIO.java:addInfoToDB] Add info to DB: " + sql);
+		for (int i = 0; i <  parameters.length; i++){
+			logger.info("[MySqlIO.java:addInfoToDB] info " + i + " : " + parameters[i]);
+		}
+		
+		sqlHelper.executeUpdate(sql, parameters);
+	}
 	
 	// 判断某张表是否存在
 	public boolean checkTablesLife(String table_name) {
@@ -190,7 +202,6 @@ public class MySqlIO {
 		}
 		return result;
 	}
-
 
 
 //	public List<WebPageObejct> getWebPageObejct_List(String table_name) {

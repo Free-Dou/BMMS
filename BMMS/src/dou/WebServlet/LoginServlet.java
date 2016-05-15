@@ -1,6 +1,7 @@
 package dou.webServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Logger logger = Config.getLogger(this.getClass());
+		req.setCharacterEncoding("utf-8");
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		

@@ -23,6 +23,11 @@ public class SqlUtilsInterface {
 		return new MySqlIO().getAllSupplierInfo();
 	}
 
+	public static void addInfoToDB(String sql, String[] params) {
+		// TODO Auto-generated method stub
+		new MySqlIO().addInfoToDB(sql, params);
+	}
+
 	
 /*
  * 

@@ -42,6 +42,21 @@ public class Supplier {
 		return supplierList;
 	}
 
+	public void addSupplierToDB() {
+		String params[] = {this.sName, 
+				   		   this.sTel, 
+				   		   this.sFax, 
+				   		   this.sEmail, 
+				   		   this.sAddress, 
+				   		   this.sContact1, 
+				   		   this.sContact2, 
+				   		   this.sRemark};
+		String sql = "insert into tb_supply values(?,?,?,?,?,?,?,?);";
+				
+		/* 添加当前对象的信息到数据库 */
+		SqlUtilsInterface.addInfoToDB(sql, params);
+	}
+	
 	public String getsName() {
 		return sName;
 	}
