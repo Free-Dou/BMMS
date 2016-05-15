@@ -155,9 +155,9 @@ function cancle_click()
 
 function make_buy()
 {
-	myxmlhttp = getXmlHttpObject();
+	parent.myxmlhttp = getXmlHttpObject();
 
-	if (myxmlhttp)
+	if (parent.myxmlhttp)
 	{
 		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
 		var data = JSON.stringify(added_item);

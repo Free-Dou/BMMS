@@ -42,7 +42,7 @@ function confirm_click()
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + item.Name + " </div>";
 	// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_index.value + " </div>";
 	// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_name.value + " </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Count).toFixed(0) + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Count).toFixed(3) + " </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Price).toFixed(2) + "￥ </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.TotalPrice).toFixed(2) + "￥ </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + item.Others + " </div>";
@@ -51,7 +51,7 @@ function confirm_click()
 
 	table_inner.innerHTML = table_inner.innerHTML + add_item_text;
 
-	total_count = Number(Number(total_count) + Number(input_add_num.value)).toFixed(0);
+	total_count = Number(Number(total_count) + Number(input_add_num.value)).toFixed(3);
 	total_money = Number(Number(total_money) + Number(input_add_num.value) * Number(input_add_price.value)).toFixed(2);
 
 	// console.info(total_count + "   " + total_money);
@@ -65,7 +65,7 @@ function confirm_click()
 		e.className = "table-cell-" + now_line_style;
 
 		if(i == 3)
-			e.innerHTML = Number(total_count).toFixed(0);
+			e.innerHTML = Number(total_count).toFixed(3);
 		else if(i == 5)
 			e.innerHTML = Number(total_money).toFixed(2) + "￥";
 	}
@@ -99,7 +99,7 @@ function rebuild_table()
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + added_item[i].Name + " </div>";
 		// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_index.value + " </div>";
 		// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_name.value + " </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Count).toFixed(0) + " </div>";
+		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Count).toFixed(3) + " </div>";
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Price).toFixed(2) + "￥ </div>";
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].TotalPrice).toFixed(2) + "￥ </div>";
 		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + added_item[i].Others + " </div>";
@@ -107,7 +107,7 @@ function rebuild_table()
 
 		table_inner.innerHTML = table_inner.innerHTML + add_item_text;
 
-		total_count = Number(Number(total_count) + Number(added_item[i].Count)).toFixed(0);
+		total_count = Number(Number(total_count) + Number(added_item[i].Count)).toFixed(3);
 		total_money = Number(Number(total_money) + Number(added_item[i].TotalPrice)).toFixed(2);
 		
 		now_line_style = now_line_style + 1;
@@ -121,7 +121,7 @@ function rebuild_table()
 		e.className = "table-cell-" + now_line_style;
 
 		if(i == 3)
-			e.innerHTML = Number(total_count).toFixed(0);
+			e.innerHTML = Number(total_count).toFixed(3);
 		else if(i == 5)
 			e.innerHTML = Number(total_money).toFixed(2) + "￥";
 	}
@@ -154,9 +154,9 @@ function cancle_click()
 
 function make_sale()
 {
-	myxmlhttp = getXmlHttpObject();
+	parent.myxmlhttp = getXmlHttpObject();
 
-	if (myxmlhttp)
+	if (parent.myxmlhttp)
 	{
 		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
 		var data = JSON.stringify(added_item);
