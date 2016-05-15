@@ -367,9 +367,12 @@ function load_complete_anime()
 
 function refresh_now_page()
 {
-	if(onchange_flag == false)
+	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
 	{
-		page_change_to = page_now;
-		setTimeout("page_change()", 10);
+		if(onchange_flag == false)
+		{
+			page_change_to = page_now;
+			setTimeout("page_change()", 10);
+		}
 	}
 }
