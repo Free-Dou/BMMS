@@ -57,6 +57,8 @@ function hide_window_trade()
 		Base.style.msFilter = Base.style.webkitFilter;
 		Base.style.Filter = Base.style.webkitFilter;
 		confirm_window.style.visibility = "hidden";
+
+		copy_table.innerHTML = "";
 		return;
 	}
 	setTimeout("hide_window_trade()", 10);
