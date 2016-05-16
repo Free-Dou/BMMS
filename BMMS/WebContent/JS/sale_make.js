@@ -166,7 +166,7 @@ function cancle_click()
 	setTimeout("hide_window()", 10);
 }
 
-function make_sale()
+function trade_confirm_click()
 {
 	parent.myxmlhttp = getXmlHttpObject();
 
@@ -181,6 +181,11 @@ function make_sale()
 		// myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		// myxmlhttp.send(data);
 	}
+}
+
+function trade_cancle_click()
+{
+	setTimeout("hide_window_trade()", 10);
 }
 
 //Select 控件相关

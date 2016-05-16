@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="JS/buy_make.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
+		<script type="text/javascript" src="JS/trade_make_common.js"> </script>
 	</head>
 	<body>
 		<div id="buy_make_pad" class="right-page-contains">
@@ -47,12 +48,12 @@
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
 						</div>
 					</div>
-					<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')" onclick="make_buy()">
+					<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')" onclick="add_click_trade('buy_make_pad')">
 						<div style="float: right; padding-top: 10px;"> <img src="IMG/send.png" class="footer-button-img"> </div>
 						<div style="float: right; padding-top: 14px; padding-right: 5px;"> 开单 </div>
 					</div>
 				</div>
-				<div>
+				<div id="full_table">
 					<div class="table-line">
 						<div class="table-title-cell" style="width: 8%;">  </div>
 						<div class="table-title-cell" style="width: 20%;"> 编号 </div>
@@ -131,6 +132,26 @@
 					<p style="top: 50%; transform: translateY(-50%);">
 						确定
 					</p>
+				</div>
+			</div>
+		</div>
+		<div id="confirm_window" class="new_float_window">
+			<div id="confirm_window_inner" class="set_center" style="height: 200px; width: 1000px;">
+				<h2> 确认信息 </h2>
+				<div id="copy_table">
+				
+				</div>
+				<div style="margin-top: 10px;">
+					<div id="trade_cancle_button" class="red_button" style="margin-right: 15px;" onmouseenter="button_mouseenter('trade_cancle_button')" onmouseleave="button_mouseleave('trade_cancle_button')" onmousedown="button_mousedown('trade_cancle_button')" onmouseup="button_mouseup('trade_cancle_button')" onclick="trade_cancle_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							取消
+						</p>
+					</div>
+					<div id="trade_confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('trade_confirm_button')" onmouseleave="button_mouseleave('trade_confirm_button')" onmousedown="button_mousedown('trade_confirm_button')" onmouseup="button_mouseup('trade_confirm_button')" onclick="trade_confirm_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							开单
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
