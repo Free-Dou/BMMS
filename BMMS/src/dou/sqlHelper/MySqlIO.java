@@ -1,17 +1,15 @@
 package dou.sqlHelper;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
+import java.sql.DatabaseMetaData; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
+import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
@@ -250,6 +248,57 @@ public class MySqlIO {
 		return systemMessageList;
 	}
 	
+
+	public ArrayList<PersionMessage> getAllpersionMessageListInfo() {
+		ArrayList<PersionMessage> persionMessageList = null;
+		PersionMessage persionMessageObject = null;
+		String sql = "SELECT * FROM tb_personmessage ORDER BY id DESC;";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllpersionMessageListInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String orderid = rs.getString("orderid");
+				String mname = rs.getString("mname");
+				String carNum = rs.getString("carNum");
+				String mpspec = rs.getString("mpspec");
+				Float  number = rs.getFloat("number");
+				String stockLoca = rs.getString("stockLoca");
+				Float  price = rs.getFloat("price");
+				Float  totalPrice = rs.getFloat("totalPrice");
+				String username = rs.getString("username");
+				String createTime = rs.getString("createTime");
+				String relationName = rs.getString("relationName");
+				Integer operation = rs.getInt("operation");
+				String approval = rs.getString("approval");
+				String remark = rs.getString("remark");
+				
+				if (null == persionMessageList){
+					persionMessageList = new ArrayList<PersionMessage>();
+				}
+				
+				persionMessageObject = new PersionMessage(orderid, mname, carNum, mpspec, 
+														number, stockLoca, price, totalPrice,
+														username, createTime, relationName, 
+														operation, approval, remark);
+				persionMessageList.add(persionMessageObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllpersionMessageListInfo] Get all persion message Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllpersionMessageListInfo] Get persion message Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return persionMessageList;
+	}
+	
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
 		
@@ -259,6 +308,19 @@ public class MySqlIO {
 		}
 		
 		sqlHelper.executeUpdate(sql, parameters);
+	}
+	
+	/* 执行多条更新操作 */
+	public void updateManyInfos(String[] sqls, String[][] parameters){
+		
+		for (int i = 0; i <  sqls.length; i++){
+			logger.info("[MySqlIO.java:addInfoToDB] sql " + i + " : " + sqls[i]);
+			for (int j = 0; j <  parameters.length; j++){
+				logger.info("[MySqlIO.java:addInfoToDB] info " + j + " : " + parameters[i][j]);
+			}
+		}
+		
+		sqlHelper.executeUpdateForSqls(sqls, parameters);
 	}
 	
 	/* 从数据库删除数据 */

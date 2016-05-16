@@ -32,10 +32,17 @@ public class Product {
 	}
 	
 	public void addProductToDB(){
-		String params[] = {this.pName, this.pSpec};
-		String sql = "INSERT INTO tb_product(pname,pspec) VALUES(?,?);";
+		/* 
+		 *产品信息添加需要执行两条sql语句，一条是添加在产品信息表中的，一条是添加在仓库表中的：
+		  添加在产品信息表：INSERT INTO tb_product(pname,pspec) VALUES('80#liqing','LQ-#80')
+		  添加在仓库表：INSERT INTO tb_materialstock(mpspec,mname,number) VALUES ('LQ-#80','80#liqing',0)(number必须为0哈) 
+		 */
+		String params[][] = {{this.pName, this.pSpec},
+							 {this.pSpec, this.pName}};
+		String sqls[] = {"INSERT INTO tb_product(pname,pspec) VALUES(?,?);", 
+						 "INSERT INTO tb_materialstock(mpspec,mname,number) VALUES (?,?,0)"};
 		
-		SqlUtilsInterface.addInfoToDB(sql, params);
+		SqlUtilsInterface.updateManyInfos(sqls, params);
 	}
 
 	public static void delProductFromDB(String pKeyName) {

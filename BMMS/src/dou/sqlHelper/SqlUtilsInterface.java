@@ -3,6 +3,7 @@ package dou.sqlHelper;
 import java.util.ArrayList;
 import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
+import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
@@ -32,13 +33,21 @@ public class SqlUtilsInterface {
 	public static void delInfoFromDB(String sql, String[] params) {
 		new MySqlIO().delInfoFromDB(sql, params);
 	}
-
+	
+	public static void updateManyInfos(String[] sqls, String[][] parameters){
+		new MySqlIO().updateManyInfos(sqls, parameters);
+	}
+	
 	public static ArrayList<MaterialInStock> getAllMaterialInStockInfo() {
 		return new MySqlIO().getAllMatrialInStockInfo();
 	}
 
 	public static ArrayList<SystemMessage> getAllSystemMessageInfo() {
 		return new MySqlIO().getAllSystemMessageInfo();
+	}
+
+	public static ArrayList<PersionMessage> getAllpersionMessageListInfo() {
+		return new MySqlIO().getAllpersionMessageListInfo();
 	}
 
 	

@@ -119,7 +119,7 @@ public class SqlHelper {
 	}
 	
 	/* 如果有多个update/delete/insert[需要考虑事务] */
-	public void executeUpdateForSqls(String[] sql, String[][] parameters) {
+	public void executeUpdateForSqls(String[] sqls, String[][] parameters) {
 
 		/* 1.得到连接
 		 * 2.创建一个preparedStatement
@@ -131,8 +131,8 @@ public class SqlHelper {
 		try {
 			connect.setAutoCommit(false);
 
-			for (int i = 0; i < sql.length; i++) {
-				preparedStatement = connect.prepareStatement(sql[i]);
+			for (int i = 0; i < sqls.length; i++) {
+				preparedStatement = connect.prepareStatement(sqls[i]);
 				/* 设置参数 */
 				if (parameters[i] != null) {
 					for (int j = 0; j < parameters[i].length; j++) {
@@ -140,12 +140,12 @@ public class SqlHelper {
 					}
 				}
 				
-				logger.info("[SqlHelper.java:executeUpdateForSqls] Sql Update success!!!  sql:" + sql);
+				logger.info("[SqlHelper.java:executeUpdateForSqls] Sql Update success!!!  sql:" + sqls[i]);
 				preparedStatement.executeUpdate();
 			}
 
 			connect.commit();
-			logger.info("[SqlHelper.java:executeUpdateForSqls] All Sql Update success!!! num : " + sql.length);
+			logger.info("[SqlHelper.java:executeUpdateForSqls] All Sql Update success!!! num : " + sqls.length);
 		} catch (Exception e) {
 			//e.printStackTrace();
 			logger.error("[SqlHelper.java:executeUpdateForSqls] Sqls Update has Failed!!!");
