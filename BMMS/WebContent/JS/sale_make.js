@@ -14,6 +14,44 @@ function dispose()
 	}
 }
 
+function table_add(data)
+{
+	var add_item_text = "<div id=\"line_" + now_index + "\" class=\"table-line\">";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + " cell-head\" style=\"width: 8%;\" onclick=\"myremove(\'" + now_index + "\')\"> - </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.SN + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.Name + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Count).toFixed(3) + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Price).toFixed(2) + "￥ </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.TotalPrice).toFixed(2) + "￥ </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + data.Others + " </div>";
+	add_item_text = add_item_text + "</div>";
+	now_index = now_index + 1;
+
+	table_inner.innerHTML = table_inner.innerHTML + add_item_text;
+
+	total_count = Number(Number(total_count) + Number(data.Count)).toFixed(3);
+	total_money = Number(Number(total_money) + Number(data.Count) * Number(data.Price)).toFixed(2);
+
+	// console.info(total_count + "   " + total_money);
+	now_line_style = now_line_style + 1;
+	if(now_line_style > 2)
+		now_line_style = 1;
+}
+
+function reset_final_cell()
+{
+	for(var i = 0; i < 7; i++)
+	{
+		var e = document.getElementById("final_cell_" + i);
+		e.className = "table-cell-" + now_line_style;
+
+		if(i == 3)
+			e.innerHTML = Number(total_count).toFixed(3);
+		else if(i == 5)
+			e.innerHTML = Number(total_money).toFixed(2) + "￥";
+	}
+}
+
 function confirm_click()
 {
 	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
@@ -28,6 +66,14 @@ function confirm_click()
 		input_add_price.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
+	for(var i = 0; i < added_item.length; i++)
+		if(added_item[i].Name == select_add_name.options[select_add_name.selectedIndex].text)
+		{
+			select_add_name.style.backgroundColor = "rgba(255,255,128,1)";
+			exist_tip.style.visibility = "visible";
+			return;
+		}
+
 	var item = new Object();
 	item.SN = select_add_index.options[select_add_index.selectedIndex].text;
 	item.Name = select_add_name.options[select_add_name.selectedIndex].text;
@@ -37,53 +83,46 @@ function confirm_click()
 	item.Others = input_add_others.value;
 	added_item.push(item);
 
-	var add_item_text = "<div id=\"line_" + now_index + "\" class=\"table-line\">";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + " cell-head\" style=\"width: 8%;\" onclick=\"myremove(\'" + now_index + "\')\"> - </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + item.SN + " </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + item.Name + " </div>";
-	// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_index.value + " </div>";
-	// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_name.value + " </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Count).toFixed(3) + " </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.Price).toFixed(2) + "￥ </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(item.TotalPrice).toFixed(2) + "￥ </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + item.Others + " </div>";
-	add_item_text = add_item_text + "</div>";
-	now_index = now_index + 1;
+	table_add(item);
 
-	table_inner.innerHTML = table_inner.innerHTML + add_item_text;
+	reset_final_cell();
 
-	total_count = Number(Number(total_count) + Number(input_add_num.value)).toFixed(3);
-	total_money = Number(Number(total_money) + Number(input_add_num.value) * Number(input_add_price.value)).toFixed(2);
-
-	// console.info(total_count + "   " + total_money);
-	now_line_style = now_line_style + 1;
-	if(now_line_style > 2)
-		now_line_style = 1;
-
-	for(var i = 0; i < 7; i++)
-	{
-		var e = document.getElementById("final_cell_" + i);
-		e.className = "table-cell-" + now_line_style;
-
-		if(i == 3)
-			e.innerHTML = Number(total_count).toFixed(3);
-		else if(i == 5)
-			e.innerHTML = Number(total_money).toFixed(2) + "￥";
-	}
 	cancle_click();
 }
 
 function myremove(index)
 {
-	// console.info(index);
 	var e = document.getElementById("line_" + index);
-	// console.info(e.innerHTML);
-	// e.remove();
+	e.innerHTML = e.innerHTML + "<div id=\"confirm_window" + index + "\" class=\"table-cell-1\" style=\"background-color: rgba(0,0,0,0.8); width: 200px; position: absolute;\">"
+							  + "<div style=\"float: left; padding-left: 10px;\"> 确认要删除？ </div>"
+							  + "<div id=\"no_btn\" style=\"cursor: pointer; float: right; height: 24px; width: 24px; font-size: 12px; margin-left: 0px; margin-right: 10px;\""
+							  + " onmouseenter=\"button_mouseenter('no_btn')\" onmouseleave=\"button_mouseleave('no_btn')\" onmousedown=\"button_mousedown('no_btn')\" onmouseup=\"button_mouseup('no_btn')\""
+							  + " onclick=\"myremove_cancle('" + index + "')\">"
+							  +	"<p style=\"top: 50%; transform: translateY(-50%);\"> × </p>"
+							  + "</div>"
+							  + "<div id=\"yes_btn\" style=\"cursor: pointer; float: right; height: 24px; width: 24px; font-size: 12px; margin-left: 0px; margin-right: 0px;\""
+							  + " onmouseenter=\"button_mouseenter('yes_btn')\" onmouseleave=\"button_mouseleave('yes_btn')\" onmousedown=\"button_mousedown('yes_btn')\" onmouseup=\"button_mouseup('yes_btn')\""
+							  + " onclick=\"myremove_confirm('" + index + "')\">"
+							  + "<p style=\"top: 50%; transform: translateY(-50%);\"> √ </p>"
+							  + "</div></div>";
+}
+
+function myremove_confirm(index)
+{
+	var e = document.getElementById("line_" + index);
+
 	e.parentNode.removeChild(e);
 
 	added_item.splice(index, 1);
 	now_index = now_index - 1;
 	rebuild_table();
+}
+
+function myremove_cancle(index)
+{
+	var e = document.getElementById("confirm_window" + index);
+
+	e.parentNode.removeChild(e);
 }
 
 function rebuild_table()
@@ -92,40 +131,12 @@ function rebuild_table()
 	now_line_style = 1;
 	total_count = 0;
 	total_money = 0.00;
+	now_index = 0;
+
 	for(var i = 0; i < now_index; i++)
-	{
-		var add_item_text = "<div id=\"line_" + i + "\" class=\"table-line\">";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + " cell-head\" style=\"width: 8%;  \" onclick=\"myremove(\'" + i + "\')\"> - </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + added_item[i].SN + " </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + added_item[i].Name + " </div>";
-		// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_index.value + " </div>";
-		// add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + select_add_name.value + " </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Count).toFixed(3) + " </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].Price).toFixed(2) + "￥ </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(added_item[i].TotalPrice).toFixed(2) + "￥ </div>";
-		add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + added_item[i].Others + " </div>";
-		add_item_text = add_item_text + "</div>";
+		table_add(added_item[i]);
 
-		table_inner.innerHTML = table_inner.innerHTML + add_item_text;
-
-		total_count = Number(Number(total_count) + Number(added_item[i].Count)).toFixed(3);
-		total_money = Number(Number(total_money) + Number(added_item[i].TotalPrice)).toFixed(2);
-		
-		now_line_style = now_line_style + 1;
-		if(now_line_style > 2)
-			now_line_style = 1;
-	}
-
-	for(var i = 0; i < 7; i++)
-	{
-		var e = document.getElementById("final_cell_" + i);
-		e.className = "table-cell-" + now_line_style;
-
-		if(i == 3)
-			e.innerHTML = Number(total_count).toFixed(3);
-		else if(i == 5)
-			e.innerHTML = Number(total_money).toFixed(2) + "￥";
-	}
+	reset_final_cell();
 }
 
 function item_index_changed()
@@ -147,7 +158,9 @@ function cancle_click()
 	input_add_num.value = 0;
 	input_add_price.value = 0;
 	input_add_others.value = "";
+	exist_tip.style.visibility = "hidden";
 
+	select_add_name.style.backgroundColor = "#FFFFFF";
 	input_add_num.style.backgroundColor = "#FFFFFF";
 	input_add_price.style.backgroundColor = "#FFFFFF";
 	setTimeout("hide_window()", 10);

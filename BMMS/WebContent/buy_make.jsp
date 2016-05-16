@@ -113,6 +113,7 @@
 							}
 						%>
 					</select>
+					<div id="exist_tip" style="visibility: hidden; float: right; font-size: 12px; margin-top: 4px; color: #FFFF80;"> 已存在 </div>
 				</div>
 				<div style="height: 30px; text-align: left;">
 					<span> 数量： </span> <span> <input style="width: 50px;" id="input_add_num" value="0"></input> </span>
