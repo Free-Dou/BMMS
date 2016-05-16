@@ -37,8 +37,8 @@
 					for (int i = 0; i < productList.size(); i++){
 						Product productObject = productList.get(i);
 						
-						out.print("<div class=\"table-line\">");
-						out.print("<div id=\"" + productObject.getpName() + "\" onclick=\"del_click('" + productObject.getpName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
+						out.print("<div id=\"" + productObject.getpName() + "\" class=\"table-line\">");
+						out.print("<div onclick=\"del_click('" + productObject.getpName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
 						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpSpec() + " </div>");
 						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpName() + " </div>");
 						out.print("</div>");

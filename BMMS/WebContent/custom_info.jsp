@@ -40,8 +40,8 @@
 						for (int i = 0; i < customerList.size(); i++){
 							Customer customerObject = customerList.get(i);
 						
-							out.print("<div class=\"table-line\">");
-							out.print("<div id=\"" + customerObject.getcName() + "\" onclick=\"del_click('" + customerObject.getcName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
+							out.print("<div id=\"" + customerObject.getcName() + "\" class=\"table-line\">");
+							out.print("<div onclick=\"del_click('" + customerObject.getcName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 35%;\">" + customerObject.getcName() + "</div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + customerObject.getcTel() + "</div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + customerObject.getcFax() + "</div>");

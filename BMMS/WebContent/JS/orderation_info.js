@@ -52,7 +52,24 @@ function cancle_click()
 	setTimeout("hide_window()", 10);
 }
 
-function del_click(key)
+function del_click(index)
+{
+	var e = document.getElementById(index);
+	e.innerHTML = e.innerHTML + "<div id=\"confirm_window" + index + "\" class=\"table-cell-1\" style=\"background-color: rgba(0,0,0,0.8); width: 200px; position: absolute;\">"
+							  + "<div style=\"float: left; padding-left: 10px;\"> 确认要删除？ </div>"
+							  + "<div id=\"no_btn" + index + "\" style=\"cursor: pointer; float: right; height: 24px; width: 24px; font-size: 12px; margin-left: 0px; margin-right: 10px;\""
+							  + " onmouseenter=\"button_mouseenter('no_btn" + index + "')\" onmouseleave=\"button_mouseleave('no_btn" + index + "')\" onmousedown=\"button_mousedown('no_btn" + index + "')\" onmouseup=\"button_mouseup('no_btn" + index + "')\""
+							  + " onclick=\"myremove_cancle('" + index + "')\">"
+							  +	"<p style=\"top: 50%; transform: translateY(-50%);\"> × </p>"
+							  + "</div>"
+							  + "<div id=\"yes_btn" + index + "\" style=\"cursor: pointer; float: right; height: 24px; width: 24px; font-size: 12px; margin-left: 0px; margin-right: 0px;\""
+							  + " onmouseenter=\"button_mouseenter('yes_btn" + index + "')\" onmouseleave=\"button_mouseleave('yes_btn" + index + "')\" onmousedown=\"button_mousedown('yes_btn" + index + "')\" onmouseup=\"button_mouseup('yes_btn" + index + "')\""
+							  + " onclick=\"myremove_confirm('" + index + "')\">"
+							  + "<p style=\"top: 50%; transform: translateY(-50%);\"> √ </p>"
+							  + "</div></div>";
+}
+
+function myremove_confirm(key)
 {
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
@@ -69,20 +86,13 @@ function del_click(key)
 		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
 		parent.myxmlhttp.send(data);
 	}
-	// var postForm = document.createElement("form");
-	// postForm.method = "post";
-	// postForm.action = '/BMMS/DelSupplierInfo';
+}
 
-	// var postInput = document.createElement("input");
-	// postInput.name = "del_supplier_name";
-	// postInput.value = key;
-	// // emailInput.setAttribute("name", "email");
-	// // emailInput.setAttribute("value", email);
-	// postForm.appendChild(postInput);
+function myremove_cancle(index)
+{
+	var e = document.getElementById("confirm_window" + index);
 
-	// document.body.appendChild(postForm);
-	// postForm.submit();
-	// document.body.removeChild(postForm);
+	e.parentNode.removeChild(e);
 }
 
 function process_anime()
