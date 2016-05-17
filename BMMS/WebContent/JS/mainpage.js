@@ -109,14 +109,14 @@ function body_onload()
 		control_string += "<div id=\"base_" + i + "_lv2_end\"></div>";
 
 		control_string += "</div>";
+
+		x.innerHTML += control_string;
 	}
 	setTimeout(load_left_menu(), 1);
 }
 
 function load_left_menu()
 {
-	x.innerHTML += control_string;
-
 	left_menu.style.opacity = 1.0;
 	left_menu.style.transform = "translateX(0px)";
 
