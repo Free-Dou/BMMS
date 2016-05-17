@@ -33,19 +33,19 @@
 					<div style="float: left; padding: 0px;">
 						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 供应商 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_person" class="textbox-common"></input> </div>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common"></input> </div>
 						</div>
 						<div style="height: 36px; padding-left: 50px;">
 							<div style="float:left; height: 24px;"> 仓库 </div>
 							<div style="float:left; padding-left: 15px; height: 24px;">
-								<select style="width: 254px;">
-									<option value="1">总库</option>
+								<select id="trade_store" style="width: 254px;">
+									<option value="1"> 总库 </option>
 								</select>
 							</div>
 							<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_car" class="textbox-common"></input> </div>
 						</div>
 					</div>
 					<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')" onclick="add_click_trade('buy_make_pad')">
