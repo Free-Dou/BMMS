@@ -23,6 +23,9 @@ function login_banner_show()
 function login_click()
 {
 	// myxmlhttp = getXmlHttpObject();
+	var e = document.getElementById("password");
+	e.value = hex_md5(e.value);
+	alert(e.value);
 	document.forms["login_form"].submit();
 	// console.info("clicked");
 	login_show();
