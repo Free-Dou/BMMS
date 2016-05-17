@@ -29,7 +29,8 @@ public class LoginServlet extends HttpServlet {
 
 		if (true == SqlUtilsInterface.verifyPwd(username, password)){
 			usergrade = SqlUtilsInterface.getUserGrade(username);
-			req.getSession().setMaxInactiveInterval(20 * 60);	/* 设置session失效时间(发呆时间)，单位是秒 */
+			//req.getSession().setMaxInactiveInterval(20 * 60);	/* 设置session失效时间(发呆时间)，单位是秒 */
+			req.getSession().setMaxInactiveInterval(5);
 			req.getSession().setAttribute("username", username);
 			req.getSession().setAttribute("usergrade", usergrade);			/* 获取用户权限，待实现 */
 			req.getRequestDispatcher("/mainpage.jsp").forward(req, resp);

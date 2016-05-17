@@ -201,13 +201,12 @@ function trade_confirm_click()
 
 		var data_send = JSON.stringify(data);
 
-		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
 		alert(data_send);
-		// createXMLHttpRequest();
-		// myxmlhttp.open("post", aim_url, true);
-		// myxmlhttp.onreadystatechange = dispose;
-		// myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		// myxmlhttp.send(data);
+		var aim_url = "/BMMS/ProcSalesOrder?time=" + new Date();
+		parent.myxmlhttp.open("post", aim_url, true);
+		parent.myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		//parent.myxmlhttp.onreadystatechange = dispose;
+		parent.myxmlhttp.send(data_send);
 	}
 }
 

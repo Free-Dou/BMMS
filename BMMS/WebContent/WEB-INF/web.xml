@@ -100,4 +100,15 @@
   <url-pattern>/DelSupplierInfo</url-pattern>
   </servlet-mapping>
   
+    <!-- 处理销售单 -->
+  <servlet>
+  <servlet-name>ProcSalesOrder</servlet-name>
+  <servlet-class>dou.webServlet.SalesOrderProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcSalesOrder</servlet-name>
+  <url-pattern>/ProcSalesOrder</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

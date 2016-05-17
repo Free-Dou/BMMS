@@ -124,7 +124,7 @@
 	
 					Integer userGrade = (Integer)session.getAttribute("usergrade");
 					if (null == userGrade){
-						out.print("<script>alert('登录失效，请重新登录'); window.document.location.href = 'index.html'</script>");
+						out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
 					} else if (1 == userGrade){
 						/* 用户，不可以审批 */
 						String messageStatus = (persionMessageObject.getApproval().equals(1)) ? "已审核" : "待审核";
