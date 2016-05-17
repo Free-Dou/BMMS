@@ -202,7 +202,7 @@ function trade_confirm_click()
 		var data_send = JSON.stringify(data);
 
 		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
-		alert(data);
+		alert(data_send);
 		// createXMLHttpRequest();
 		// myxmlhttp.open("post", aim_url, true);
 		// myxmlhttp.onreadystatechange = dispose;
