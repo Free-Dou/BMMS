@@ -14,6 +14,11 @@ public class SqlUtilsInterface {
 		return new MySqlIO().verifyPwd(userName, pwd);
 	}
 	
+
+	public static Integer getUserGrade(String userName) {
+		return new MySqlIO().getUserGrade(userName);
+	}
+
 	public static ArrayList<Customer> getAllCustomerInfo(){
 		return new MySqlIO().getAllCustomerInfo();
 	}

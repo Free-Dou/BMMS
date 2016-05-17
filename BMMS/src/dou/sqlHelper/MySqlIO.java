@@ -39,14 +39,47 @@ public class MySqlIO {
 				logger.info("[MySqlIO.java:verifyPwd] Query success !!!");
 				result = true;
 			}
-			sqlHelper.closeDB(resultSet, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
 		} catch (SQLException e) {
 			logger.error("[MySqlIO.java:verifyPwd] Verify pwd Failed!!!");
 			logger.error("Error Message : " + e.getMessage());
 			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(resultSet, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
 		}
 		
 		return result;
+	}
+	
+	/* 获取用户权限 */
+	public Integer getUserGrade(String userName) {
+		Integer userGrade = 0;
+		String sql = "select grade from tb_user where username=?";
+		ResultSet resultSet = null;
+		String parameters[] = {userName};
+		
+		if (null == userName){
+			logger.error("[MySqlIO.java:getUserGrade]Get user grade Error: userName == NULL");
+			return 0;
+		}
+		
+		logger.info("[MySqlIO.java:getUserGrade] username = " + userName + ";");
+		resultSet = sqlHelper.executeQuery(sql, parameters);
+		try {
+			if (resultSet.next()) {
+				userGrade = resultSet.getInt("grade");
+				logger.info("[MySqlIO.java:getUserGrade] getUserGrade success !!! grade = " + userGrade + ";");
+			}
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getUserGrade] getUserGrade Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(resultSet, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return userGrade;
 	}
 	
 	/* 获取全部客户信息 */
@@ -354,7 +387,6 @@ public class MySqlIO {
 		}
 		return result;
 	}
-
 
 //	public List<WebPageObejct> getWebPageObejct_List(String table_name) {
 //
