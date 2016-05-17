@@ -31,11 +31,11 @@
 				</div>
 			</div>
 			<div class="page-main" id="page_main">
-				<div class="left-menu" id="left_menu">
+				<div class="left-menu" id="left_menu" style="transform: translateX(-250px); opacity: 0;">
 				</div>
 				<div class="right-page-base" id="right_base">
 					<div class="right-page-main" id="page_right_0_0">
-						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px; position: absolute;" src=""></iframe>
+						<iframe id="page_loader" style="height: 100%; width: 100%; border-width: 0px; position: absolute;" src="welcome.html"></iframe>
 					</div>
 					<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0);" id="process_message">
 						<div class="login-process-inner" id="pi_parent">
