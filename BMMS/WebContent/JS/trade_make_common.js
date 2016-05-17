@@ -12,6 +12,7 @@ function add_click_trade(bName)
 	confirm_window.style.visibility = "visible";
 	confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
 	copy_table.innerHTML = full_table.innerHTML;
+	confirming = true;
 	setTimeout("show_window_trade()", 10);
 }
 
@@ -59,6 +60,7 @@ function hide_window_trade()
 		confirm_window.style.visibility = "hidden";
 
 		copy_table.innerHTML = "";
+		confirming = false;
 		return;
 	}
 	setTimeout("hide_window_trade()", 10);
