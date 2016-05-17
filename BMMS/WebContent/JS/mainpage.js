@@ -109,33 +109,24 @@ function body_onload()
 		control_string += "<div id=\"base_" + i + "_lv2_end\"></div>";
 
 		control_string += "</div>";
-
-		x.innerHTML += control_string;
 	}
-	setTimeout(load_left_menu(), 10);
+	setTimeout(load_left_menu(), 1);
 }
 
 function load_left_menu()
 {
-	left_menu.style.opacity = Number(left_menu.style.opacity) + 0.01;
-	left_menu.style.transform = "translateX(" + (-250) * (1 - left_menu.style.opacity) + "px" + ")";
+	x.innerHTML += control_string;
 
-	if(left_menu.style.opacity >= 1.0)
-	{
-		left_menu.style.opacity = 1.0;
-		left_menu.style.transform = "translateX(0px)";
+	left_menu.style.opacity = 1.0;
+	left_menu.style.transform = "translateX(0px)";
 
-		page_now = "welcome.html";
-		var e = document.getElementById("page_right_0_0");
-		e.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
-		e.style.visibility = "visible";
+	page_now = "welcome.html";
+	var e = document.getElementById("page_right_0_0");
+	e.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
+	e.style.visibility = "visible";
 
-		process_message.style.visibility = "visible";
-		s_process_timer = setInterval("process_anime()", 10);
-
-		return;
-	}
-	setTimeout(load_left_menu(), 10);
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
 }
 
 function title_mouseenter(index)

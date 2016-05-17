@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="page-main" id="page_main">
-				<div class="left-menu" id="left_menu" style="transform: translateX(-250px); opacity: 0;">
+				<div class="left-menu" id="left_menu">
 				</div>
 				<div class="right-page-base" id="right_base">
 					<div class="right-page-main" id="page_right_0_0">
