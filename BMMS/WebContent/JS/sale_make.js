@@ -167,7 +167,7 @@ function trade_confirm_click()
 
 	if (parent.myxmlhttp)
 	{
-		var data = JSON.stringify(added_item);
+		var data = new Object();
 
 		var myDate = new Date();
 		var month = Number(myDate.getMonth()) + 1;
