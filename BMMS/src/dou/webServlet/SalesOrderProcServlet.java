@@ -2,15 +2,19 @@ package dou.webServlet;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import dou.config.Config;
+import dou.metaObject.SalesOrder;
 
 public class SalesOrderProcServlet extends HttpServlet{
 
@@ -24,6 +28,12 @@ public class SalesOrderProcServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			PrintWriter pw = resp.getWriter();
+			pw.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+		}
+		
 		String reqParams = getPostParameter(req);
 		JSONObject jsonObject = null;
 		
@@ -33,12 +43,29 @@ public class SalesOrderProcServlet extends HttpServlet{
 				logger.info("[SalesOrderProcServlet.java:doPost] Create jsonObject success!!!");
 				
 				/* 提取订单数据 */
-				String orderId = jsonObject.getString("orderID");
-				System.out.println(orderId);
+				String orderID = jsonObject.getString("orderID");
+				String carNum = jsonObject.getString("carNum");
+				String stockLoca = jsonObject.getString("stockLoca");
+				String customerName = jsonObject.getString("name");
+				String orderRemark = jsonObject.getString("remark");
+				JSONArray productJsonArray = jsonObject.getJSONArray("Product");
+				
+				SalesOrder salesOrder = new SalesOrder(orderID, carNum, stockLoca, username, customerName, orderRemark);
+				for (int i = 0; i < productJsonArray.length(); i++){
+					JSONObject productJson = (JSONObject)productJsonArray.get(i);
+					String pSpec = productJson.getString("SN");
+					String pName = productJson.getString("Name");
+					Integer pCount = productJson.getInt("Count");
+					Integer pPrice = productJson.getInt("Price");
+					Integer pTotalPrice = productJson.getInt("TotalPrice");
+					String pRemark = productJson.getString("Others");
+					salesOrder.AddSalesProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+				}
+				salesOrder.ProcSalesOrder();
 			} catch (JSONException e) {
 				logger.error("[SalesOrderProcServlet.java:doPost] Create jsonObject Failed!!! reqParams = " + reqParams);
 				logger.error("Error Message : " + e.getMessage());
-				/* 可以返回订单提交失败 */
+				/* 可以返回订单提交失败,后期加 */
 			}
 		}
 		

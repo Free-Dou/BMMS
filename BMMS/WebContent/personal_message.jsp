@@ -28,6 +28,7 @@
 			<div class="right-page-title"> 个人消息 </div>
 			<%
 				ArrayList<PersionMessage> persionMessageList = PersionMessage.getAllpersionMessageListInfo();
+				Integer orderNum = 0;										/* 订单个数，只用于控制订单的样式 */
 				
 				for (int i = 0; i < persionMessageList.size(); i++){
 					PersionMessage persionMessageObject = persionMessageList.get(i);
@@ -38,7 +39,7 @@
 					Integer columnNo = 0;										/* 用于记录当前订单列(材料种类)的数量 */
 					Float productTotalNum = 0.0f;			
 					
-					out.print("<div class=\"message-box-" + ((i % 2) + 1) + "\">");
+					out.print("<div class=\"message-box-" + (((orderNum++) % 2) + 1) + "\">");
 					out.print("<div class=\"message-title\"> " + operationType + " ：" + persionMessageObject.getOrderid() + " </div>");
 					out.print("<div class=\"message-contains\">");
 					out.print("<div> &emsp;&emsp;" + relationType + ": " + persionMessageObject.getRelationName() + 
@@ -118,7 +119,7 @@
 					out.print("</div>");
 					
 					/* 表信息显示完闭， 显示备注、处理选项等 */
-					out.print("<div> &emsp;&emsp;备注：" + persionMessageObject.getRemark() + " </div>");
+					out.print("<div> &emsp;&emsp;备注：" + persionMessageObject.getOrderRemark() + " </div>");
 					out.print("</div>");
 					out.print("<div class=\"message-time\"> User:" + persionMessageObject.getUsername() + " Time:" + persionMessageObject.getCreateTime() + " </div>");
 	
