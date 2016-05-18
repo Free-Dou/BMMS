@@ -18,11 +18,12 @@ public class MySqlIO {
 
 	private SqlHelper sqlHelper = new SqlHelper();
 	private Logger logger = Config.getLogger(this.getClass());
-
+	
 	/* 检查用户名和密码的正确性 */
 	public boolean verifyPwd(String userName, String pwd) {
 		boolean result = false;
-		String sql = "select * from tb_user where username = ? and pwd = ?;";
+		String sql = "select * from tb_user where username = ? and pwd = MD5(?);";
+		pwd = "20160518" + pwd;
 		String[] parameters = {userName, pwd};
 		ResultSet resultSet = null;
 		
@@ -31,7 +32,7 @@ public class MySqlIO {
 			return result;
 		}
 
-		logger.info("[MySqlIO.java:verifyPwd] select * from tb_user where username = '" + userName + "' and pwd = '" + pwd + "';");
+		logger.info("[MySqlIO.java:verifyPwd] "+ sql + "    params: username = '" + userName + "'  pwd = '" + pwd + "'  salt = '20160518';");
 		resultSet = sqlHelper.executeQuery(sql, parameters);
 
 		try {
@@ -307,6 +308,7 @@ public class MySqlIO {
 				Integer operation = rs.getInt("operation");
 				String approval = rs.getString("approval");
 				String remark = rs.getString("remark");
+				String orderRemark = rs.getString("orderRemark");
 				
 				if (null == persionMessageList){
 					persionMessageList = new ArrayList<PersionMessage>();
@@ -315,7 +317,7 @@ public class MySqlIO {
 				persionMessageObject = new PersionMessage(orderid, mname, carNum, mpspec, 
 														number, stockLoca, price, totalPrice,
 														username, createTime, relationName, 
-														operation, approval, remark);
+														operation, approval, remark, orderRemark);
 				persionMessageList.add(persionMessageObject);
 			}
 			

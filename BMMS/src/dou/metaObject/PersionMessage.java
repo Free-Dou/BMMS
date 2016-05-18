@@ -16,20 +16,17 @@ public class PersionMessage {
 	private String stockLoca;
 	private Float  price;
 	private Float  totalPrice;
-	public String getUsername() {
-		return username;
-	}
-
 	private String username;
 	private String createTime;
 	private String relationName;
 	private Integer operation;					/* 0:入库  1:出库 */ 
 	private String approval;
 	private String remark;
+	private String orderRemark;
 
 	public PersionMessage(String orderid, String mname, String carNum, String mpspec, Float number, String stockLoca,
 			Float price, Float totalPrice, String username, String createTime, String relationName, Integer operation, 
-			String approval, String remark) {
+			String approval, String remark, String orderRemark) {
 		super();
 		this.orderid = orderid;
 		this.mname = mname;
@@ -45,6 +42,7 @@ public class PersionMessage {
 		this.operation = operation;
 		this.approval = approval;
 		this.remark = remark;
+		this.orderRemark = orderRemark;
 		
 		logger.info("[MaterialInStock.java:MaterialInStock] Create a new Persion Message object ： " + orderid);
 	}
@@ -89,6 +87,10 @@ public class PersionMessage {
 	public Float getTotalPrice() {
 		return totalPrice;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
 
 	public String getCreateTime() {
 		return createTime;
@@ -108,5 +110,9 @@ public class PersionMessage {
 
 	public String getRemark() {
 		return remark;
+	}
+
+	public String getOrderRemark() {
+		return orderRemark;
 	}	
 }
