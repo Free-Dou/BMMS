@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="JS/md5.js"> </script>
 		<script type="text/javascript" src="JS/index.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
+		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
 	</head>
 	<body>   
 		<div class="main-background main-background-img">
@@ -23,7 +24,7 @@
 					<form id="login_form" action="/BMMS/LoginServlet" method="post">
 						<div class="normal-line">
 							<div class="float-left">用户名：</div>
-							<div class="float-right"><input class="textbox-common" type="text" name="username"></div>
+							<div class="float-right"><input class="textbox-common" type="text" name="username" id="username"></div>
 						</div>
 						<div class="normal-line">
 							<div class="float-left">密码：</div>
@@ -39,7 +40,7 @@
  					</form>
 				</div>
 			</div>
-			<div class="page-footer">
+			<div class="page-footer" style="min-width: 1366px;">
 				<p>Copyright © Trash Inc. BMMS-Project™</p>
 				<p>All Right Reserved</p>
 			</div>

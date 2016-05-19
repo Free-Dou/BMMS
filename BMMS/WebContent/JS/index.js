@@ -20,15 +20,43 @@ function login_banner_show()
 	setTimeout("login_banner_show()", 10);
 }
 
+function check_login_result()
+{
+	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
+	{
+        var b = myxmlhttp.responseText;    
+        if(b == "true")
+        {
+        	window.document.location.href = "mainpage.jsp";
+        }
+        else
+        {
+        	
+        }
+	}
+}
+
 function login_click()
 {
-	// myxmlhttp = getXmlHttpObject();
+	login_show();
+
 	var e = document.getElementById("password");
 	e.value = hex_md5(e.value);
-	alert(e.value);
-	document.forms["login_form"].submit();
-	// console.info("clicked");
-	login_show();
+	var e1 = username.getElementById("username");
+
+	myxmlhttp = getXmlHttpObject();
+	
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/LoginServlet?time=" + new Date();
+		var data = "username=" + e1.value + "&password=" + e.value;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = check_login_result;
+		myxmlhttp.send(data);
+	}
+	// document.forms["login_form"].submit();
 }
 
 function login_success(hold_time)
