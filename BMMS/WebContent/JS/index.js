@@ -25,11 +25,11 @@ function check_login_result()
 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
 	{
         var b = myxmlhttp.responseText;    
-        if(b == "true")
+        if(b == "success")
         {
         	window.document.location.href = "mainpage.jsp";
         }
-        else
+        else if(b == "failed")
         {
         	
         }
