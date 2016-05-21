@@ -69,20 +69,20 @@ function check_search_result()
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>"
 
 			string_final = string_final + "</div>"
-			for(var j = 0; j < obj.Product.length; j++)
+			for(var j = 0; j < obj[i].Product.length; j++)
 			{
 				string_final = string_final + "<div class=\"table-line\">"
 				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\">  </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj.Product[j].pSpec + " </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj.Product[j].pName + " </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj.Product[j].pCount + " </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj.Product[j].pPrice + "￥ </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj.Product[j].pTotalPrice + "￥ </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj[i].Product[j].pSpec + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj[i].Product[j].pName + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj[i].Product[j].pCount + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj[i].Product[j].pPrice + "￥ </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj[i].Product[j].pTotalPrice + "￥ </div>"
 				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 25%;\">  </div>"
 				string_final = string_final + "</div>"
 
-				totalCount = totalCount + Number(obj.Product[j].pCount);
-				totalMoney = totalMoney + Number(obj.Product[j].pTotalPrice);
+				totalCount = totalCount + Number(obj[i].Product[j].pCount);
+				totalMoney = totalMoney + Number(obj[i].Product[j].pTotalPrice);
 			}
 			string_final = string_final + "<div class=\"table-line\">"
 			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> 合计 </div>"
@@ -96,5 +96,6 @@ function check_search_result()
 
 			string_final = string_final + "</div>"
 		}
+		result_board.innerHtml = string_final;
 	}
 }
