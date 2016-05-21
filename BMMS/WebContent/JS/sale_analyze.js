@@ -41,5 +41,58 @@ function check_search_result()
 	{
 		var b = myxmlhttp.responseText;
 		var obj = JSON.parse(b);
+
+		result_board.style.visibility = "visible";
+		result_board.innerHtml = "";
+
+		for(var i = 0; i < obj.length; i++)
+		{
+			var string_final = "";
+			var totalCount = 0;
+			var totalMoney = 0;
+
+			string_final = string_final + "<div class=\"message-box-1\">";
+			string_final = string_final + "<div class=\"message-title\"> " obj[i].orderID + " </div>";
+			string_final = string_final + "<div class=\"message-contains\">";
+			string_final = string_final + "<div> &emsp;&emsp;客户：" + obj[i].customerName + "&emsp;&emsp;仓库: " + obj[i].stockLoca + "&emsp;&emsp;车号: " + obj[i].carNum + "&emsp;&emsp; </div>";
+
+			// string_final = string_final + "<div>";
+			string_final = string_final + "<div class=\"table-line\" style=\"margin-left: 0px;\">"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\">  </div>"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 编号 </div>"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 商品 </div>"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 数量 </div>"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 单价 </div>"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 金额 </div>"
+			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>"
+			
+			string_final = string_final + "</div>"
+			for(var j = 0; j < obj.Product.length; j++)
+			{
+				string_final = string_final + "<div class=\"table-line\">"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\">  </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj.Product[j].pSpec + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj.Product[j].pName + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj.Product[j].pCount + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj.Product[j].pPrice + "￥ </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj.Product[j].pTotalPrice + "￥ </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 25%;\">  </div>"
+				string_final = string_final + "</div>"
+
+				totalCount = totalCount + Number(obj.Product[j].pCount);
+				totalMoney = totalMoney + Number(obj.Product[j].pTotalPrice);
+			}
+			string_final = string_final + "<div class=\"table-line\">"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> 合计 </div>"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> / </div>"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> / </div>"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + Number(totalCount).toFixed(3) + " </div>"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> / </div>"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + Number(totalMoney).toFixed(2) + "￥ </div>"
+			string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 25%;\"> / </div>"
+			string_final = string_final + "</div>"
+
+			string_final = string_final + "</div>"
+		}
 	}
 }
