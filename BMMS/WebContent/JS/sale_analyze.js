@@ -54,11 +54,11 @@ function check_search_result()
 
 		for(var i = 0; i < obj.length; i++)
 		{
-			result_now_date = obj[i].outTime.substring(0,6);
+			result_now_date = obj[i].outTime.substring(0,10);
 			string_final = string_final + "<div class=\"message-box-" + message_back + "\">"
 				string_final = string_final + "<div class=\"right-page-title\"> " + result_now_date + " </div>"
-				string_final = string_final + "<div class=\"message-box\">"
-					while(obj[i].outTime.substring(0,6) == result_now_date)
+				string_final = string_final + "<div class=\"message-box\">";
+					while(obj[i].outTime.substring(0,10) == result_now_date)
 					{
 						var totalCount = 0;
 						var totalMoney = 0;
