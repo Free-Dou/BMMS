@@ -121,6 +121,7 @@
 					/* 表信息显示完闭， 显示备注、处理选项等 */
 					out.print("<div> &emsp;&emsp;备注：" + persionMessageObject.getOrderRemark() + " </div>");
 					out.print("</div>");
+					out.print("</div>");
 					out.print("<div class=\"message-time\"> User:" + persionMessageObject.getUsername() + " Time:" + persionMessageObject.getCreateTime() + " </div>");
 	
 					Integer userGrade = (Integer)session.getAttribute("usergrade");
@@ -131,9 +132,6 @@
 						String messageStatus = (persionMessageObject.getApproval().equals(1)) ? "已审核" : "待审核";
 						out.print("<div style=\"height: 32px;\">");
 						out.print("<div style=\"text-align: right; margin-right: 34px;\"> " + messageStatus + "</div>");
-						out.print("</div>");
-						out.print("</div>");
-						out.print("</div>");
 					} else if (2 == userGrade){
 						/* 管理员，有审核权限 */
 						out.print("<div style=\"height: 32px;\">");
@@ -150,11 +148,9 @@
 								 + " onclick=\"confirm_click()\">");
 						out.print("<p style=\"top: 50%; transform: translateY(-50%);\">通过</p>");
 						out.print("</div>");
-						
-						out.print("</div>");
-						out.print("</div>");
-						out.print("</div>");
 					}
+					out.print("</div>");
+					out.print("</div>");
 				}
 			%>
 			<dir class="page-footer main-page-footer">
