@@ -122,4 +122,26 @@
   <url-pattern>/SalesAnalyse</url-pattern>
   </servlet-mapping>
   
+  <!-- 处理入库单 -->
+  <servlet>
+  <servlet-name>ProcWareHousingOrder</servlet-name>
+  <servlet-class>dou.webServlet.WareHousingOrderProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcWareHousingOrder</servlet-name>
+  <url-pattern>/ProcWareHousingOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>WareHousingAnalyse</servlet-name>
+  <servlet-class>dou.webServlet.WareHousingAnalyseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>WareHousingAnalyse</servlet-name>
+  <url-pattern>/WareHousingAnalyse</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

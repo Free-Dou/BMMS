@@ -27,6 +27,11 @@
 		<div class="right-page-contains" id="sys_message_pad">
 			<div class="right-page-title"> 个人消息 </div>
 			<%
+				Integer userGrade = (Integer)session.getAttribute("usergrade");
+				if (null == userGrade){
+					out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+				}
+				
 				ArrayList<PersionMessage> persionMessageList = PersionMessage.getAllpersionMessageListInfo();
 				Integer orderNum = 0;										/* 订单个数，只用于控制订单的样式 */
 				
@@ -124,10 +129,7 @@
 					out.print("</div>");
 					out.print("<div class=\"message-time\"> User:" + persionMessageObject.getUsername() + " Time:" + persionMessageObject.getCreateTime() + " </div>");
 	
-					Integer userGrade = (Integer)session.getAttribute("usergrade");
-					if (null == userGrade){
-						out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
-					} else if (1 == userGrade){
+					if (1 == userGrade){
 						/* 用户，不可以审批 */
 						String messageStatus = (persionMessageObject.getApproval().equals(1)) ? "已审核" : "待审核";
 						out.print("<div style=\"height: 32px;\">");

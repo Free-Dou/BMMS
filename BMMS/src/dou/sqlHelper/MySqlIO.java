@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import dou.config.Config;
@@ -14,6 +15,7 @@ import dou.metaObject.Product;
 import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
+import dou.metaObject.WareHousingOrder;
 
 public class MySqlIO {
 
@@ -220,7 +222,7 @@ public class MySqlIO {
 				String mPSpec = rs.getString("mpspec");
 				String mName = rs.getString("mname");
 				Float number = rs.getFloat("number");
-				String ctime = rs.getString("ctime");
+				String ctime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("ctime"));
 				String stockloca = rs.getString("stockloca");
 				String remark = rs.getString("remark");
 				
@@ -260,7 +262,7 @@ public class MySqlIO {
 				String sMessageName = rs.getString("sMessagename");
 				String sMessage = rs.getString("sMessage");
 				String userName = rs.getString("userName");
-				String time = rs.getString("time");
+				String time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("time"));
 				
 				if (null == systemMessageList){
 					systemMessageList = new ArrayList<SystemMessage>();
@@ -304,7 +306,7 @@ public class MySqlIO {
 				Float  price = rs.getFloat("price");
 				Float  totalPrice = rs.getFloat("totalPrice");
 				String username = rs.getString("username");
-				String createTime = rs.getString("createTime");
+				String createTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("createTime"));
 				String relationName = rs.getString("relationName");
 				Integer operation = rs.getInt("operation");
 				String approval = rs.getString("approval");
@@ -355,7 +357,7 @@ public class MySqlIO {
 				String stockLoca = rs.getString("stockLoca");
 				Float  pPrice = rs.getFloat("price");
 				Float  pTotalPrice = rs.getFloat("totalPrice");
-				String outTime = rs.getString("outTime");
+				String outTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("outTime"));
 				String userName = rs.getString("username");
 				String customerName = rs.getString("cName");
 				String pRemark = rs.getString("remark");
@@ -402,6 +404,76 @@ public class MySqlIO {
 		
 		return salesOrderList;
 	}
+	
+	/* 获取全部入库订单信息 */
+	public ArrayList<WareHousingOrder> getAllWareHousingOrderInfo() {
+		ArrayList<WareHousingOrder> wareHousingOrderList = null;
+		WareHousingOrder wareHousingOrderObject = null;
+		String lastOrderID = null;
+		String sql = "SELECT * FROM tb_materiain ORDER BY id DESC;";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllWareHousingOrderInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String orderID = rs.getString("orderid");
+				String mpSpec = rs.getString("mpspec");
+				String pName = rs.getString("mname");
+				Float  pCount = rs.getFloat("number");
+				String carNum = rs.getString("carNum");
+				String stockLoca = rs.getString("stockLoca");
+				Float  pPrice = rs.getFloat("price");
+				Float  pTotalPrice = rs.getFloat("totalPrice");
+				String inTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("inTime"));
+				String userName = rs.getString("username");
+				String supplierName = rs.getString("sName");
+				String pRemark = rs.getString("remark");
+				String orderRemark = rs.getString("orderRemark");
+				
+				if (null == wareHousingOrderList){
+					wareHousingOrderList = new ArrayList<WareHousingOrder>();
+				}
+				
+				if (null == lastOrderID){					/* 如果是第一条数据 */
+					wareHousingOrderObject = new WareHousingOrder(orderID, carNum, stockLoca, userName, supplierName, orderRemark);
+					wareHousingOrderObject.setInTime(inTime);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get WareHousing order : " + orderID);
+					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get WareHousing order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}else if (orderID.equals(lastOrderID)){		/* 如果是同一个订单的数据 */
+					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order's product : " + mpSpec);
+				}else{										/* 新订单的数据 */
+					wareHousingOrderList.add(wareHousingOrderObject);
+					wareHousingOrderObject = new WareHousingOrder(orderID, carNum, stockLoca, userName, supplierName, orderRemark);
+					wareHousingOrderObject.setInTime(inTime);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order : " + orderID);
+					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}
+			}
+			
+			if (null != wareHousingOrderObject){
+				wareHousingOrderList.add(wareHousingOrderObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get all wareHousing order Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return wareHousingOrderList;
+	}
+
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
 		

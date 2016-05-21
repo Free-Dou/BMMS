@@ -56,12 +56,12 @@ public class WareHousingOrderProcServlet extends HttpServlet{
 					Long pPrice = productJson.getLong("Price");
 					Long pTotalPrice = productJson.getLong("TotalPrice");
 					String pRemark = productJson.getString("Others");
-					warehousingOrder.AddSalesProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
+					warehousingOrder.AddWareHousingProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
 				}
 				warehousingOrder.ProcWareHousingOrder();
 				logger.info("[WareHousingOrderProcServlet.java:doPost] Create warehousing order Object By post-order json success!!!");
 			} catch (JSONException e) {
-				logger.error("[SalesOrderProcServlet.java:doPost] Create warehousing order Object By post-order json Failed!!! jsonData = " + reqParams);
+				logger.error("[WareHousingOrderProcServlet.java:doPost] Create warehousing order Object By post-order json Failed!!! jsonData = " + reqParams);
 				logger.error("Error Message : " + e.getMessage());
 				/* 可以返回订单提交失败,后期加 */
 			}

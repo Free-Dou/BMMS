@@ -87,7 +87,7 @@ public class SalesOrder {
 			sqls[i] = "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
 					+ "`username`, `relationName`, `approval`, `remark`, `orderRemark`, `number`, `price`, "
 					+ "`totalPrice`, `createTime`, `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-					+ salesProduct.getpCount() + ", " + salesProduct.getpPrice() + ", " + salesProduct.getpTotalPrice() + ",now()), 1;" ;
+					+ salesProduct.getpCount() + ", " + salesProduct.getpPrice() + ", " + salesProduct.getpTotalPrice() + ",now(), 1);" ;
 
 			params[i][0] = this.getOrderID();
 			params[i][1] = salesProduct.getpName();

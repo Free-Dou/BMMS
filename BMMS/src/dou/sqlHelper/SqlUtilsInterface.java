@@ -8,6 +8,7 @@ import dou.metaObject.Product;
 import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
+import dou.metaObject.WareHousingOrder;
 
 public class SqlUtilsInterface {
 
@@ -59,6 +60,11 @@ public class SqlUtilsInterface {
 
 	public static ArrayList<SalesOrder> getAllSalesOrderInfo() {
 		return new MySqlIO().getAllSalesOrderInfo();
+	}
+
+
+	public static ArrayList<WareHousingOrder> getAllWareHousingOrderInfo() {
+		return new MySqlIO().getAllWareHousingOrderInfo();
 	}
 
 	

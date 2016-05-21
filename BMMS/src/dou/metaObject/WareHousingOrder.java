@@ -14,7 +14,7 @@ public class WareHousingOrder {
 	private String userName;
 	private String supplierName;
 	private String orderRemark;
-	private String outTime; 		/* 只从数据库中取 */
+	private String inTime; 		/* 只从数据库中取 */
 	public ArrayList<WareHousingProduct> wareHousingProductList = new ArrayList<>();
 	
 	public class WareHousingProduct {
@@ -71,13 +71,13 @@ public class WareHousingOrder {
 		this.userName = userName;
 		this.supplierName = supplierName;
 		this.orderRemark = orderRemark;
-		logger.info("[SalesOrder.java:SalesOrder] Create a new SalesOrder object ： "
+		logger.info("[WareHousingOrder.java:WareHousingOrder] Create a new WareHousingOrder object ： "
 				+ orderID);
 	}
 	
 	/* 处理订单信息，可以返回是否处理成功，后期实现 */
 	public void ProcWareHousingOrder() {	
-		logger.info("[SalesOrder.java:ProcSalesOrder] Processing a new Sales Order ： "
+		logger.info("[WareHousingOrder.java:ProcWareHousingOrder] Processing a new WareHousing Order ： "
 				+ orderID);
 		
 		String sqls[] = new String[wareHousingProductList.size()];
@@ -87,7 +87,7 @@ public class WareHousingOrder {
 			sqls[i] = "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
 					+ "`username`, `relationName`, `approval`, `remark`, `orderRemark`, `number`, `price`, "
 					+ "`totalPrice`, `createTime`,  `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-					+ wareHousingProduct.getpCount() + ", " + wareHousingProduct.getpPrice() + ", " + wareHousingProduct.getpTotalPrice() + ",now()), 0;" ;
+					+ wareHousingProduct.getpCount() + ", " + wareHousingProduct.getpPrice() + ", " + wareHousingProduct.getpTotalPrice() + ",now(), 0);" ;
 
 			params[i][0] = this.getOrderID();
 			params[i][1] = wareHousingProduct.getpName();
@@ -106,19 +106,20 @@ public class WareHousingOrder {
 				+ sqls[0] + " params:  " + params.toString());
 	}
 	
-	public void AddSalesProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, String pRemark){
-		WareHousingProduct salesProduct = new WareHousingProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
-		this.wareHousingProductList.add(salesProduct);
+	/* 添加一个当前订单中包含的产品 */
+	public void AddWareHousingProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, String pRemark){
+		WareHousingProduct wareHousingProduct = new WareHousingProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+		this.wareHousingProductList.add(wareHousingProduct);
 	}
 
-	/*
-	public static ArrayList<WareHousingOrder> getAllSalesOrderInfo(){
-		ArrayList<WareHousingOrder> salesOrderList = new ArrayList<>();
+	/*  */
+	public static ArrayList<WareHousingOrder> getAllWareHousingOrderInfo(){
+		ArrayList<WareHousingOrder> wareHousingOrderList = new ArrayList<>();
 		
-		salesOrderList = SqlUtilsInterface.getAllSalesOrderInfo();
+		wareHousingOrderList = SqlUtilsInterface.getAllWareHousingOrderInfo();
 		
-		return salesOrderList;
-	}*/
+		return wareHousingOrderList;
+	}
 	
 	public String getOrderID() {
 		return orderID;
@@ -144,15 +145,15 @@ public class WareHousingOrder {
 		return orderRemark;
 	}
 
-	public ArrayList<WareHousingProduct> getSalesProductList() {
+	public ArrayList<WareHousingProduct> getWareHousingProductList() {
 		return wareHousingProductList;
 	}
 
-	public String getOutTime() {
-		return outTime;
+	public String getInTime() {
+		return inTime;
 	}
 
-	public void setOutTime(String outTime) {
-		this.outTime = outTime;
+	public void setInTime(String inTime) {
+		this.inTime = inTime;
 	}
 }
