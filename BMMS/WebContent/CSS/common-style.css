@@ -110,6 +110,14 @@ body
 	background-size: cover;
 	transform: translateX(-50%) scale(0,0);
 }
+
+.login_failed_image
+{
+	background: url('../IMG/Failed.png');
+	background-size: cover;
+	transform: translateX(-50%) scale(0,0);
+}
+
 .process-item
 {
 	background: url('../IMG/process-item.png') no-repeat;

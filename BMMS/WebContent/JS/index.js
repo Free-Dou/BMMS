@@ -2,9 +2,10 @@ var process_time_last = 0;
 var pi_pos = new Array();
 var center_y = 50;
 var center_x = 50;
-var cover_alpha = 0;
 var pi_parent_scale = 1;
 var myxmlhttp = "";
+var anime_session = 0;
+var final_img = "";
 
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
@@ -24,15 +25,29 @@ function check_login_result()
 {
 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
 	{
-        var b = myxmlhttp.responseText;    
-        if(b == "success")
-        {
-        	window.document.location.href = "mainpage.jsp";
-        }
-        else if(b == "failed")
-        {
-        	
-        }
+		var b = myxmlhttp.responseText;    
+		if(b == "success")
+		{
+			final_img = "login_success_img";
+			setTimeout("process_complete('" + anime_session +"')", 10);
+
+			var e = document.getElementById("process_tip");
+			e.innerHTML="登录成功，3 秒后跳转";
+
+			setTimeout("login_success('" + 2 + "')", 1000);
+
+			// window.document.location.href = "mainpage.jsp";
+		}
+		else if(b == "failed")
+		{
+			final_img = "login_failed_img";
+			setTimeout("process_complete('" + anime_session +"')", 10);
+		
+			var e = document.getElementById("process_tip");
+			e.innerHTML="登录失败，请重试";
+
+			setTimeout("login_success('" + 1 + "')", 1000);
+		}
 	}
 }
 
@@ -43,9 +58,8 @@ function login_click()
 	var e = document.getElementById("password");
 	e.value = hex_md5(e.value);
 	var e1 = username.getElementById("username");
-
 	myxmlhttp = getXmlHttpObject();
-	
+
 	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/LoginServlet?time=" + new Date();
@@ -57,6 +71,42 @@ function login_click()
 		myxmlhttp.send(data);
 	}
 	// document.forms["login_form"].submit();
+}
+
+function login_failed(hold_time)
+{
+	hold_time = hold_time - 1;
+	if(hold_time < 0)
+	{
+		setTimeout("login_hide_anime()", 10);
+		return;
+	}
+	setTimeout("login_failed('" + hold_time + "')", 1000);
+}
+
+function login_hide_anime()
+{
+	var e = document.getElementById("process_message");
+	e.style.opacity = e.style.opacity - 0.1;
+	if(e.style.opacity <= 0.0)
+	{
+		e.style.opacity 0.0;
+		e.style.visibility = "hidden";
+		
+		pi_parent_scale = 1;
+
+		var e2 = document.getElementById("process_tip");
+		e.innerHTML = "登录中，请稍后。。。";
+
+		var e = document.getElementById("pi_parent");
+		var e1 = document.getElementById(final_img);
+		var temp = 1 - pi_parent_scale;
+		e.style.transform = "translateX(-50%) scale(" + pi_parent_scale + ", " + pi_parent_scale + ")";
+		e1.style.transform = "translateX(-50%) scale(" + temp + ", " + temp + ")";
+
+		return;
+	}
+	setTimeout("login_hide_anime()", 10);
 }
 
 function login_success(hold_time)
@@ -71,30 +121,32 @@ function login_success(hold_time)
 	}
 	setTimeout("login_success('" + hold_time + "')", 1000);
 }
+
 function login_show()
 {
-	var e = document.getElementById("pi1");
-
-	e = document.getElementById("process_message");
+	var e = document.getElementById("process_message");
 	e.style.visibility = "visible";
 
-	var s_id = setInterval("process_anime()", 10);
+	anime_session = setInterval("process_anime()", 10);
 	setTimeout("login_show_anime()", 10);
-	setTimeout("process_going('" + s_id + "')", 10);
+	// setTimeout("process_going('" + s_id + "')", 10);
 }
 
 function login_show_anime()
 {
 	var e = document.getElementById("process_message");
-	cover_alpha = cover_alpha + 0.03;
-	e.style.backgroundColor = "rgba(0,0,0," + cover_alpha + ")";
-	if(cover_alpha >= 0.6)
+	e.style.opacity = e.style.opacity + 0.1;
+	if(e.style.opacity >= 1.0)
+	{
+		e.style.opacity = 1.0;
 		return;
+	}
 	setTimeout("login_show_anime()", 10);
 }
 
 function process_anime()
 {
+	process_time_last = process_time_last + 1;
 	var need_change = parseInt(process_time_last / 10);
 	if(need_change > 5)
 		need_change = 5;
@@ -117,26 +169,25 @@ function process_anime()
 	}
 }
 
-function process_going(session_id)
-{
-	process_time_last = process_time_last + 1;
-	if(process_time_last >= 300)
-	{
-		setTimeout("process_complete('" + session_id +"')", 10);
+// function process_going(session_id)
+// {
+// 	if(process_time_last >= 300)
+// 	{
+// 		setTimeout("process_complete('" + session_id +"')", 10);
 		
-		var e = document.getElementById("process_tip");
-		e.innerHTML="登录成功，3 秒后跳转";
+// 		var e = document.getElementById("process_tip");
+// 		e.innerHTML="登录成功，3 秒后跳转";
 
-		setTimeout("login_success('" + 2 + "')", 1000);
-		return;
-	}
-	setTimeout("process_going('" + session_id +"')", 10);
-}
+// 		setTimeout("login_success('" + 2 + "')", 1000);
+// 		return;
+// 	}
+// 	setTimeout("process_going('" + session_id +"')", 10);
+// }
 
 function process_complete(session_id)
 {
 	var e = document.getElementById("pi_parent");
-	var e1 = document.getElementById("login_success_img");
+	var e1 = document.getElementById(final_img);
 	pi_parent_scale = pi_parent_scale - 0.03;
 	var temp = 1 - pi_parent_scale;
 	e.style.transform = "translateX(-50%) scale(" + pi_parent_scale + ", " + pi_parent_scale + ")";
