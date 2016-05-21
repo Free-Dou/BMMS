@@ -105,7 +105,7 @@ function check_search_result()
 							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalMoney).toFixed(2) + "￥ </div>"
 							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\"> / </div>"
 							string_final = string_final + "</div>"
-							out.print("<div> &emsp;&emsp;备注：" + obj[i].orderRemark + " </div>");
+							string_final = string_final + "<div> &emsp;&emsp;备注：" + obj[i].orderRemark + " </div>";
 						string_final = string_final + "</div>"
 						string_final = string_final + "<div class=\"message-time\"> User:" + obj[i].userName + " Time:" + obj[i].outTime + " </div>";
 
