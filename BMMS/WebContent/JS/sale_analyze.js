@@ -1,4 +1,5 @@
 var myxmlhttp = "";
+var date_array = new Array();
 
 function body_onload()
 {
@@ -40,32 +41,33 @@ function check_search_result()
 	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
 	{
 		var b = myxmlhttp.responseText;
-		var obj = JSON.parse(b);
+		var myobj = JSON.parse(b);
 
 		result_board.style.visibility = "visible";
 		result_board.innerHTML = "";
 
 		console.info(b);
-		console.info(obj);
+		console.info(myobj);
 
 		var string_final = "";
 		var result_now_date = "";
 		var message_back = 1;
 
-		for(var i = 0; i < obj.length; i++)
+		for(var i = 0; i < myobj.length; i++)
 		{
-			result_now_date = obj[i].outTime.substring(0,10);
+			result_now_date = myobj[i].outTime.substring(0,10);
 			string_final = string_final + "<div class=\"message-box-" + message_back + "\">";
 				string_final = string_final + "<div class=\"right-page-title\"> " + result_now_date + " </div>";
 				string_final = string_final + "<div class=\"message-box\">";
-					while(obj[i].outTime.substring(0,10) == result_now_date)
+
+					while(myobj[i].outTime.substring(0,10) == result_now_date)
 					{
 						var totalCount = 0;
 						var totalMoney = 0;
 
-						string_final = string_final + "<div class=\"message-title\"> " + obj[i].orderID + " </div>";
+						string_final = string_final + "<div class=\"message-title\"> " + myobj[i].orderID + " </div>";
 						string_final = string_final + "<div class=\"message-contains\">";
-							string_final = string_final + "<div> &emsp;&emsp;客户：" + obj[i].customerName + "&emsp;&emsp;仓库: " + obj[i].stockLoca + "&emsp;&emsp;车号: " + obj[i].carNum + "&emsp;&emsp; </div>";
+							string_final = string_final + "<div> &emsp;&emsp;客户：" + myobj[i].customerName + "&emsp;&emsp;仓库: " + myobj[i].stockLoca + "&emsp;&emsp;车号: " + myobj[i].carNum + "&emsp;&emsp; </div>";
 							string_final = string_final + "<div class=\"table-line\" style=\"margin-left: 0px;\">";
 							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\">  </div>";
 							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 编号 </div>";
@@ -76,20 +78,20 @@ function check_search_result()
 							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>";
 							string_final = string_final + "</div>";
 							var line_style_now = 1;
-							for(var j = 0; j < obj[i].Product.length; j++)
+							for(var j = 0; j < myobj[i].Product.length; j++)
 							{
 								string_final = string_final + "<div class=\"table-line\">";
 								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\">  </div>";
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + obj[i].Product[j].pSpec + " </div>";
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + obj[i].Product[j].pName + " </div>";
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pCount).toFixed(3) + " </div>";
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pPrice).toFixed(2) + "￥ </div>";
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + myobj[i].Product[j].pSpec + " </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + myobj[i].Product[j].pName + " </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(myobj[i].Product[j].pCount).toFixed(3) + " </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(myobj[i].Product[j].pPrice).toFixed(2) + "￥ </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(myobj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>";
 								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\">  </div>";
 								string_final = string_final + "</div>";
 
-								totalCount = totalCount + Number(obj[i].Product[j].pCount);
-								totalMoney = totalMoney + Number(obj[i].Product[j].pTotalPrice);
+								totalCount = totalCount + Number(myobj[i].Product[j].pCount);
+								totalMoney = totalMoney + Number(myobj[i].Product[j].pTotalPrice);
 
 								if(line_style_now == 1)
 									line_style_now = 2;
@@ -105,17 +107,17 @@ function check_search_result()
 							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalMoney).toFixed(2) + "￥ </div>";
 							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\"> / </div>";
 							string_final = string_final + "</div>";
-							string_final = string_final + "<div> &emsp;&emsp;备注：" + obj[i].orderRemark + " </div>";
+							string_final = string_final + "<div> &emsp;&emsp;备注：" + myobj[i].orderRemark + " </div>";
 						string_final = string_final + "</div>";
-						string_final = string_final + "<div class=\"message-time\"> User:" + obj[i].userName + " Time:" + obj[i].outTime + " </div>";
+						string_final = string_final + "<div class=\"message-time\"> User:" + myobj[i].userName + " Time:" + myobj[i].outTime + " </div>";
 
 						i = i + 1;
-						if(i > obj.length)
+						if(i > myobj.length)
 							break;
 					}
 					i = i - 1;
-				string_final = string_final + "</div>"
-			string_final = string_final + "</div>"
+				string_final = string_final + "</div>";
+			string_final = string_final + "</div>";
 
 			if(message_back == 1)
 				message_back = 2;
