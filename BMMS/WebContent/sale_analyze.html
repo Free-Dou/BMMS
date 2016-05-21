@@ -43,20 +43,20 @@
 				-->
 	 			<div style="height: 36px; padding-left: 35px;">
 					<div style="float:left; padding-left: 16px; height: 24px;">	供应商： </div>
-					<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_customer" class="textbox-common"></input> </div>
+					<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_customer" class="textbox-common" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5\w]/g,'')"></input> </div>
 					<div style="float:left; padding-left: 48px; height: 24px;"> 商品： </div>
-					<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_item" class="textbox-common"></input> </div>
+					<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_item" class="textbox-common" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5\w]/g,'')"></input> </div>
 				</div>
 				<div style="height: 36px; padding-left: 35px;">
 					<div style="float:left; padding-left: 32px; height: 24px;">	备注： </div>
-					<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_remark" class="textbox-common"></input> </div>
-					<div style="float:left; padding-left: 16px; height: 24px;"> 审核状态： </div>
+					<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_remark" class="textbox-common" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5\w]/g,'')"></input> </div>
+					<!-- <div style="float:left; padding-left: 16px; height: 24px;"> 审核状态： </div>
 					<div style="float:left; padding-left: 15px; height: 24px;">
 						<select id="select_status" style="width: 254px">
 							<option value="1">已审核</option>
 							<option value="2">未审核</option>
 						</select>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div style="height: 90px; padding-left: 35px; float: left;">

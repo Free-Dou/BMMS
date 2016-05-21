@@ -201,11 +201,10 @@ function trade_confirm_click()
 
 		var data_send = JSON.stringify(data);
 
-		alert(data_send);
 		var aim_url = "/BMMS/ProcSalesOrder?time=" + new Date();
 		parent.myxmlhttp.open("post", aim_url, true);
 		parent.myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		//parent.myxmlhttp.onreadystatechange = dispose;
+		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
 		parent.myxmlhttp.send(data_send);
 	}
 }

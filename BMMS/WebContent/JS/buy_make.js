@@ -200,14 +200,12 @@ function trade_confirm_click()
 		data.Product = added_item;
 
 		var data_send = JSON.stringify(data);
-
-		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
-		alert(data_send);
-		// createXMLHttpRequest();
-		// myxmlhttp.open("post", aim_url, true);
-		// myxmlhttp.onreadystatechange = dispose;
-		// myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		// myxmlhttp.send(data);
+		
+		var aim_url = "/BMMS/ProcWareHousingOrder?time=" + new Date();
+		parent.myxmlhttp.open("post", aim_url, true);
+		parent.myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
+		parent.myxmlhttp.send(data_send);
 	}
 }
 
