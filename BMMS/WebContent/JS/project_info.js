@@ -1,2 +1,2 @@
 
-parent.window.document.location.href = "index.html";
+// parent.window.document.location.href = "index.html";

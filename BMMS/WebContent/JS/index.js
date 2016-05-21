@@ -90,9 +90,9 @@ function login_hide_anime()
 	e.style.opacity = e.style.opacity - 0.1;
 	if(e.style.opacity <= 0.0)
 	{
-		e.style.opacity 0.0;
+		e.style.opacity = 0.0;
 		e.style.visibility = "hidden";
-		
+
 		pi_parent_scale = 1;
 
 		var e2 = document.getElementById("process_tip");
