@@ -75,9 +75,9 @@ function check_search_result()
 				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\">  </div>"
 				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj[i].Product[j].pSpec + " </div>"
 				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 20%;\"> " + obj[i].Product[j].pName + " </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj[i].Product[j].pCount + " </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj[i].Product[j].pPrice + "￥ </div>"
-				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + obj[i].Product[j].pTotalPrice + "￥ </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pCount).toFixed(3) + " </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pPrice).toFixed(2) + "￥ </div>"
+				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>"
 				string_final = string_final + "<div class=\"table-cell-1\" style=\"width: 25%;\">  </div>"
 				string_final = string_final + "</div>"
 
@@ -95,6 +95,8 @@ function check_search_result()
 			string_final = string_final + "</div>"
 
 			string_final = string_final + "</div>"
+
+			console.info(i);
 		}
 		result_board.innerHTML = string_final;
 	}
