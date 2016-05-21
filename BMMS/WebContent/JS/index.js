@@ -95,10 +95,10 @@ function login_hide_anime()
 
 		pi_parent_scale = 1;
 
-		var e2 = document.getElementById("process_tip");
+		e = document.getElementById("process_tip");
 		e.innerHTML = "登录中，请稍后。。。";
 
-		var e = document.getElementById("pi_parent");
+		e = document.getElementById("pi_parent");
 		var e1 = document.getElementById(final_img);
 		var temp = 1 - pi_parent_scale;
 		e.style.transform = "translateX(-50%) scale(" + pi_parent_scale + ", " + pi_parent_scale + ")";
