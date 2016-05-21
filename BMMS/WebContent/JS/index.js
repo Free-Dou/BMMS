@@ -57,7 +57,7 @@ function login_click()
 
 	var e = document.getElementById("password");
 	e.value = hex_md5(e.value);
-	var e1 = username.getElementById("username");
+	var e1 = document.getElementById("username");
 	myxmlhttp = getXmlHttpObject();
 
 	if (myxmlhttp)
@@ -87,7 +87,7 @@ function login_failed(hold_time)
 function login_hide_anime()
 {
 	var e = document.getElementById("process_message");
-	e.style.opacity = e.style.opacity - 0.1;
+	e.style.opacity = Number(e.style.opacity) - 0.1;
 	if(e.style.opacity <= 0.0)
 	{
 		e.style.opacity = 0.0;
@@ -135,7 +135,7 @@ function login_show()
 function login_show_anime()
 {
 	var e = document.getElementById("process_message");
-	e.style.opacity = e.style.opacity + 0.1;
+	e.style.opacity = Number(e.style.opacity) + 0.1;
 	if(e.style.opacity >= 1.0)
 	{
 		e.style.opacity = 1.0;
