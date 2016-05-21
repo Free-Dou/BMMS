@@ -55,8 +55,8 @@ function check_search_result()
 		for(var i = 0; i < obj.length; i++)
 		{
 			result_now_date = obj[i].outTime.substring(0,10);
-			string_final = string_final + "<div class=\"message-box-" + message_back + "\">"
-				string_final = string_final + "<div class=\"right-page-title\"> " + result_now_date + " </div>"
+			string_final = string_final + "<div class=\"message-box-" + message_back + "\">";
+				string_final = string_final + "<div class=\"right-page-title\"> " + result_now_date + " </div>";
 				string_final = string_final + "<div class=\"message-box\">";
 					while(obj[i].outTime.substring(0,10) == result_now_date)
 					{
@@ -66,27 +66,27 @@ function check_search_result()
 						string_final = string_final + "<div class=\"message-title\"> " + obj[i].orderID + " </div>";
 						string_final = string_final + "<div class=\"message-contains\">";
 							string_final = string_final + "<div> &emsp;&emsp;客户：" + obj[i].customerName + "&emsp;&emsp;仓库: " + obj[i].stockLoca + "&emsp;&emsp;车号: " + obj[i].carNum + "&emsp;&emsp; </div>";
-							string_final = string_final + "<div class=\"table-line\" style=\"margin-left: 0px;\">"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\">  </div>"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 编号 </div>"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 商品 </div>"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 数量 </div>"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 单价 </div>"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 金额 </div>"
-							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>"
-							string_final = string_final + "</div>"
+							string_final = string_final + "<div class=\"table-line\" style=\"margin-left: 0px;\">";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\">  </div>";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 编号 </div>";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 商品 </div>";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 数量 </div>";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 单价 </div>";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 金额 </div>";
+							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>";
+							string_final = string_final + "</div>";
 							var line_style_now = 1;
 							for(var j = 0; j < obj[i].Product.length; j++)
 							{
-								string_final = string_final + "<div class=\"table-line\">"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\">  </div>"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + obj[i].Product[j].pSpec + " </div>"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + obj[i].Product[j].pName + " </div>"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pCount).toFixed(3) + " </div>"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pPrice).toFixed(2) + "￥ </div>"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>"
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\">  </div>"
-								string_final = string_final + "</div>"
+								string_final = string_final + "<div class=\"table-line\">";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\">  </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + obj[i].Product[j].pSpec + " </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> " + obj[i].Product[j].pName + " </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pCount).toFixed(3) + " </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pPrice).toFixed(2) + "￥ </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(obj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>";
+								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\">  </div>";
+								string_final = string_final + "</div>";
 
 								totalCount = totalCount + Number(obj[i].Product[j].pCount);
 								totalMoney = totalMoney + Number(obj[i].Product[j].pTotalPrice);
@@ -96,17 +96,17 @@ function check_search_result()
 								else
 									line_style_now = 1;
 							}
-							string_final = string_final + "<div class=\"table-line\">"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> 合计 </div>"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> / </div>"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> / </div>"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalCount).toFixed(3) + " </div>"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> / </div>"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalMoney).toFixed(2) + "￥ </div>"
-							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\"> / </div>"
-							string_final = string_final + "</div>"
+							string_final = string_final + "<div class=\"table-line\">";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> 合计 </div>";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> / </div>";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 20%;\"> / </div>";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalCount).toFixed(3) + " </div>";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> / </div>";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalMoney).toFixed(2) + "￥ </div>";
+							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\"> / </div>";
+							string_final = string_final + "</div>";
 							string_final = string_final + "<div> &emsp;&emsp;备注：" + obj[i].orderRemark + " </div>";
-						string_final = string_final + "</div>"
+						string_final = string_final + "</div>";
 						string_final = string_final + "<div class=\"message-time\"> User:" + obj[i].userName + " Time:" + obj[i].outTime + " </div>";
 
 						i = i + 1;
