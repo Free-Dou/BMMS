@@ -30,14 +30,14 @@ function get_result()
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = check_login_result;
+		myxmlhttp.onreadystatechange = check_search_result;
 		myxmlhttp.send(data);
 	}
 }
 
 function check_search_result()
 {
-	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
+	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
 	{
 		var b = myxmlhttp.responseText;
 		var obj = JSON.parse(b);
@@ -45,6 +45,8 @@ function check_search_result()
 		result_board.style.visibility = "visible";
 		result_board.innerHtml = "";
 
+		console.info(b);
+		console.info(obj);
 		for(var i = 0; i < obj.length; i++)
 		{
 			var string_final = "";
@@ -65,7 +67,7 @@ function check_search_result()
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 单价 </div>"
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 金额 </div>"
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>"
-			
+
 			string_final = string_final + "</div>"
 			for(var j = 0; j < obj.Product.length; j++)
 			{
