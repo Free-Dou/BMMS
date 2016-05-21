@@ -54,7 +54,7 @@ function check_search_result()
 			var totalMoney = 0;
 
 			string_final = string_final + "<div class=\"message-box-1\">";
-			string_final = string_final + "<div class=\"message-title\"> " obj[i].orderID + " </div>";
+			string_final = string_final + "<div class=\"message-title\"> " + obj[i].orderID + " </div>";
 			string_final = string_final + "<div class=\"message-contains\">";
 			string_final = string_final + "<div> &emsp;&emsp;客户：" + obj[i].customerName + "&emsp;&emsp;仓库: " + obj[i].stockLoca + "&emsp;&emsp;车号: " + obj[i].carNum + "&emsp;&emsp; </div>";
 
