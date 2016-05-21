@@ -14,17 +14,18 @@ public class SalesOrder {
 	private String userName;
 	private String customerName;
 	private String orderRemark;
-	private ArrayList<SalesProduct> salesProductList = new ArrayList<>();
+	private String outTime; 		/* 只从数据库中取 */
+	public ArrayList<SalesProduct> salesProductList = new ArrayList<>();
 	
-	private class SalesProduct {
+	public class SalesProduct {
 		private String pSpec;
 		private String pName;
-		private Integer pCount;
-		private Integer pPrice;
-		private Integer pTotalPrice;
+		private Float pCount;
+		private Float pPrice;
+		private Float pTotalPrice;
 		private String pRemark;
 		
-		public SalesProduct(String pSpec, String pName, Integer pCount, Integer pPrice, Integer pTotalPrice, 
+		public SalesProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, 
 				 String pRemark) {
 			super();
 			this.pSpec = pSpec;
@@ -45,15 +46,15 @@ public class SalesOrder {
 			return pName;
 		}
 
-		public Integer getpCount() {
+		public Float getpCount() {
 			return pCount;
 		}
 
-		public Integer getpPrice() {
+		public Float getpPrice() {
 			return pPrice;
 		}
 
-		public Integer getpTotalPrice() {
+		public Float getpTotalPrice() {
 			return pTotalPrice;
 		}
 
@@ -105,11 +106,19 @@ public class SalesOrder {
 				+ sqls[0] + " params:  " + params.toString());
 	}
 	
-	public void AddSalesProduct(String pSpec, String pName, Integer pCount, Integer pPrice, Integer pTotalPrice, String pRemark){
+	public void AddSalesProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, String pRemark){
 		SalesProduct salesProduct = new SalesProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 		this.salesProductList.add(salesProduct);
 	}
 
+	public static ArrayList<SalesOrder> getAllSalesOrderInfo(){
+		ArrayList<SalesOrder> salesOrderList = new ArrayList<>();
+		
+		salesOrderList = SqlUtilsInterface.getAllSalesOrderInfo();
+		
+		return salesOrderList;
+	}
+	
 	public String getOrderID() {
 		return orderID;
 	}
@@ -138,4 +147,11 @@ public class SalesOrder {
 		return salesProductList;
 	}
 
+	public String getOutTime() {
+		return outTime;
+	}
+
+	public void setOutTime(String outTime) {
+		this.outTime = outTime;
+	}
 }

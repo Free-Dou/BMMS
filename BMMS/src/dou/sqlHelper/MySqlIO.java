@@ -11,6 +11,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
 
@@ -282,7 +283,7 @@ public class MySqlIO {
 		return systemMessageList;
 	}
 	
-
+	/* 从数据库中获取个人信息 */
 	public ArrayList<PersionMessage> getAllpersionMessageListInfo() {
 		ArrayList<PersionMessage> persionMessageList = null;
 		PersionMessage persionMessageObject = null;
@@ -334,6 +335,73 @@ public class MySqlIO {
 		return persionMessageList;
 	}
 	
+	public ArrayList<SalesOrder> getAllSalesOrderInfo() {
+		ArrayList<SalesOrder> salesOrderList = null;
+		SalesOrder salesOrderObject = null;
+		String lastOrderID = null;
+		String sql = "SELECT * FROM tb_materiaout ORDER BY id DESC;";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllSalesOrderInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String orderID = rs.getString("orderid");
+				String mpSpec = rs.getString("mpspec");
+				String pName = rs.getString("mname");
+				Float  pCount = rs.getFloat("number");
+				String carNum = rs.getString("carNum");
+				String stockLoca = rs.getString("stockLoca");
+				Float  pPrice = rs.getFloat("price");
+				Float  pTotalPrice = rs.getFloat("totalPrice");
+				String outTime = rs.getString("outTime");
+				String userName = rs.getString("username");
+				String customerName = rs.getString("cName");
+				String pRemark = rs.getString("remark");
+				String orderRemark = rs.getString("orderRemark");
+				
+				if (null == salesOrderList){
+					salesOrderList = new ArrayList<SalesOrder>();
+				}
+				
+				if (null == lastOrderID){					/* 如果是第一条数据 */
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark);
+					salesOrderObject.setOutTime(outTime);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
+					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}else if (orderID.equals(lastOrderID)){		/* 如果是同一个订单的数据 */
+					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
+				}else{										/* 新订单的数据 */
+					salesOrderList.add(salesOrderObject);
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark);
+					salesOrderObject.setOutTime(outTime);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
+					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}
+			}
+			
+			if (null != salesOrderObject){
+				salesOrderList.add(salesOrderObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get all sales order Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return salesOrderList;
+	}
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
 		
@@ -389,6 +457,8 @@ public class MySqlIO {
 		}
 		return result;
 	}
+
+
 
 //	public List<WebPageObejct> getWebPageObejct_List(String table_name) {
 //

@@ -100,7 +100,7 @@
   <url-pattern>/DelSupplierInfo</url-pattern>
   </servlet-mapping>
   
-    <!-- 处理销售单 -->
+  <!-- 处理销售单 -->
   <servlet>
   <servlet-name>ProcSalesOrder</servlet-name>
   <servlet-class>dou.webServlet.SalesOrderProcServlet</servlet-class>
@@ -109,6 +109,17 @@
   <servlet-mapping>
   <servlet-name>ProcSalesOrder</servlet-name>
   <url-pattern>/ProcSalesOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>SalesAnalyse</servlet-name>
+  <servlet-class>dou.webServlet.SalesAnalyseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>SalesAnalyse</servlet-name>
+  <url-pattern>/SalesAnalyse</url-pattern>
   </servlet-mapping>
   
 </web-app>

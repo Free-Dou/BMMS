@@ -55,11 +55,11 @@ public class SalesOrderProcServlet extends HttpServlet{
 					JSONObject productJson = (JSONObject)productJsonArray.get(i);
 					String pSpec = productJson.getString("SN");
 					String pName = productJson.getString("Name");
-					Integer pCount = productJson.getInt("Count");
-					Integer pPrice = productJson.getInt("Price");
-					Integer pTotalPrice = productJson.getInt("TotalPrice");
+					Long pCount = productJson.getLong("Count");
+					Long pPrice = productJson.getLong("Price");
+					Long pTotalPrice = productJson.getLong("TotalPrice");
 					String pRemark = productJson.getString("Others");
-					salesOrder.AddSalesProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					salesOrder.AddSalesProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
 				}
 				salesOrder.ProcSalesOrder();
 			} catch (JSONException e) {

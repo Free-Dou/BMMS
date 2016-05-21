@@ -5,6 +5,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
 
@@ -53,6 +54,11 @@ public class SqlUtilsInterface {
 
 	public static ArrayList<PersionMessage> getAllpersionMessageListInfo() {
 		return new MySqlIO().getAllpersionMessageListInfo();
+	}
+
+
+	public static ArrayList<SalesOrder> getAllSalesOrderInfo() {
+		return new MySqlIO().getAllSalesOrderInfo();
 	}
 
 	
