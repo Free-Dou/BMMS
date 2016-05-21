@@ -47,7 +47,7 @@ function check_login_result()
 			e.innerHTML="登录失败，请重试";
 
 			password.value = "";
-			
+
 			setTimeout("login_failed('" + 1 + "')", 1000);
 		}
 	}
@@ -55,8 +55,6 @@ function check_login_result()
 
 function login_click()
 {
-	login_show();
-
 	var e = document.getElementById("password");
 	if(e.value == "")
 	{
@@ -71,6 +69,9 @@ function login_click()
 		e1.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
+
+	login_show();
+
 	myxmlhttp = getXmlHttpObject();
 
 	e.style.backgroundColor = "rgba(255,255,255,1)";
