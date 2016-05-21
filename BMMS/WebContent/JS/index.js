@@ -46,6 +46,8 @@ function check_login_result()
 			var e = document.getElementById("process_tip");
 			e.innerHTML="登录失败，请重试";
 
+			password.value = "";
+			
 			setTimeout("login_failed('" + 1 + "')", 1000);
 		}
 	}
@@ -56,10 +58,23 @@ function login_click()
 	login_show();
 
 	var e = document.getElementById("password");
+	if(e.value == "")
+	{
+		e.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
 	e.value = hex_md5(e.value);
+
 	var e1 = document.getElementById("username");
+	if(e1.value == "")
+	{
+		e1.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
 	myxmlhttp = getXmlHttpObject();
 
+	e.style.backgroundColor = "rgba(255,255,255,1)";
+	e1.style.backgroundColor = "rgba(255,255,255,1)";
 	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/LoginServlet?time=" + new Date();
