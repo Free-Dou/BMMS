@@ -55,8 +55,10 @@ function check_search_result()
 			var totalMoney = 0;
 
 			string_final = string_final + "<div class=\"message-box-1\">";
+
 			string_final = string_final + "<div class=\"message-title\"> " + obj[i].orderID + " </div>";
 			string_final = string_final + "<div class=\"message-contains\">";
+
 			string_final = string_final + "<div> &emsp;&emsp;客户：" + obj[i].customerName + "&emsp;&emsp;仓库: " + obj[i].stockLoca + "&emsp;&emsp;车号: " + obj[i].carNum + "&emsp;&emsp; </div>";
 
 			// string_final = string_final + "<div>";
@@ -68,8 +70,8 @@ function check_search_result()
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 单价 </div>"
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\"> 金额 </div>"
 			string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 25%;\"> 备注 </div>"
-
 			string_final = string_final + "</div>"
+
 			for(var j = 0; j < obj[i].Product.length; j++)
 			{
 				string_final = string_final + "<div class=\"table-line\">"
@@ -97,6 +99,7 @@ function check_search_result()
 
 			string_final = string_final + "</div>"
 
+			string_final = string_final + "</div>"
 			console.info(i);
 		}
 		result_board.innerHTML = string_final;
