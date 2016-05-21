@@ -5,19 +5,19 @@ import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.sqlHelper.SqlUtilsInterface;
 
-public class SalesOrder {
+public class WareHousingOrder {
 	
 	private Logger logger = Config.getLogger(this.getClass());
 	private String orderID;
 	private String carNum;
 	private String stockLoca;
 	private String userName;
-	private String customerName;
+	private String supplierName;
 	private String orderRemark;
 	private String outTime; 		/* 只从数据库中取 */
-	public ArrayList<SalesProduct> salesProductList = new ArrayList<>();
+	public ArrayList<WareHousingProduct> wareHousingProductList = new ArrayList<>();
 	
-	public class SalesProduct {
+	public class WareHousingProduct {
 		private String pSpec;
 		private String pName;
 		private Float pCount;
@@ -25,7 +25,7 @@ public class SalesOrder {
 		private Float pTotalPrice;
 		private String pRemark;
 		
-		public SalesProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, 
+		public WareHousingProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, 
 				 String pRemark) {
 			super();
 			this.pSpec = pSpec;
@@ -34,7 +34,7 @@ public class SalesOrder {
 			this.pPrice = pPrice;
 			this.pTotalPrice = pTotalPrice;
 			this.pRemark = pRemark;
-			logger.info("[SalesOrder.java:SalesProduct] Create a new SalesProduct object ： "
+			logger.info("[WareHousingOrder.java:WareHousingProduct] Create a new WareHousingProduct object ： "
 					+ pSpec);
 		}
 
@@ -63,61 +63,62 @@ public class SalesOrder {
 		}
 	}
 
-	public SalesOrder(String orderID, String carNum, String stockLoca, String userName, String customerName, String orderRemark) {
+	public WareHousingOrder(String orderID, String carNum, String stockLoca, String userName, String supplierName, String orderRemark) {
 		super();
 		this.orderID = orderID;
 		this.carNum = carNum;
 		this.stockLoca = stockLoca;
 		this.userName = userName;
-		this.customerName = customerName;
+		this.supplierName = supplierName;
 		this.orderRemark = orderRemark;
 		logger.info("[SalesOrder.java:SalesOrder] Create a new SalesOrder object ： "
 				+ orderID);
 	}
 	
 	/* 处理订单信息，可以返回是否处理成功，后期实现 */
-	public void ProcSalesOrder() {	
+	public void ProcWareHousingOrder() {	
 		logger.info("[SalesOrder.java:ProcSalesOrder] Processing a new Sales Order ： "
 				+ orderID);
 		
-		String sqls[] = new String[salesProductList.size()];
-		String params[][] = new String[salesProductList.size()][10];
-		for (int i = 0; i < salesProductList.size(); i++){
-			SalesProduct salesProduct  = this.salesProductList.get(i);
+		String sqls[] = new String[wareHousingProductList.size()];
+		String params[][] = new String[wareHousingProductList.size()][10];
+		for (int i = 0; i < wareHousingProductList.size(); i++){
+			WareHousingProduct wareHousingProduct  = this.wareHousingProductList.get(i);
 			sqls[i] = "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
 					+ "`username`, `relationName`, `approval`, `remark`, `orderRemark`, `number`, `price`, "
-					+ "`totalPrice`, `createTime`, `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-					+ salesProduct.getpCount() + ", " + salesProduct.getpPrice() + ", " + salesProduct.getpTotalPrice() + ",now()), 1;" ;
+					+ "`totalPrice`, `createTime`,  `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
+					+ wareHousingProduct.getpCount() + ", " + wareHousingProduct.getpPrice() + ", " + wareHousingProduct.getpTotalPrice() + ",now()), 0;" ;
 
 			params[i][0] = this.getOrderID();
-			params[i][1] = salesProduct.getpName();
+			params[i][1] = wareHousingProduct.getpName();
 			params[i][2] = this.getCarNum();
-			params[i][3] = salesProduct.getpSpec();
+			params[i][3] = wareHousingProduct.getpSpec();
 			params[i][4] = this.getStockLoca();
 			params[i][5] = this.getUserName();
-			params[i][6] = this.getCustomerName();
+			params[i][6] = this.getSupplierName();
 			params[i][7] = "0"; 		/* approval为0  表示当前订单未处理 */
-			params[i][8] = salesProduct.getpRemark();
+			params[i][8] = wareHousingProduct.getpRemark();
 			params[i][9] = this.getOrderRemark();
 		}
 		
 		SqlUtilsInterface.updateManyInfos(sqls, params);
-		logger.info("[SalesOrder.java:ProcSalesOrder] Processing a new Sales Order  -->  add a persion message ： "
+		logger.info("[WareHousingOrder.java:ProcWareHousingOrder] Processing a new wareHousing Order  -->  add a persion message ： "
 				+ sqls[0] + " params:  " + params.toString());
 	}
 	
 	public void AddSalesProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, String pRemark){
-		SalesProduct salesProduct = new SalesProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
-		this.salesProductList.add(salesProduct);
+		WareHousingProduct salesProduct = new WareHousingProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+		this.wareHousingProductList.add(salesProduct);
 	}
 
-	public static ArrayList<SalesOrder> getAllSalesOrderInfo(){
-		ArrayList<SalesOrder> salesOrderList = new ArrayList<>();
+	/*
+	public static ArrayList<WareHousingOrder> getAllSalesOrderInfo(){
+		ArrayList<WareHousingOrder> salesOrderList = new ArrayList<>();
 		
 		salesOrderList = SqlUtilsInterface.getAllSalesOrderInfo();
 		
 		return salesOrderList;
-	}
+	}*/
 	
 	public String getOrderID() {
 		return orderID;
@@ -135,16 +136,16 @@ public class SalesOrder {
 		return userName;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public String getSupplierName() {
+		return supplierName;
 	}
 
 	public String getOrderRemark() {
 		return orderRemark;
 	}
 
-	public ArrayList<SalesProduct> getSalesProductList() {
-		return salesProductList;
+	public ArrayList<WareHousingProduct> getSalesProductList() {
+		return wareHousingProductList;
 	}
 
 	public String getOutTime() {

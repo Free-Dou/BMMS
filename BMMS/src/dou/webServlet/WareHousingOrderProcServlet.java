@@ -3,7 +3,6 @@ package dou.webServlet;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +11,10 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import dou.config.Config;
-import dou.metaObject.SalesOrder;
+import dou.metaObject.WareHousingOrder;
 
-public class SalesOrderProcServlet extends HttpServlet{
+public class WareHousingOrderProcServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,11 +43,11 @@ public class SalesOrderProcServlet extends HttpServlet{
 				String orderID = jsonObject.getString("orderID");
 				String carNum = jsonObject.getString("carNum");
 				String stockLoca = jsonObject.getString("stockLoca");
-				String customerName = jsonObject.getString("name");
+				String supplierName = jsonObject.getString("name");
 				String orderRemark = jsonObject.getString("remark");
 				JSONArray productJsonArray = jsonObject.getJSONArray("Product");
 				
-				SalesOrder salesOrder = new SalesOrder(orderID, carNum, stockLoca, username, customerName, orderRemark);
+				WareHousingOrder warehousingOrder = new WareHousingOrder(orderID, carNum, stockLoca, username, supplierName, orderRemark);
 				for (int i = 0; i < productJsonArray.length(); i++){
 					JSONObject productJson = (JSONObject)productJsonArray.get(i);
 					String pSpec = productJson.getString("SN");
@@ -58,12 +56,12 @@ public class SalesOrderProcServlet extends HttpServlet{
 					Long pPrice = productJson.getLong("Price");
 					Long pTotalPrice = productJson.getLong("TotalPrice");
 					String pRemark = productJson.getString("Others");
-					salesOrder.AddSalesProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
+					warehousingOrder.AddSalesProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
 				}
-				salesOrder.ProcSalesOrder();
-				logger.info("[SalesOrderProcServlet.java:doPost] Create SalseOrder Object By post-order json success!!!");
+				warehousingOrder.ProcWareHousingOrder();
+				logger.info("[WareHousingOrderProcServlet.java:doPost] Create warehousing order Object By post-order json success!!!");
 			} catch (JSONException e) {
-				logger.error("[SalesOrderProcServlet.java:doPost] Create SalseOrder Object By post-order json Failed!!! jsonData = " + reqParams);
+				logger.error("[SalesOrderProcServlet.java:doPost] Create warehousing order Object By post-order json Failed!!! jsonData = " + reqParams);
 				logger.error("Error Message : " + e.getMessage());
 				/* 可以返回订单提交失败,后期加 */
 			}
@@ -84,15 +82,15 @@ public class SalesOrderProcServlet extends HttpServlet{
 			buf = new BufferedInputStream(request.getInputStream());
 			buf.read(sContentTmp, 0, iContentLen);
 			sContent = new String(sContentTmp, 0, iContentLen, "UTF-8");
-			logger.info("[WareHousingOrderProcServlet.java:getPostParameter] Get SalesOrder Post JSON Success!!!  jsonData: " + sContent);
+			logger.info("[WareHousingOrderProcServlet.java:getPostParameter] Get WareHousing Post JSON Success!!!  jsonData: " + sContent);
 		} catch (Exception e) {
-			logger.error("[SalesOrderProcServlet.java:getPostParameter] Get SalesOrder Post JSON Failed!!!");
+			logger.error("[WareHousingOrderProcServlet.java:getPostParameter] Get WareHousing Post JSON Failed!!!");
 			logger.error("Error Message : " + e.getMessage());
 		} finally {
 			try {
 				buf.close();
 			} catch (IOException e) {
-				logger.error("[SalesOrderProcServlet.java:getPostParameter] close buffer Failed!!!");
+				logger.error("[WareHousingOrderProcServlet.java:getPostParameter] close buffer Failed!!!");
 				logger.error("Error Message : " + e.getMessage());
 			}
 		}
