@@ -43,7 +43,7 @@ function check_search_result()
 		var obj = JSON.parse(b);
 
 		result_board.style.visibility = "visible";
-		result_board.innerHtml = "";
+		result_board.innerHTML = "";
 
 		console.info(b);
 		console.info(obj);
@@ -96,6 +96,6 @@ function check_search_result()
 
 			string_final = string_final + "</div>"
 		}
-		result_board.innerHtml = string_final;
+		result_board.innerHTML = string_final;
 	}
 }
