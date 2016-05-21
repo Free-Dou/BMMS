@@ -116,7 +116,7 @@ function login_success(hold_time)
 	hold_time = hold_time - 1;
 	if(hold_time < 0)
 	{
-		location.href='mainpage.html';
+		location.href='mainpage.jsp';
 		return;
 	}
 	setTimeout("login_success('" + hold_time + "')", 1000);
