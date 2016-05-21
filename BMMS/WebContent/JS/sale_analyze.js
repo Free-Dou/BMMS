@@ -47,9 +47,10 @@ function check_search_result()
 
 		console.info(b);
 		console.info(obj);
+
+		var string_final = "";
 		for(var i = 0; i < obj.length; i++)
 		{
-			var string_final = "";
 			var totalCount = 0;
 			var totalMoney = 0;
 
