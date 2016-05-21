@@ -55,6 +55,13 @@ function check_login_result()
 
 function login_click()
 {
+	var e1 = document.getElementById("username");
+	if(e1.value == "")
+	{
+		e1.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+
 	var e = document.getElementById("password");
 	if(e.value == "")
 	{
@@ -62,13 +69,6 @@ function login_click()
 		return;
 	}
 	e.value = hex_md5(e.value);
-
-	var e1 = document.getElementById("username");
-	if(e1.value == "")
-	{
-		e1.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
-	}
 
 	login_show();
 
