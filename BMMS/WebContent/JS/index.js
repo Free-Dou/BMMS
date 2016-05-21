@@ -46,7 +46,7 @@ function check_login_result()
 			var e = document.getElementById("process_tip");
 			e.innerHTML="登录失败，请重试";
 
-			setTimeout("login_success('" + 1 + "')", 1000);
+			setTimeout("login_failed('" + 1 + "')", 1000);
 		}
 	}
 }
