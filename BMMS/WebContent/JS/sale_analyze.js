@@ -1,5 +1,4 @@
 var myxmlhttp = "";
-var date_array = new Array();
 
 function body_onload()
 {
@@ -52,15 +51,19 @@ function check_search_result()
 		var string_final = "";
 		var result_now_date = "";
 		var message_back = 1;
+		var date_array = new Array();
+
+		for(var i = 0; i < myobj.length; i++)
+			date_array.push(myobj[i].outTime);
 
 		for(var i = 0; i < myobj.length; i++)
 		{
-			result_now_date = myobj[i].outTime.substring(0,10);
+			result_now_date = date_array[i].substring(0,10);
 			string_final = string_final + "<div class=\"message-box-" + message_back + "\">";
 				string_final = string_final + "<div class=\"right-page-title\"> " + result_now_date + " </div>";
 				string_final = string_final + "<div class=\"message-box\">";
 
-					while(myobj[i].outTime.substring(0,10) == result_now_date)
+					while(date_array[i].substring(0,10) == result_now_date)
 					{
 						var totalCount = 0;
 						var totalMoney = 0;
