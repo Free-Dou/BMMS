@@ -134,7 +134,7 @@ public class SqlHelper {
 			for (int i = 0; i < sqls.length; i++) {
 				preparedStatement = connect.prepareStatement(sqls[i]);
 				/* 设置参数 */
-				if (parameters[i] != null) {
+				if ((null != parameters) && (parameters[i] != null)) {
 					for (int j = 0; j < parameters[i].length; j++) {
 						preparedStatement.setString(j + 1, parameters[i][j]);
 					}
@@ -150,6 +150,7 @@ public class SqlHelper {
 			//e.printStackTrace();
 			logger.error("[SqlHelper.java:executeUpdateForSqls] Sqls Update has Failed!!!");
 			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
 			// 如果sql语句中任何一句出错了，则可以整体回滚
 			try {
 				connect.rollback();

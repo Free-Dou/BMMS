@@ -290,14 +290,13 @@ public class MySqlIO {
 	}
 	
 	/* 从数据库中获取个人信息 */
-	public ArrayList<PersionMessage> getAllpersionMessageListInfo() {
+	public ArrayList<PersionMessage> getPersionMessageInfo(String sql, String params[]) {
 		ArrayList<PersionMessage> persionMessageList = null;
 		PersionMessage persionMessageObject = null;
-		String sql = "SELECT * FROM tb_personmessage ORDER BY id DESC;";
 		ResultSet rs = null;
 		
-		logger.info("[MySqlIO.java:getAllpersionMessageListInfo] " + sql);
-		rs = sqlHelper.executeQuery(sql, null);
+		logger.info("[MySqlIO.java:getAllpersionMessageListInfo] " + sql + "  params: " + Arrays.toString(params)); 
+		rs = sqlHelper.executeQuery(sql, params);
 		try {
 			/* 提取数据 */
 			while (rs.next()){
@@ -415,7 +414,7 @@ public class MySqlIO {
 		String lastOrderID = null;
 		ResultSet rs = null;
 		
-		logger.info("[MySqlIO.java:getAllWareHousingOrderInfo] " + sql + "  params: " + Arrays.toString(params));
+		logger.info("[MySqlIO.java:queryWareHousingOrderInfo] " + sql + "  params: " + Arrays.toString(params));
 		rs = sqlHelper.executeQuery(sql, params);
 		try {
 			/* 提取数据 */
@@ -479,11 +478,8 @@ public class MySqlIO {
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
 		
-		logger.info("[MySqlIO.java:addInfoToDB] Add info to DB: " + sql);
-		for (int i = 0; i <  parameters.length; i++){
-			logger.info("[MySqlIO.java:addInfoToDB] info " + i + " : " + parameters[i]);
-		}
-		
+		logger.info("[MySqlIO.java:addInfoToDB] Add info to DB: " + sql +" params: " + Arrays.toString(parameters));
+
 		sqlHelper.executeUpdate(sql, parameters);
 	}
 	
@@ -492,8 +488,8 @@ public class MySqlIO {
 		
 		for (int i = 0; i <  sqls.length; i++){
 			logger.info("[MySqlIO.java:addInfoToDB] sql " + i + " : " + sqls[i]);
-			for (int j = 0; j <  parameters[i].length; j++){
-				logger.info("[MySqlIO.java:addInfoToDB] info " + j + " : " + parameters[i][j]);
+			if ((null != parameters) && (null !=  parameters[i])){
+				logger.info("[MySqlIO.java:addInfoToDB] params: " + Arrays.toString(parameters[i]));
 			}
 		}
 		
@@ -503,11 +499,8 @@ public class MySqlIO {
 	/* 从数据库删除数据 */
 	public void delInfoFromDB(String sql, String[] parameters) {
 		
-		logger.info("[MySqlIO.java:delInfoFromDB] del info from DB: " + sql);
-		for (int i = 0; i <  parameters.length; i++){
-			logger.info("[MySqlIO.java:delInfoFromDB] info " + i + " : " + parameters[i]);
-		}
-		
+		logger.info("[MySqlIO.java:delInfoFromDB] del info from DB: " + sql + "  params: " + Arrays.toString(parameters));
+
 		sqlHelper.executeUpdate(sql, parameters);
 	}
 

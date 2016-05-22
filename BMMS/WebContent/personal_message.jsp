@@ -47,9 +47,6 @@
 					String orderid = persionMessageObject.getOrderid();			/* 用于记录当前订单的订单号 */
 					Integer columnNo = 0;										/* 用于记录当前订单列(材料种类)的数量 */
 					Float productTotalNum = 0.0f;			
-					String orderRemark = "";									/* 用于记录当前订单的备注 */
-					String userName = "";										/* 用于记录当前订单的提单人 */
-					String createTime = "";										/* 用于记录当前订单的时间 */
 					
 					out.print("<div class=\"message-box-" + (((orderNum++) % 2) + 1) + "\">");
 					out.print("<div class=\"message-title\"> " + operationType + " ：" + persionMessageObject.getOrderid() + " </div>");
@@ -98,10 +95,7 @@
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 									  + ((columnNo % 2) + 1) + "\" style=\"width: 25%;\">" + persionMessageObject.getRemark() + "</div>");
 							out.print("</div>");
-							
-							orderRemark = persionMessageObject.getOrderRemark();								
-							userName = persionMessageObject.getUsername();									
-							createTime = persionMessageObject.getCreateTime();		
+								
 							allProductTotalPrice += persionMessageObject.getTotalPrice();
 							productTotalNum += persionMessageObject.getNumber();
 							columnNo++;
@@ -134,32 +128,38 @@
 					out.print("</div>");
 					
 					/* 表信息显示完闭， 显示备注、处理选项等 */
-					out.print("<div> &emsp;&emsp;备注：" + orderRemark + " </div>");
+					persionMessageObject = persionMessageList.get(i);
+					out.print("<div> &emsp;&emsp;备注：" + persionMessageObject.getOrderRemark() + " </div>");
 					out.print("</div>");
 					out.print("</div>");
-					out.print("<div class=\"message-time\"> User:" + userName + " Time:" + createTime + " </div>");
+					out.print("<div class=\"message-time\"> User:" + persionMessageObject.getUsername() + " Time:" + persionMessageObject.getCreateTime() + " </div>");
 	
 					if (1 == userGrade){
 						/* 用户，不可以审批 */
-						String messageStatus = (persionMessageObject.getApproval().equals(1)) ? "已审核" : "待审核";
+						String messageStatus = (persionMessageObject.getApproval().equals("1")) ? "已审核" : "待审核";
 						out.print("<div style=\"height: 32px;\">");
 						out.print("<div style=\"text-align: right; margin-right: 34px;\"> " + messageStatus + "</div>");
 					} else if (2 == userGrade){
 						/* 管理员，有审核权限 */
-						out.print("<div style=\"height: 32px;\">");
+						if (persionMessageObject.getApproval().equals("0")){		/* 未审核订单 */
+							out.print("<div style=\"height: 32px;\">");
 						
-						out.print("<div id=\"cancle_button\" class=\"red_button\" style=\"margin-right: 34px;\"onmouseenter=\""
-								  + "button_mouseenter('cancle_button')\" onmouseleave=\"button_mouseleave('cancle_button')\" "
-								  + "onmousedown=\"button_mousedown('cancle_button')\" onmouseup=\"button_mouseup('cancle_button')\" "
-								  + "onclick=\"cancle_click('" + persionMessageObject.getOrderid() + "')\">");
-						out.print("<p style=\"top: 50%; transform: translateY(-50%);\">打回</p>");
-						out.print("</div>");
-						out.print("<div id=\"confirm_button\" class=\"blue_button\" style=\"margin-right: 10px;\" onmouseenter=\""
-								 + "button_mouseenter('confirm_button')\" onmouseleave=\"button_mouseleave('confirm_button')\" "
-								 + "onmousedown=\"button_mousedown('confirm_button')\" onmouseup=\"button_mouseup('confirm_button')\""
-								 + " onclick=\"confirm_click('" + persionMessageObject.getOrderid() + "')\">");
-						out.print("<p style=\"top: 50%; transform: translateY(-50%);\">通过</p>");
-						out.print("</div>");
+							out.print("<div id=\"cancle_button\" class=\"red_button\" style=\"margin-right: 34px;\"onmouseenter=\""
+									  + "button_mouseenter('cancle_button')\" onmouseleave=\"button_mouseleave('cancle_button')\" "
+									  + "onmousedown=\"button_mousedown('cancle_button')\" onmouseup=\"button_mouseup('cancle_button')\" "
+									  + "onclick=\"cancle_click('" + persionMessageObject.getOrderid() + "')\">");
+							out.print("<p style=\"top: 50%; transform: translateY(-50%);\">打回</p>");
+							out.print("</div>");
+							out.print("<div id=\"confirm_button\" class=\"blue_button\" style=\"margin-right: 10px;\" onmouseenter=\""
+									 + "button_mouseenter('confirm_button')\" onmouseleave=\"button_mouseleave('confirm_button')\" "
+									 + "onmousedown=\"button_mousedown('confirm_button')\" onmouseup=\"button_mouseup('confirm_button')\""
+									 + " onclick=\"confirm_click('" + persionMessageObject.getOrderid() + "')\">");
+							out.print("<p style=\"top: 50%; transform: translateY(-50%);\">通过</p>");
+							out.print("</div>");
+						}else{			/* 已审核订单 */
+							out.print("<div style=\"height: 32px;\">");
+							out.print("<div style=\"text-align: right; margin-right: 34px;\"> 已审核通过 </div>");
+						}
 					}
 					out.print("</div>");
 					out.print("</div>");

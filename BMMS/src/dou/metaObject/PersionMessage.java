@@ -51,11 +51,67 @@ public class PersionMessage {
 		ArrayList<PersionMessage> persionMessageList = null;
 		
 		/* 从数据库获取全部数据 */
-		persionMessageList = SqlUtilsInterface.getAllpersionMessageListInfo();
+		String sql = "SELECT * FROM tb_personmessage ORDER BY id DESC;";
+		String params[] = null;
+		persionMessageList = SqlUtilsInterface.getPersionMessageInfo(sql, params);
 		
 		return persionMessageList;
 	}
 
+
+	public static boolean procApprovalOrder(String approvalOrderID) {
+		/* 获取相关的数据列信息 */
+		 ArrayList<PersionMessage> approvalOrderProductArray = null;
+		 String sql = "select * from tb_personmessage where orderid=?";
+		 String params[] = {approvalOrderID};
+		 approvalOrderProductArray = SqlUtilsInterface.getPersionMessageInfo(sql, params);
+		 if (null == approvalOrderProductArray){
+			 return false;
+		 }
+		 
+		Integer orderType = 0;
+		String sqls[] = new String[approvalOrderProductArray.size() * 2 + 1];
+		String insertSql = null;
+		String updateSql = null;
+		
+		/* 先从表单的第一行数据，获取出入库类型, 0:入库，1:出库 */
+		PersionMessage persionMessageObject = approvalOrderProductArray.get(0);
+		orderType = persionMessageObject.getOperation();
+		if (1 == orderType){
+			/* 设置前半段sql语句为出库处理的sql语句 */
+			insertSql = "INSERT INTO `tb_materiaout` (`orderid`, `mpspec`, `mname`, `number`, `carNum`,"
+					+ " `stockloca`, `price`, `totalPrice`, `outTime`, `username`, `cname`, `remark`, `orderRemark`) ";
+			updateSql = "UPDATE tb_materialstock SET number=number-(SELECT number FROM tb_materiaout ";
+			sqls[approvalOrderProductArray.size() * 2] = "UPDATE tb_personmessage SET approval = '1' WHERE orderid = '" + approvalOrderID + "';";
+		}else{
+			/* 设置前半段sql语句为入库处理的sql语句 */
+			insertSql = "INSERT INTO `tb_materiain` (`orderid`, `mpspec`, `mname`, `number`, `carNum`,"
+					+ " `stockloca`, `price`, `totalPrice`, `inTime`, `username`, `sname`, `remark`, `orderRemark`) ";
+			updateSql = "UPDATE tb_materialstock SET number=number+(SELECT number FROM tb_materiain ";
+			sqls[approvalOrderProductArray.size() * 2] = "UPDATE tb_personmessage SET approval = '1' WHERE orderid = '" + approvalOrderID + "';";
+		}
+		
+		for (int i = 0; i < approvalOrderProductArray.size(); i++ ){
+			/* 处理每一行数据 */
+			persionMessageObject = approvalOrderProductArray.get(i);
+			
+			/* 补齐后半段sql语句，主要是填数据，出入库相同 */
+			sqls[i] = insertSql;
+			sqls[i] += ("VALUES ('" + approvalOrderID + "', '" + persionMessageObject.getMpspec() + "', '" + persionMessageObject.getMname() + "',"
+						+ " '" + persionMessageObject.getNumber() + "', '" + persionMessageObject.getCarNum() + "', '" + persionMessageObject.getStockLoca() + "',"
+						+ " '" + persionMessageObject.getPrice() + "', '" + persionMessageObject.getTotalPrice() + "', '" + persionMessageObject.getCreateTime() + "', "
+						+ "'"+ persionMessageObject.getUsername() +"', '" + persionMessageObject.getRelationName() + "', '" + persionMessageObject.getRemark() + "', '" + persionMessageObject.getOrderRemark() + "');");
+				
+			sqls[i + approvalOrderProductArray.size()] = updateSql;
+			sqls[i + approvalOrderProductArray.size()] += ("WHERE orderid='" + approvalOrderID + "' AND mname='" + persionMessageObject.getMname() + "') WHERE mname='" + persionMessageObject.getMname() + "';");
+		}
+		
+		/* 执行全部sql语句 */
+		SqlUtilsInterface.updateManyInfos(sqls, null);
+		
+		return true;
+	}
+	
 	public String getOrderid() {
 		return orderid;
 	}
@@ -114,5 +170,6 @@ public class PersionMessage {
 
 	public String getOrderRemark() {
 		return orderRemark;
-	}	
+	}
+	
 }

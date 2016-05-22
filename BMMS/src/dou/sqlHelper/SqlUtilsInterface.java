@@ -53,8 +53,8 @@ public class SqlUtilsInterface {
 		return new MySqlIO().getAllSystemMessageInfo();
 	}
 
-	public static ArrayList<PersionMessage> getAllpersionMessageListInfo() {
-		return new MySqlIO().getAllpersionMessageListInfo();
+	public static ArrayList<PersionMessage> getPersionMessageInfo(String sql, String params[]) {
+		return new MySqlIO().getPersionMessageInfo(sql, params);
 	}
 
 
@@ -66,7 +66,6 @@ public class SqlUtilsInterface {
 	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String params[]) {
 		return new MySqlIO().queryWareHousingOrderInfo(sql, params);
 	}
-
 	
 /*
  * 

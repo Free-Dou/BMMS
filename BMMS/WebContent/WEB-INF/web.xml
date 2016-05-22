@@ -144,4 +144,14 @@
   <url-pattern>/WareHousingAnalyse</url-pattern>
   </servlet-mapping>
   
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>ProcPersonMessage</servlet-name>
+  <servlet-class>dou.webServlet.PersionMessageProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcPersonMessage</servlet-name>
+  <url-pattern>/ProcPersonMessage</url-pattern>
+  </servlet-mapping>
 </web-app>
