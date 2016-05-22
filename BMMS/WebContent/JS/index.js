@@ -201,3 +201,11 @@ function process_complete(session_id)
 	}
 	setTimeout("process_complete('" + session_id +"')", 10);
 }
+
+function pwd_enter_press(evt)
+{
+	evt = (evt) ? evt : window.event;
+	if (evt.keyCode)
+		if(evt.keyCode == 13)
+			login_click();
+}
