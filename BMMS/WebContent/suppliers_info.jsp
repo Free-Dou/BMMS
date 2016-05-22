@@ -3,10 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<meta charset="utf-8">
 
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title></title>
 		<style type="text/css">
 			@import url(CSS/common-style.css);
@@ -22,38 +22,36 @@
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 	</head>
-	<body>
+		<body>
 		<div id="orderation_info_pad" class="right-page-contains">
 			<div class="right-page-title"> 供应商档案 </div>
-			<div>
-				<div class="table-line">
-					<div class="table-title-cell cell-head"></div>
-					<div class="table-title-cell" style="width: 35%;"> 名称 </div>
-					<div class="table-title-cell" style="width: 15%;"> 电话 </div>
-					<div class="table-title-cell" style="width: 15%;"> 传真 </div>
-					<div class="table-title-cell" style="width: 15%;"> 联系人 1 </div>
-					<div class="table-title-cell" style="width: 15%;"> 联系人 2 </div>
-				</div>
-				<div id="table_inner">
-					<%
-						ArrayList<Supplier> supplierList = Supplier.getAllSupplierInfo();
+			<div class="table-line">
+				<div class="table-title-cell cell-head"></div>
+				<div class="table-title-cell" style="width: 35%;"> 名称 </div>
+				<div class="table-title-cell" style="width: 15%;"> 电话 </div>
+				<div class="table-title-cell" style="width: 15%;"> 传真 </div>
+				<div class="table-title-cell" style="width: 15%;"> 联系人 1 </div>
+				<div class="table-title-cell" style="width: 15%;"> 联系人 2 </div>
+			</div>
+			<div id="table_inner">
+				<%
+					ArrayList<Supplier> supplierList = Supplier.getAllSupplierInfo();
+				
+					if (null != supplierList){
+						for (int i = 0; i < supplierList.size(); i++){
+						 	Supplier supplierObject = supplierList.get(i);
 					
-						if (null != supplierList){
-							for (int i = 0; i < supplierList.size(); i++){
-							 	Supplier supplierObject = supplierList.get(i);
-						
-								out.print("<div id=\"" + supplierObject.getsName() + "\" class=\"table-line\">");
-								out.print("<div onclick=\"del_click('" + supplierObject.getsName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
-								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 35%;\">" + supplierObject.getsName() + "</div>");
-								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsTel() + "</div>");
-								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsFax() + "</div>");
-								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsContact1() + "</div>");
-								out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsContact2() + "</div>");
-								out.print("</div>");
-							}
+							out.print("<div id=\"" + supplierObject.getsName() + "\" class=\"table-line\">");
+							out.print("<div onclick=\"del_click('" + supplierObject.getsName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> - </div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 35%;\">" + supplierObject.getsName() + "</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsTel() + "</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsFax() + "</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsContact1() + "</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1)  + "\" style=\"width: 15%;\">" + supplierObject.getsContact2() + "</div>");
+							out.print("</div>");
 						}
-					%>
-				</div>
+					}
+				%>
 			</div>
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="buyinfo_footer_button_1" onmouseenter="button_mouseenter_footer('buyinfo_footer_button_1')" onmouseleave="button_mouseleave_footer('buyinfo_footer_button_1')" onmousedown="button_mousedown_footer('buyinfo_footer_button_1')" onmouseup="button_mouseup_footer('buyinfo_footer_button_1')" onclick="add_click('orderation_info_pad')">

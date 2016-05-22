@@ -6,6 +6,31 @@ var added_item = new Array();
 var now_index = 0;
 var confirming = false;
 
+var process_time_last = 0;
+var pi_pos = new Array();
+var center_y = 50;
+var center_x = 50;
+var s_process_timer = 0;
+
+for(var i = 0; i < 5; i++)
+	pi_pos[i] = 0;
+
+function body_onload()
+{
+	if(trade_person.options.length == 0)
+	{
+		alert('供应商列表为空，清先添加一个供应商。');
+		parent.lv2_mouseup(3, 2);
+		// parent.title_onclick(3, 2);
+	}
+	if(select_add_name.options.length == 0)
+	{
+		alert('产品目录为空，清先添加一个产品。');
+		parent.lv2_mouseup(1, 0);
+		// parent.title_onclick(1, 0);
+	}
+}
+
 function table_add(data)
 {
 	var add_item_text = "<div id=\"line_" + now_index + "\" class=\"table-line\">";
@@ -163,24 +188,84 @@ function cancle_click()
 
 function trade_confirm_click()
 {
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
 	parent.myxmlhttp = getXmlHttpObject();
 
 	if (parent.myxmlhttp)
 	{
-		// var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
-		var data = JSON.stringify(added_item);
-		alert(data);
-		// createXMLHttpRequest();
-		// myxmlhttp.open("post", aim_url, true);
-		// myxmlhttp.onreadystatechange = dispose;
-		// myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		// myxmlhttp.send(data);
+		var data = new Object();
+
+		var myDate = new Date();
+		var month = Number(myDate.getMonth()) + 1;
+		if(month < 10)
+			month = "0" + month;
+		var day = Number(myDate.getDate());
+		if(day < 10)
+			day = "0" + day;
+		
+		var hour = Number(myDate.getHours());
+		if(hour < 10)
+			hour = "0" + hour;
+		var minute = Number(myDate.getMinutes());
+		if(minute < 10)
+			minute = "0" + minute;
+		var second = Number(myDate.getSeconds());
+		if(second < 10)
+			second = "0" + second;
+		var millisecond = Number(myDate.getMilliseconds());
+		if(millisecond < 10)
+			millisecond = "00" + millisecond;
+		else if(millisecond < 100)
+			millisecond = "0" + millisecond;
+		
+		data.orderID = myDate.getFullYear() + month.toString() + day.toString() + hour.toString() + minute.toString() + second.toString() + millisecond.toString();
+		data.carNum = trade_car.value;
+		data.stockLoca = trade_store.options[trade_store.selectedIndex].text;
+		data.name = trade_person.value;
+		data.remark = trade_remark.value;
+		data.Product = added_item;
+
+		var data_send = JSON.stringify(data);
+		
+		var aim_url = "/BMMS/ProcWareHousingOrder?time=" + new Date();
+		parent.myxmlhttp.open("post", aim_url, true);
+		parent.myxmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
+		parent.myxmlhttp.send(data_send);
 	}
 }
 
 function trade_cancle_click()
 {
 	setTimeout("hide_window_trade()", 10);
+}
+
+function process_anime()
+{
+	process_time_last = process_time_last + 1;
+	var need_change = parseInt(process_time_last / 10);
+	if(need_change > 5)
+		need_change = 5;
+	for(var i = 0; i < need_change; i++)
+	{
+		var e = document.getElementById("pi" + i);
+		if (pi_pos[i] > 360) 
+			pi_pos[i] = pi_pos[i] - 360;
+
+		if(pi_pos[i] < 180)
+			pi_pos[i] = pi_pos[i] + (pi_pos[i] + 10) / 20;
+		else if(pi_pos[i] < 360)
+			pi_pos[i] = pi_pos[i] + (360 - pi_pos[i] + 10) / 20;
+
+		var new_x = center_x + Math.sin(2 * Math.PI / 360 * pi_pos[i]) * 50;
+		var new_y = center_y - Math.cos(2 * Math.PI / 360 * pi_pos[i]) * 50;
+
+		e.style.top = new_y + "px";
+		e.style.left = new_x + "px";
+		console.info("item info processtimer running.");
+	}
 }
 
 //Select 控件相关

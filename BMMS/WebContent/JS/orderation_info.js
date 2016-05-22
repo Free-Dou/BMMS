@@ -7,19 +7,37 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
-// function dispose()
-// {
-// 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
-// 	{
-// 		location.reload();
-// 	}
-// }
-
 function confirm_click()
 {
 	if(input_add_name.value == "")
 	{
 		input_add_name.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+
+	if (input_add_name.value.indexOf('&') >= 0 || input_add_name.value.indexOf('=') >= 0 || input_add_name.value.indexOf('|') >= 0 || input_add_name.value.indexOf('@') >= 0 || input_add_name.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+	if (input_add_tel.value.indexOf('&') >= 0 || input_add_tel.value.indexOf('=') >= 0 || input_add_tel.value.indexOf('|') >= 0 || input_add_tel.value.indexOf('@') >= 0 || input_add_tel.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+	if (input_add_fix.value.indexOf('&') >= 0 || input_add_fix.value.indexOf('=') >= 0 || input_add_fix.value.indexOf('|') >= 0 || input_add_fix.value.indexOf('@') >= 0 || input_add_fix.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+	if (input_add_phone1.value.indexOf('&') >= 0 || input_add_phone1.value.indexOf('=') >= 0 || input_add_phone1.value.indexOf('|') >= 0 || input_add_phone1.value.indexOf('@') >= 0 || input_add_phone1.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+	if (input_add_phone2.value.indexOf('&') >= 0 || input_add_phone2.value.indexOf('=') >= 0 || input_add_phone2.value.indexOf('|') >= 0 || input_add_phone2.value.indexOf('@') >= 0 || input_add_phone2.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
 		return;
 	}
 

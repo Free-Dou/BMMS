@@ -22,7 +22,7 @@ RIGHT_PAGE_NAME[1] = new Array("item_info.jsp");
 RIGHT_PAGE_NAME[2] = new Array("sale_make.jsp", "sale_analyze.html", "custom_info.jsp");
 RIGHT_PAGE_NAME[3] = new Array("buy_make.jsp", "buy_analyze.html", "suppliers_info.jsp");
 RIGHT_PAGE_NAME[4] = new Array("storehouse_info.jsp");
-RIGHT_PAGE_NAME[5] = new Array("project_info.html");
+RIGHT_PAGE_NAME[5] = new Array("project_info.jsp");
 
 // LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
 // LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");
@@ -45,6 +45,9 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
+var page_change_session = 0;
+var page_change_continue_session = 0;
+
 function myBrowser()
 {
 	var userAgent = navigator.userAgent;
@@ -62,7 +65,7 @@ function myBrowser()
 }
 var mb = myBrowser();
 if ("IE" == mb) {
-	location.href='IE404.html';
+	// location.href='IE404.html';
 }
 if ("FF" == mb) {
 }
@@ -207,8 +210,12 @@ function lv2_mousedown(base, index)
 }
 function lv2_mouseup(base, index)
 {
-	if(onchange_flag == false)
-	{
+	// if(onchange_flag == false)
+	// {
+		clearInterval(page_change_session);
+		clearInterval(page_change_continue_session);
+		clearInterval(s_process_timer);
+
 		var temp = new Array();
 		temp[0] = selected[0];
 		temp[1] = selected[1];
@@ -224,18 +231,18 @@ function lv2_mouseup(base, index)
 		x.style.backgroundColor = "rgba(0,0,0,0.3)";
 
 		title_onclick(base, index);
-	}
-	else if(selected[0] != base || selected[1] != index)
-	{
-		var x = document.getElementById("base_" + base + "_lv2_" + index);
-		x.style.color = "#FFFFFF";
-		x.style.backgroundColor = "rgba(128,128,128,0.3)";
-	}
+	// }
+	// else if(selected[0] != base || selected[1] != index)
+	// {
+	// 	var x = document.getElementById("base_" + base + "_lv2_" + index);
+	// 	x.style.color = "#FFFFFF";
+	// 	x.style.backgroundColor = "rgba(128,128,128,0.3)";
+	// }
 }
 function title_onclick(base, index)
 {
-	if(onchange_flag == false)
-	{
+	// if(onchange_flag == false)
+	// {
 		// page_change_to = "page_right_" + base + "_" + index;
 		page_change_to = RIGHT_PAGE_NAME[base][index];
 		if(page_change_to == page_now)
@@ -264,8 +271,8 @@ function title_onclick(base, index)
 			return;
 		}
 		else
-			setTimeout("page_change()", 10);
-	}
+			page_change_session = setInterval("page_change()", 10);
+	// }
 }
 function page_change()
 {
@@ -293,9 +300,10 @@ function page_change()
 		s_process_timer = setInterval("process_anime()", 10);
 		// s_load_timer = setInterval("login_show_anime()", 10);
 
+		clearInterval(page_change_session);
 		return;
 	}
-	setTimeout("page_change()", 10);
+	// setTimeout("page_change()", 10);
 }
 function page_change_continue()
 {
@@ -312,21 +320,10 @@ function page_change_continue()
 		e.style.opacity = 1;
 
 		onchange_flag = false;
+		clearInterval(page_change_continue_session);
 		return;
 	}
-	setTimeout("page_change_continue()", 10);
-}
-
-function login_show_anime()
-{
-	var e = document.getElementById("process_message");
-	cover_alpha = cover_alpha + 0.03;
-	e.style.backgroundColor = "rgba(0,0,0," + cover_alpha + ")";
-	if(cover_alpha >= 0.6)
-	{
-		clearInterval(s_load_timer);
-		return;
-	}
+	// setTimeout("page_change_continue()", 10);
 }
 
 function process_anime()
@@ -363,23 +360,9 @@ function iframe_load_complete()
 		// clearInterval(s_load_timer);
 		// s_unload_timer = setInterval("load_complete_anime()");
 		process_message.style.visibility = "hidden";
-		setTimeout("page_change_continue()", 10);
+		page_change_continue_session = setInterval("page_change_continue()", 10);
 		
 		console.info("load complete stop loadtimer & processtimer.");
-	}
-}
-
-function load_complete_anime()
-{
-	var e = document.getElementById("process_message");
-	cover_alpha = cover_alpha - 0.03;
-	e.style.backgroundColor = "rgba(0,0,0," + cover_alpha + ")";
-	if(cover_alpha <= 0.0)
-	{
-		clearInterval(s_unload_timer);
-		process_message.style.visibility = "hidden";
-		console.info("hiddened");
-		return;
 	}
 }
 
@@ -390,7 +373,7 @@ function refresh_now_page()
 		if(onchange_flag == false)
 		{
 			page_change_to = page_now;
-			setTimeout("page_change()", 10);
+			page_change_session = setInterval("page_change()", 10);
 		}
 	}
 }

@@ -4,25 +4,31 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectQunatity;
+import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
+import dou.metaObject.WareHousingOrder;
 
 public class MySqlIO {
 
 	private SqlHelper sqlHelper = new SqlHelper();
 	private Logger logger = Config.getLogger(this.getClass());
-
+	
 	/* 检查用户名和密码的正确性 */
 	public boolean verifyPwd(String userName, String pwd) {
 		boolean result = false;
-		String sql = "select * from tb_user where username = ? and pwd = ?;";
+		String sql = "select * from tb_user where username = ? and pwd = MD5(?);";
+		pwd = "20160518" + pwd;
 		String[] parameters = {userName, pwd};
 		ResultSet resultSet = null;
 		
@@ -31,7 +37,7 @@ public class MySqlIO {
 			return result;
 		}
 
-		logger.info("[MySqlIO.java:verifyPwd] select * from tb_user where username = '" + userName + "' and pwd = '" + pwd + "';");
+		logger.info("[MySqlIO.java:verifyPwd] "+ sql + "    params: username = '" + userName + "'  pwd = '" + pwd + "'  salt = '20160518';");
 		resultSet = sqlHelper.executeQuery(sql, parameters);
 
 		try {
@@ -218,7 +224,7 @@ public class MySqlIO {
 				String mPSpec = rs.getString("mpspec");
 				String mName = rs.getString("mname");
 				Float number = rs.getFloat("number");
-				String ctime = rs.getString("ctime");
+				String ctime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("ctime"));
 				String stockloca = rs.getString("stockloca");
 				String remark = rs.getString("remark");
 				
@@ -281,15 +287,52 @@ public class MySqlIO {
 		return systemMessageList;
 	}
 	
-
-	public ArrayList<PersionMessage> getAllpersionMessageListInfo() {
-		ArrayList<PersionMessage> persionMessageList = null;
-		PersionMessage persionMessageObject = null;
-		String sql = "SELECT * FROM tb_personmessage ORDER BY id DESC;";
+	/* 从数据库中提取工程量信息 */
+	public ArrayList<ProjectQunatity> getAllProjectQunatityInfo() {
+		ArrayList<ProjectQunatity> projectQunatityList = null;
+		ProjectQunatity projectQunatityObject = null;
+		String sql = "SELECT * FROM tb_qunatity;";
 		ResultSet rs = null;
 		
-		logger.info("[MySqlIO.java:getAllpersionMessageListInfo] " + sql);
+		logger.info("[MySqlIO.java:getAllProjectQunatityInfo] " + sql);
 		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String projectName = rs.getString("projectName");
+				Float budget = rs.getFloat("budget");
+				Float paid = rs.getFloat("paid");
+				String remark = rs.getString("remark");
+				
+				if (null == projectQunatityList){
+					projectQunatityList = new ArrayList<ProjectQunatity>();
+				}
+								
+				projectQunatityObject = new ProjectQunatity(projectName, budget, paid, remark);
+				projectQunatityList.add(projectQunatityObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllProjectQunatityInfo] Get all ProjectQunatity Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllProjectQunatityInfo] Get ProjectQunatity Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return projectQunatityList;
+	}
+	
+	/* 从数据库中获取个人信息 */
+	public ArrayList<PersionMessage> getPersionMessageInfo(String sql, String params[]) {
+		ArrayList<PersionMessage> persionMessageList = null;
+		PersionMessage persionMessageObject = null;
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllpersionMessageListInfo] " + sql + "  params: " + Arrays.toString(params)); 
+		rs = sqlHelper.executeQuery(sql, params);
 		try {
 			/* 提取数据 */
 			while (rs.next()){
@@ -302,11 +345,12 @@ public class MySqlIO {
 				Float  price = rs.getFloat("price");
 				Float  totalPrice = rs.getFloat("totalPrice");
 				String username = rs.getString("username");
-				String createTime = rs.getString("createTime");
+				String createTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("createTime"));
 				String relationName = rs.getString("relationName");
 				Integer operation = rs.getInt("operation");
 				String approval = rs.getString("approval");
 				String remark = rs.getString("remark");
+				String orderRemark = rs.getString("orderRemark");
 				
 				if (null == persionMessageList){
 					persionMessageList = new ArrayList<PersionMessage>();
@@ -315,7 +359,7 @@ public class MySqlIO {
 				persionMessageObject = new PersionMessage(orderid, mname, carNum, mpspec, 
 														number, stockLoca, price, totalPrice,
 														username, createTime, relationName, 
-														operation, approval, remark);
+														operation, approval, remark, orderRemark);
 				persionMessageList.add(persionMessageObject);
 			}
 			
@@ -332,14 +376,146 @@ public class MySqlIO {
 		return persionMessageList;
 	}
 	
+	public ArrayList<SalesOrder> querySalesOrderInfo(String sql, String params[]) {
+		ArrayList<SalesOrder> salesOrderList = null;
+		SalesOrder salesOrderObject = null;
+		String lastOrderID = null;
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllSalesOrderInfo] " + sql + "  params: " + Arrays.toString(params));
+		rs = sqlHelper.executeQuery(sql, params);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String orderID = rs.getString("orderid");
+				String mpSpec = rs.getString("mpspec");
+				String pName = rs.getString("mname");
+				Float  pCount = rs.getFloat("number");
+				String carNum = rs.getString("carNum");
+				String stockLoca = rs.getString("stockLoca");
+				Float  pPrice = rs.getFloat("price");
+				Float  pTotalPrice = rs.getFloat("totalPrice");
+				String outTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("outTime"));
+				String userName = rs.getString("username");
+				String customerName = rs.getString("cName");
+				String pRemark = rs.getString("remark");
+				String orderRemark = rs.getString("orderRemark");
+				
+				if (null == salesOrderList){
+					salesOrderList = new ArrayList<SalesOrder>();
+				}
+				
+				if (null == lastOrderID){					/* 如果是第一条数据 */
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark);
+					salesOrderObject.setOutTime(outTime);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
+					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}else if (orderID.equals(lastOrderID)){		/* 如果是同一个订单的数据 */
+					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
+				}else{										/* 新订单的数据 */
+					salesOrderList.add(salesOrderObject);
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark);
+					salesOrderObject.setOutTime(outTime);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
+					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}
+			}
+			
+			if (null != salesOrderObject){
+				salesOrderList.add(salesOrderObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get all sales order Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return salesOrderList;
+	}
+	
+	/* 获取全部入库订单信息 */
+	public ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String[] params) {
+		ArrayList<WareHousingOrder> wareHousingOrderList = null;
+		WareHousingOrder wareHousingOrderObject = null;
+		String lastOrderID = null;
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:queryWareHousingOrderInfo] " + sql + "  params: " + Arrays.toString(params));
+		rs = sqlHelper.executeQuery(sql, params);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String orderID = rs.getString("orderid");
+				String mpSpec = rs.getString("mpspec");
+				String pName = rs.getString("mname");
+				Float  pCount = rs.getFloat("number");
+				String carNum = rs.getString("carNum");
+				String stockLoca = rs.getString("stockLoca");
+				Float  pPrice = rs.getFloat("price");
+				Float  pTotalPrice = rs.getFloat("totalPrice");
+				String inTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("inTime"));
+				String userName = rs.getString("username");
+				String supplierName = rs.getString("sName");
+				String pRemark = rs.getString("remark");
+				String orderRemark = rs.getString("orderRemark");
+				
+				if (null == wareHousingOrderList){
+					wareHousingOrderList = new ArrayList<WareHousingOrder>();
+				}
+				
+				if (null == lastOrderID){					/* 如果是第一条数据 */
+					wareHousingOrderObject = new WareHousingOrder(orderID, carNum, stockLoca, userName, supplierName, orderRemark);
+					wareHousingOrderObject.setInTime(inTime);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get WareHousing order : " + orderID);
+					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get WareHousing order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}else if (orderID.equals(lastOrderID)){		/* 如果是同一个订单的数据 */
+					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order's product : " + mpSpec);
+				}else{										/* 新订单的数据 */
+					wareHousingOrderList.add(wareHousingOrderObject);
+					wareHousingOrderObject = new WareHousingOrder(orderID, carNum, stockLoca, userName, supplierName, orderRemark);
+					wareHousingOrderObject.setInTime(inTime);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order : " + orderID);
+					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order's product : " + mpSpec);
+					lastOrderID = orderID;		/* 更新orderID */
+				}
+			}
+			
+			if (null != wareHousingOrderObject){
+				wareHousingOrderList.add(wareHousingOrderObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get all wareHousing order Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return wareHousingOrderList;
+	}
+
 	/* 添加信息到数据库 */
 	public void addInfoToDB(String sql, String[] parameters) {
 		
-		logger.info("[MySqlIO.java:addInfoToDB] Add info to DB: " + sql);
-		for (int i = 0; i <  parameters.length; i++){
-			logger.info("[MySqlIO.java:addInfoToDB] info " + i + " : " + parameters[i]);
-		}
-		
+		logger.info("[MySqlIO.java:addInfoToDB] Add info to DB: " + sql +" params: " + Arrays.toString(parameters));
+
 		sqlHelper.executeUpdate(sql, parameters);
 	}
 	
@@ -348,8 +524,8 @@ public class MySqlIO {
 		
 		for (int i = 0; i <  sqls.length; i++){
 			logger.info("[MySqlIO.java:addInfoToDB] sql " + i + " : " + sqls[i]);
-			for (int j = 0; j <  parameters.length; j++){
-				logger.info("[MySqlIO.java:addInfoToDB] info " + j + " : " + parameters[i][j]);
+			if ((null != parameters) && (null !=  parameters[i])){
+				logger.info("[MySqlIO.java:addInfoToDB] params: " + Arrays.toString(parameters[i]));
 			}
 		}
 		
@@ -359,11 +535,8 @@ public class MySqlIO {
 	/* 从数据库删除数据 */
 	public void delInfoFromDB(String sql, String[] parameters) {
 		
-		logger.info("[MySqlIO.java:delInfoFromDB] del info from DB: " + sql);
-		for (int i = 0; i <  parameters.length; i++){
-			logger.info("[MySqlIO.java:delInfoFromDB] info " + i + " : " + parameters[i]);
-		}
-		
+		logger.info("[MySqlIO.java:delInfoFromDB] del info from DB: " + sql + "  params: " + Arrays.toString(parameters));
+
 		sqlHelper.executeUpdate(sql, parameters);
 	}
 
@@ -387,6 +560,7 @@ public class MySqlIO {
 		}
 		return result;
 	}
+
 
 //	public List<WebPageObejct> getWebPageObejct_List(String table_name) {
 //

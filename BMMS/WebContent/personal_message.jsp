@@ -27,7 +27,17 @@
 		<div class="right-page-contains" id="sys_message_pad">
 			<div class="right-page-title"> 个人消息 </div>
 			<%
+				Integer userGrade = (Integer)session.getAttribute("usergrade");
+				if (null == userGrade){
+					out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+					return;
+				}
+				
 				ArrayList<PersionMessage> persionMessageList = PersionMessage.getAllpersionMessageListInfo();
+				if (null == persionMessageList){
+					return;
+				}
+				Integer orderNum = 0;										/* 订单个数，只用于控制订单的样式 */
 				
 				for (int i = 0; i < persionMessageList.size(); i++){
 					PersionMessage persionMessageObject = persionMessageList.get(i);
@@ -38,7 +48,7 @@
 					Integer columnNo = 0;										/* 用于记录当前订单列(材料种类)的数量 */
 					Float productTotalNum = 0.0f;			
 					
-					out.print("<div class=\"message-box-" + ((i % 2) + 1) + "\">");
+					out.print("<div class=\"message-box-" + (((orderNum++) % 2) + 1) + "\">");
 					out.print("<div class=\"message-title\"> " + operationType + " ：" + persionMessageObject.getOrderid() + " </div>");
 					out.print("<div class=\"message-contains\">");
 					out.print("<div> &emsp;&emsp;" + relationType + ": " + persionMessageObject.getRelationName() + 
@@ -77,15 +87,15 @@
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 									  + ((columnNo % 2) + 1) + "\" style=\"width: 20%;\">" + persionMessageObject.getMname() + "</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
-									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + persionMessageObject.getNumber() + "</div>");
+									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.3f", persionMessageObject.getNumber()) + "</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
-									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + persionMessageObject.getPrice() + "</div>");
+									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.2f", persionMessageObject.getPrice()) + "¥</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
-									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + persionMessageObject.getTotalPrice() + "</div>");
+									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.2f", persionMessageObject.getTotalPrice()) + "¥</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 									  + ((columnNo % 2) + 1) + "\" style=\"width: 25%;\">" + persionMessageObject.getRemark() + "</div>");
 							out.print("</div>");
-							
+								
 							allProductTotalPrice += persionMessageObject.getTotalPrice();
 							productTotalNum += persionMessageObject.getNumber();
 							columnNo++;
@@ -107,53 +117,52 @@
 					out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 								+ ((columnNo % 2) + 1) + "\" style=\"width: 20%;\">/</div>");
 					out.print("<div id=\"final_cell_3\" class=\"table-cell-" 
-								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + productTotalNum + "</div>");
+								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.3f", productTotalNum) + "</div>");
 					out.print("<div id=\"final_cell_4\" class=\"table-cell-" 
 								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">/</div>");
 					out.print("<div id=\"final_cell_5\" class=\"table-cell-" 
-								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + allProductTotalPrice + "¥</div>");
+								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.2f", allProductTotalPrice) + "¥</div>");
 					out.print("<div id=\"final_cell_6\" class=\"table-cell-" 
 								 + ((columnNo % 2) + 1) + "\" style=\"width: 25%;\">／</div>");
 					out.print("</div>");
 					out.print("</div>");
 					
 					/* 表信息显示完闭， 显示备注、处理选项等 */
-					out.print("<div> &emsp;&emsp;备注：" + persionMessageObject.getRemark() + " </div>");
+					persionMessageObject = persionMessageList.get(i);
+					out.print("<div> &emsp;&emsp;备注：" + persionMessageObject.getOrderRemark() + " </div>");
+					out.print("</div>");
 					out.print("</div>");
 					out.print("<div class=\"message-time\"> User:" + persionMessageObject.getUsername() + " Time:" + persionMessageObject.getCreateTime() + " </div>");
 	
-					Integer userGrade = (Integer)session.getAttribute("usergrade");
-					if (null == userGrade){
-						out.print("<script>alert('登录失效，请重新登录'); window.document.location.href = 'index.html'</script>");
-					} else if (1 == userGrade){
+					if (1 == userGrade){
 						/* 用户，不可以审批 */
-						String messageStatus = (persionMessageObject.getApproval().equals(1)) ? "已审核" : "待审核";
+						String messageStatus = (persionMessageObject.getApproval().equals("1")) ? "已审核" : "待审核";
 						out.print("<div style=\"height: 32px;\">");
 						out.print("<div style=\"text-align: right; margin-right: 34px;\"> " + messageStatus + "</div>");
-						out.print("</div>");
-						out.print("</div>");
-						out.print("</div>");
 					} else if (2 == userGrade){
 						/* 管理员，有审核权限 */
-						out.print("<div style=\"height: 32px;\">");
+						if (persionMessageObject.getApproval().equals("0")){		/* 未审核订单 */
+							out.print("<div style=\"height: 32px;\">");
 						
-						out.print("<div id=\"cancle_button\" class=\"red_button\" style=\"margin-right: 34px;\"onmouseenter=\""
-								  + "button_mouseenter('cancle_button')\" onmouseleave=\"button_mouseleave('cancle_button')\" "
-								  + "onmousedown=\"button_mousedown('cancle_button')\" onmouseup=\"button_mouseup('cancle_button')\" "
-								  + "onclick=\"cancle_click()\">");
-						out.print("<p style=\"top: 50%; transform: translateY(-50%);\">打回</p>");
-						out.print("</div>");
-						out.print("<div id=\"confirm_button\" class=\"blue_button\" style=\"margin-right: 10px;\" onmouseenter=\""
-								 + "button_mouseenter('confirm_button')\" onmouseleave=\"button_mouseleave('confirm_button')\" "
-								 + "onmousedown=\"button_mousedown('confirm_button')\" onmouseup=\"button_mouseup('confirm_button')\""
-								 + " onclick=\"confirm_click()\">");
-						out.print("<p style=\"top: 50%; transform: translateY(-50%);\">通过</p>");
-						out.print("</div>");
-						
-						out.print("</div>");
-						out.print("</div>");
-						out.print("</div>");
+							out.print("<div id=\"cancle_button\" class=\"red_button\" style=\"margin-right: 34px;\"onmouseenter=\""
+									  + "button_mouseenter('cancle_button')\" onmouseleave=\"button_mouseleave('cancle_button')\" "
+									  + "onmousedown=\"button_mousedown('cancle_button')\" onmouseup=\"button_mouseup('cancle_button')\" "
+									  + "onclick=\"cancle_click('" + persionMessageObject.getOrderid() + "')\">");
+							out.print("<p style=\"top: 50%; transform: translateY(-50%);\">打回</p>");
+							out.print("</div>");
+							out.print("<div id=\"confirm_button\" class=\"blue_button\" style=\"margin-right: 10px;\" onmouseenter=\""
+									 + "button_mouseenter('confirm_button')\" onmouseleave=\"button_mouseleave('confirm_button')\" "
+									 + "onmousedown=\"button_mousedown('confirm_button')\" onmouseup=\"button_mouseup('confirm_button')\""
+									 + " onclick=\"confirm_click('" + persionMessageObject.getOrderid() + "')\">");
+							out.print("<p style=\"top: 50%; transform: translateY(-50%);\">通过</p>");
+							out.print("</div>");
+						}else{			/* 已审核订单 */
+							out.print("<div style=\"height: 32px;\">");
+							out.print("<div style=\"text-align: right; margin-right: 34px;\"> 已审核通过 </div>");
+						}
 					}
+					out.print("</div>");
+					out.print("</div>");
 				}
 			%>
 			<dir class="page-footer main-page-footer">

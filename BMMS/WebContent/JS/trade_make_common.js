@@ -8,12 +8,28 @@ var Base = null;
 
 function add_click_trade(bName)
 {
-	Base = document.getElementById(bName);
-	confirm_window.style.visibility = "visible";
-	confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
-	copy_table.innerHTML = full_table.innerHTML;
-	confirming = true;
-	setTimeout("show_window_trade()", 10);
+	if(added_item.length != 0)
+	{
+		trade_confirm_button.style.visibility = "visible";
+
+		Base = document.getElementById(bName);
+		confirm_window.style.visibility = "visible";
+		confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
+		copy_table.innerHTML = full_table.innerHTML;
+		confirming = true;
+		setTimeout("show_window_trade()", 10);
+	}
+	else
+	{
+		trade_confirm_button.style.visibility = "hidden";
+
+		Base = document.getElementById(bName);
+		confirm_window.style.visibility = "visible";
+		confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
+		copy_table.innerHTML = full_table.innerHTML;
+		confirming = true;
+		setTimeout("show_window_trade()", 10);
+	}
 }
 
 function show_window_trade()

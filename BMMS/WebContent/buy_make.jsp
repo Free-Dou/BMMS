@@ -1,3 +1,4 @@
+<%@page import="dou.metaObject.Supplier"%>
 <%@page import="dou.metaObject.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,7 +24,7 @@
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/trade_make_common.js"> </script>
 	</head>
-	<body>
+	<body onload="body_onload()">
 		<div id="buy_make_pad" class="right-page-contains">
 			<div style="padding-right: 40px; height: 67px; overflow: hidden;">
 				<div class="right-page-title" style="float: left;"> 入库开单 </div>
@@ -33,19 +34,32 @@
 					<div style="float: left; padding: 0px;">
 						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 供应商 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
+								<select style="width: 254px;" id="trade_person">
+									<%
+										ArrayList<Supplier> supplierList = Supplier.getAllSupplierInfo();
+										if (null != supplierList){
+											for (int i = 0; i < supplierList.size(); i++){
+												String supplierName = supplierList.get(i).getsName();
+												out.print("<option name=\"" + supplierName + "\" value=\"" + supplierName + "\">" + supplierName + "</option>");
+											}
+										}
+									%>
+								</select>
+								<!-- <input id="trade_person" class="textbox-common"></input> -->
+							</div>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common"></input> </div>
 						</div>
 						<div style="height: 36px; padding-left: 50px;">
 							<div style="float:left; height: 24px;"> 仓库 </div>
 							<div style="float:left; padding-left: 15px; height: 24px;">
-								<select style="width: 254px;">
-									<option value="1">总库</option>
+								<select id="trade_store" style="width: 254px;">
+									<option value="1"> 总库 </option>
 								</select>
 							</div>
 							<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_car" class="textbox-common"></input> </div>
 						</div>
 					</div>
 					<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')" onclick="add_click_trade('buy_make_pad')">
@@ -154,6 +168,16 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">
+			<div class="login-process-inner" id="pi_parent">
+				<div id="pi0" class="process-item"></div>
+				<div id="pi1" class="process-item"></div>
+				<div id="pi2" class="process-item"></div>
+				<div id="pi3" class="process-item"></div>
+				<div id="pi4" class="process-item"></div>
+			</div>
+			<p id="process_tip" style="top: 460px; width: 100%; position: absolute;"> 处理中 </p>
 		</div>
 	</body>
 </html>

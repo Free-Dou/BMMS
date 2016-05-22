@@ -100,4 +100,91 @@
   <url-pattern>/DelSupplierInfo</url-pattern>
   </servlet-mapping>
   
+  <!-- 处理销售单 -->
+  <servlet>
+  <servlet-name>ProcSalesOrder</servlet-name>
+  <servlet-class>dou.webServlet.SalesOrderProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcSalesOrder</servlet-name>
+  <url-pattern>/ProcSalesOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>SalesAnalyse</servlet-name>
+  <servlet-class>dou.webServlet.SalesAnalyseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>SalesAnalyse</servlet-name>
+  <url-pattern>/SalesAnalyse</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 处理入库单 -->
+  <servlet>
+  <servlet-name>ProcWareHousingOrder</servlet-name>
+  <servlet-class>dou.webServlet.WareHousingOrderProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcWareHousingOrder</servlet-name>
+  <url-pattern>/ProcWareHousingOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>WareHousingAnalyse</servlet-name>
+  <servlet-class>dou.webServlet.WareHousingAnalyseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>WareHousingAnalyse</servlet-name>
+  <url-pattern>/WareHousingAnalyse</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>ProcPersonMessage</servlet-name>
+  <servlet-class>dou.webServlet.PersionMessageProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcPersonMessage</servlet-name>
+  <url-pattern>/ProcPersonMessage</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 添加工程量信息 -->
+  <servlet>
+  <servlet-name>AddProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.AddProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProjectQunatity</servlet-name>
+  <url-pattern>/AddProjectQunatity</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除工程量信息 -->
+  <servlet>
+  <servlet-name>DelProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.DelProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProjectQunatity</servlet-name>
+  <url-pattern>/DelProjectQunatity</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 更新工程量信息 -->
+  <servlet>
+  <servlet-name>UpdateProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.UpdateProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>UpdateProjectQunatity</servlet-name>
+  <url-pattern>/UpdateProjectQunatity</url-pattern>
+  </servlet-mapping>
 </web-app>

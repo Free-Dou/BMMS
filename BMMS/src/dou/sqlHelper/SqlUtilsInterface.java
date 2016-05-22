@@ -5,8 +5,11 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectQunatity;
+import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
+import dou.metaObject.WareHousingOrder;
 
 public class SqlUtilsInterface {
 
@@ -51,10 +54,25 @@ public class SqlUtilsInterface {
 		return new MySqlIO().getAllSystemMessageInfo();
 	}
 
-	public static ArrayList<PersionMessage> getAllpersionMessageListInfo() {
-		return new MySqlIO().getAllpersionMessageListInfo();
+	public static ArrayList<PersionMessage> getPersionMessageInfo(String sql, String params[]) {
+		return new MySqlIO().getPersionMessageInfo(sql, params);
 	}
 
+
+	public static ArrayList<SalesOrder> querySalesOrderInfo(String sql, String params[]) {
+		return new MySqlIO().querySalesOrderInfo(sql, params);
+	}
+
+
+	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String params[]) {
+		return new MySqlIO().queryWareHousingOrderInfo(sql, params);
+	}
+
+
+	public static ArrayList<ProjectQunatity> getAllProjectQunatityInfo() {
+		// TODO Auto-generated method stub
+		return new MySqlIO().getAllProjectQunatityInfo();
+	}
 	
 /*
  * 

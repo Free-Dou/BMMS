@@ -7,14 +7,6 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
-// function dispose()
-// {
-// 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
-// 	{
-// 		location.reload();
-// 	}
-// }
-
 function confirm_click()
 {
 	if(input_add_spec.value == "")
@@ -28,6 +20,17 @@ function confirm_click()
 		return;
 	}
 	
+	if (input_add_spec.value.indexOf('&') >= 0 || input_add_spec.value.indexOf('=') >= 0 || input_add_spec.value.indexOf('|') >= 0 || input_add_spec.value.indexOf('@') >= 0 || input_add_spec.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+	if (input_add_name.value.indexOf('&') >= 0 || input_add_name.value.indexOf('=') >= 0 || input_add_name.value.indexOf('|') >= 0 || input_add_name.value.indexOf('@') >= 0 || input_add_name.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
