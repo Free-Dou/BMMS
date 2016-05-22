@@ -14,8 +14,9 @@ function body_onload()
 	}
 	else
 	{
-		alert('客户列表为空，清先添加一个客户。');
-		parent.title_onclick(2, 2);
+		alert('供应商列表为空，清先添加一个供应商。');
+		parent.lv2_mouseup(3, 2);
+		// parent.title_onclick(3, 2);
 	}
 	v = document.getElementById(select_add_name).value;
 	if(v)
@@ -24,7 +25,8 @@ function body_onload()
 	else
 	{
 		alert('产品目录为空，清先添加一个产品。');
-		parent.title_onclick(1, 0);
+		parent.lv2_mouseup(1, 0);
+		// parent.title_onclick(1, 0);
 	}
 }
 
