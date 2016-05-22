@@ -169,5 +169,15 @@
 				</div>
 			</div>
 		</div>
+		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">
+			<div class="login-process-inner" id="pi_parent">
+				<div id="pi0" class="process-item"></div>
+				<div id="pi1" class="process-item"></div>
+				<div id="pi2" class="process-item"></div>
+				<div id="pi3" class="process-item"></div>
+				<div id="pi4" class="process-item"></div>
+			</div>
+			<p id="process_tip" style="top: 460px; width: 100%; position: absolute;"> 处理中 </p>
+		</div>
 	</body>
 </html>

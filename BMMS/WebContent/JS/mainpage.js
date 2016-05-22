@@ -373,7 +373,7 @@ function refresh_now_page()
 		if(onchange_flag == false)
 		{
 			page_change_to = page_now;
-			setTimeout("page_change()", 10);
+			page_change_session = setInterval("page_change()", 10);
 		}
 	}
 }
