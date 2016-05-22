@@ -20,6 +20,18 @@ function confirm_click()
 		return;
 	}
 	
+	if (input_add_spec.value.indexOf('&') >= 0 || input_add_spec.value.indexOf('=') >= 0 || input_add_spec.value.indexOf('|') >= 0 || input_add_spec.value.indexOf('@') >= 0 || input_add_spec.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+	if (input_add_name.value.indexOf('&') >= 0 || input_add_name.value.indexOf('=') >= 0 || input_add_name.value.indexOf('|') >= 0 || input_add_name.value.indexOf('@') >= 0 || input_add_name.value.indexOf('!') >= 0)
+	{
+		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+		return;
+	}
+
+
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
