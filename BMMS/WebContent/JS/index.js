@@ -185,21 +185,6 @@ function process_anime()
 	}
 }
 
-// function process_going(session_id)
-// {
-// 	if(process_time_last >= 300)
-// 	{
-// 		setTimeout("process_complete('" + session_id +"')", 10);
-		
-// 		var e = document.getElementById("process_tip");
-// 		e.innerHTML="登录成功，3 秒后跳转";
-
-// 		setTimeout("login_success('" + 2 + "')", 1000);
-// 		return;
-// 	}
-// 	setTimeout("process_going('" + session_id +"')", 10);
-// }
-
 function process_complete(session_id)
 {
 	var e = document.getElementById("pi_parent");
