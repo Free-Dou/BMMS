@@ -269,8 +269,8 @@ function title_onclick(base, index)
 			// s_load_timer = setInterval("login_show_anime()", 10);
 
 			return;
-		// }
-		// else
+		}
+		else
 			page_change_session = setInterval("page_change()", 10);
 	// }
 }
