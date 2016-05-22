@@ -66,7 +66,12 @@ function check_search_result()
 
 						string_final = string_final + "<div class=\"message-title\"> " + myobj[i].orderID + " </div>";
 						string_final = string_final + "<div class=\"message-contains\">";
-							string_final = string_final + "<div> &emsp;&emsp;客户：" + myobj[i].customerName + "&emsp;&emsp;仓库: " + myobj[i].stockLoca + "&emsp;&emsp;车号: " + myobj[i].carNum + "&emsp;&emsp; </div>";
+							string_final = string_final + "<div> &emsp;&emsp;客户：" + myobj[i].customerName + "&emsp;&emsp;仓库：" + myobj[i].stockLoca;
+							if(myobj[i].hasOwnProperty('carNum'))
+								string_final = string_final + + "&emsp;&emsp;车号：" + myobj[i].carNum + " </div>";
+							else
+								string_final = string_final + + "&emsp;&emsp;车号：</div>";
+
 							string_final = string_final + "<div class=\"table-line\" style=\"margin-left: 0px;\">";
 							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\">  </div>";
 							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 20%;\"> 编号 </div>";
@@ -86,7 +91,10 @@ function check_search_result()
 								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(myobj[i].Product[j].pCount).toFixed(3) + " </div>";
 								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(myobj[i].Product[j].pPrice).toFixed(2) + "￥ </div>";
 								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(myobj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>";
-								string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\">  </div>";
+								if(myobj[i].Product[j].hasOwnProperty('pRemark'))
+									string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\"> " + myobj[i].Product[j].pRemark + " </div>";
+								else
+									string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\">  </div>";
 								string_final = string_final + "</div>";
 
 								totalCount = totalCount + Number(myobj[i].Product[j].pCount);
@@ -106,7 +114,10 @@ function check_search_result()
 							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 8%;\"> " + Number(totalMoney).toFixed(2) + "￥ </div>";
 							string_final = string_final + "<div class=\"table-cell-" + line_style_now + "\" style=\"width: 25%;\"> / </div>";
 							string_final = string_final + "</div>";
-							string_final = string_final + "<div> &emsp;&emsp;备注：" + myobj[i].orderRemark + " </div>";
+							if(myobj[i].hasOwnProperty('orderRemark'))
+								string_final = string_final + "<div> &emsp;&emsp;备注：" + myobj[i].orderRemark + " </div>";
+							else
+								string_final = string_final + "<div> &emsp;&emsp;备注：无 </div>";
 						string_final = string_final + "</div>";
 						string_final = string_final + "<div class=\"message-time\"> User:" + myobj[i].userName + " Time:" + myobj[i].outTime + " </div>";
 

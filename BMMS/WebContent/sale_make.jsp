@@ -33,7 +33,14 @@
 					<div style="float: left; padding: 0px;">
 						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 客户 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_person" class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
+								<select style="width: 254px;" id="trade_person">
+									<%
+										// out.print("<option name=\"" + pSpec + "\" value=\"" + pSpec + "\">" + pSpec + "</option>");
+									%>
+								</select>
+								<!-- <input id="trade_person" class="textbox-common"></input> -->
+							</div>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common"></input> </div>
 						</div>
@@ -41,7 +48,7 @@
 							<div style="float:left; height: 24px;"> 仓库 </div>
 							<div style="float:left; padding-left: 15px; height: 24px;">
 								<select id="trade_store" style="width: 254px;">
-									<option value="1">总库</option>
+									<option value="1"> 总库 </option>
 								</select>
 							</div>
 							<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>

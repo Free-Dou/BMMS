@@ -90,6 +90,8 @@ body
 	height: 48px;
 	/*float: left;*/
 	overflow: hidden;
+
+	cursor: pointer;
 }
 
 .new_float_window
