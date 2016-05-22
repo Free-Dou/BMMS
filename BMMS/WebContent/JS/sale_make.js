@@ -8,13 +8,13 @@ var confirming = false;
 
 function body_onload()
 {
-	if(document.getElementById(trade_person).options.length == 0)
+	if(trade_person.options.length == 0)
 	{
 		alert('客户列表为空，清先添加一个客户。');
 		parent.lv2_mouseup(2, 2);
 		// parent.title_onclick(2, 2);
 	}
-	if(document.getElementById(select_add_name).options.length == 0)
+	if(select_add_name.options.length == 0)
 	{
 		alert('产品目录为空，清先添加一个产品。');
 		parent.lv2_mouseup(1, 0);
