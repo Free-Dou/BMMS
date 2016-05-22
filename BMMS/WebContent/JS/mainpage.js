@@ -370,10 +370,13 @@ function refresh_now_page()
 {
 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
 	{
-		if(onchange_flag == false)
-		{
-			page_change_to = page_now;
-			page_change_session = setInterval("page_change()", 10);
-		}
+		page_change_to = page_now;
+		page_change_session = setInterval("page_change()", 10);
 	}
+}
+
+function refresh_now_page_noresponse()
+{
+	page_change_to = page_now;
+	page_change_session = setInterval("page_change()", 10);
 }

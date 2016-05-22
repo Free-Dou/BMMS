@@ -31,3 +31,9 @@ function cancle_click(orderid)
 	}
 
 }
+
+function refreshme()
+{
+	parent.refresh_now_page_noresponse();
+}
+

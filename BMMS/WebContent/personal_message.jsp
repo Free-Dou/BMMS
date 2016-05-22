@@ -168,7 +168,7 @@
 				}
 			%>
 			<dir class="page-footer main-page-footer">
-				<div class="footer-button" id="message_footer_button_2" onmouseenter="button_mouseenter_footer('message_footer_button_2')" onmouseleave="button_mouseleave_footer('message_footer_button_2')" onmousedown="button_mousedown_footer('message_footer_button_2')" onmouseup="button_mouseup_footer('message_footer_button_2')">
+				<div class="footer-button" id="message_footer_button_2" onmouseenter="button_mouseenter_footer('message_footer_button_2')" onmouseleave="button_mouseleave_footer('message_footer_button_2')" onmousedown="button_mousedown_footer('message_footer_button_2')" onmouseup="button_mouseup_footer('message_footer_button_2')" onclick="refreshme()">
 					<img src="IMG/refresh.png" class="footer-button-img">
 					<p>刷新</p>
 				</div>
