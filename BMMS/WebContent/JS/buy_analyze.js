@@ -179,7 +179,7 @@ function check_search_result()
 			result_board.innerHTML = string_final;
 		}
 		else
-			result_board.innerHTML = "未搜索到结果。";
+			result_board.innerHTML = "<div class=\"message-title\"> 未搜索到结果。 </div>";
 
 		process_message.style.visibility = "hidden";
 		clearInterval(s_process_timer);
