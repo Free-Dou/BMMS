@@ -111,10 +111,22 @@ public class SalesOrder {
 		this.salesProductList.add(salesProduct);
 	}
 
-	public static ArrayList<SalesOrder> getAllSalesOrderInfo(){
+	public static ArrayList<SalesOrder> querySalesOrderInfo(String startDate, String endDate, String customer, String item, String remark){
 		ArrayList<SalesOrder> salesOrderList = new ArrayList<>();
+
+		/* （模糊查询，%号之间填界面上的字符串，三个参数分别是：订单备注，供应商名称和产品名称） */
+		String sql = "SELECT * FROM (SELECT * FROM tb_materiaout WHERE orderRemark LIKE ? AND cname LIKE ? "
+					+ "AND outTime BETWEEN ? AND ?) AS a,"
+					+ "(SELECT DISTINCT orderid FROM tb_materiaout WHERE mname LIKE ?) AS b "
+					+ "WHERE a.orderid=b.orderid";
 		
-		salesOrderList = SqlUtilsInterface.getAllSalesOrderInfo();
+		//SELECT * FROM (SELECT * FROM tb_materiaout WHERE orderRemark LIKE '%发%'AND cname LIKE '%飞%' AND outTime BETWEEN '2016-05-05' AND '2016-05-30') AS a,(SELECT DISTINCT orderid FROM tb_materiaout WHERE mname LIKE '%沥青%') AS b WHERE a.orderid=b.orderid
+		String params[] = { "%" + remark + "%",
+							"%" + customer + "%",
+							startDate, 
+							endDate,
+							"%" + item + "%"};
+		salesOrderList = SqlUtilsInterface.querySalesOrderInfo(sql, params);
 		
 		return salesOrderList;
 	}
