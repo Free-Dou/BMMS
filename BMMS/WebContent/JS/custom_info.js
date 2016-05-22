@@ -7,14 +7,6 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
-// function dispose()
-// {
-// 	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
-// 	{
-// 		location.reload();
-// 	}
-// }
-
 function confirm_click()
 {
 	if(input_add_name.value == "")
