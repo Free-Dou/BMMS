@@ -68,9 +68,9 @@ function check_search_result()
 						string_final = string_final + "<div class=\"message-contains\">";
 							string_final = string_final + "<div> &emsp;&emsp;客户：" + myobj[i].customerName + "&emsp;&emsp;仓库：" + myobj[i].stockLoca;
 							if(myobj[i].hasOwnProperty('carNum'))
-								string_final = string_final + + "&emsp;&emsp;车号：" + myobj[i].carNum + " </div>";
+								string_final = string_final + "&emsp;&emsp;车号：" + myobj[i].carNum + " </div>";
 							else
-								string_final = string_final + + "&emsp;&emsp;车号：</div>";
+								string_final = string_final + "&emsp;&emsp;车号：</div>";
 
 							string_final = string_final + "<div class=\"table-line\" style=\"margin-left: 0px;\">";
 							string_final = string_final + "<div class=\"table-title-cell\" style=\"width: 8%;\">  </div>";
