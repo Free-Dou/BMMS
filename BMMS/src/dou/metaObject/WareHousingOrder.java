@@ -113,10 +113,22 @@ public class WareHousingOrder {
 	}
 
 	/*  */
-	public static ArrayList<WareHousingOrder> getAllWareHousingOrderInfo(){
+	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String startDate, String endDate, String supplier, String item, String remark ){
 		ArrayList<WareHousingOrder> wareHousingOrderList = new ArrayList<>();
 		
-		wareHousingOrderList = SqlUtilsInterface.getAllWareHousingOrderInfo();
+		/* （模糊查询，%号之间填界面上的字符串，三个参数分别是：订单备注，供应商名称和产品名称） */
+		String sql = "SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE ? AND sname LIKE ? "
+					+ "AND inTime BETWEEN ? AND ?) AS a,"
+					+ "(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE ?) AS b "
+					+ "WHERE a.orderid=b.orderid";
+		
+		//SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE '%发%'AND sname LIKE '%BmmsProduct%' AND inTime BETWEEN '2016-05-03' AND '2016-05-12') AS a,(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE '%沥青%') AS b WHERE a.orderid=b.orderid
+		String params[] = { "%" + remark + "%",
+							"%" + supplier + "%",
+							startDate, 
+							endDate,
+							"%" + item + "%"};
+		wareHousingOrderList = SqlUtilsInterface.queryWareHousingOrderInfo(sql, params);
 		
 		return wareHousingOrderList;
 	}

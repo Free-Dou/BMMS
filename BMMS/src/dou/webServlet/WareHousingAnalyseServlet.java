@@ -20,18 +20,41 @@ import dou.metaObject.WareHousingOrder.WareHousingProduct;
 public class WareHousingAnalyseServlet extends HttpServlet{
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.doPost(req, resp);
+		super.doGet(req, resp);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setCharacterEncoding("utf-8");
+		req.setCharacterEncoding("utf-8");
 		Logger logger = Config.getLogger(this.getClass());
 		
-		logger.info("[WareHousingAnalyseServlet.java:doPost]: Get WareHousing AnalyseServlet Request!");
-		ArrayList<WareHousingOrder> wareHousingOrderList = WareHousingOrder.getAllWareHousingOrderInfo();
+		/* 
+		 * 获取用户参数
+		 * var data = "start_date=" + start_date.value 
+		 * 			+ "&end_date=" + end_date.value 
+		 * 			+ "&customer=" + input_customer.value
+		 * 		    + "&item=" + input_item.value
+		 * 		    + "&remark=" + input_remark.value; 
+		 */
+		String startDate = req.getParameter("start_date");
+		String endDate = req.getParameter("end_date");
+		String supplier = req.getParameter("supplier");
+		String item = req.getParameter("item");
+		String remark = req.getParameter("remark");
+		logger.info("[WareHousingAnalyseServlet.java:doPost]: Get WareHousing AnalyseServlet Request  !!!!!!!");
+		logger.info("[WareHousingAnalyseServlet.java:doPost]: start_data:" + startDate + "  end_date:" + endDate
+					+ "  supplier:" + supplier + "  item:" + item + "  remark:" + remark);
+		
+		ArrayList<WareHousingOrder> wareHousingOrderList = WareHousingOrder.queryWareHousingOrderInfo(startDate, endDate, supplier, item, remark);
+		if (null == wareHousingOrderList){
+			logger.error("[WareHousingAnalyseServlet.java:doPost] query sales order result is null!!!");
+			PrintWriter pw = resp.getWriter();
+			pw.print("null");
+			return;
+		}
 		
 		JSONArray allWareHousingOrderJson = new JSONArray();
 		JSONObject oneOrderJson = new JSONObject();

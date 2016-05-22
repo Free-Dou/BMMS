@@ -63,8 +63,8 @@ public class SqlUtilsInterface {
 	}
 
 
-	public static ArrayList<WareHousingOrder> getAllWareHousingOrderInfo() {
-		return new MySqlIO().getAllWareHousingOrderInfo();
+	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String params[]) {
+		return new MySqlIO().queryWareHousingOrderInfo(sql, params);
 	}
 
 	

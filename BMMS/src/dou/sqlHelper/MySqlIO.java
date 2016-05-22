@@ -409,15 +409,14 @@ public class MySqlIO {
 	}
 	
 	/* 获取全部入库订单信息 */
-	public ArrayList<WareHousingOrder> getAllWareHousingOrderInfo() {
+	public ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String[] params) {
 		ArrayList<WareHousingOrder> wareHousingOrderList = null;
 		WareHousingOrder wareHousingOrderObject = null;
 		String lastOrderID = null;
-		String sql = "SELECT * FROM tb_materiain ORDER BY id DESC;";
 		ResultSet rs = null;
 		
-		logger.info("[MySqlIO.java:getAllWareHousingOrderInfo] " + sql);
-		rs = sqlHelper.executeQuery(sql, null);
+		logger.info("[MySqlIO.java:getAllWareHousingOrderInfo] " + sql + "  params: " + Arrays.toString(params));
+		rs = sqlHelper.executeQuery(sql, params);
 		try {
 			/* 提取数据 */
 			while (rs.next()){
