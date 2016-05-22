@@ -8,6 +8,7 @@ for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
 var confirm_operation = "add";
+var update_projectID = "";
 
 function confirm_click()
 {
@@ -63,7 +64,7 @@ function confirm_click()
 		else
 		{
 			var aim_url = "/BMMS/UpdateProjectQunatity?time=" + new Date();
-			var data = "projectName =" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
+			var data = "projectID =" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
 			
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -113,7 +114,7 @@ function myremove_confirm(key)
 	if (parent.myxmlhttp)
 	{
 		var aim_url = "/BMMS/DelProjectQunatity?time=" + new Date();
-		var data = "projectName=" + key;
+		var data = "projectID=" + key;
 		
 		parent.myxmlhttp.open("post", aim_url, true);
 		parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -153,4 +154,15 @@ function process_anime()
 		e.style.left = new_x + "px";
 		console.info("item info processtimer running.");
 	}
+}
+
+function reedit_click(key)
+{
+	confirm_operation = "reedit";
+	update_projectID = key;
+}
+
+function add_click()
+{
+	confirm_operation = "add";
 }
