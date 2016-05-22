@@ -1,4 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@page import="dou.metaObject.ProjectQunatity"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta charset="utf-8">
 
 <html>
@@ -24,11 +28,21 @@
 				<div class="table-title-cell" style="width: 5%;"> 操作 </div>
 			</div>
 			<div class="table-line">
-				<div class="table-cell-1" style="width: 2%;"> - </div>
-				<div class="table-cell-1" style="width: 30%;"> BMMS Project </div>
-				<div class="table-cell-1" style="width: 30%;"> 30000￥ </div>
-				<div class="table-cell-1" style="width: 30%;"> 0￥ </div>
-				<div class="table-cell-1" style="width: 5%;">  </div>
+				<%
+					ArrayList<ProjectQunatity> projectQunatityList = ProjectQunatity.getAllCustomerInfo();
+					
+					if (null != projectQunatityList){
+						for (int i = 0; i < projectQunatityList.size(); i++){
+							ProjectQunatity projectQunatityObject = projectQunatityList.get(i);
+						
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 2%;\"> - </div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + projectQunatityObject.getProjectName() + "</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%;\">" + "￥</div>");
+						}
+					}
+				%>
 			</div>
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')">

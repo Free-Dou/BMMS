@@ -13,6 +13,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectQunatity;
 import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
@@ -286,6 +287,44 @@ public class MySqlIO {
 		return systemMessageList;
 	}
 	
+	/* 从数据库中提取工程量信息 */
+	public ArrayList<ProjectQunatity> getAllProjectQunatityInfo() {
+		ArrayList<ProjectQunatity> projectQunatityList = null;
+		ProjectQunatity projectQunatityObject = null;
+		String sql = "SELECT * FROM tb_qunatity;";
+		ResultSet rs = null;
+		
+		logger.info("[MySqlIO.java:getAllProjectQunatityInfo] " + sql);
+		rs = sqlHelper.executeQuery(sql, null);
+		try {
+			/* 提取数据 */
+			while (rs.next()){
+				String projectName = rs.getString("projectName");
+				Float budget = rs.getFloat("budget");
+				Float paid = rs.getFloat("paid");
+				String remark = rs.getString("remark");
+				
+				if (null == projectQunatityList){
+					projectQunatityList = new ArrayList<ProjectQunatity>();
+				}
+								
+				projectQunatityObject = new ProjectQunatity(projectName, budget, paid, remark);
+				projectQunatityList.add(projectQunatityObject);
+			}
+			
+			logger.info("[MySqlIO.java:getAllProjectQunatityInfo] Get all ProjectQunatity Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllProjectQunatityInfo] Get ProjectQunatity Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+		
+		return projectQunatityList;
+	}
+	
 	/* 从数据库中获取个人信息 */
 	public ArrayList<PersionMessage> getPersionMessageInfo(String sql, String params[]) {
 		ArrayList<PersionMessage> persionMessageList = null;
@@ -521,7 +560,6 @@ public class MySqlIO {
 		}
 		return result;
 	}
-
 
 
 //	public List<WebPageObejct> getWebPageObejct_List(String table_name) {

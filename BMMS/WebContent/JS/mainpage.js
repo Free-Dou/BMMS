@@ -22,7 +22,7 @@ RIGHT_PAGE_NAME[1] = new Array("item_info.jsp");
 RIGHT_PAGE_NAME[2] = new Array("sale_make.jsp", "sale_analyze.html", "custom_info.jsp");
 RIGHT_PAGE_NAME[3] = new Array("buy_make.jsp", "buy_analyze.html", "suppliers_info.jsp");
 RIGHT_PAGE_NAME[4] = new Array("storehouse_info.jsp");
-RIGHT_PAGE_NAME[5] = new Array("project_info.html");
+RIGHT_PAGE_NAME[5] = new Array("project_info.jsp");
 
 // LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
 // LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");

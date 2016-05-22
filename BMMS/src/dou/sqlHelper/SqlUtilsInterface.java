@@ -5,6 +5,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectQunatity;
 import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
@@ -65,6 +66,12 @@ public class SqlUtilsInterface {
 
 	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String params[]) {
 		return new MySqlIO().queryWareHousingOrderInfo(sql, params);
+	}
+
+
+	public static ArrayList<ProjectQunatity> getAllProjectQunatityInfo() {
+		// TODO Auto-generated method stub
+		return new MySqlIO().getAllProjectQunatityInfo();
 	}
 	
 /*

@@ -87,11 +87,11 @@
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 									  + ((columnNo % 2) + 1) + "\" style=\"width: 20%;\">" + persionMessageObject.getMname() + "</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
-									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + persionMessageObject.getNumber() + "</div>");
+									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.3f", persionMessageObject.getNumber()) + "</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
-									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + persionMessageObject.getPrice() + "¥</div>");
+									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.2f", persionMessageObject.getPrice()) + "¥</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
-									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + persionMessageObject.getTotalPrice() + "¥</div>");
+									  + ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.2f", persionMessageObject.getTotalPrice()) + "¥</div>");
 							out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 									  + ((columnNo % 2) + 1) + "\" style=\"width: 25%;\">" + persionMessageObject.getRemark() + "</div>");
 							out.print("</div>");
@@ -117,11 +117,11 @@
 					out.print("<div id=\"final_cell_2\" class=\"table-cell-" 
 								+ ((columnNo % 2) + 1) + "\" style=\"width: 20%;\">/</div>");
 					out.print("<div id=\"final_cell_3\" class=\"table-cell-" 
-								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + productTotalNum + "</div>");
+								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.3f", productTotalNum) + "</div>");
 					out.print("<div id=\"final_cell_4\" class=\"table-cell-" 
 								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">/</div>");
 					out.print("<div id=\"final_cell_5\" class=\"table-cell-" 
-								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + allProductTotalPrice + "¥</div>");
+								+ ((columnNo % 2) + 1) + "\" style=\"width: 8%;\">" + String.format("%.2f", allProductTotalPrice) + "¥</div>");
 					out.print("<div id=\"final_cell_6\" class=\"table-cell-" 
 								 + ((columnNo % 2) + 1) + "\" style=\"width: 25%;\">／</div>");
 					out.print("</div>");

@@ -154,4 +154,37 @@
   <servlet-name>ProcPersonMessage</servlet-name>
   <url-pattern>/ProcPersonMessage</url-pattern>
   </servlet-mapping>
+  
+  <!-- 添加工程量信息 -->
+  <servlet>
+  <servlet-name>AddProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.AddProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProjectQunatity</servlet-name>
+  <url-pattern>/AddProjectQunatity</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除工程量信息 -->
+  <servlet>
+  <servlet-name>DelProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.DelProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProjectQunatity</servlet-name>
+  <url-pattern>/DelProjectQunatity</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 更新工程量信息 -->
+  <servlet>
+  <servlet-name>UpdateProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.UpdateProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>UpdateProjectQunatity</servlet-name>
+  <url-pattern>/UpdateProjectQunatity</url-pattern>
+  </servlet-mapping>
 </web-app>
