@@ -158,6 +158,15 @@ function process_anime()
 
 function reedit_click(key)
 {
+	input_add_project.readOnly = true;
+
+	var e = document.getElementById("pjtName" + key);
+	input_add_project.value = e.innerHTML;
+	e = document.getElementById("pjtBudget" + key);
+	input_add_expmoney.value = e.innerHTML.substring(0, e.innerHTML.length - 1);
+	e = document.getElementById("pjtPaid" + key);
+	input_add_alrmoney.value = e.innerHTML.substring(0, e.innerHTML.length - 1);
+
 	confirm_operation = "reedit";
 	update_projectID = key;
 
@@ -166,8 +175,13 @@ function reedit_click(key)
 
 function project_add_click(bName)
 {
-	
+	input_add_project.readOnly = false;
+
+	input_add_project.value = "";
+	input_add_expmoney.value = "0";
+	input_add_alrmoney.value = "0";
 
 	confirm_operation = "add";
+	
 	add_click(bName);
 }

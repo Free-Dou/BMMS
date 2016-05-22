@@ -42,9 +42,9 @@
 						
 							out.print("<div id=\"" + projectQunatityObject.getProjectID() + "\" class=\"table-line\">");
 							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 2%;\"> - </div>");
-							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + projectQunatityObject.getProjectName() + "</div>");
-							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
-							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
+							out.print("<div id=\"pjtName" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + projectQunatityObject.getProjectName() + "</div>");
+							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
+							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
 							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> 📝 </div>");
 							out.print("</div>");
 						}
