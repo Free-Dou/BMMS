@@ -31,7 +31,6 @@ function confirm_click()
 		return;
 	}
 
-
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 

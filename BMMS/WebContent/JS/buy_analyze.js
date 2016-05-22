@@ -1,3 +1,14 @@
+var process_time_last = 0;
+var pi_pos = new Array();
+var center_y = 50;
+var center_x = 50;
+var s_process_timer = 0;
+
+for(var i = 0; i < 5; i++)
+	pi_pos[i] = 0;
+
+var myxmlhttp = "";
+
 function body_onload()
 {
 	var date_now = get_now_date();
@@ -44,6 +55,9 @@ function get_result()
 		alert("查询条件包含非法字符（&=|@!），请重新组织查询条件。");
 		return;
 	}
+
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
 	
 	myxmlhttp = getXmlHttpObject();
 
@@ -159,5 +173,31 @@ function check_search_result()
 				message_back = 1;
 		}
 		result_board.innerHTML = string_final;
+	}
+}
+
+function process_anime()
+{
+	process_time_last = process_time_last + 1;
+	var need_change = parseInt(process_time_last / 10);
+	if(need_change > 5)
+		need_change = 5;
+	for(var i = 0; i < need_change; i++)
+	{
+		var e = document.getElementById("pi" + i);
+		if (pi_pos[i] > 360) 
+			pi_pos[i] = pi_pos[i] - 360;
+
+		if(pi_pos[i] < 180)
+			pi_pos[i] = pi_pos[i] + (pi_pos[i] + 10) / 20;
+		else if(pi_pos[i] < 360)
+			pi_pos[i] = pi_pos[i] + (360 - pi_pos[i] + 10) / 20;
+
+		var new_x = center_x + Math.sin(2 * Math.PI / 360 * pi_pos[i]) * 50;
+		var new_y = center_y - Math.cos(2 * Math.PI / 360 * pi_pos[i]) * 50;
+
+		e.style.top = new_y + "px";
+		e.style.left = new_x + "px";
+		console.info("item info processtimer running.");
 	}
 }
