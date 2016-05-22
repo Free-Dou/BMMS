@@ -21,6 +21,32 @@ function get_now_date()
 
 function get_result()
 {
+	if (input_customer.value.indexOf('&') >= 0 || input_customer.value.indexOf('=') >= 0 || input_customer.value.indexOf('|') >= 0 || input_customer.value.indexOf('@') >= 0 || input_customer.value.indexOf('!') >= 0)
+	{
+		alert("查询条件包含非法字符（&=|@!），请重新组织查询条件。");
+		return;
+	}
+	if (start_date.value.indexOf('&') >= 0 || start_date.value.indexOf('=') >= 0 || start_date.value.indexOf('|') >= 0 || start_date.value.indexOf('@') >= 0 || start_date.value.indexOf('!') >= 0)
+	{
+		alert("查询条件包含非法字符（&=|@!），请重新组织查询条件。");
+		return;
+	}
+	if (end_date.value.indexOf('&') >= 0 || end_date.value.indexOf('=') >= 0 || end_date.value.indexOf('|') >= 0 || end_date.value.indexOf('@') >= 0 || end_date.value.indexOf('!') >= 0)
+	{
+		alert("查询条件包含非法字符（&=|@!），请重新组织查询条件。");
+		return;
+	}
+	if (input_item.value.indexOf('&') >= 0 || input_item.value.indexOf('=') >= 0 || input_item.value.indexOf('|') >= 0 || input_item.value.indexOf('@') >= 0 || input_item.value.indexOf('!') >= 0)
+	{
+		alert("查询条件包含非法字符（&=|@!），请重新组织查询条件。");
+		return;
+	}
+	if (input_remark.value.indexOf('&') >= 0 || input_remark.value.indexOf('=') >= 0 || input_remark.value.indexOf('|') >= 0 || input_remark.value.indexOf('@') >= 0 || input_remark.value.indexOf('!') >= 0)
+	{
+		alert("查询条件包含非法字符（&=|@!），请重新组织查询条件。");
+		return;
+	}
+	
 	myxmlhttp = getXmlHttpObject();
 
 	if (myxmlhttp)
