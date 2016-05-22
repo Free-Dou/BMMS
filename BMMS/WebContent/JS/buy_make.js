@@ -6,6 +6,28 @@ var added_item = new Array();
 var now_index = 0;
 var confirming = false;
 
+function body_onload()
+{
+	var v = document.getElementById(trade_person).value;
+	if(v)
+	{
+	}
+	else
+	{
+		alert('客户列表为空，清先添加一个客户。');
+		parent.title_onclick(2, 2);
+	}
+	v = document.getElementById(select_add_name).value;
+	if(v)
+	{
+	}
+	else
+	{
+		alert('产品目录为空，清先添加一个产品。');
+		parent.title_onclick(1, 0);
+	}
+}
+
 function table_add(data)
 {
 	var add_item_text = "<div id=\"line_" + now_index + "\" class=\"table-line\">";

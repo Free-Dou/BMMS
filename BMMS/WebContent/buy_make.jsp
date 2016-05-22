@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/trade_make_common.js"> </script>
 	</head>
-	<body>
+	<body onload="body_onload()">
 		<div id="buy_make_pad" class="right-page-contains">
 			<div style="padding-right: 40px; height: 67px; overflow: hidden;">
 				<div class="right-page-title" style="float: left;"> 入库开单 </div>
