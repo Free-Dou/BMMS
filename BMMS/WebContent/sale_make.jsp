@@ -1,3 +1,4 @@
+<%@page import="dou.metaObject.Customer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dou.metaObject.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,7 +37,13 @@
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
 								<select style="width: 254px;" id="trade_person">
 									<%
-										// out.print("<option name=\"" + pSpec + "\" value=\"" + pSpec + "\">" + pSpec + "</option>");
+										ArrayList<Customer> customerList = Customer.getAllCustomerInfo();
+										if (null != customerList){
+											for (int i = 0; i < customerList.size(); i++){
+												String customerName = customerList.get(i).getcName();
+												out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
+											}
+										}
 									%>
 								</select>
 								<!-- <input id="trade_person" class="textbox-common"></input> -->

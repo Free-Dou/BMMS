@@ -1,11 +1,15 @@
 package dou.sqlHelper;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.metaObject.Customer;
@@ -222,7 +226,7 @@ public class MySqlIO {
 				String mPSpec = rs.getString("mpspec");
 				String mName = rs.getString("mname");
 				Float number = rs.getFloat("number");
-				String ctime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("ctime"));
+				String ctime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("ctime"));
 				String stockloca = rs.getString("stockloca");
 				String remark = rs.getString("remark");
 				
@@ -262,7 +266,7 @@ public class MySqlIO {
 				String sMessageName = rs.getString("sMessagename");
 				String sMessage = rs.getString("sMessage");
 				String userName = rs.getString("userName");
-				String time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("time"));
+				String time = rs.getString("time");
 				
 				if (null == systemMessageList){
 					systemMessageList = new ArrayList<SystemMessage>();
@@ -306,7 +310,7 @@ public class MySqlIO {
 				Float  price = rs.getFloat("price");
 				Float  totalPrice = rs.getFloat("totalPrice");
 				String username = rs.getString("username");
-				String createTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("createTime"));
+				String createTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("createTime"));
 				String relationName = rs.getString("relationName");
 				Integer operation = rs.getInt("operation");
 				String approval = rs.getString("approval");
@@ -337,15 +341,14 @@ public class MySqlIO {
 		return persionMessageList;
 	}
 	
-	public ArrayList<SalesOrder> getAllSalesOrderInfo() {
+	public ArrayList<SalesOrder> querySalesOrderInfo(String sql, String params[]) {
 		ArrayList<SalesOrder> salesOrderList = null;
 		SalesOrder salesOrderObject = null;
 		String lastOrderID = null;
-		String sql = "SELECT * FROM tb_materiaout ORDER BY id DESC;";
 		ResultSet rs = null;
 		
-		logger.info("[MySqlIO.java:getAllSalesOrderInfo] " + sql);
-		rs = sqlHelper.executeQuery(sql, null);
+		logger.info("[MySqlIO.java:getAllSalesOrderInfo] " + sql + "  params: " + Arrays.toString(params));
+		rs = sqlHelper.executeQuery(sql, params);
 		try {
 			/* 提取数据 */
 			while (rs.next()){
@@ -357,7 +360,7 @@ public class MySqlIO {
 				String stockLoca = rs.getString("stockLoca");
 				Float  pPrice = rs.getFloat("price");
 				Float  pTotalPrice = rs.getFloat("totalPrice");
-				String outTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("outTime"));
+				String outTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("outTime"));
 				String userName = rs.getString("username");
 				String customerName = rs.getString("cName");
 				String pRemark = rs.getString("remark");
@@ -426,7 +429,7 @@ public class MySqlIO {
 				String stockLoca = rs.getString("stockLoca");
 				Float  pPrice = rs.getFloat("price");
 				Float  pTotalPrice = rs.getFloat("totalPrice");
-				String inTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(rs.getDate("inTime"));
+				String inTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("inTime"));
 				String userName = rs.getString("username");
 				String supplierName = rs.getString("sName");
 				String pRemark = rs.getString("remark");
@@ -490,7 +493,7 @@ public class MySqlIO {
 		
 		for (int i = 0; i <  sqls.length; i++){
 			logger.info("[MySqlIO.java:addInfoToDB] sql " + i + " : " + sqls[i]);
-			for (int j = 0; j <  parameters.length; j++){
+			for (int j = 0; j <  parameters[i].length; j++){
 				logger.info("[MySqlIO.java:addInfoToDB] info " + j + " : " + parameters[i][j]);
 			}
 		}
