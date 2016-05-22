@@ -65,7 +65,7 @@ function myBrowser()
 }
 var mb = myBrowser();
 if ("IE" == mb) {
-	// location.href='IE404.html';
+	location.href='IE404.html';
 }
 if ("FF" == mb) {
 }
