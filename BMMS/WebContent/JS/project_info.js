@@ -54,7 +54,7 @@ function confirm_click()
 		if(confirm_operation == "add")
 		{
 			var aim_url = "/BMMS/AddProjectQunatity?time=" + new Date();
-			var data = "projectName =" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
+			var data = "projectName=" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
 			
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -64,7 +64,7 @@ function confirm_click()
 		else
 		{
 			var aim_url = "/BMMS/UpdateProjectQunatity?time=" + new Date();
-			var data = "projectID =" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
+			var data = "projectID=" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
 			
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
