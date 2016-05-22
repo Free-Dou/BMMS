@@ -1,6 +1,5 @@
 package dou.sqlHelper;
 
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData; 
 import java.sql.ResultSet;
@@ -8,8 +7,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 import dou.config.Config;
 import dou.metaObject.Customer;

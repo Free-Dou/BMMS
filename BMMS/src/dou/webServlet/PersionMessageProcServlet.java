@@ -37,6 +37,7 @@ public class PersionMessageProcServlet extends HttpServlet{
 			procResult = PersionMessage.procApprovalOrder(orderID);
 		}else{
 			/* 订单不通过处理 */
+			procResult = PersionMessage.procRejectOrder(orderID);
 		}
 		
 		PrintWriter pw = resp.getWriter();

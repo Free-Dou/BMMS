@@ -112,6 +112,15 @@ public class PersionMessage {
 		return true;
 	}
 	
+
+	public static boolean procRejectOrder(String orderID) {
+		// TODO Auto-generated method stub
+		 String sqls = "DELETE FROM tb_personmessage WHERE orderid = ?";
+		 String params[] = {orderID};
+		 
+		 SqlUtilsInterface.delInfoFromDB(sqls, params);
+		 return true;
+	}
 	public String getOrderid() {
 		return orderid;
 	}
@@ -171,5 +180,6 @@ public class PersionMessage {
 	public String getOrderRemark() {
 		return orderRemark;
 	}
+
 	
 }
