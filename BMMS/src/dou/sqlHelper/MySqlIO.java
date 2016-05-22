@@ -299,6 +299,7 @@ public class MySqlIO {
 		try {
 			/* 提取数据 */
 			while (rs.next()){
+				String projectID = rs.getString("id");
 				String projectName = rs.getString("projectName");
 				Float budget = rs.getFloat("budget");
 				Float paid = rs.getFloat("paid");
@@ -309,6 +310,7 @@ public class MySqlIO {
 				}
 								
 				projectQunatityObject = new ProjectQunatity(projectName, budget, paid, remark);
+				projectQunatityObject.setProjectID(projectID);
 				projectQunatityList.add(projectQunatityObject);
 			}
 			

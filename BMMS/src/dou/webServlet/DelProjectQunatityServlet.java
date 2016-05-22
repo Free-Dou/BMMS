@@ -22,13 +22,13 @@ public class DelProjectQunatityServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
-		String projectName = req.getParameter("projectName");
+		String projectID = req.getParameter("projectID");
 		
-		if (("" != projectName) && (null != projectName)){
-			logger.info("[DelProjectQunatityServlet.java:doPost] projectName: " + projectName);
-			ProjectQunatity.delProjectQunatityFromDB(projectName);
+		if (("" != projectID) && (null != projectID)){
+			logger.info("[DelProjectQunatityServlet.java:doPost] projectID: " + projectID);
+			ProjectQunatity.delProjectQunatityFromDB(projectID);
 		} else {
-			logger.info("[DelProjectQunatityServlet.java:doPost] Customer name is null or \"\" !!! projectName : " + projectName);
+			logger.info("[DelProjectQunatityServlet.java:doPost] Customer name is null or \"\" !!! projectID : " + projectID);
 		}
 	}
 }

@@ -11,14 +11,13 @@ import org.apache.log4j.Logger;
 
 import dou.config.Config;
 import dou.metaObject.ProjectQunatity;
-import dou.sqlHelper.SqlUtilsInterface;
 
 public class UpdateProjectQunatityServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		this.doPost(req, resp);
 	}
 
 	@Override
@@ -26,17 +25,16 @@ public class UpdateProjectQunatityServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
-		String projectName = req.getParameter("projectName");
+		String projectID = req.getParameter("projectID");
 		Float budget = Float.parseFloat(req.getParameter("budget"));
 		Float paid = Float.parseFloat(req.getParameter("paid"));
 		String remark = null;
 		
-		if (("" != projectName) && (null != projectName)){
-			logger.info("[AddProjectQunatityServlet.java:doPost] projectName: " + projectName + " |  budget: " + budget + " |  paid: " + paid);
-			ProjectQunatity projectQunatity = new ProjectQunatity(projectName, budget, paid, remark);
-			projectQunatity.addProjectQunatityToDB();
+		if (("" != projectID) && (null != projectID)){
+			logger.info("[AddProjectQunatityServlet.java:doPost] projectID: " + projectID + " |  budget: " + budget + " |  paid: " + paid);
+			ProjectQunatity.updateProjectQunatityToDB(budget, paid, projectID);
 		} else {
-			logger.info("[AddProjectQunatityServlet.java:doPost] projectName is null or \"\" !!! projectName : " + projectName + " |  budget: " + budget + " |  paid: " + paid);
+			logger.info("[AddProjectQunatityServlet.java:doPost] projectID is null or \"\" !!! projectID : " + projectID + " |  budget: " + budget + " |  paid: " + paid);
 		}
 	}
 }

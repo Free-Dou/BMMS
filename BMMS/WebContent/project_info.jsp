@@ -40,8 +40,17 @@
 						for (int i = 0; i < projectQunatityList.size(); i++){
 							ProjectQunatity projectQunatityObject = projectQunatityList.get(i);
 						
+<<<<<<< Updated upstream
 							out.print("<div id=\"" + projectQunatityObject.getProjectName() + "\" class=\"table-line\">");
 							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 2%;\"> - </div>");
+=======
+<<<<<<< HEAD
+							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 2%;\"> - " + projectQunatityObject.getProjectID() + "</div>");
+=======
+							out.print("<div id=\"" + projectQunatityObject.getProjectName() + "\" class=\"table-line\">");
+							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectName() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 2%;\"> - </div>");
+>>>>>>> origin/feature
+>>>>>>> Stashed changes
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + projectQunatityObject.getProjectName() + "</div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");

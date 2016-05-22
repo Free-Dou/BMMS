@@ -12,6 +12,7 @@ public class ProjectQunatity {
 	private Float budget = null;
 	private Float paid = null;
 	private String remark = null;
+	private String projectID = null;
 	
 	public ProjectQunatity(String projectName, Float budget, Float paid, String remark) {
 		super();
@@ -58,20 +59,28 @@ public class ProjectQunatity {
 		SqlUtilsInterface.addInfoToDB(sql, params);
 	}
 	
-	public void updateProjectQunatityToDB(){
-		String params[] = {String.format("%.2f", this.budget), String.format("%.2f", this.paid), this.projectName};
+	public static void updateProjectQunatityToDB(Float budget, Float paid, String projectID){
+		String params[] = {String.format("%.2f", budget), String.format("%.2f", paid), projectID};
 		
-		String sql = "UPDATE `tb_qunatity` SET budget = ?, paid=? WHERE `projectName`= ?;";
+		String sql = "UPDATE `tb_qunatity` SET budget = ?, paid=? WHERE `id`= ?;";
 		
 		/* 添加当前对象的信息到数据库 */
 		SqlUtilsInterface.addInfoToDB(sql, params);
 	}
 	
-	public static void delProjectQunatityFromDB(String projectName) {
-		String sql = "delete from tb_qunatity where projectName=?;";
-		String params[] = {projectName};
+	public static void delProjectQunatityFromDB(String projectID) {
+		String sql = "delete from tb_qunatity where id=?;";
+		String params[] = {projectID};
 		
 		/* 删除数据 */
 		SqlUtilsInterface.delInfoFromDB(sql, params);
+	}
+
+	public String getProjectID() {
+		return projectID;
+	}
+
+	public void setProjectID(String projectID) {
+		this.projectID = projectID;
 	}
 }
