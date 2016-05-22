@@ -12,6 +12,7 @@ body
 
 	min-width: 1366px;
 }
+
 .main-background
 {
 	background-size: cover;
@@ -41,4 +42,90 @@ body
 .textbox-common
 {
 	width: 250px;
+}
+.blue_button
+{
+	float: right;
+	margin-right: 66px;
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(0, 120, 215);
+}
+.red_button
+{
+	float: right;
+	margin-right: 66px;
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(192, 120, 120);
+}
+.green_button
+{
+	float: right;
+	margin-right: 66px;
+	height: 30px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(96, 160, 96);
+}
+.login-process-cover
+{
+	padding: 0px;
+
+	background-color: rgba(0,0,0,0);
+
+	height: 100%;
+	width: 100%;
+
+	position: absolute;
+	visibility: hidden;
+
+	cursor: wait;
+	color: #FFFFFF;
+}
+.login-process-inner
+{
+	padding: 0px;
+
+	top: 350px;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	
+	position: absolute;
+	color: #FFFFFF;
+	transform: translateX(-50%);
+}
+.login_success_image
+{
+	background: url('../IMG/Success.png');
+	background-size: cover;
+	transform: translateX(-50%) scale(0,0);
+}
+
+.login_failed_image
+{
+	background: url('../IMG/Failed.png');
+	background-size: cover;
+	transform: translateX(-50%) scale(0,0);
+}
+
+.process-item
+{
+	background: url('../IMG/process-item.png') no-repeat;
+	background-size: cover;
+	top: 0px;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	transform: translateX(-50%) translateY(-50%);
 }

@@ -1,7 +1,5 @@
 package dou.sqlHelper;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,110 +7,97 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-
+import org.apache.log4j.Logger;
 import dou.config.Config;
 
 public class SqlHelper {
+	
+	/* 定义需要的变量,可定义成静态的 */
+	private static String driver = null;
+	private static String url = null;
+	private static String user = null;
+	private static String password = null;
+	private static Properties properties = null;
 
-	// 创建记录日志的对象
-
-	// 创建资源对象，数据库访问量小的话，可以做成静态的
-	private Connection connect = null;
-	// 防止sql注入漏洞，使用PreparedStatement
-	private PreparedStatement preparedStatement = null;
+	/* 获取配置文件，加载驱动，只需要执行一次 */
+	static {
+		try {
+			properties = Config.getSqlProperties();
+			driver = properties.getProperty("driver");
+			url = properties.getProperty("url");
+			user = properties.getProperty("user");
+			password = properties.getProperty("password");
+		    /* 加载驱动 */
+			Class.forName(driver);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	Logger logger = Config.getLogger(this.getClass());
+	private Connection connect = null;					   	 /* 创建资源对象，数据库访问量小的话，可以做成静态的 */
+	private PreparedStatement preparedStatement = null;      /* 防止sql注入漏洞，使用PreparedStatement */
 	private ResultSet resultSet = null;
 
 	public PreparedStatement getPreparedStatement() {
 		return preparedStatement;
 	}
 
-	// 定义需要的变量,可定义成静态的
-	private static String driver = null;
-	private static String url = null;
-	private static String user = null;
-	private static String password = null;
-
-	private static Properties properties = null;
-
-	// 获取配置文件，加载驱动，只需要执行一次
-	static {
-		try {
-
-			// 获取配置文件
-			properties = Config.getSqlProperties();
-
-			driver = properties.getProperty("driver");
-			url = properties.getProperty("url");
-			user = properties.getProperty("user");
-			password = properties.getProperty("password");
-
-			// 加载驱动
-			Class.forName(driver);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	// 得到连接
+	/* 得到连接 */
 	public Connection getConnection() {
-
 		try {
 			connect = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			logger.error("[SqlHelper.java:getConnection] Get Connection failed!!!!");
+			logger.error("Error Message : " + e.getMessage());
 			e.printStackTrace();
 		}
-
+		
 		return connect;
 	}
 
-	/*
-	 * 查询方法
-	 */
+	/* 查询方法 */
 	public ResultSet executeQuery(String sql, String[] parameters) {
-
-		// 1.得到链接
+		/* 1.得到链接
+		 * 2.创建一个PreparedStatement
+		 * 3.填上参数，然后执行查询
+		 * 4.返回resultSet
+		 */
 		connect = getConnection();
-
-		// 2.创建一个PreparedStatement
 		try {
-			
-			
 			preparedStatement = connect.prepareStatement(sql);
 
 			if (parameters != null) {
-				for (int i = 0; i < parameters.length; i++)
-					preparedStatement.setString(i+1, parameters[i]);
+				for (int i = 0; i < parameters.length; i++){
+					preparedStatement.setString(i + 1, parameters[i]);
+				}
 			}
 
 			resultSet = preparedStatement.executeQuery();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			logger.error("[SqlHelper.java:executeQuery] Sql Query Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
 			e.printStackTrace();
+			/* 开发期间如果出错，返回一个。给调用该函数的函数提供选择，可以处理，也可以不处理 */
 			throw new RuntimeException(e);
 		} finally {
-
+			/* 查询到的数据还在resultSet中，所以此处不能释放资源，需要上层函数取出数据后，再对资源进行释放 */
 		}
 
 		return resultSet;
-
 	}
 
-	/*
-	 * 准对一条sql语句的 update/delete/insert sql 格式： update 表名 set 字段名=？ where 字段=？
-	 */
+	/* 准对一条sql语句的 update/delete/insert sql 格式： update 表名 set 字段名=？ where 字段=？ */
 	public void executeUpdate(String sql, String[] parameters) {
-
-		// 1.得到连接
+		/* 1.得到链接
+		 * 2.创建一个PreparedStatement
+		 * 3.填上参数，然后执行查询
+		 * 4.返回resultSet
+		 */
 		connect = getConnection();
-		// 2.创建一个preparedStatement
 		try {
 			preparedStatement = connect.prepareStatement(sql);
 
-			// 设置参数
 			if (parameters != null) {
 				for (int i = 0; i < parameters.length; i++) {
 					preparedStatement.setString(i + 1, parameters[i]);
@@ -120,85 +105,87 @@ public class SqlHelper {
 			}
 
 			preparedStatement.executeUpdate();
-
+			logger.info("[SqlHelper.java:executeUpdate] Sql Update success!!!  sql:" + sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			// 开发期间如果出错，返回一个
-			// 给调用该函数的函数提供选择，可以处理，也可以不处理
-			throw new RuntimeException(e);
+			logger.error("[SqlHelper.java:executeUpdate] Sql Update Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			//e.printStackTrace();
+			/* 开发期间如果出错，返回一个。给调用该函数的函数提供选择，可以处理，也可以不处理 */
+			//throw new RuntimeException(e);
 		} finally {
-			// 关闭资源
+			/* 关闭资源 */
 			closeDB(resultSet, preparedStatement, connect);
 		}
 	}
+	
+	/* 如果有多个update/delete/insert[需要考虑事务] */
+	public void executeUpdateForSqls(String[] sqls, String[][] parameters) {
 
-	/*
-	 * 如果有多个update/delete/insert[需要考虑事务]
-	 */
-	public void executeUpdateForSqls(String[] sql, String[][] parameters) {
-
-		// 1.得到连接
+		/* 1.得到连接
+		 * 2.创建一个preparedStatement
+		 * 3.设置事务方法
+		 * 4.挨个sql语句设置参数并执行
+		 * 5.
+		 */
 		connect = getConnection();
-
-		// 2.创建一个preparedStatement
 		try {
-
-			// 设置事务方法
 			connect.setAutoCommit(false);
 
-			for (int i = 0; i < sql.length; i++) {
-
-				preparedStatement = connect.prepareStatement(sql[i]);
-
-				// 设置参数
-				if (parameters[i] != null) {
+			for (int i = 0; i < sqls.length; i++) {
+				preparedStatement = connect.prepareStatement(sqls[i]);
+				/* 设置参数 */
+				if ((null != parameters) && (parameters[i] != null)) {
 					for (int j = 0; j < parameters[i].length; j++) {
 						preparedStatement.setString(j + 1, parameters[i][j]);
 					}
 				}
+				
+				logger.info("[SqlHelper.java:executeUpdateForSqls] Sql Update success!!!  sql:" + sqls[i]);
 				preparedStatement.executeUpdate();
-
 			}
 
 			connect.commit();
-
+			logger.info("[SqlHelper.java:executeUpdateForSqls] All Sql Update success!!! num : " + sqls.length);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			logger.error("[SqlHelper.java:executeUpdateForSqls] Sqls Update has Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
 			e.printStackTrace();
-
 			// 如果sql语句中任何一句出错了，则可以整体回滚
 			try {
 				connect.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
+				logger.error("[SqlHelper.java:executeUpdateForSqls] Rollback Failed!!!");
+				logger.error("Error Message : " + e1.getMessage());
 			}
-
 			// 开发期间如果出错，返回一个
 			// 给调用该函数的函数提供选择，可以处理，也可以不处理
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 		} finally {
 			// 关闭资源
 			closeDB(resultSet, preparedStatement, connect);
 		}
-
 	}
-
+	
+	/* 关闭数据库访问资源 */
 	public void closeDB(ResultSet rs, Statement statement, Connection ct) {
 		if (rs != null) {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				logger.error("[SqlHelper.java:closeDB] ResultSet Close Failed!!!");
+				logger.error("Error Message : " + e.getMessage());
 				e.printStackTrace();
 			}
-			rs = null; // 交给垃圾回收机制
+			rs = null; 	/* 交给垃圾处理机制 */
 		}
 		if (statement != null) {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				logger.error("[SqlHelper.java:closeDB] Statement Close Failed!!!");
+				logger.error("Error Message : " + e.getMessage());
 				e.printStackTrace();
 			}
 			statement = null;
@@ -207,8 +194,8 @@ public class SqlHelper {
 			try {
 				ct.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				// 开发阶段
+				logger.error("[SqlHelper.java:closeDB] Connection Close Failed!!!");
+				logger.error("Error Message : " + e.getMessage());
 				e.printStackTrace();
 			}
 			ct = null;

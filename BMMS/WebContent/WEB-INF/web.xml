@@ -11,14 +11,180 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
+<!-- 初始化配置文件 -->
+  <servlet>
+  <servlet-name>SetConfigServlet</servlet-name>
+  <servlet-class>dou.config.SetConfigServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>SetConfigServlet</servlet-name>
+  <url-pattern>/SetConfigServlet</url-pattern>
+  </servlet-mapping>
+
+<!-- 登录验证 -->
   <servlet>
   <servlet-name>LoginServlet</servlet-name>
-  <servlet-class>dou.WebServlet.LoginServlet</servlet-class>
+  <servlet-class>dou.webServlet.LoginServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
   <servlet-name>LoginServlet</servlet-name>
   <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+
+<!-- 添加客户信息 -->
+  <servlet>
+  <servlet-name>AddCustomerInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddCustomerServlet</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+  <servlet-name>AddCustomerInfo</servlet-name>
+  <url-pattern>/AddCustomerInfo</url-pattern>
+  </servlet-mapping>
+  
+<!-- 添加产品信息 -->
+  <servlet>
+  <servlet-name>AddProductInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddProductServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProductInfo</servlet-name>
+  <url-pattern>/AddProductInfo</url-pattern>
+  </servlet-mapping>
+ 
+<!-- 添加供应商信息 -->
+  <servlet>
+  <servlet-name>AddSupplierInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddSupplierServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddSupplierInfo</servlet-name>
+  <url-pattern>/AddSupplierInfo</url-pattern>
+  </servlet-mapping>
+  
+<!-- 删除客户信息 -->
+  <servlet>
+  <servlet-name>DelCustomerInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelCustomerServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelCustomerInfo</servlet-name>
+  <url-pattern>/DelCustomerInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除产品信息 -->
+  <servlet>
+  <servlet-name>DelProductInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelProductServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProductInfo</servlet-name>
+  <url-pattern>/DelProductInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除供应商信息 -->
+  <servlet>
+  <servlet-name>DelSupplierInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelSupplierServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelSupplierInfo</servlet-name>
+  <url-pattern>/DelSupplierInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 处理销售单 -->
+  <servlet>
+  <servlet-name>ProcSalesOrder</servlet-name>
+  <servlet-class>dou.webServlet.SalesOrderProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcSalesOrder</servlet-name>
+  <url-pattern>/ProcSalesOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>SalesAnalyse</servlet-name>
+  <servlet-class>dou.webServlet.SalesAnalyseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>SalesAnalyse</servlet-name>
+  <url-pattern>/SalesAnalyse</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 处理入库单 -->
+  <servlet>
+  <servlet-name>ProcWareHousingOrder</servlet-name>
+  <servlet-class>dou.webServlet.WareHousingOrderProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcWareHousingOrder</servlet-name>
+  <url-pattern>/ProcWareHousingOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>WareHousingAnalyse</servlet-name>
+  <servlet-class>dou.webServlet.WareHousingAnalyseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>WareHousingAnalyse</servlet-name>
+  <url-pattern>/WareHousingAnalyse</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取要分析的销售单 -->
+  <servlet>
+  <servlet-name>ProcPersonMessage</servlet-name>
+  <servlet-class>dou.webServlet.PersionMessageProcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ProcPersonMessage</servlet-name>
+  <url-pattern>/ProcPersonMessage</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 添加工程量信息 -->
+  <servlet>
+  <servlet-name>AddProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.AddProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProjectQunatity</servlet-name>
+  <url-pattern>/AddProjectQunatity</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除工程量信息 -->
+  <servlet>
+  <servlet-name>DelProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.DelProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProjectQunatity</servlet-name>
+  <url-pattern>/DelProjectQunatity</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 更新工程量信息 -->
+  <servlet>
+  <servlet-name>UpdateProjectQunatity</servlet-name>
+  <servlet-class>dou.webServlet.UpdateProjectQunatityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>UpdateProjectQunatity</servlet-name>
+  <url-pattern>/UpdateProjectQunatity</url-pattern>
+  </servlet-mapping>
 </web-app>

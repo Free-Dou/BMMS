@@ -10,41 +10,42 @@
 		<style type="text/css">
 			@import url(CSS/common-style.css);
 		</style>
-
+		<script type="text/javascript" src="JS/md5.js"> </script>
 		<script type="text/javascript" src="JS/index.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
+		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
 	</head>
-	<body>
+	<body>   
 		<div class="main-background main-background-img">
 			<!-- <div class="space"></div> -->
 			<div class="banner-background" id="test">
 				<div class="login-background">
 					<h2 style="color: #FFFFFF">用户登录</h2>
-					<div class="normal-line">
-						<div class="float-left">用户名：</div>
-						<div class="float-right"><input class="textbox-common" type="text" name="usr"></div>
-					</div>
-					<div class="normal-line">
-						<div class="float-left">密码：</div>
-						<div class="float-right"><input class="textbox-common" type="password" name="pswd"></div>
-					</div>
-					<div style="height: 30px; text-align: right;">
-						<div id="login_button" style="float: right; margin-right: 66px; background-color: #0078D7; height: 30px; width: 60px; text-align: center; cursor: pointer; color: white;" onmouseenter="button_mouseenter('login_button')" onmouseleave="button_mouseleave('login_button')" onmousedown="button_mousedown('login_button')" onmouseup="button_mouseup('login_button')" onclick="login_click()">
-							<p style="top: 50%; transform: translateY(-50%);">登录</p>
+					<form id="login_form" action="/BMMS/LoginServlet" method="post">
+						<div class="normal-line">
+							<div class="float-left">用户名：</div>
+							<div class="float-right"><input class="textbox-common" type="text" name="username" id="username"></div>
 						</div>
- 					</div>
+						<div class="normal-line">
+							<div class="float-left">密码：</div>
+							<div class="float-right"><input class="textbox-common" type="password" name="password" id="password" onkeyup="pwd_enter_press()"></div>
+						</div>
+						<div style="height: 30px; text-align: right;">
+							<div id="login_button" class="blue_button" onmouseenter="button_mouseenter('login_button')" onmouseleave="button_mouseleave('login_button')" onmousedown="button_mousedown('login_button')" onmouseup="button_mouseup('login_button')" onclick="login_click()">
+								<p style="top: 50%; transform: translateY(-50%);">
+									登录
+								</p>
+							</div>
+ 						</div>
+ 					</form>
 				</div>
 			</div>
-<!-- 			<div class="page-footer">
-                <p>主办单位：垃圾网络有限公司 BMMS项目组™</p>
-                <p>电话：13266618140 邮箱：wkqcom@live.com</p>
-            </div> -->
-			<div class="page-footer">
+			<div class="page-footer" style="min-width: 1366px;">
 				<p>Copyright © Trash Inc. BMMS-Project™</p>
 				<p>All Right Reserved</p>
 			</div>
 		</div>
-		<div class="login-process-cover" id="process_message">
+		<div class="login-process-cover" style="opacity: 0.0; background-color: rgba(0,0,0,0.6);" id="process_message">
 			<div class="login-process-inner" id="pi_parent">
 				<div id="pi0" class="process-item"></div>
 				<div id="pi1" class="process-item"></div>
@@ -53,6 +54,7 @@
 				<div id="pi4" class="process-item"></div>
 			</div>
 			<div id="login_success_img" class="login-process-inner login_success_image" ></div>
+			<div id="login_failed_img" class="login-process-inner login_failed_image" ></div>
 			<p id="process_tip" style="top: 460px; width: 100%; position: absolute;"> 登录中，请稍后。。。</p>
 		</div>
 	</body>

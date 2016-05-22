@@ -5,21 +5,76 @@ var selected = [-1, -1];
 
 var left_base_status = new Array();
 
-var LEFT_BASE_TITLE = new Array("信息中心", "产品", "销售", "采购", "仓储", "辅助工具", "会议室", "监视工具");
+var LEFT_BASE_TITLE = new Array("信息中心", "产品", "销售", "采购", "仓储", "工程量");
 var LEFT_BASE_LV2_TITLE = new Array();
 
 LEFT_BASE_LV2_TITLE[0] = new Array("系统消息", "个人消息");
-LEFT_BASE_LV2_TITLE[1] = new Array("修改目录信息");
+LEFT_BASE_LV2_TITLE[1] = new Array("产品信息");
 LEFT_BASE_LV2_TITLE[2] = new Array("销售开单", "销售分析", "客户档案");
 LEFT_BASE_LV2_TITLE[3] = new Array("入库开单", "采购分析", "供应商档案");
 LEFT_BASE_LV2_TITLE[4] = new Array("仓储信息");
-LEFT_BASE_LV2_TITLE[5] = new Array("辅助工具管理");
-LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
-LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");
+LEFT_BASE_LV2_TITLE[5] = new Array("工程量管理");
+
+var RIGHT_PAGE_NAME = new Array();
+
+RIGHT_PAGE_NAME[0] = new Array("system_message.jsp", "personal_message.jsp");
+RIGHT_PAGE_NAME[1] = new Array("item_info.jsp");
+RIGHT_PAGE_NAME[2] = new Array("sale_make.jsp", "sale_analyze.html", "custom_info.jsp");
+RIGHT_PAGE_NAME[3] = new Array("buy_make.jsp", "buy_analyze.html", "suppliers_info.jsp");
+RIGHT_PAGE_NAME[4] = new Array("storehouse_info.jsp");
+RIGHT_PAGE_NAME[5] = new Array("project_info.jsp");
+
+// LEFT_BASE_LV2_TITLE[6] = new Array("会议室 1", "会议室 2", "会议室 3");
+// LEFT_BASE_LV2_TITLE[7] = new Array("仓库监视", "人员监视");
 
 for(var i = 0; i < LEFT_BASE_TITLE.length; i++)
 	left_base_status[i] = 0;
 setTimeout("set_main()", 1);
+
+var myxmlhttp = "";
+
+var process_time_last = 0;
+var pi_pos = new Array();
+var center_y = 50;
+var center_x = 50;
+var cover_alpha = 0;
+var s_load_timer = 0;
+var s_unload_timer = 0;
+var s_process_timer = 0;
+
+for(var i = 0; i < 5; i++)
+	pi_pos[i] = 0;
+
+var page_change_session = 0;
+var page_change_continue_session = 0;
+
+function myBrowser()
+{
+	var userAgent = navigator.userAgent;
+	console.info(navigator.userAgent);
+	if (userAgent.indexOf("Opera") > -1)
+		return "Opera"
+	if (userAgent.indexOf("Firefox") > -1)
+		return "FF";
+	if (userAgent.indexOf("Chrome") > -1)
+		return "Chrome";
+	if (userAgent.indexOf("Safari") > -1)
+		return "Safari";
+	if (userAgent.indexOf(".NET4.0C; .NET4.0E;") > -1)
+		return "IE";
+}
+var mb = myBrowser();
+if ("IE" == mb) {
+	// location.href='IE404.html';
+}
+if ("FF" == mb) {
+}
+if ("Chrome" == mb) {
+}
+if ("Opera" == mb) {
+}
+if ("Safari" == mb) {
+}
 
 function set_main()
 {
@@ -29,75 +84,6 @@ function set_main()
 
 	e_n.style.width = e_b.offsetWidth - 250 + "px";
 	page_main.style.height = e_b.offsetHeight - 48 + "px";
-}
-function title_onclick(base, index)
-{
-	if(onchange_flag == false)
-	{
-		page_change_to = "page_right_" + base + "_" + index;
-		if(page_change_to == page_now)
-			return;
-
-		onchange_flag = true;
-
-		if(page_now == "")
-		{
-			page_now = page_change_to;
-			setTimeout("page_change_continue()", 10);
-
-			var e = document.getElementById(page_now);
-			e.style.visibility = "visible";
-
-			return;
-		}
-		else
-			setTimeout(page_change, 10);
-	}
-}
-function page_change()
-{
-	var p_old = document.getElementById(page_now);
-	var v = p_old.style.opacity / 6;
-
-	p_old.style.opacity = Number(p_old.style.opacity) - v;
-	p_old.style.transform = "translateX(" + (-250) * (1 - p_old.style.opacity) + "px" + ")";
-
-	if(p_old.style.opacity <= 0 || v < 0.001)
-	{
-
-		p_old.style.transform = "translateX(-250px)";
-		p_old.style.opacity = 0;
-		p_old.style.visibility = "hidden";
-
-		page_now = page_change_to;
-
-		var e = document.getElementById(page_now);
-		e.style.visibility = "visible";
-
-		setTimeout("page_change_continue()", 10);
-
-		return;
-	}
-	setTimeout("page_change()", 10);
-}
-function page_change_continue()
-{
-	var e = document.getElementById(page_now);
-
-	var v = (1 - e.style.opacity) / 6;
-
-	e.style.opacity = Number(e.style.opacity) + v;
-	e.style.transform = "translateX(" + (-250) * (1 - e.style.opacity) + "px" + ")";
-
-	if(e.style.opacity >= 1 || v < 0.001)
-	{
-		e.style.transform = "translateX(0px)";
-		e.style.opacity = 1;
-
-		onchange_flag = false;
-		return;
-	}
-	setTimeout("page_change_continue()", 10);
 }
 function body_onload()
 {
@@ -116,12 +102,12 @@ function body_onload()
 		for(j = 0; j < LEFT_BASE_LV2_TITLE[i].length; j++)
 		{
 			control_string += "<div class=\"left-item-lv2\" id=\"base_" + i + "_lv2_" + j + "\" onmouseenter=\"lv2_mouseenter('" + i + "','" + j + "')\" onmouseleave=\"lv2_mouseleave('" + i + "','" + j + "')\" onmousedown=\"lv2_mousedown('" + i + "','" + j + "')\" onmouseup=\"lv2_mouseup('" + i + "','" + j + "')\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>";
-			if(!(i == 2 && j == 0) && !(i == 3 && j == 0))
-			{
-				console.info(i + "  " + j)
-				var x1 = document.getElementById("page_right_" + i + "_" + j);
-				x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
-			}
+			// if(!(i == 2 && j == 0) && !(i == 3 && j == 0))
+			// {
+			// 	console.info(i + "  " + j)
+			// 	var x1 = document.getElementById("page_right_" + i + "_" + j);
+			// 	x1.innerHTML = "<div class=\"right-page-title\"> " + LEFT_BASE_LV2_TITLE[i][j] + " </div>" + x1.innerHTML;
+			// }
 		}
 		control_string += "<div id=\"base_" + i + "_lv2_end\"></div>";
 
@@ -129,7 +115,23 @@ function body_onload()
 
 		x.innerHTML += control_string;
 	}
+	setTimeout(load_left_menu(), 1);
 }
+
+function load_left_menu()
+{
+	left_menu.style.opacity = 1.0;
+	left_menu.style.transform = "translateX(0px)";
+
+	page_now = "welcome.html";
+	var e = document.getElementById("page_right_0_0");
+	e.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
+	e.style.visibility = "visible";
+
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+}
+
 function title_mouseenter(index)
 {
 	if(left_base_status[index] == 0)
@@ -208,8 +210,12 @@ function lv2_mousedown(base, index)
 }
 function lv2_mouseup(base, index)
 {
-	if(onchange_flag == false)
-	{
+	// if(onchange_flag == false)
+	// {
+		clearInterval(page_change_session);
+		clearInterval(page_change_continue_session);
+		clearInterval(s_process_timer);
+
 		var temp = new Array();
 		temp[0] = selected[0];
 		temp[1] = selected[1];
@@ -225,130 +231,149 @@ function lv2_mouseup(base, index)
 		x.style.backgroundColor = "rgba(0,0,0,0.3)";
 
 		title_onclick(base, index);
-	}
-	else if(selected[0] != base || selected[1] != index)
+	// }
+	// else if(selected[0] != base || selected[1] != index)
+	// {
+	// 	var x = document.getElementById("base_" + base + "_lv2_" + index);
+	// 	x.style.color = "#FFFFFF";
+	// 	x.style.backgroundColor = "rgba(128,128,128,0.3)";
+	// }
+}
+function title_onclick(base, index)
+{
+	// if(onchange_flag == false)
+	// {
+		// page_change_to = "page_right_" + base + "_" + index;
+		page_change_to = RIGHT_PAGE_NAME[base][index];
+		if(page_change_to == page_now)
+			return;
+
+		onchange_flag = true;
+
+		if(page_now == "")
+		{
+			page_now = page_change_to;
+			// setTimeout("page_change_continue()", 10);
+
+			// var e = document.getElementById(page_now);
+			// e.style.visibility = "visible";
+			var e = document.getElementById("page_right_0_0");
+			e.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
+			e.style.visibility = "visible";
+
+			// var e1 = document.getElementById("page_loader");
+			// e1.src = page_now;
+
+			process_message.style.visibility = "visible";
+			s_process_timer = setInterval("process_anime()", 10);
+			// s_load_timer = setInterval("login_show_anime()", 10);
+
+			return;
+		}
+		else
+			page_change_session = setInterval("page_change()", 10);
+	// }
+}
+function page_change()
+{
+	// var p_old = document.getElementById(page_now);
+	var p_old = document.getElementById("page_right_0_0");
+	var v = p_old.style.opacity / 6;
+
+	p_old.style.opacity = Number(p_old.style.opacity) - v;
+	p_old.style.transform = "translateX(" + (-250) * (1 - p_old.style.opacity) + "px" + ")";
+
+	if(p_old.style.opacity <= 0 || v < 0.001)
 	{
-		var x = document.getElementById("base_" + base + "_lv2_" + index);
-		x.style.color = "#FFFFFF";
-		x.style.backgroundColor = "rgba(128,128,128,0.3)";
+		p_old.style.transform = "translateX(-250px)";
+		p_old.style.opacity = 0;
+		// p_old.style.visibility = "hidden";
+
+		page_now = page_change_to;
+		p_old.innerHTML = "<iframe id=\"page_loader\" style=\"height: 100%; width: 100%; border-width: 0px;\" src=\"" + page_now + "\" onload=\"iframe_load_complete()\"></iframe>";
+		// var e = document.getElementById(page_now);
+		// e.style.visibility = "visible";
+		// var e1 = document.getElementById("page_loader");
+		// e1.src = page_now;
+
+		process_message.style.visibility = "visible";
+		s_process_timer = setInterval("process_anime()", 10);
+		// s_load_timer = setInterval("login_show_anime()", 10);
+
+		clearInterval(page_change_session);
+		return;
+	}
+	// setTimeout("page_change()", 10);
+}
+function page_change_continue()
+{
+	// var e = document.getElementById(page_now);
+	var e = document.getElementById("page_right_0_0");
+	var v = (1 - e.style.opacity) / 6;
+
+	e.style.opacity = Number(e.style.opacity) + v;
+	e.style.transform = "translateX(" + (-250) * (1 - e.style.opacity) + "px" + ")";
+
+	if(e.style.opacity >= 1 || v < 0.001)
+	{
+		e.style.transform = "translateX(0px)";
+		e.style.opacity = 1;
+
+		onchange_flag = false;
+		clearInterval(page_change_continue_session);
+		return;
+	}
+	// setTimeout("page_change_continue()", 10);
+}
+
+function process_anime()
+{
+	process_time_last = process_time_last + 1;
+	var need_change = parseInt(process_time_last / 10);
+	if(need_change > 5)
+		need_change = 5;
+	for(var i = 0; i < need_change; i++)
+	{
+		var e = document.getElementById("pi" + i);
+		if (pi_pos[i] > 360) 
+			pi_pos[i] = pi_pos[i] - 360;
+
+		if(pi_pos[i] < 180)
+			pi_pos[i] = pi_pos[i] + (pi_pos[i] + 10) / 20;
+		else if(pi_pos[i] < 360)
+			pi_pos[i] = pi_pos[i] + (360 - pi_pos[i] + 10) / 20;
+
+		var new_x = center_x + Math.sin(2 * Math.PI / 360 * pi_pos[i]) * 50;
+		var new_y = center_y - Math.cos(2 * Math.PI / 360 * pi_pos[i]) * 50;
+
+		e.style.top = new_y + "px";
+		e.style.left = new_x + "px";
+		console.info("processtimer running.");
 	}
 }
 
-// setTimeout("myInterval()",10);
-// function myInterval()
-// {
-// 	aim = document.getElementById("test-back");
-// 	ele = document.getElementById("test");
-// 	ele.style.height = 1 + ele.offsetHeight + 'px';
-// 	if(ele.offsetHeight < aim.offsetHeight)
-// 		setTimeout("myInterval()",10);
-// 	// ele.innerHTML="Hello JavaScript";
-// }
+function iframe_load_complete()
+{
+	if (!page_loader.readyState || page_loader.readyState == "complete")
+	{
+		clearInterval(s_process_timer);
+		// clearInterval(s_load_timer);
+		// s_unload_timer = setInterval("load_complete_anime()");
+		process_message.style.visibility = "hidden";
+		page_change_continue_session = setInterval("page_change_continue()", 10);
+		
+		console.info("load complete stop loadtimer & processtimer.");
+	}
+}
 
-
-//Select 控件相关
-// 1.动态创建select
-
-// function createSelect()
-// {
-// 	var mySelect = document.createElement("select");
-// 	mySelect.id = "mySelect";
-// 	document.body.appendChild(mySelect);
-// }
-
-// 2.添加选项option
-
-// function addOption()
-// {
-// 	//根据id查找对象，
-// 	var obj=document.getElementById('mySelect');
-// 	//添加一个选项
-// 	obj.add(new Option("文本","值"));
-// }
-
-// 3.删除所有选项option
-
-// function removeAll()
-// {
-// 	var obj=document.getElementById('mySelect');
-// 	obj.options.length=0;
-// }
-
-// 4.删除一个选项option
-
-// function removeOne()
-// {
-// 	var obj=document.getElementById('mySelect');
-// 	//index,要删除选项的序号，这里取当前选中选项的序号
-// 	var index=obj.selectedIndex;
-// 	obj.options.remove(index); 
-// }
-
-// 5.获得选项option的值
-
-// var obj=document.getElementById('mySelect');
-// var index=obj.selectedIndex; //序号，取当前选中选项的序号
-// var val = obj.options[index].value;
-
-// 6.获得选项option的文本
-
-// var obj=document.getElementById('mySelect');
-// var index=obj.selectedIndex; //序号，取当前选中选项的序号
-// var val = obj.options[index].text;
-
-// 7.修改选项option
-
-// var obj=document.getElementById('mySelect');
-// var index=obj.selectedIndex; //序号，取当前选中选项的序号
-// var val = obj.options[index]=new Option("新文本","新值");
-
-// 8.删除select
-
-// function removeSelect()
-// {
-// 	var mySelect = document.getElementById("mySelect");
-// 	mySelect.parentNode.removeChild(mySelect);
-// }
-
-// 9.设置select option被中
-
-// function removeSelect()
-// {
-// 	// 向办件人员下拉列表动态添加员工
-// 	for ( var i = 0; i < json.length; i++)
-// 	{
-// 		var newOption = new Option(json[i].empname, json[i].empid, i);
-// 		//向办件人员下拉列表添加员工信息
-// 		objDeal.options.add(newOption);
-// 		//客户业务员的Id不为空
-// 		if(empbyDealEmpId != "" || empbyDealEmpId != 0)
-// 		{
-// 			//员工id等于下拉列表中的值,则下拉列表被选中
-// 			if(empbyDealEmpId==objDeal.options[i].value)
-// 			{
-// 				//判断此下拉列表被选中
-// 				objDeal.options[i].selected=true;
-// 			}
-// 		}
-// 	}
-// }
-
-// 1 检测是否有选中
-// if(objSelect.selectedIndex > -1)
-// {
-// 	//说明选中 
-// }
-// else
-// {
-// 	//说明没有选中
-// }
-// 2 删除被选中的项
-// objSelect.options[objSelect.selectedIndex] = null;
-// 3 增加项
-// objSelect.options[objSelect.length] = new Option("你好","hello");
-// 4 修改所选择中的项
-// objSelect.options[objSelect.selectedIndex] = new Option("你好","hello");
-// 5 得到所选择项的文本
-// objSelect.options[objSelect.selectedIndex].text;
-// 6 得到所选择项的值
-// objSelect.options[objSelect.selectedIndex].value;
+function refresh_now_page()
+{
+	if (myxmlhttp.readyState==4 && myxmlhttp.status==200)
+	{
+		if(onchange_flag == false)
+		{
+			page_change_to = page_now;
+			page_change_session = setInterval("page_change()", 10);
+		}
+	}
+}

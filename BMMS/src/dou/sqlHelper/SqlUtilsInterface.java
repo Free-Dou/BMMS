@@ -1,16 +1,82 @@
 package dou.sqlHelper;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
-import dou.BeanObject.WebPageObejct;
-import dou.config.Config;
+import java.util.ArrayList;
+import dou.metaObject.Customer;
+import dou.metaObject.MaterialInStock;
+import dou.metaObject.PersionMessage;
+import dou.metaObject.Product;
+import dou.metaObject.ProjectQunatity;
+import dou.metaObject.SalesOrder;
+import dou.metaObject.Supplier;
+import dou.metaObject.SystemMessage;
+import dou.metaObject.WareHousingOrder;
 
 public class SqlUtilsInterface {
 
+	public static boolean verifyPwd(String userName, String pwd){
+		return new MySqlIO().verifyPwd(userName, pwd);
+	}
+	
+
+	public static Integer getUserGrade(String userName) {
+		return new MySqlIO().getUserGrade(userName);
+	}
+
+	public static ArrayList<Customer> getAllCustomerInfo(){
+		return new MySqlIO().getAllCustomerInfo();
+	}
+	
+	public static ArrayList<Product> getAllProductInfo() {
+		return new MySqlIO().getAllProductInfo();
+	}
+	
+	public static ArrayList<Supplier> getAllSupplierInfo() {
+		return new MySqlIO().getAllSupplierInfo();
+	}
+
+	public static void addInfoToDB(String sql, String[] params) {
+		new MySqlIO().addInfoToDB(sql, params);
+	}
+
+	public static void delInfoFromDB(String sql, String[] params) {
+		new MySqlIO().delInfoFromDB(sql, params);
+	}
+	
+	public static void updateManyInfos(String[] sqls, String[][] parameters){
+		new MySqlIO().updateManyInfos(sqls, parameters);
+	}
+	
+	public static ArrayList<MaterialInStock> getAllMaterialInStockInfo() {
+		return new MySqlIO().getAllMatrialInStockInfo();
+	}
+
+	public static ArrayList<SystemMessage> getAllSystemMessageInfo() {
+		return new MySqlIO().getAllSystemMessageInfo();
+	}
+
+	public static ArrayList<PersionMessage> getPersionMessageInfo(String sql, String params[]) {
+		return new MySqlIO().getPersionMessageInfo(sql, params);
+	}
+
+
+	public static ArrayList<SalesOrder> querySalesOrderInfo(String sql, String params[]) {
+		return new MySqlIO().querySalesOrderInfo(sql, params);
+	}
+
+
+	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String sql, String params[]) {
+		return new MySqlIO().queryWareHousingOrderInfo(sql, params);
+	}
+
+
+	public static ArrayList<ProjectQunatity> getAllProjectQunatityInfo() {
+		// TODO Auto-generated method stub
+		return new MySqlIO().getAllProjectQunatityInfo();
+	}
+	
+/*
+ * 
 	public static Logger logger = Config.getLogger(new SqlUtilsInterface().getClass());
-		
 	
 	public static boolean dropTable(String table_name){
 		return new MySqlIO().dropTable(table_name);
@@ -54,6 +120,7 @@ public class SqlUtilsInterface {
 		}
 		return result;
 	}
-	
-	
+	*/
+
+
 }
