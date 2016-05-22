@@ -41,18 +41,18 @@
 							ProjectQunatity projectQunatityObject = projectQunatityList.get(i);
 						
 							out.print("<div id=\"" + projectQunatityObject.getProjectID() + "\" class=\"table-line\">");
-							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 2%;\"> - </div>");
+							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 2%;\"> - </div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + projectQunatityObject.getProjectName() + "</div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
 							out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
-							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%;\"> 📝 </div>");
+							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> 📝 </div>");
 							out.print("</div>");
 						}
 					}
 				%>
 			</div>
 			<dir class="page-footer main-page-footer">
-				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="add_click('project_info_pad')">
+				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="project_add_click('project_info_pad')">
 					<img src="IMG/add.png" class="footer-button-img">
 					<p>添加</p>
 				</div>
@@ -77,7 +77,7 @@
 							取消
 						</p>
 					</div>
-					<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="add_click()">
+					<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
 						<p style="top: 50%; transform: translateY(-50%);">
 							确定
 						</p>

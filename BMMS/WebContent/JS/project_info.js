@@ -160,9 +160,14 @@ function reedit_click(key)
 {
 	confirm_operation = "reedit";
 	update_projectID = key;
+
+	add_click(bName);
 }
 
-function add_click()
+function project_add_click(bName)
 {
+	
+
 	confirm_operation = "add";
+	add_click(bName);
 }
