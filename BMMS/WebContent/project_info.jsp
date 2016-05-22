@@ -60,7 +60,7 @@
 		</div>
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 200px; width: 400px;">
-				<h2> 添加产品 </h2>
+				<h2 id="float_window_title"> 添加工程 </h2>
 				<form action="/BMMS/AddProductInfo" method="post" id="form_post">
 					<div style="height: 40px; text-align: left;">
 						<span> 工程名： </span> <input class="textbox-common" name="input_add_project" id="input_add_project"></input>

@@ -158,6 +158,8 @@ function process_anime()
 
 function reedit_click(key)
 {
+	float_window_title.innerHTML = "修改工程";
+
 	input_add_project.readOnly = true;
 
 	var e = document.getElementById("pjtName" + key);
@@ -175,6 +177,8 @@ function reedit_click(key)
 
 function project_add_click(bName)
 {
+	float_window_title.innerHTML = "添加工程";
+
 	input_add_project.readOnly = false;
 
 	input_add_project.value = "";
