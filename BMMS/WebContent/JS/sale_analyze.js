@@ -59,6 +59,8 @@ function get_result()
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 	
+	result_board.innerHTML = "";
+
 	myxmlhttp = getXmlHttpObject();
 
 	if (myxmlhttp)
@@ -173,6 +175,9 @@ function check_search_result()
 				message_back = 1;
 		}
 		result_board.innerHTML = string_final;
+
+		process_message.style.visibility = "hidden";
+		clearInterval(s_process_timer);
 	}
 }
 
