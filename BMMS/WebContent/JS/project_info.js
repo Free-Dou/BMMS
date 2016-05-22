@@ -170,7 +170,7 @@ function reedit_click(key)
 	confirm_operation = "reedit";
 	update_projectID = key;
 
-	add_click(bName);
+	add_click("project_info_pad");
 }
 
 function project_add_click(bName)
@@ -182,6 +182,6 @@ function project_add_click(bName)
 	input_add_alrmoney.value = "0";
 
 	confirm_operation = "add";
-	
+
 	add_click(bName);
 }
