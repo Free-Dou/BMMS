@@ -23,11 +23,6 @@ public class LoginServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		
-		String usernameSession = (String)req.getSession().getAttribute("username");
-		if (null == usernameSession){
-			return;
-		}
-		
 		Logger logger = Config.getLogger(this.getClass());
 		PrintWriter pw = resp.getWriter();
 		String username = req.getParameter("username");
