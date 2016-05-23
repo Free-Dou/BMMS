@@ -19,18 +19,34 @@ function body_onload()
 {
 	if(trade_person.options.length == 0)
 	{
-		alert('客户列表为空，清先添加一个客户。');
-		parent.lv2_mouseup(2, 2);
+		// alert('客户列表为空，清先添加一个客户。');
+		tip_window.visibility = "visible";
+		tip_contain = "客户列表为空，清先添加一个客户。";
+		tip_goto = "22";
+
+		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
 		// parent.title_onclick(2, 2);
 	}
 	if(select_add_name.options.length == 0)
 	{
-		alert('产品目录为空，清先添加一个产品。');
-		parent.lv2_mouseup(1, 0);
+		// alert('产品目录为空，清先添加一个产品。');
+		tip_window.visibility = "visible";
+		tip_contain = "产品目录为空，清先添加一个产品。";
+		tip_goto = "10";
+
+		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
 		// parent.title_onclick(1, 0);
 	}
+}
+
+function tip_button_click()
+{
+	if(tip_goto == "22")
+		parent.lv2_mouseup(2, 2);
+	else
+		parent.lv2_mouseup(1, 0);
 }
 
 function table_add(data)

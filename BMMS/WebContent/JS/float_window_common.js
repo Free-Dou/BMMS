@@ -25,7 +25,7 @@ function show_window()
 	if(add_window.style.opacity >= 1.0)
 	{
 		add_window.style.opacity = 1.0;
-		Base.style.webkitFilter = "blur(6px)"
+		Base.style.webkitFilter = "blur(6px)";
 		Base.style.mozFilter = Base.style.webkitFilter;
 		Base.style.msFilter = Base.style.webkitFilter;
 		Base.style.Filter = Base.style.webkitFilter;
@@ -50,7 +50,7 @@ function hide_window()
 	if(add_window.style.opacity <= 0.0)
 	{
 		add_window.style.opacity = 0.0;
-		Base.style.webkitFilter = "blur(0px)"
+		Base.style.webkitFilter = "blur(0px)";
 		Base.style.mozFilter = Base.style.webkitFilter;
 		Base.style.msFilter = Base.style.webkitFilter;
 		Base.style.Filter = Base.style.webkitFilter;

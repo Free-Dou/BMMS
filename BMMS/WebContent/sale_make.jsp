@@ -174,6 +174,19 @@
 				</div>
 			</div>
 		</div>
+		<div id="tip_window" class="new_float_window">
+			<div id="tip_window_inner" class="set_center" style="height: 200px; width: 1000px;">
+				<h2> 提示 </h2>
+				<h4 id="tip_contain">  </h4>
+				<div style="margin-top: 10px;">
+					<div id="tip_confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('tip_confirm_button')" onmouseleave="button_mouseleave('tip_confirm_button')" onmousedown="button_mousedown('tip_confirm_button')" onmouseup="button_mouseup('tip_confirm_button')" onclick="tip_button_click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							确定
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">
 			<div class="login-process-inner" id="pi_parent">
 				<div id="pi0" class="process-item"></div>

@@ -15,22 +15,40 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
+var tip_goto = "";
+
 function body_onload()
 {
 	if(trade_person.options.length == 0)
 	{
-		alert('供应商列表为空，清先添加一个供应商。');
-		parent.lv2_mouseup(3, 2);
+		// alert('供应商列表为空，清先添加一个供应商。');
+		tip_window.visibility = "visible";
+		tip_contain = "供应商列表为空，清先添加一个供应商。";
+		tip_goto = "32";
+
+		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
 		// parent.title_onclick(3, 2);
 	}
 	if(select_add_name.options.length == 0)
 	{
-		alert('产品目录为空，清先添加一个产品。');
-		parent.lv2_mouseup(1, 0);
+		// alert('产品目录为空，清先添加一个产品。');
+		tip_window.visibility = "visible";
+		tip_contain = "产品目录为空，清先添加一个产品。";
+		tip_goto = "10";
+
+		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
 		// parent.title_onclick(1, 0);
 	}
+}
+
+function tip_button_click()
+{
+	if(tip_goto == "32")
+		parent.lv2_mouseup(3, 2);
+	else
+		parent.lv2_mouseup(1, 0);
 }
 
 function table_add(data)
