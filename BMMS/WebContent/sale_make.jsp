@@ -37,6 +37,11 @@
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
 								<select style="width: 254px;" id="trade_person">
 									<%
+										String username = (String)session.getAttribute("username");
+										if (null == username){
+											out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+										}	
+									
 										ArrayList<Customer> customerList = Customer.getAllCustomerInfo();
 										if (null != customerList){
 											for (int i = 0; i < customerList.size(); i++){

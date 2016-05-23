@@ -31,7 +31,12 @@
 				<div class="table-title-cell"> 产品名称 </div>
 			</div>
 			<div id="table_inner">
-				<%
+			<%
+				String username = (String)session.getAttribute("username");
+				if (null == username){
+					out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+				}
+				
 				/* 输出产品信息 */
 				ArrayList<Product> productList = Product.getAllProductInfo();
 				if (null != productList){
@@ -45,7 +50,7 @@
 						out.print("</div>");
 					}
 				}
-				%>
+			%>
 			</div>
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="add_click('item_info_pad')">

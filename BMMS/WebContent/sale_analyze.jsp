@@ -1,4 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta charset="utf-8">
 
 <html>
@@ -22,6 +24,13 @@
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 	</head>
 	<body onload="body_onload()">
+		<%
+			String username = (String)session.getAttribute("username");
+			if (null == username){
+				out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+			}
+		%>
+		
 		<div id="sale_analyze_pad" class="right-page-contains">
 			<div class="right-page-title"> 销售分析 </div>
 			<div style="height: 110px;">

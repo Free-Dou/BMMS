@@ -34,6 +34,11 @@
 			</div>
 			<div id="table_inner">
 				<%
+					String username = (String)session.getAttribute("username");
+					if (null == username){
+						out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+					}
+					
 					ArrayList<ProjectQunatity> projectQunatityList = ProjectQunatity.getAllCustomerInfo();
 					
 					if (null != projectQunatityList){

@@ -21,6 +21,11 @@
 		<div class="right-page-contains" id="sys_message_pad">
 			<div class="right-page-title"> 系统消息 </div>
 				<%
+					String username = (String)session.getAttribute("username");
+					if (null == username){
+						out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+					}
+				
 					ArrayList<SystemMessage> systemMessageList = SystemMessage.getAllSystemMessageInfo();
 			
 					if (null != systemMessageList){

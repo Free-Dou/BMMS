@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 
 <html>
@@ -17,13 +18,19 @@
 			@import url(CSS/right_common_style.css);
 		</style>
 		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
-		<script type="text/javascript" src="JS/buy_analyze.js"> </script>
+		<script type="text/javascript" src="JS/sale_analyze.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 	</head>
 	<body onload="body_onload()">
-		<div id="buy_analyze_pad" class="right-page-contains">
-			<div class="right-page-title"> 采购分析 </div>
+		<%
+			String username = (String)session.getAttribute("username");
+			if (null == username){
+				out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+			}
+		%>
+		<div id="sale_analyze_pad" class="right-page-contains">
+			<div class="right-page-title"> 销售分析 </div>
 			<div style="height: 110px;">
 				<div style="float: left;">
 					<div style="height: 36px; padding-left: 35px;">
@@ -48,7 +55,7 @@
 					</div>
 					-->
 		 			<div style="height: 36px; padding-left: 35px;">
-						<div style="float:left; padding-left: 16px; height: 24px;">	供应商： </div>
+						<div style="float:left; padding-left: 32px; height: 24px;">	客户： </div>
 						<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_customer" class="textbox-common"></input> </div>
 						<div style="float:left; padding-left: 48px; height: 24px;"> 商品： </div>
 						<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_item" class="textbox-common"></input> </div>

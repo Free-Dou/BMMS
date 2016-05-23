@@ -101,6 +101,12 @@
 			<div class="set_center" style="height: 200px; width: 400px;">
 				<h2> 添加 </h2>
 				<%
+				
+					String username = (String)session.getAttribute("username");
+					if (null == username){
+						out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
+					}
+			
 					ArrayList<Product> productList = Product.getAllProductInfo();
 				%>
 				<div style="height: 30px; text-align: left;">
