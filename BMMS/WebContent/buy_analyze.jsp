@@ -18,7 +18,7 @@
 			@import url(CSS/right_common_style.css);
 		</style>
 		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
-		<script type="text/javascript" src="JS/sale_analyze.js"> </script>
+		<script type="text/javascript" src="JS/buy_analyze.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 	</head>
@@ -30,7 +30,7 @@
 			}
 		%>
 		<div id="sale_analyze_pad" class="right-page-contains">
-			<div class="right-page-title"> 销售分析 </div>
+			<div class="right-page-title"> 采购分析 </div>
 			<div style="height: 110px;">
 				<div style="float: left;">
 					<div style="height: 36px; padding-left: 35px;">
