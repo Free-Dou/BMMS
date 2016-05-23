@@ -22,7 +22,7 @@ function body_onload()
 	if(trade_person.options.length == 0)
 	{
 		// alert('供应商列表为空，清先添加一个供应商。');
-		tip_window.visibility = "visible";
+		tip_window.style.visibility = "visible";
 		tip_contain.innerHTML = "供应商列表为空，清先添加一个供应商。";
 		tip_goto = "32";
 		tip_window.style.opacity = 1.0;
@@ -34,7 +34,7 @@ function body_onload()
 	if(select_add_name.options.length == 0)
 	{
 		// alert('产品目录为空，清先添加一个产品。');
-		tip_window.visibility = "visible";
+		tip_window.style.visibility = "visible";
 		tip_contain.innerHTML = "产品目录为空，清先添加一个产品。";
 		tip_goto = "10";
 		tip_window.style.opacity = 1.0;
