@@ -22,7 +22,7 @@ public class SalesAnalyseServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		resp.sendRedirect("/BMMS/index.html");
 	}
 
 	@Override

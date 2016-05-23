@@ -40,16 +40,17 @@ public class Product {
 		String params[][] = {{this.pName, this.pSpec},
 							 {this.pSpec, this.pName}};
 		String sqls[] = {"INSERT INTO tb_product(pname,pspec) VALUES(?,?);", 
-						 "INSERT INTO tb_materialstock(mpspec,mname,number) VALUES (?,?,0)"};
+						 "INSERT INTO tb_materialstock(mpspec,mname,number,ctime,stockloca) VALUES (?,?,0,now(),1)"};
 		
 		SqlUtilsInterface.updateManyInfos(sqls, params);
 	}
 
 	public static void delProductFromDB(String pKeyName) {
-		String sql = "delete from tb_product where pname=?;";
-		String params[] = {pKeyName};
+		String sqls[] = {"delete from tb_product where pname=?;",
+					   "delete from tb_materialstock where mname=?;"};
+		String params[][] = {{pKeyName}, {pKeyName}};
 		
-		SqlUtilsInterface.delInfoFromDB(sql, params);
+		SqlUtilsInterface.updateManyInfos(sqls, params);
 	}
 	
 	public String getpSpec() {
