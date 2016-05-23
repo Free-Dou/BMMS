@@ -41,7 +41,7 @@
 						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 15%;\"> " + materialInStock.getStockloca() + " </div>");
 						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\"> " + materialInStock.getmPSpec() + " </div>");
 						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\"> " + materialInStock.getmName() + " </div>");
-						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 15%;\"> " + materialInStock.getNumber() + " </div>");
+						out.print("<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 15%;\"> " + String.format("%.3f", materialInStock.getNumber()) + " </div>");
 						out.print("</div>");
 					}
 				}
