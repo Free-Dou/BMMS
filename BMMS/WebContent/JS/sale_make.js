@@ -15,14 +15,17 @@ var s_process_timer = 0;
 for(var i = 0; i < 5; i++)
 	pi_pos[i] = 0;
 
+var tip_goto = "";
+
 function body_onload()
 {
 	if(trade_person.options.length == 0)
 	{
 		// alert('客户列表为空，清先添加一个客户。');
 		tip_window.visibility = "visible";
-		tip_contain = "客户列表为空，清先添加一个客户。";
+		tip_contain.innerHTML = "客户列表为空，清先添加一个客户。";
 		tip_goto = "22";
+		tip_window.style.opacity = 1.0;
 
 		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
@@ -32,8 +35,9 @@ function body_onload()
 	{
 		// alert('产品目录为空，清先添加一个产品。');
 		tip_window.visibility = "visible";
-		tip_contain = "产品目录为空，清先添加一个产品。";
+		tip_contain.innerHTML = "产品目录为空，清先添加一个产品。";
 		tip_goto = "10";
+		tip_window.style.opacity = 1.0;
 
 		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;

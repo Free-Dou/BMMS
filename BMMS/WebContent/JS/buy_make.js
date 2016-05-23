@@ -23,8 +23,9 @@ function body_onload()
 	{
 		// alert('供应商列表为空，清先添加一个供应商。');
 		tip_window.visibility = "visible";
-		tip_contain = "供应商列表为空，清先添加一个供应商。";
+		tip_contain.innerHTML = "供应商列表为空，清先添加一个供应商。";
 		tip_goto = "32";
+		tip_window.style.opacity = 1.0;
 
 		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
@@ -34,8 +35,9 @@ function body_onload()
 	{
 		// alert('产品目录为空，清先添加一个产品。');
 		tip_window.visibility = "visible";
-		tip_contain = "产品目录为空，清先添加一个产品。";
+		tip_contain.innerHTML = "产品目录为空，清先添加一个产品。";
 		tip_goto = "10";
+		tip_window.style.opacity = 1.0;
 
 		buy_make_pad.style.webkitFilter = "blur(6px)";
 		return;
