@@ -19,8 +19,8 @@ var RIGHT_PAGE_NAME = new Array();
 
 RIGHT_PAGE_NAME[0] = new Array("system_message.jsp", "personal_message.jsp");
 RIGHT_PAGE_NAME[1] = new Array("item_info.jsp");
-RIGHT_PAGE_NAME[2] = new Array("sale_make.jsp", "sale_analyze.html", "custom_info.jsp");
-RIGHT_PAGE_NAME[3] = new Array("buy_make.jsp", "buy_analyze.html", "suppliers_info.jsp");
+RIGHT_PAGE_NAME[2] = new Array("sale_make.jsp", "sale_analyze.jsp", "custom_info.jsp");
+RIGHT_PAGE_NAME[3] = new Array("buy_make.jsp", "buy_analyze.jsp", "suppliers_info.jsp");
 RIGHT_PAGE_NAME[4] = new Array("storehouse_info.jsp");
 RIGHT_PAGE_NAME[5] = new Array("project_info.jsp");
 
