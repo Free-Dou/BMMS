@@ -126,7 +126,7 @@ public class WareHousingOrder {
 		String params[] = { "%" + remark + "%",
 							"%" + supplier + "%",
 							startDate, 
-							endDate,
+							endDate + "  23:59:59",
 							"%" + item + "%"};
 		wareHousingOrderList = SqlUtilsInterface.queryWareHousingOrderInfo(sql, params);
 		

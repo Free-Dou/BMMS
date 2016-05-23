@@ -20,9 +20,13 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
+		
+		String usernameSession = (String)req.getSession().getAttribute("username");
+		if (null == usernameSession){
+			return;
+		}
 		
 		Logger logger = Config.getLogger(this.getClass());
 		PrintWriter pw = resp.getWriter();

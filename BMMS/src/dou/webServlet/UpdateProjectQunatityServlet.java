@@ -25,6 +25,11 @@ public class UpdateProjectQunatityServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
+		String usernameSession = (String)req.getSession().getAttribute("username");
+		if (null == usernameSession){
+			return;
+		}
+		
 		String projectID = req.getParameter("projectID");
 		Float budget = Float.parseFloat(req.getParameter("budget"));
 		Float paid = Float.parseFloat(req.getParameter("paid"));

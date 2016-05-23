@@ -22,6 +22,11 @@ public class DelProjectQunatityServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+		
 		String projectID = req.getParameter("projectID");
 		
 		if (("" != projectID) && (null != projectID)){

@@ -26,6 +26,12 @@ public class AddCustomerServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+
+		
 		String cName = req.getParameter("input_add_name");
 		String cTel = req.getParameter("input_add_tel");
 		String cFax = req.getParameter("input_add_fix");

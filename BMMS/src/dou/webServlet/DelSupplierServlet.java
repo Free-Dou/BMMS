@@ -22,6 +22,11 @@ public class DelSupplierServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+		
 		String sKeyName = req.getParameter("del_supplier_name");
 		
 		if (("" != sKeyName) && (null != sKeyName)){

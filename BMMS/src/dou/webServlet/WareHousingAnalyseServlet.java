@@ -31,6 +31,11 @@ public class WareHousingAnalyseServlet extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		Logger logger = Config.getLogger(this.getClass());
 		
+		String usernameSession = (String)req.getSession().getAttribute("username");
+		if (null == usernameSession){
+			return;
+		}
+		
 		/* 
 		 * 获取用户参数
 		 * var data = "start_date=" + start_date.value 

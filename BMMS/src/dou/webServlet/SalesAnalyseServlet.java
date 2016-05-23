@@ -31,6 +31,11 @@ public class SalesAnalyseServlet extends HttpServlet{
 		resp.setCharacterEncoding("utf-8");
 		req.setCharacterEncoding("utf-8");
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+		
 		/* 
 		 * 获取用户参数
 		 * var data = "start_date=" + start_date.value 

@@ -26,6 +26,12 @@ public class WareHousingOrderProcServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
+		
+		String usernameSession = (String)req.getSession().getAttribute("username");
+		if (null == usernameSession){
+			return;
+		}
+		
 		String username = (String)req.getSession().getAttribute("username");
 		if (null == username){
 			PrintWriter pw = resp.getWriter();

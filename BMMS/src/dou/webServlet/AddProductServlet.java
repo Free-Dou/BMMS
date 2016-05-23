@@ -23,6 +23,11 @@ public class AddProductServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+		
 		String pName = req.getParameter("input_add_name");
 		String pSpec = req.getParameter("input_add_spec");
 		Integer pPrice = 0;

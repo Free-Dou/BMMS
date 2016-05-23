@@ -124,7 +124,7 @@ public class SalesOrder {
 		String params[] = { "%" + remark + "%",
 							"%" + customer + "%",
 							startDate, 
-							endDate,
+							endDate + " 23:59:59",
 							"%" + item + "%"};
 		salesOrderList = SqlUtilsInterface.querySalesOrderInfo(sql, params);
 		

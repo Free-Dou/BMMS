@@ -27,6 +27,11 @@ public class PersionMessageProcServlet extends HttpServlet{
 		resp.setCharacterEncoding("utf-8");
 		Logger logger = Config.getLogger(this.getClass());
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+		
 		String orderID = req.getParameter("orderID");				/* 订单号 */
 		String processType = req.getParameter("processType");		/* 通过approval／拒绝reject */
 		logger.info("[PersionMessageProcServlet.java:doPost]: Get persion message process request  !!!!!!!");

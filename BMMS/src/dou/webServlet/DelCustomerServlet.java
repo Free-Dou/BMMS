@@ -24,6 +24,11 @@ public class DelCustomerServlet extends HttpServlet{
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		
+		String username = (String)req.getSession().getAttribute("username");
+		if (null == username){
+			return;
+		}
+		
 		String cKeyName = req.getParameter("del_customer_name");
 		
 		if (("" != cKeyName) && (null != cKeyName)){
