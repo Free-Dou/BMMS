@@ -46,11 +46,10 @@ public class Product {
 	}
 
 	public static void delProductFromDB(String pKeyName) {
-		String sqls[] = {"delete from tb_product where pname=?;",
-					   "delete from tb_materialstock where mname=?;"};
-		String params[][] = {{pKeyName}, {pKeyName}};
+		String sql = "delete from tb_product where pname=?;";
+		String params[] = {pKeyName};
 		
-		SqlUtilsInterface.updateManyInfos(sqls, params);
+		SqlUtilsInterface.delInfoFromDB(sql, params);
 	}
 	
 	public String getpSpec() {
