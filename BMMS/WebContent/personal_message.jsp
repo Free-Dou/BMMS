@@ -46,7 +46,7 @@
 			ArrayList<PersionMessage> persionMessageList = PersionMessage.getAllpersionMessageListInfo();
 			if (null == persionMessageList) {		
 				/* 没有数据 */
-				out.print("暂时没有收到任何消息！！！");
+				out.print("<div class=\"message-title\"> 暂时没有收到任何消息 </div>");
 			} else {
 
 				Integer orderNum = 0; /* 订单个数，只用于控制订单的样式 */

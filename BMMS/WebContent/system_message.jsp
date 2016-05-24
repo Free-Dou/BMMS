@@ -39,6 +39,10 @@
 							out.print("</div>");
 						}
 					}
+					else
+					{
+						out.print("<div class=\"message-title\"> 暂时没有收到任何消息 </div>");
+					}
 				%>
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="message_footer_button_1" onmouseenter="button_mouseenter_footer('message_footer_button_1')" onmouseleave="button_mouseleave_footer('message_footer_button_1')" onmousedown="button_mousedown_footer('message_footer_button_1')" onmouseup="button_mouseup_footer('message_footer_button_1')" onclick="refreshme()">
