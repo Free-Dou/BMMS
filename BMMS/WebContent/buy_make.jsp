@@ -176,7 +176,7 @@
 			</div>
 		</div>
 		<div id="tip_window" class="new_float_window">
-			<div id="tip_window_inner" class="set_center" style="height: 200px; width: 1000px;">
+			<div id="tip_window_inner" class="set_center" style="height: 200px; width: 400px;">
 				<h2> 提示 </h2>
 				<h4 id="tip_contain">  </h4>
 				<div style="margin-top: 10px;">

@@ -23,7 +23,7 @@ function body_onload()
 	{
 		// alert('客户列表为空，清先添加一个客户。');
 		tip_window.style.visibility = "visible";
-		tip_contain.innerHTML = "客户列表为空，清先添加一个客户。";
+		tip_contain.innerHTML = "客户列表为空，清先添加一个客户";
 		tip_goto = "22";
 		tip_window.style.opacity = 1.0;
 
@@ -35,7 +35,7 @@ function body_onload()
 	{
 		// alert('产品目录为空，清先添加一个产品。');
 		tip_window.style.visibility = "visible";
-		tip_contain.innerHTML = "产品目录为空，清先添加一个产品。";
+		tip_contain.innerHTML = "产品目录为空，清先添加一个产品";
 		tip_goto = "10";
 		tip_window.style.opacity = 1.0;
 
