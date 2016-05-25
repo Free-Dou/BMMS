@@ -10,6 +10,8 @@ for(var i = 0; i < 5; i++)
 var confirm_operation = "add";
 var update_projectID = "";
 
+var myxmlhttp = "";
+
 function confirm_click()
 {
 	if(projectName.value == "")
@@ -57,10 +59,10 @@ function confirm_click()
 			var data = new Object();
 			data.projectName = projectName.vlaue;
 			data.partyA = partyA.value;
-			data.constractDate = constractDate.value;
-			data.constractNumber = constractNumber.value;
-			data.constractLoca = constractLoca.value;
-			data.constractContent = constractContent.options[constractContent.selectedIndex].text;
+			data.constructDate = constructDate.value;
+			data.contractNumber = contractNumber.value;
+			data.constructLoca = constructLoca.value;
+			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
 			data.water = water.value;
 			data.waterSelfProduct = waterSelfProduct.value;
 			data.waterBuy = waterBuy.value;
@@ -86,12 +88,13 @@ function confirm_click()
 		{
 			var aim_url = "/BMMS/UpdateProjectQunatity?time=" + new Date();
 			var data = new Object();
+			data.projectID = update_projectID;
 			data.projectName = projectName.vlaue;
 			data.partyA = partyA.value;
-			data.constractDate = constractDate.value;
-			data.constractNumber = constractNumber.value;
-			data.constractLoca = constractLoca.value;
-			data.constractContent = constractContent.options[constractContent.selectedIndex].text;
+			data.constructDate = constructDate.value;
+			data.contractNumber = contractNumber.value;
+			data.constructLoca = constructLoca.value;
+			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
 			data.water = water.value;
 			data.waterSelfProduct = waterSelfProduct.value;
 			data.waterBuy = waterBuy.value;
@@ -201,15 +204,7 @@ function process_anime()
 function reedit_click(key)
 {
 	float_window_title.innerHTML = "修改工程";
-
-	// input_add_project.readOnly = true;
-
-	// var e = document.getElementById("pjtName" + key);
-	// input_add_project.value = e.innerHTML;
-	// e = document.getElementById("pjtBudget" + key);
-	// input_add_expmoney.value = e.innerHTML.substring(0, e.innerHTML.length - 1);
-	// e = document.getElementById("pjtPaid" + key);
-	// input_add_alrmoney.value = e.innerHTML.substring(0, e.innerHTML.length - 1);
+	get_result(key);
 
 	confirm_operation = "reedit";
 	update_projectID = key;
@@ -220,14 +215,79 @@ function reedit_click(key)
 function project_add_click(bName)
 {
 	float_window_title.innerHTML = "添加工程";
-
-	// input_add_project.readOnly = false;
-
-	// input_add_project.value = "";
-	// input_add_expmoney.value = "0";
-	// input_add_alrmoney.value = "0";
+	constractDate.value = get_now_date();
 
 	confirm_operation = "add";
 
 	add_click(bName);
+}
+
+function get_now_date()
+{
+	var myDate = new Date();
+	var month = Number(myDate.getMonth()) + 1;
+	if(month < 10)
+		month = "0" + month;
+	var day = Number(myDate.getDate());
+	if(day < 10)
+		day = "0" + day;
+	return myDate.getFullYear() + "-" + month + "-" + day;
+}
+
+function get_result(key)
+{
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	myxmlhttp = getXmlHttpObject();
+
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/WareHousingAnalyse?time=" + new Date();
+		var data = "projectID=" + key;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = check_search_result;
+		myxmlhttp.send(data);
+	}
+}
+
+function check_search_result()
+{
+	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
+	{
+		var b = myxmlhttp.responseText;
+		var myobj = JSON.parse(b);
+
+		console.info(b);
+		console.info(myobj);
+
+		if(myobj != null)
+		{
+			projectName.value = myobj.projectName;
+			partyA.value = myobj.partyA;
+			constructDate.value = myobj.constructDate;
+			contractNumber.value = myobj.contractNumber;
+			constructLoca.value = myobj.constructLoca;
+			if(myobj.constractContent == "水稳辅筑")
+				contractContent.options[1].selected = true;
+			else
+				contractContent.options[2].selected = true;
+			water.value = myobj.water;
+			waterSelfProduct.value = myobj.waterSelfProduct;
+			waterBuy.value = myobj.waterBuy;
+			blackMaterial.value = myobj.blackMaterial;
+			blackMaterialSelfProduct.value = myobj.blackMaterialSelfProduct;
+			blackMaterialBuy.value = myobj.blackMaterialBuy;
+			blackMaterialSell.value = myobj.blackMaterialSell;
+			waterPrice.value = myobj.waterPrice;
+			blackMaterialPrice.value = myobj.blackMaterialPrice;
+			budget.value = myobj.budget;
+			paid.value = myobj.paid;
+		}
+
+		process_message.style.visibility = "hidden";
+		clearInterval(s_process_timer);
+	}
 }
