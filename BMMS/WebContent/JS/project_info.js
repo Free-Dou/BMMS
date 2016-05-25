@@ -57,7 +57,7 @@ function confirm_click()
 		{
 			var aim_url = "/BMMS/AddProjectQunatity?time=" + new Date();
 			var data = new Object();
-			data.projectName = projectName.vlaue;
+			data.projectName = projectName.value;
 			data.partyA = partyA.value;
 			data.constructDate = constructDate.value;
 			data.contractNumber = contractNumber.value;
@@ -89,7 +89,7 @@ function confirm_click()
 			var aim_url = "/BMMS/UpdateProjectQunatity?time=" + new Date();
 			var data = new Object();
 			data.projectID = update_projectID;
-			data.projectName = projectName.vlaue;
+			data.projectName = projectName.value;
 			data.partyA = partyA.value;
 			data.constructDate = constructDate.value;
 			data.contractNumber = contractNumber.value;
