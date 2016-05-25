@@ -54,18 +54,60 @@ function confirm_click()
 		if(confirm_operation == "add")
 		{
 			var aim_url = "/BMMS/AddProjectQunatity?time=" + new Date();
-			var data = "projectName=" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
+			var data = new Object();
+			data.projectName = projectName.vlaue;
+			data.partyA = partyA.value;
+			data.constructDate = constructDate.value;
+			data.constructNumber = constructNumber.value;
+			data.constructLoca = constructLoca.value;
+			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
+			data.water = water.value;
+			data.waterSelfProduct = waterSelfProduct.value;
+			data.waterBuy = waterBuy.value;
+			data.blackMaterial = blackMaterial.value;
+			data.blackMaterialSelfProduct = blackMaterialSelfProduct.value;
+			data.blackMaterialBuy = blackMaterialBuy.value;
+			data.blackMaterialSell = blackMaterialSell.value;
+			data.waterPrice = waterPrice.value;
+			data.blackMaterialPrice = blackMaterialPrice.value;
+			data.budget = budget.value;
+			data.paid = paid.value;
+
+			var data_send = JSON.stringify(data);
+			// var data = "projectName=" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
+			console.info(data_send);
 			
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
-			parent.myxmlhttp.send(data);
+			parent.myxmlhttp.send(data_send);
 		}
 		else
 		{
 			var aim_url = "/BMMS/UpdateProjectQunatity?time=" + new Date();
-			var data = "projectID=" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
-			
+			var data = new Object();
+			data.projectName = projectName.vlaue;
+			data.partyA = partyA.value;
+			data.constructDate = constructDate.value;
+			data.constructNumber = constructNumber.value;
+			data.constructLoca = constructLoca.value;
+			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
+			data.water = water.value;
+			data.waterSelfProduct = waterSelfProduct.value;
+			data.waterBuy = waterBuy.value;
+			data.blackMaterial = blackMaterial.value;
+			data.blackMaterialSelfProduct = blackMaterialSelfProduct.value;
+			data.blackMaterialBuy = blackMaterialBuy.value;
+			data.blackMaterialSell = blackMaterialSell.value;
+			data.waterPrice = waterPrice.value;
+			data.blackMaterialPrice = blackMaterialPrice.value;
+			data.budget = budget.value;
+			data.paid = paid.value;
+
+			var data_send = JSON.stringify(data);
+			// var data = "projectID=" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
+			console.info(data_send);
+
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;

@@ -64,17 +64,83 @@
 			</dir>
 		</div>
 		<div id="add_window" class="new_float_window">
-			<div class="set_center" style="height: 200px; width: 400px;">
+			<div class="set_center" style="height: 400px; width: 725px;">
 				<h2 id="float_window_title"> 添加工程 </h2>
 				<form action="/BMMS/AddProductInfo" method="post" id="form_post">
-					<div style="height: 40px; text-align: left;">
-						<span> 工程名： </span> <input class="textbox-common" name="input_add_project" id="input_add_project"></input>
+					<div style="height: 42px;">
+						<div style="height: 40px; text-align: left; float: left; margin-left: 16px;">
+							<span> 工程名： </span> <input class="textbox-common" id="projectName"></input>
+						</div>
+						<div style="height: 40px; text-align: left; float: left; margin-left: 42px;">
+							<span> 甲方： </span> <input class="textbox-common" id="partyA"></input>
+						</div>
 					</div>
-					<div style="height: 40px; text-align: left;">
-						<span> 预算额： </span> <input class="textbox-common" name="input_add_expmoney" id="input_add_expmoney"></input> <span> ￥ </span>
+					<div style="height: 42px;">
+						<div style="height: 40px; text-align: left; float: left;">
+							<span> 施工日期： </span> <input id="constructDate" type="date" value="2016-04-10" style="width: 250px"></input>
+						</div>
+						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
+							<span> 合同编号： </span> <input class="textbox-common" id="constructNumber"></input>
+						</div>
 					</div>
-					<div style="height: 40px; text-align: left;">
-						<span> 已付款： </span> <input class="textbox-common" name="input_add_alrmoney" id="input_add_alrmoney"></input> <span> ￥ </span>
+					<div style="height: 42px;">
+						<div style="height: 40px; text-align: left; float: left;">
+							<span> 施工地点： </span> <input class="textbox-common" id="constructLoca"></input>
+						</div>
+						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
+							<span> 施工内容： </span>
+							<select id="contractContent" style="width: 250px;">
+								<option value="1"> 水稳辅筑 </option>
+								<option value="2"> 黑料辅筑 </option>
+							</select>
+						</div>
+					</div>
+					<div style="height: 100px; padding-left: 32px;">
+						<div style="height: 40px; text-align: left; float: left;">
+							<span style="vertical-align: top; margin-top: 4px;"> 水稳： </span> 
+							<textarea id="water" cols="33" rows="5" style="resize: none; margin-top: 2px;"> </textarea>
+						</div>
+						<div style="float: left; padding: 0px; margin-left: 40px;">
+							<div style="height: 40px; text-align: left;">
+								<span> 自产： </span> <input style="width: 225px;" id="waterSelfProduct"></input><span> 吨 </span>
+							</div>
+							<div style="height: 40px; text-align: left;">
+								<span> 外购： </span> <input style="width: 225px;" id="waterBuy"></input><span> 吨 </span>
+							</div>
+						</div>
+					</div>
+					<div style="height: 125px; padding-left: 32px;">
+						<div style="height: 40px; text-align: left; float: left;">
+							<span style="vertical-align: top; margin-top: 4px;"> 黑料： </span>
+							<textarea id="blackMaterial" cols="33" rows="5" style="resize: none; margin-top: 2px;"> </textarea>
+						</div>
+						<div style="float: left; padding: 0px; margin-left: 40px;">
+							<div style="height: 40px; text-align: left;">
+								<span> 自产： </span> <input style="width: 225px;" id="blackMaterialSelfProduct"></input><span> 吨 </span>
+							</div>
+							<div style="height: 40px; text-align: left;">
+								<span> 外购： </span> <input style="width: 225px;" id="blackMaterialBuy"></input><span> 吨 </span>
+							</div>
+							<div style="height: 40px; text-align: left;">
+								<span> 卖料： </span> <input style="width: 225px;" id="blackMaterialSell"></input><span> 吨 </span>
+							</div>
+						</div>
+					</div>
+					<div style="height: 42px;">
+						<div style="height: 40px; text-align: left; float: left;">
+							<span> 水稳单价： </span> <input style="width: 225px;" id="waterPrice"></input><span> ￥ </span>
+						</div>
+						<div style="height: 40px; text-align: left; float: left; margin-left: 14px;">
+							<span> 黑料单价： </span> <input style="width: 225px;" id="blackMaterialPrice"></input><span> ￥ </span>
+						</div>
+					</div>
+					<div style="height: 42px;">
+						<div style="height: 40px; text-align: left; float: left; margin-left: 16px;">
+							<span> 预算额： </span> <input style="width: 225px;" id="budget"></input> <span> ￥ </span>
+						</div>
+						<div style="height: 40px; text-align: left; float: left; margin-left: 30px;">
+							<span> 已付款： </span> <input style="width: 225px;" id="paid"></input> <span> ￥ </span>
+						</div>
 					</div>
 					<!-- <input type="submit" value="确定"/> -->
 					<div id="cancle_button" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
