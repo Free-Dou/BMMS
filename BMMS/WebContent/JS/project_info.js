@@ -121,13 +121,27 @@ function confirm_click()
 
 function cancle_click()
 {
-	input_add_project.value = "";
-	input_add_expmoney.value = "";
-	input_add_alrmoney.value = "";
+	projectName.value = "";
+	partyA.value = "";
+	constructDate.value = "";
+	contractNumber.value = "";
+	constructLoca.value = "";
+	contractContent.options[1].selected = true;
+	water.value = "";
+	waterSelfProduct.value = "";
+	waterBuy.value = "";
+	blackMaterial.value = "";
+	blackMaterialSelfProduct.value = "";
+	blackMaterialBuy.value = "";
+	blackMaterialSell.value = "";
+	waterPrice.value = "";
+	blackMaterialPrice.value = "";
+	budget.value = "";
+	paid.value = "";
 	
-	input_add_project.style.backgroundColor = "#FFFFFF";
-	input_add_expmoney.style.backgroundColor = "#FFFFFF";
-	input_add_alrmoney.style.backgroundColor = "#FFFFFF";
+	projectName.style.backgroundColor = "#FFFFFF";
+	budget.style.backgroundColor = "#FFFFFF";
+	paid.style.backgroundColor = "#FFFFFF";
 
 	setTimeout("hide_window()", 10);
 }
