@@ -89,7 +89,7 @@
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
 							<span> 施工内容： </span>
-							<select id="contractContent" style="width: 250px;">
+							<select id="contractContent" style="width: 254px;">
 								<option value="1"> 水稳辅筑 </option>
 								<option value="2"> 黑料辅筑 </option>
 							</select>
@@ -100,7 +100,7 @@
 							<span style="vertical-align: top; margin-top: 4px;"> 水稳： </span> 
 							<textarea id="water" cols="33" rows="5" style="resize: none; margin-top: 2px;"> </textarea>
 						</div>
-						<div style="float: left; padding: 0px; margin-left: 40px;">
+						<div style="float: left; padding: 0px; margin-left: 42px;">
 							<div style="height: 40px; text-align: left;">
 								<span> 自产： </span> <input style="width: 225px;" id="waterSelfProduct"></input><span> 吨 </span>
 							</div>
@@ -114,7 +114,7 @@
 							<span style="vertical-align: top; margin-top: 4px;"> 黑料： </span>
 							<textarea id="blackMaterial" cols="33" rows="5" style="resize: none; margin-top: 2px;"> </textarea>
 						</div>
-						<div style="float: left; padding: 0px; margin-left: 40px;">
+						<div style="float: left; padding: 0px; margin-left: 42px;">
 							<div style="height: 40px; text-align: left;">
 								<span> 自产： </span> <input style="width: 225px;" id="blackMaterialSelfProduct"></input><span> 吨 </span>
 							</div>
