@@ -215,7 +215,7 @@ function reedit_click(key)
 function project_add_click(bName)
 {
 	float_window_title.innerHTML = "添加工程";
-	constractDate.value = get_now_date();
+	constructDate.value = get_now_date();
 
 	confirm_operation = "add";
 
@@ -270,7 +270,7 @@ function check_search_result()
 			constructDate.value = myobj.constructDate;
 			contractNumber.value = myobj.contractNumber;
 			constructLoca.value = myobj.constructLoca;
-			if(myobj.constractContent == "水稳辅筑")
+			if(myobj.contractContent == "水稳辅筑")
 				contractContent.options[1].selected = true;
 			else
 				contractContent.options[2].selected = true;
