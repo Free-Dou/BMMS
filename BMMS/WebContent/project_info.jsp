@@ -77,19 +77,19 @@
 					</div>
 					<div style="height: 42px;">
 						<div style="height: 40px; text-align: left; float: left;">
-							<span> 施工日期： </span> <input id="constructDate" type="date" value="2016-04-10" style="width: 250px"></input>
+							<span> 施工日期： </span> <input id="constractDate" type="date" value="2016-04-10" style="width: 250px"></input>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
-							<span> 合同编号： </span> <input class="textbox-common" id="constructNumber"></input>
+							<span> 合同编号： </span> <input class="textbox-common" id="constractNumber"></input>
 						</div>
 					</div>
 					<div style="height: 42px;">
 						<div style="height: 40px; text-align: left; float: left;">
-							<span> 施工地点： </span> <input class="textbox-common" id="constructLoca"></input>
+							<span> 施工地点： </span> <input class="textbox-common" id="constractLoca"></input>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
 							<span> 施工内容： </span>
-							<select id="contractContent" style="width: 250px;">
+							<select id="constractContent" style="width: 250px;">
 								<option value="1"> 水稳辅筑 </option>
 								<option value="2"> 黑料辅筑 </option>
 							</select>

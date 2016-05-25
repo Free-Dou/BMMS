@@ -57,10 +57,10 @@ function confirm_click()
 			var data = new Object();
 			data.projectName = projectName.vlaue;
 			data.partyA = partyA.value;
-			data.constructDate = constructDate.value;
-			data.constructNumber = constructNumber.value;
-			data.constructLoca = constructLoca.value;
-			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
+			data.constractDate = constractDate.value;
+			data.constractNumber = constractNumber.value;
+			data.constractLoca = constractLoca.value;
+			data.constractContent = constractContent.options[constractContent.selectedIndex].text;
 			data.water = water.value;
 			data.waterSelfProduct = waterSelfProduct.value;
 			data.waterBuy = waterBuy.value;
@@ -76,7 +76,7 @@ function confirm_click()
 			var data_send = JSON.stringify(data);
 			// var data = "projectName=" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
 			console.info(data_send);
-			
+
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
@@ -88,10 +88,10 @@ function confirm_click()
 			var data = new Object();
 			data.projectName = projectName.vlaue;
 			data.partyA = partyA.value;
-			data.constructDate = constructDate.value;
-			data.constructNumber = constructNumber.value;
-			data.constructLoca = constructLoca.value;
-			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
+			data.constractDate = constractDate.value;
+			data.constractNumber = constractNumber.value;
+			data.constractLoca = constractLoca.value;
+			data.constractContent = constractContent.options[constractContent.selectedIndex].text;
 			data.water = water.value;
 			data.waterSelfProduct = waterSelfProduct.value;
 			data.waterBuy = waterBuy.value;
