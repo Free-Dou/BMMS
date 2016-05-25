@@ -12,33 +12,33 @@ var update_projectID = "";
 
 function confirm_click()
 {
-	if(input_add_project.value == "")
+	if(projectName.value == "")
 	{
-		input_add_project.style.backgroundColor = "rgba(255,255,128,1)";
+		projectName.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
-	if(input_add_expmoney.value == "" || isNaN(input_add_expmoney.value) || Number(input_add_expmoney.value) == 0)
+	if(budget.value == "" || isNaN(budget.value) || Number(budget.value) == 0)
 	{
-		input_add_expmoney.style.backgroundColor = "rgba(255,255,128,1)";
+		budget.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
-	if(input_add_alrmoney.value == "" || isNaN(input_add_alrmoney.value))
+	if(paid.value == "" || isNaN(paid.value))
 	{
-		input_add_alrmoney.style.backgroundColor = "rgba(255,255,128,1)";
+		paid.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
 	
-	if (input_add_project.value.indexOf('&') >= 0 || input_add_project.value.indexOf('=') >= 0 || input_add_project.value.indexOf('|') >= 0 || input_add_project.value.indexOf('@') >= 0 || input_add_project.value.indexOf('!') >= 0)
+	if (projectName.value.indexOf('&') >= 0 || projectName.value.indexOf('=') >= 0 || projectName.value.indexOf('|') >= 0 || projectName.value.indexOf('@') >= 0 || projectName.value.indexOf('!') >= 0)
 	{
 		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
 		return;
 	}
-	if (input_add_expmoney.value.indexOf('&') >= 0 || input_add_expmoney.value.indexOf('=') >= 0 || input_add_expmoney.value.indexOf('|') >= 0 || input_add_expmoney.value.indexOf('@') >= 0 || input_add_expmoney.value.indexOf('!') >= 0)
+	if (budget.value.indexOf('&') >= 0 || budget.value.indexOf('=') >= 0 || budget.value.indexOf('|') >= 0 || budget.value.indexOf('@') >= 0 || budget.value.indexOf('!') >= 0)
 	{
 		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
 		return;
 	}
-	if (input_add_alrmoney.value.indexOf('&') >= 0 || input_add_alrmoney.value.indexOf('=') >= 0 || input_add_alrmoney.value.indexOf('|') >= 0 || input_add_alrmoney.value.indexOf('@') >= 0 || input_add_alrmoney.value.indexOf('!') >= 0)
+	if (paid.value.indexOf('&') >= 0 || paid.value.indexOf('=') >= 0 || paid.value.indexOf('|') >= 0 || paid.value.indexOf('@') >= 0 || paid.value.indexOf('!') >= 0)
 	{
 		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
 		return;
