@@ -149,7 +149,7 @@ function confirm_click()
 			parent.myxmlhttp.open("post", aim_url, true);
 			parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
-			parent.myxmlhttp.send(data);
+			parent.myxmlhttp.send(data_send);
 		}
 	}
 }
