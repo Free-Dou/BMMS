@@ -146,32 +146,35 @@ public class ProjectQunatity {
 	}
 
 	public void addProjectQunatityToDB() {
-		String params[] = {  String.format("%.2f", this.budget), String.format("%.2f", this.paid),
+		String params[] = { this.projectName, turnFloatToStr(this.budget, 2), turnFloatToStr(this.paid, 2),
 				this.contractContent, this.contractNumber, this.partyA, this.constructLoca, this.constructDate,
-				this.water, String.format("%.3f", this.waterSelfProduct), String.format("%.3f", this.waterBuy),
-				String.format("%.2f", this.waterPrice), this.blackMaterial,
-				String.format("%.3f", this.blackMaterialSelfProduct), String.format("%.3f", this.blackMaterialBuy),
-				String.format("%.3f", this.blackMaterialPrice), String.format("%.3f", this.blackMaterialSell),
-				this.remark };
+				this.water, turnFloatToStr(this.waterSelfProduct, 3), turnFloatToStr(this.waterBuy, 3),
+				turnFloatToStr(this.waterPrice, 2), this.blackMaterial,
+				turnFloatToStr(this.blackMaterialSelfProduct, 3), turnFloatToStr(this.blackMaterialBuy, 3),
+				turnFloatToStr(this.blackMaterialPrice, 3), turnFloatToStr(this.blackMaterialSell, 3), this.remark };
 
-		String sql = "INSERT INTO tb_qunatity(projectName,budget,paid,contractContent,contractNumber,partyA,constructLoca,"
-				+ "constructDate,water,waterSelfProduct,waterBuy,waterPrice,blackMaterial,blackMaterialSelfProduct,"
-				+ "blackMaterialBuy,blackMaterialPrice,blackMaterialSell,remark)"
-				+ "VALUES("+this.projectName+",？,？,？,？,？,？,？,？,？,？,？,？,？,？,？,？,？);";
-		
+		String sql = "INSERT INTO tb_qunatity(projectName,budget,paid,contractContent,contractNumber,partyA,constructLoca,constructDate,water,waterSelfProduct,waterBuy,waterPrice,blackMaterial,blackMaterialSelfProduct,blackMaterialBuy,blackMaterialPrice,blackMaterialSell,remark)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		/* 添加当前对象的信息到数据库 */
 		SqlUtilsInterface.addInfoToDB(sql, params);
 	}
 
+	private String turnFloatToStr(Float f, Integer place) {
+
+		if (null != f) {
+			return String.format("%." + place + "f", f);
+		}
+
+		return "0";
+	}
+
 	public void updateProjectQunatityToDB(String projectID) {
-		String params[] = { this.projectName, String.format("%.2f", this.budget), String.format("%.2f", this.paid),
+		String params[] = { this.projectName, turnFloatToStr(this.budget, 2), turnFloatToStr(this.paid, 2),
 				this.contractContent, this.contractNumber, this.partyA, this.constructLoca, this.constructDate,
-				this.water, String.format("%.3f", this.waterSelfProduct), String.format("%.3f", this.waterBuy),
-				String.format("%.2f", this.waterPrice), this.blackMaterial,
-				String.format("%.3f", this.blackMaterialSelfProduct), String.format("%.3f", this.blackMaterialBuy),
-				String.format("%.3f", this.blackMaterialPrice), String.format("%.3f", this.blackMaterialSell),
-				projectID };
+				this.water, turnFloatToStr(this.waterSelfProduct, 3), turnFloatToStr(this.waterBuy, 3),
+				turnFloatToStr(this.waterPrice, 2), this.blackMaterial,
+				turnFloatToStr(this.blackMaterialSelfProduct, 3), turnFloatToStr(this.blackMaterialBuy, 3),
+				turnFloatToStr(this.blackMaterialPrice, 3), turnFloatToStr(this.blackMaterialSell, 3), this.remark };
 
 		String sql = "UPDATE tb_qunatity SET projectName=?,budget=?,paid=?,contractContent=?,contractNumber=?,partyA=?,constructLoca=?,constructDate=?,water=?,waterSelfProduct=?,waterBuy=?,waterPrice=?,blackMaterial=?,blackMaterialSelfProduct=?,blackMaterialBuy=?,blackMaterialPrice=?,blackMaterialSell=?,remark='' WHERE id=?;";
 
