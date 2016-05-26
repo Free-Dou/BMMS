@@ -350,5 +350,7 @@ function check_search_result()
 
 		process_message.style.visibility = "hidden";
 		clearInterval(s_process_timer);
+
+		myxmlhttp = null;
 	}
 }

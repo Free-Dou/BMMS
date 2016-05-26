@@ -30,7 +30,7 @@
 				<div class="table-title-cell" style="width: 30%;"> 工程名 </div>
 				<div class="table-title-cell" style="width: 30%;"> 预算 </div>
 				<div class="table-title-cell" style="width: 30%;"> 已支付 </div>
-				<div class="table-title-cell" style="width: 5%;"> 修改 </div>
+				<div class="table-title-cell" style="width: 5%;"> 查看修改 </div>
 			</div>
 			<div id="table_inner">
 				<%
