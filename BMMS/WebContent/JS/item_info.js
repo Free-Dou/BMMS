@@ -87,8 +87,12 @@ function myremove_confirm(key)
 
 	parent.myxmlhttp = getXmlHttpObject();
 	
+	console.info(parent.myxmlhttp);
+
 	if (parent.myxmlhttp)
 	{
+		console.info("enter send solution");
+
 		var aim_url = "/BMMS/DelProductInfo?time=" + new Date();
 		var data = "del_product_name=" + key;
 		
