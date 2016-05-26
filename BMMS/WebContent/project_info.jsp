@@ -27,10 +27,10 @@
 			<div class="right-page-title"> 工程量管理 </div>
 			<div class="table-line">
 				<div class="table-title-cell" style="width: 2%;"></div>
-				<div class="table-title-cell" style="width: 30%;"> 工程名 </div>
-				<div class="table-title-cell" style="width: 30%;"> 预算 </div>
-				<div class="table-title-cell" style="width: 30%;"> 已支付 </div>
-				<div class="table-title-cell" style="width: 5%;"> 查看修改 </div>
+				<div class="table-title-cell" style="width: 25%;"> 工程名 </div>
+				<div class="table-title-cell" style="width: 25%;"> 预算 </div>
+				<div class="table-title-cell" style="width: 25%;"> 已支付 </div>
+				<div class="table-title-cell" style="width: 10%;"> 查看修改 </div>
 			</div>
 			<div id="table_inner">
 				<%
@@ -47,10 +47,10 @@
 						
 							out.print("<div id=\"" + projectQunatityObject.getProjectID() + "\" class=\"table-line\">");
 							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 2%;\"> - </div>");
-							out.print("<div id=\"pjtName" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + projectQunatityObject.getProjectName() + "</div>");
-							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
-							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 30%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
-							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/edit.png\" class=\"footer-button-img\"> </div>");
+							out.print("<div id=\"pjtName" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + projectQunatityObject.getProjectName() + "</div>");
+							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
+							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
+							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 10%; cursor: pointer;\"> <img src=\"IMG/edit.png\" class=\"footer-button-img\"> </div>");
 							out.print("</div>");
 						}
 					}
