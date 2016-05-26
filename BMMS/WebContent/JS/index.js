@@ -36,6 +36,7 @@ function check_login_result()
 
 			setTimeout("login_success('" + 2 + "')", 1000);
 
+			myxmlhttp = null;
 			// window.document.location.href = "mainpage.jsp";
 		}
 		else if(b == "failed")
@@ -49,6 +50,8 @@ function check_login_result()
 			password.value = "";
 
 			setTimeout("login_failed('" + 1 + "')", 1000);
+
+			myxmlhttp = null;
 		}
 	}
 }

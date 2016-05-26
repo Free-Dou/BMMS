@@ -372,6 +372,8 @@ function refresh_now_page()
 	{
 		page_change_to = page_now;
 		page_change_session = setInterval("page_change()", 10);
+
+		myxmlhttp = null;
 	}
 }
 
