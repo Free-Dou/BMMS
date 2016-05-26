@@ -14,72 +14,77 @@ var myxmlhttp = "";
 
 function confirm_click()
 {
+	var input_all_corrent = true;
+
 	if(projectName.value == "")
 	{
 		projectName.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(waterSelfProduct.value == "" || isNaN(waterSelfProduct.value))
 	{
 		waterSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(waterBuy.value == "" || isNaN(waterBuy.value))
 	{
 		waterBuy.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(blackMaterialSelfProduct.value == "" || isNaN(blackMaterialSelfProduct.value))
 	{
 		blackMaterialSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(blackMaterialBuy.value == "" || isNaN(blackMaterialBuy.value))
 	{
 		blackMaterialBuy.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(blackMaterialSell.value == "" || isNaN(blackMaterialSell.value))
 	{
 		blackMaterialSell.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(waterPrice.value == "" || isNaN(waterPrice.value))
 	{
 		waterPrice.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(blackMaterialPrice.value == "" || isNaN(blackMaterialPrice.value))
 	{
 		blackMaterialPrice.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(budget.value == "" || isNaN(budget.value) || Number(budget.value) == 0)
 	{
 		budget.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 	if(paid.value == "" || isNaN(paid.value))
 	{
 		paid.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_all_corrent = false;
 	}
 
-	if (projectName.value.indexOf('&') >= 0 || projectName.value.indexOf('=') >= 0 || projectName.value.indexOf('|') >= 0 || projectName.value.indexOf('@') >= 0 || projectName.value.indexOf('!') >= 0)
-	{
-		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+	if(input_all_corrent == false)
 		return;
-	}
-	if (budget.value.indexOf('&') >= 0 || budget.value.indexOf('=') >= 0 || budget.value.indexOf('|') >= 0 || budget.value.indexOf('@') >= 0 || budget.value.indexOf('!') >= 0)
-	{
-		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
-		return;
-	}
-	if (paid.value.indexOf('&') >= 0 || paid.value.indexOf('=') >= 0 || paid.value.indexOf('|') >= 0 || paid.value.indexOf('@') >= 0 || paid.value.indexOf('!') >= 0)
-	{
-		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
-		return;
-	}
+
+	// if (projectName.value.indexOf('&') >= 0 || projectName.value.indexOf('=') >= 0 || projectName.value.indexOf('|') >= 0 || projectName.value.indexOf('@') >= 0 || projectName.value.indexOf('!') >= 0)
+	// {
+	// 	alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+	// 	return;
+	// }
+	// if (budget.value.indexOf('&') >= 0 || budget.value.indexOf('=') >= 0 || budget.value.indexOf('|') >= 0 || budget.value.indexOf('@') >= 0 || budget.value.indexOf('!') >= 0)
+	// {
+	// 	alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+	// 	return;
+	// }
+	// if (paid.value.indexOf('&') >= 0 || paid.value.indexOf('=') >= 0 || paid.value.indexOf('|') >= 0 || paid.value.indexOf('@') >= 0 || paid.value.indexOf('!') >= 0)
+	// {
+	// 	alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
+	// 	return;
+	// }
 
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);

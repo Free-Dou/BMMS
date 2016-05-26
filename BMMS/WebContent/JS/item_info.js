@@ -9,17 +9,21 @@ for(var i = 0; i < 5; i++)
 
 function confirm_click()
 {
+	var input_correct = true;
 	if(input_add_spec.value == "")
 	{
 		input_add_spec.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_correct = false;
 	}
 	if(input_add_name.value == "")
 	{
 		input_add_name.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_correct = false;
 	}
 	
+	if(input_correct == false)
+		return;
+
 	if (input_add_spec.value.indexOf('&') >= 0 || input_add_spec.value.indexOf('=') >= 0 || input_add_spec.value.indexOf('|') >= 0 || input_add_spec.value.indexOf('@') >= 0 || input_add_spec.value.indexOf('!') >= 0)
 	{
 		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");

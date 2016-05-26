@@ -93,26 +93,30 @@ function reset_final_cell()
 
 function confirm_click()
 {
+	var input_correct = true;
 	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
 	// if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
 	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0)
 	{
 		input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_correct = false;
 	}
 	if(input_add_price.value == "" || isNaN(input_add_price.value) || Number(input_add_price.value) == 0)
 	{
 		input_add_price.style.backgroundColor = "rgba(255,255,128,1)";
-		return;
+		input_correct = false;
 	}
 	for(var i = 0; i < added_item.length; i++)
 		if(added_item[i].Name == select_add_name.options[select_add_name.selectedIndex].text)
 		{
 			select_add_name.style.backgroundColor = "rgba(255,255,128,1)";
 			exist_tip.style.visibility = "visible";
-			return;
+			input_correct = false;
 		}
 
+	if(input_correct == false)
+		return;
+	
 	var item = new Object();
 	item.SN = select_add_index.options[select_add_index.selectedIndex].text;
 	item.Name = select_add_name.options[select_add_name.selectedIndex].text;
