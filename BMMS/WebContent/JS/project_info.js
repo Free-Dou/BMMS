@@ -19,6 +19,41 @@ function confirm_click()
 		projectName.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
+	if(waterSelfProduct.value == "" || isNaN(waterSelfProduct.value))
+	{
+		waterSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+	if(waterBuy.value == "" || isNaN(waterBuy.value))
+	{
+		waterBuy.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+	if(blackMaterialSelfProduct.value == "" || isNaN(blackMaterialSelfProduct.value))
+	{
+		blackMaterialSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+	if(blackMaterialBuy.value == "" || isNaN(blackMaterialBuy.value))
+	{
+		blackMaterialBuy.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+	if(blackMaterialSell.value == "" || isNaN(blackMaterialSell.value))
+	{
+		blackMaterialSell.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+	if(waterPrice.value == "" || isNaN(waterPrice.value))
+	{
+		waterPrice.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
+	if(blackMaterialPrice.value == "" || isNaN(blackMaterialPrice.value))
+	{
+		blackMaterialPrice.style.backgroundColor = "rgba(255,255,128,1)";
+		return;
+	}
 	if(budget.value == "" || isNaN(budget.value) || Number(budget.value) == 0)
 	{
 		budget.style.backgroundColor = "rgba(255,255,128,1)";
@@ -29,7 +64,7 @@ function confirm_click()
 		paid.style.backgroundColor = "rgba(255,255,128,1)";
 		return;
 	}
-	
+
 	if (projectName.value.indexOf('&') >= 0 || projectName.value.indexOf('=') >= 0 || projectName.value.indexOf('|') >= 0 || projectName.value.indexOf('@') >= 0 || projectName.value.indexOf('!') >= 0)
 	{
 		alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
@@ -257,7 +292,7 @@ function get_result(key)
 
 	if (myxmlhttp)
 	{
-		var aim_url = "/BMMS/WareHousingAnalyse?time=" + new Date();
+		var aim_url = "/BMMS/GetOneProjectQunatityInfo?time=" + new Date();
 		var data = "projectID=" + key;
 		
 		myxmlhttp.open("post", aim_url, true);

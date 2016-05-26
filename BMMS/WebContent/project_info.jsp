@@ -98,7 +98,7 @@
 					<div style="height: 100px; padding-left: 32px;">
 						<div style="height: 40px; text-align: left; float: left;">
 							<span style="vertical-align: top; margin-top: 4px;"> 水稳： </span> 
-							<textarea id="water" cols="33" rows="5" style="resize: none; margin-top: 2px;"> </textarea>
+							<textarea id="water" cols="33" rows="5" style="resize: none; margin-top: 2px;"></textarea>
 						</div>
 						<div style="float: left; padding: 0px; margin-left: 42px;">
 							<div style="height: 40px; text-align: left;">
@@ -112,7 +112,7 @@
 					<div style="height: 125px; padding-left: 32px;">
 						<div style="height: 40px; text-align: left; float: left;">
 							<span style="vertical-align: top; margin-top: 4px;"> 黑料： </span>
-							<textarea id="blackMaterial" cols="33" rows="5" style="resize: none; margin-top: 2px;"> </textarea>
+							<textarea id="blackMaterial" cols="33" rows="5" style="resize: none; margin-top: 2px;"></textarea>
 						</div>
 						<div style="float: left; padding: 0px; margin-left: 42px;">
 							<div style="height: 40px; text-align: left;">
