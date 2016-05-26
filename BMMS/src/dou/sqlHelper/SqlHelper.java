@@ -97,11 +97,15 @@ public class SqlHelper {
 		connect = getConnection();
 		try {
 			preparedStatement = connect.prepareStatement(sql);
-
+			System.out.println("1-----------" + parameters.length);
 			if (parameters != null) {
+				System.out.println("1-----------" + parameters.length);
 				for (int i = 0; i < parameters.length; i++) {
+					System.out.println(i + "-----------" + parameters[i]);
 					preparedStatement.setString(i + 1, parameters[i]);
+					System.out.println(i + "-----------" + parameters[i]);
 				}
+				System.out.println("-----------" + parameters.length);
 			}
 
 			preparedStatement.executeUpdate();
@@ -109,7 +113,7 @@ public class SqlHelper {
 		} catch (SQLException e) {
 			logger.error("[SqlHelper.java:executeUpdate] Sql Update Failed!!!");
 			logger.error("Error Message : " + e.getMessage());
-			//e.printStackTrace();
+			e.printStackTrace();
 			/* 开发期间如果出错，返回一个。给调用该函数的函数提供选择，可以处理，也可以不处理 */
 			//throw new RuntimeException(e);
 		} finally {
