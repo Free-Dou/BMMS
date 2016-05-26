@@ -20,13 +20,13 @@ import dou.metaObject.WareHousingOrder.WareHousingProduct;
 public class GetOneProjectQunatityInfoServlet extends HttpServlet {
 
 	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		resp.sendRedirect("/BMMS/index.html");
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Logger logger = Config.getLogger(this.getClass());
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
