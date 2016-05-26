@@ -178,8 +178,15 @@ function cancle_click()
 	blackMaterialPrice.value = "";
 	budget.value = "";
 	paid.value = "";
-	
+
 	projectName.style.backgroundColor = "#FFFFFF";
+	waterSelfProduct.style.backgroundColor = "#FFFFFF";
+	waterBuy.style.backgroundColor = "#FFFFFF";
+	blackMaterialSelfProduct.style.backgroundColor = "#FFFFFF";
+	blackMaterialBuy.style.backgroundColor = "#FFFFFF";
+	blackMaterialSell.style.backgroundColor = "#FFFFFF";
+	waterPrice.style.backgroundColor = "#FFFFFF";
+	blackMaterialPrice.style.backgroundColor = "#FFFFFF";
 	budget.style.backgroundColor = "#FFFFFF";
 	paid.style.backgroundColor = "#FFFFFF";
 
