@@ -39,9 +39,13 @@ function confirm_click()
 	s_process_timer = setInterval("process_anime()", 10);
 
 	parent.myxmlhttp = getXmlHttpObject();
-	
+
+	console.info(parent.myxmlhttp);
+
 	if (parent.myxmlhttp)
 	{
+		console.info("enter send solution");
+
 		var aim_url = "/BMMS/AddProductInfo?time=" + new Date();
 		var data = "input_add_spec=" + document.getElementById("input_add_spec").value + "&input_add_name=" + document.getElementById("input_add_name").value;
 		
