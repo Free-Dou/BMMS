@@ -73,6 +73,12 @@ public class SqlUtilsInterface {
 		// TODO Auto-generated method stub
 		return new MySqlIO().getAllProjectQunatityInfo();
 	}
+
+
+	public static ProjectQunatity getOneProjectQunatityInfoById(String projectId) {
+		// TODO Auto-generated method stub
+		return new MySqlIO().getOneProjectQunatityInfoById(projectId);
+	}
 	
 /*
  * 

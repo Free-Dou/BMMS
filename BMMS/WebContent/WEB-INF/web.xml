@@ -187,4 +187,15 @@
   <servlet-name>UpdateProjectQunatity</servlet-name>
   <url-pattern>/UpdateProjectQunatity</url-pattern>
   </servlet-mapping>
+  
+    <!-- 更新工程量信息 -->
+  <servlet>
+  <servlet-name>GetOneProjectQunatityInfo</servlet-name>
+  <servlet-class>dou.webServlet.GetOneProjectQunatityInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>GetOneProjectQunatityInfo</servlet-name>
+  <url-pattern>/GetOneProjectQunatityInfo</url-pattern>
+  </servlet-mapping>
 </web-app>
