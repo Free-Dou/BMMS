@@ -295,8 +295,8 @@ function process_anime()
 }
 
 //Select 控件相关
-// 1.动态创建select
 
+// 1.动态创建select
 // function createSelect()
 // {
 // 	var mySelect = document.createElement("select");
@@ -305,7 +305,6 @@ function process_anime()
 // }
 
 // 2.添加选项option
-
 // function addOption()
 // {
 // 	//根据id查找对象，
@@ -315,7 +314,6 @@ function process_anime()
 // }
 
 // 3.删除所有选项option
-
 // function removeAll()
 // {
 // 	var obj=document.getElementById('mySelect');
@@ -323,7 +321,6 @@ function process_anime()
 // }
 
 // 4.删除一个选项option
-
 // function removeOne()
 // {
 // 	var obj=document.getElementById('mySelect');
@@ -333,25 +330,21 @@ function process_anime()
 // }
 
 // 5.获得选项option的值
-
 // var obj=document.getElementById('mySelect');
 // var index=obj.selectedIndex; //序号，取当前选中选项的序号
 // var val = obj.options[index].value;
 
 // 6.获得选项option的文本
-
 // var obj=document.getElementById('mySelect');
 // var index=obj.selectedIndex; //序号，取当前选中选项的序号
 // var val = obj.options[index].text;
 
 // 7.修改选项option
-
 // var obj=document.getElementById('mySelect');
 // var index=obj.selectedIndex; //序号，取当前选中选项的序号
 // var val = obj.options[index]=new Option("新文本","新值");
 
 // 8.删除select
-
 // function removeSelect()
 // {
 // 	var mySelect = document.getElementById("mySelect");
@@ -359,7 +352,6 @@ function process_anime()
 // }
 
 // 9.设置select option被中
-
 // function removeSelect()
 // {
 // 	// 向办件人员下拉列表动态添加员工
