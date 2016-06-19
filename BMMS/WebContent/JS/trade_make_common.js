@@ -6,6 +6,16 @@ var Base = null;
 	filter: blur(5px);
 */
 
+var now_line_style = 1;
+var line_width = new Array(8,20,20,8,8,8,25);
+var total_count = 0;
+var total_money = 0;
+var added_item = new Array();
+var now_index = 0;
+var confirming = false;
+
+var tip_goto = "";
+
 function add_click_trade(bName)
 {
 	if(added_item.length != 0)
@@ -104,6 +114,12 @@ function table_add(data)
 	now_line_style = now_line_style + 1;
 	if(now_line_style > 2)
 		now_line_style = 1;
+}
+
+function myremove(index)
+{
+	if(confirming == true)
+		del_click(index);
 }
 
 function reset_final_cell()

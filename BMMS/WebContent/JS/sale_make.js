@@ -1,13 +1,3 @@
-var now_line_style = 1;
-var line_width = new Array(8,20,20,8,8,8,25);
-var total_count = 0;
-var total_money = 0;
-var added_item = new Array();
-var now_index = 0;
-var confirming = false;
-
-var tip_goto = "";
-
 function body_onload()
 {
 	if(trade_person.options.length == 0)
