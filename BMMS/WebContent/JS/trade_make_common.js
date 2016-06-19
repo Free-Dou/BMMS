@@ -95,7 +95,7 @@ function hide_window_trade()
 function table_add(data)
 {
 	var add_item_text = "<div id=\"line_" + now_index + "\" class=\"table-line\">";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + " cell-head\" style=\"width: 8%;\" onclick=\"myremove(\'" + now_index + "\')\"> - </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + " cell-head\" style=\"width: 8%;\" onclick=\"myremove(\'line_" + now_index + "\')\"> - </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.SN + " </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.Name + " </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Count).toFixed(3) + " </div>";
@@ -180,7 +180,7 @@ function confirm_click()
 
 function myremove_confirm(index)
 {
-	var e = document.getElementById("line_" + index);
+	var e = document.getElementById(index);
 
 	e.parentNode.removeChild(e);
 
