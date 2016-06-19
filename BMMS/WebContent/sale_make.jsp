@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/trade_make_common.js"> </script>
+		<script type="text/javascript" src="JS/del_common.js"> </script>
 	</head>
 	<body onload="body_onload()">
 		<div id="buy_make_pad" class="right-page-contains">

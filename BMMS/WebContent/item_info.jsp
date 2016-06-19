@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="JS/item_info.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
+		<script type="text/javascript" src="JS/del_common.js"> </script>
 	</head>
 	<body>
 		<div id="item_info_pad" class="right-page-contains">

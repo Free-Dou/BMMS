@@ -1,33 +1,3 @@
-var process_time_last = 0;
-var pi_pos = new Array();
-var center_y = 50;
-var center_x = 50;
-var s_process_timer = 0;
-
-for(var i = 0; i < 5; i++)
-	pi_pos[i] = 0;
-
-var myxmlhttp = "";
-
-function body_onload()
-{
-	var date_now = get_now_date();
-	start_date.value = date_now;
-	end_date.value = date_now;
-}
-
-function get_now_date()
-{
-	var myDate = new Date();
-	var month = Number(myDate.getMonth()) + 1;
-	if(month < 10)
-		month = "0" + month;
-	var day = Number(myDate.getDate());
-	if(day < 10)
-		day = "0" + day;
-	return myDate.getFullYear() + "-" + month + "-" + day;
-}
-
 function get_result()
 {
 	if (input_customer.value.indexOf('&') >= 0 || input_customer.value.indexOf('=') >= 0 || input_customer.value.indexOf('|') >= 0 || input_customer.value.indexOf('@') >= 0 || input_customer.value.indexOf('!') >= 0)
@@ -185,31 +155,5 @@ function check_search_result()
 		clearInterval(s_process_timer);
 
 		myxmlhttp = null;
-	}
-}
-
-function process_anime()
-{
-	process_time_last = process_time_last + 1;
-	var need_change = parseInt(process_time_last / 10);
-	if(need_change > 5)
-		need_change = 5;
-	for(var i = 0; i < need_change; i++)
-	{
-		var e = document.getElementById("pi" + i);
-		if (pi_pos[i] > 360) 
-			pi_pos[i] = pi_pos[i] - 360;
-
-		if(pi_pos[i] < 180)
-			pi_pos[i] = pi_pos[i] + (pi_pos[i] + 10) / 20;
-		else if(pi_pos[i] < 360)
-			pi_pos[i] = pi_pos[i] + (360 - pi_pos[i] + 10) / 20;
-
-		var new_x = center_x + Math.sin(2 * Math.PI / 360 * pi_pos[i]) * 50;
-		var new_y = center_y - Math.cos(2 * Math.PI / 360 * pi_pos[i]) * 50;
-
-		e.style.top = new_y + "px";
-		e.style.left = new_x + "px";
-		console.info("item info processtimer running.");
 	}
 }

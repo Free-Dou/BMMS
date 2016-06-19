@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta charset="utf-8">
 
 <html>
@@ -21,6 +22,7 @@
 		<script type="text/javascript" src="JS/buy_analyze.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
+		<script type="text/javascript" src="JS/analyze_common.js"> </script>
 	</head>
 	<body onload="body_onload()">
 		<%
@@ -29,6 +31,7 @@
 				out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
 			}
 		%>
+		
 		<div id="sale_analyze_pad" class="right-page-contains">
 			<div class="right-page-title"> 采购分析 </div>
 			<div style="height: 110px;">

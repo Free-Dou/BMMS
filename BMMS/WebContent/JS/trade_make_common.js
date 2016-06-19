@@ -81,3 +81,140 @@ function hide_window_trade()
 	}
 	setTimeout("hide_window_trade()", 10);
 }
+
+function table_add(data)
+{
+	var add_item_text = "<div id=\"line_" + now_index + "\" class=\"table-line\">";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + " cell-head\" style=\"width: 8%;\" onclick=\"myremove(\'" + now_index + "\')\"> - </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.SN + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.Name + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Count).toFixed(3) + " </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Price).toFixed(2) + "￥ </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.TotalPrice).toFixed(2) + "￥ </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + data.Others + " </div>";
+	add_item_text = add_item_text + "</div>";
+	now_index = now_index + 1;
+
+	table_inner.innerHTML = table_inner.innerHTML + add_item_text;
+
+	total_count = Number(Number(total_count) + Number(data.Count)).toFixed(3);
+	total_money = Number(Number(total_money) + Number(data.Count) * Number(data.Price)).toFixed(2);
+
+	// console.info(total_count + "   " + total_money);
+	now_line_style = now_line_style + 1;
+	if(now_line_style > 2)
+		now_line_style = 1;
+}
+
+function reset_final_cell()
+{
+	for(var i = 0; i < 7; i++)
+	{
+		var e = document.getElementById("final_cell_" + i);
+		e.className = "table-cell-" + now_line_style;
+
+		if(i == 3)
+			e.innerHTML = Number(total_count).toFixed(3);
+		else if(i == 5)
+			e.innerHTML = Number(total_money).toFixed(2) + "￥";
+	}
+}
+
+function confirm_click()
+{
+	var input_correct = true;
+	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
+	// if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
+	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0)
+	{
+		input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
+		input_correct = false;
+	}
+	if(input_add_price.value == "" || isNaN(input_add_price.value) || Number(input_add_price.value) == 0)
+	{
+		input_add_price.style.backgroundColor = "rgba(255,255,128,1)";
+		input_correct = false;
+	}
+	for(var i = 0; i < added_item.length; i++)
+		if(added_item[i].Name == select_add_name.options[select_add_name.selectedIndex].text)
+		{
+			select_add_name.style.backgroundColor = "rgba(255,255,128,1)";
+			exist_tip.style.visibility = "visible";
+			input_correct = false;
+		}
+
+	if(input_correct == false)
+		return;
+	
+	var item = new Object();
+	item.SN = select_add_index.options[select_add_index.selectedIndex].text;
+	item.Name = select_add_name.options[select_add_name.selectedIndex].text;
+	item.Count = input_add_num.value;
+	item.Price = input_add_price.value;
+	item.TotalPrice = Number(input_add_num.value) * Number(input_add_price.value);
+	item.Others = input_add_others.value;
+	added_item.push(item);
+
+	table_add(item);
+
+	reset_final_cell();
+
+	cancle_click();
+}
+
+function myremove_confirm(index)
+{
+	var e = document.getElementById("line_" + index);
+
+	e.parentNode.removeChild(e);
+
+	added_item.splice(index, 1);
+	now_index = now_index - 1;
+	rebuild_table();
+}
+
+function rebuild_table()
+{
+	table_inner.innerHTML = "";
+	now_line_style = 1;
+	total_count = 0;
+	total_money = 0.00;
+	now_index = 0;
+
+	for(var i = 0; i < added_item.length; i++)
+		table_add(added_item[i]);
+
+	reset_final_cell();
+}
+
+function item_index_changed()
+{
+	var index = select_add_index.selectedIndex;
+	select_add_name.options[index].selected = true;
+}
+
+function item_type_changed()
+{
+	var index = select_add_name.selectedIndex;
+	select_add_index.options[index].selected = true;
+}
+
+function cancle_click()
+{
+	select_add_index.options[0].selected = true;
+	select_add_name.options[0].selected = true;
+	input_add_num.value = 0;
+	input_add_price.value = 0;
+	input_add_others.value = "";
+	exist_tip.style.visibility = "hidden";
+
+	select_add_name.style.backgroundColor = "#FFFFFF";
+	input_add_num.style.backgroundColor = "#FFFFFF";
+	input_add_price.style.backgroundColor = "#FFFFFF";
+	setTimeout("hide_window()", 10);
+}
+
+function trade_cancle_click()
+{
+	setTimeout("hide_window_trade()", 10);
+}
