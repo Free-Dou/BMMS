@@ -118,7 +118,7 @@ function table_add(data)
 
 function myremove(index)
 {
-	if(confirming == true)
+	if(confirming == false)
 		del_click(index);
 }
 
