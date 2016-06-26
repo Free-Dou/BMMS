@@ -198,4 +198,26 @@
   <servlet-name>GetOneProjectQunatityInfo</servlet-name>
   <url-pattern>/GetOneProjectQunatityInfo</url-pattern>
   </servlet-mapping>
+  
+  <!-- 上传文件 -->
+  <servlet>
+  <servlet-name>UploadFile</servlet-name>
+  <servlet-class>dou.webServlet.UploadFileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>UploadFile</servlet-name>
+  <url-pattern>/UploadFile</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 上传文件 -->
+  <servlet>
+  <servlet-name>DownloadFile</servlet-name>
+  <servlet-class>dou.webServlet.DownloadFileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DownloadFile</servlet-name>
+  <url-pattern>/DownloadFile</url-pattern>
+  </servlet-mapping>
 </web-app>

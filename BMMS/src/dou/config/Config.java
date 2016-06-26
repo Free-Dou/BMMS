@@ -12,6 +12,7 @@ public class Config {
 	public static String projectRootPath;
 	public static String logPropertiesPath;
 	public static String sqlPropertiesPath;
+	public static String fileSavedFolderPath;
 	
 	public static Logger getLogger(Class<?> class1){
 		PropertyConfigurator.configure(Config.logPropertiesPath);

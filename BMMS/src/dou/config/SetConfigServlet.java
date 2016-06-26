@@ -16,11 +16,13 @@ public class SetConfigServlet extends HttpServlet{
 		Config.projectRootPath = this.getServletContext().getRealPath("");
 		Config.logPropertiesPath = Config.projectRootPath + "/WEB-INF/etc/log4j.properties";
 	    Config.sqlPropertiesPath = Config.projectRootPath + "/WEB-INF/etc/dbInfo.properties";
+	    Config.fileSavedFolderPath = Config.projectRootPath + "/WEB-INF/uploadfiles";
 	    System.setProperty("webapp.root", Config.projectRootPath);
 	    
 		Logger logger = Config.getLogger(this.getClass());
 		logger.info("[SetConfigServlet.java:SetConfigServlet] Set Config success!!!!");
 		logger.info("projectRootPath		-->    " + Config.projectRootPath);
 		logger.info("logPropertiesPath		-->    " + Config.logPropertiesPath);
+		logger.info("fileSavedFolderPath	-->	   " + Config.fileSavedFolderPath);
 	}
 }
