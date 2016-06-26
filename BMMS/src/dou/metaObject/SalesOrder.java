@@ -63,7 +63,7 @@ public class SalesOrder {
 		}
 	}
 
-	public SalesOrder(String orderID, String carNum, String stockLoca, String userName, String customerName, String orderRemark) {
+	public SalesOrder(String orderID, String carNum, String stockLoca, String userName, String customerName, String orderRemark, String outTime) {
 		super();
 		this.orderID = orderID;
 		this.carNum = carNum;
@@ -71,6 +71,7 @@ public class SalesOrder {
 		this.userName = userName;
 		this.customerName = customerName;
 		this.orderRemark = orderRemark;
+		this.outTime = outTime;
 		logger.info("[SalesOrder.java:SalesOrder] Create a new SalesOrder object ： "
 				+ orderID);
 	}
@@ -118,7 +119,7 @@ public class SalesOrder {
 		String sql = "SELECT * FROM (SELECT * FROM tb_materiaout WHERE orderRemark LIKE ? AND cname LIKE ? "
 					+ "AND outTime BETWEEN ? AND ?) AS a,"
 					+ "(SELECT DISTINCT orderid FROM tb_materiaout WHERE mname LIKE ?) AS b "
-					+ "WHERE a.orderid=b.orderid";
+					+ "WHERE a.orderid=b.orderid order By outTime";
 		
 		//SELECT * FROM (SELECT * FROM tb_materiaout WHERE orderRemark LIKE '%发%'AND cname LIKE '%飞%' AND outTime BETWEEN '2016-05-05' AND '2016-05-30') AS a,(SELECT DISTINCT orderid FROM tb_materiaout WHERE mname LIKE '%沥青%') AS b WHERE a.orderid=b.orderid
 		String params[] = { "%" + remark + "%",
@@ -163,7 +164,4 @@ public class SalesOrder {
 		return outTime;
 	}
 
-	public void setOutTime(String outTime) {
-		this.outTime = outTime;
-	}
 }

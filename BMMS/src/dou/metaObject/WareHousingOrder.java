@@ -63,7 +63,7 @@ public class WareHousingOrder {
 		}
 	}
 
-	public WareHousingOrder(String orderID, String carNum, String stockLoca, String userName, String supplierName, String orderRemark) {
+	public WareHousingOrder(String orderID, String carNum, String stockLoca, String userName, String supplierName, String orderRemark, String inTime) {
 		super();
 		this.orderID = orderID;
 		this.carNum = carNum;
@@ -71,6 +71,7 @@ public class WareHousingOrder {
 		this.userName = userName;
 		this.supplierName = supplierName;
 		this.orderRemark = orderRemark;
+		this.inTime = inTime;
 		logger.info("[WareHousingOrder.java:WareHousingOrder] Create a new WareHousingOrder object ： "
 				+ orderID);
 	}
@@ -120,7 +121,7 @@ public class WareHousingOrder {
 		String sql = "SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE ? AND sname LIKE ? "
 					+ "AND inTime BETWEEN ? AND ?) AS a,"
 					+ "(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE ?) AS b "
-					+ "WHERE a.orderid=b.orderid";
+					+ "WHERE a.orderid=b.orderid order By inTime";
 		
 		//SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE '%发%'AND sname LIKE '%BmmsProduct%' AND inTime BETWEEN '2016-05-03' AND '2016-05-12') AS a,(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE '%沥青%') AS b WHERE a.orderid=b.orderid
 		String params[] = { "%" + remark + "%",
@@ -165,7 +166,4 @@ public class WareHousingOrder {
 		return inTime;
 	}
 
-	public void setInTime(String inTime) {
-		this.inTime = inTime;
-	}
 }

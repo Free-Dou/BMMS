@@ -478,8 +478,7 @@ public class MySqlIO {
 				}
 
 				if (null == lastOrderID) { /* 如果是第一条数据 */
-					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark);
-					salesOrderObject.setOutTime(outTime);
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark, outTime);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
 					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
@@ -489,8 +488,7 @@ public class MySqlIO {
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
 				} else { /* 新订单的数据 */
 					salesOrderList.add(salesOrderObject);
-					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark);
-					salesOrderObject.setOutTime(outTime);
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark, outTime);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
 					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
@@ -547,8 +545,7 @@ public class MySqlIO {
 
 				if (null == lastOrderID) { /* 如果是第一条数据 */
 					wareHousingOrderObject = new WareHousingOrder(orderID, carNum, stockLoca, userName, supplierName,
-							orderRemark);
-					wareHousingOrderObject.setInTime(inTime);
+							orderRemark, inTime);
 					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get WareHousing order : " + orderID);
 					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 					logger.info(
@@ -561,8 +558,7 @@ public class MySqlIO {
 				} else { /* 新订单的数据 */
 					wareHousingOrderList.add(wareHousingOrderObject);
 					wareHousingOrderObject = new WareHousingOrder(orderID, carNum, stockLoca, userName, supplierName,
-							orderRemark);
-					wareHousingOrderObject.setInTime(inTime);
+							orderRemark, inTime);
 					logger.info("[MySqlIO.java:getAllWareHousingOrderInfo]  Get wareHousing order : " + orderID);
 					wareHousingOrderObject.AddWareHousingProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 					logger.info(

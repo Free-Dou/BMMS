@@ -54,8 +54,9 @@ public class SalesOrderProcServlet extends HttpServlet{
 				String customerName = jsonObject.getString("name");
 				String orderRemark = jsonObject.getString("remark");
 				JSONArray productJsonArray = jsonObject.getJSONArray("Product");
+				String outTime = jsonObject.getString("createTime");
 				
-				SalesOrder salesOrder = new SalesOrder(orderID, carNum, stockLoca, username, customerName, orderRemark);
+				SalesOrder salesOrder = new SalesOrder(orderID, carNum, stockLoca, username, customerName, orderRemark, outTime);
 				for (int i = 0; i < productJsonArray.length(); i++){
 					JSONObject productJson = (JSONObject)productJsonArray.get(i);
 					String pSpec = productJson.getString("SN");
