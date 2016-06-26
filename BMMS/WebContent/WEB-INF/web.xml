@@ -220,4 +220,37 @@
   <servlet-name>DownloadFile</servlet-name>
   <url-pattern>/DownloadFile</url-pattern>
   </servlet-mapping>
+  
+  <!-- 增加一个批次信息 -->
+  <servlet>
+  <servlet-name>AddProjectQunatityBatch</servlet-name>
+  <servlet-class>dou.webServlet.AddProjectQunatityBatchServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProjectQunatityBatch</servlet-name>
+  <url-pattern>/AddProjectQunatityBatch</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除一个批次信息 -->
+  <servlet>
+  <servlet-name>DelProjectQunatityBatch</servlet-name>
+  <servlet-class>dou.webServlet.DelProjectQunatityBatchServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProjectQunatityBatch</servlet-name>
+  <url-pattern>/DelProjectQunatityBatch</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取一个项目的全部批次信息 -->
+  <servlet>
+  <servlet-name>GetProjectQunatityBatchInfo</servlet-name>
+  <servlet-class>dou.webServlet.GetProjectQunatityBatchInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>GetProjectQunatityBatchInfo</servlet-name>
+  <url-pattern>/GetProjectQunatityBatchInfo</url-pattern>
+  </servlet-mapping>
 </web-app>

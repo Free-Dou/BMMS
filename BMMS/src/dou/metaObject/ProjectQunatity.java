@@ -188,6 +188,10 @@ public class ProjectQunatity {
 
 		/* 删除数据 */
 		SqlUtilsInterface.delInfoFromDB(sql, params);
+		
+		/* 删除批次信息 */
+		sql = "delete from tb_qunatitybatch where projectID=?;";
+		SqlUtilsInterface.delInfoFromDB(sql, params);
 	}
 
 	public String getProjectID() {
@@ -196,5 +200,13 @@ public class ProjectQunatity {
 
 	public void setProjectID(String projectID) {
 		this.projectID = projectID;
+	}
+	
+	public static ArrayList<ProjectQunatityBatch> getAllQunatityBatchInfo(String projectID){
+		ArrayList<ProjectQunatityBatch> qunatityBatchList = null;
+		
+		qunatityBatchList = SqlUtilsInterface.getAllQunatityBatchInfoById(projectID);
+				
+		return qunatityBatchList;
 	}
 }

@@ -14,6 +14,7 @@ import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
 import dou.metaObject.ProjectQunatity;
+import dou.metaObject.ProjectQunatityBatch;
 import dou.metaObject.SalesOrder;
 import dou.metaObject.Supplier;
 import dou.metaObject.SystemMessage;
@@ -633,6 +634,47 @@ public class MySqlIO {
 			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), ct);
 		}
 		return result;
+	}
+
+	/* 获取某个工程的批次信息 */
+	public ArrayList<ProjectQunatityBatch> getAllQunatityBatchInfoById(String projectID) {
+		ArrayList<ProjectQunatityBatch> qunatityBatchList = null;
+		ProjectQunatityBatch qunatityBatchObject = null;
+		String sql = "select * from tb_qunatitybatch where projectID = ?;";
+		String params[] = {projectID};
+		ResultSet rs = null;
+
+		logger.info("[MySqlIO.java:getAllQunatityBatchInfoBy] " + sql);
+		rs = sqlHelper.executeQuery(sql, params);
+		try {
+			/* 提取数据 */
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String eachBatch = rs.getString("eachBatch");
+				Float price = rs.getFloat("price");
+				String picLoca = rs.getString("picLoca");
+				String remark = rs.getString("remark");
+
+				if (null == qunatityBatchList) {
+					qunatityBatchList = new ArrayList<ProjectQunatityBatch>();
+				}
+
+				qunatityBatchObject = new ProjectQunatityBatch(projectID, eachBatch, price, picLoca, remark);
+				qunatityBatchObject.setBatchID(id);
+				qunatityBatchList.add(qunatityBatchObject);
+			}
+
+			logger.info("[MySqlIO.java:getAllQunatityBatchInfoById] Get all ProjectQunatityBatch Info Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllQunatityBatchInfoById] Get ProjectQunatityBatch Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+
+		return null;
 	}
 
 

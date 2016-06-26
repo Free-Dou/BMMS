@@ -1,17 +1,18 @@
 package dou.webServlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
+
 import dou.config.Config;
-import dou.metaObject.ProjectQunatity;
+import dou.metaObject.ProjectQunatityBatch;
 
-public class DelProjectQunatityServlet extends HttpServlet{
-
-	@Override
+public class DelProjectQunatityBatchServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		resp.sendRedirect("/BMMS/index.html");
@@ -27,13 +28,13 @@ public class DelProjectQunatityServlet extends HttpServlet{
 			return;
 		}
 		
-		String projectID = req.getParameter("projectID");
+		String id = req.getParameter("id");
 		
-		if (("" != projectID) && (null != projectID)){
-			logger.info("[DelProjectQunatityServlet.java:doPost] projectID: " + projectID);
-			ProjectQunatity.delProjectQunatityFromDB(projectID);
+		if (("" != id) && (null != id)){
+			logger.info("[DelProjectQunatityBatchServlet.java:doPost] ProjectQunatityBatchID: " + id);
+			ProjectQunatityBatch.delQunatityBatchFromDB(id);
 		} else {
-			logger.info("[DelProjectQunatityServlet.java:doPost] projectID is null or \"\" !!! projectID : " + projectID);
+			logger.info("[DelProjectQunatityBatchServlet] Project QunatityBatch ID is null or \"\" !!! ProjectQunatityBatchID : " + id);
 		}
 	}
 }
