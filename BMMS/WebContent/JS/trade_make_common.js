@@ -234,3 +234,27 @@ function trade_cancle_click()
 {
 	setTimeout("hide_window_trade()", 10);
 }
+
+function hover_input_focus(id)
+{
+	var obj = document.getElementById(id);
+	if(obj.getAttribute("HaveContains") == "0")
+		obj.value = "";
+	obj.style.color = "#FFFFFF";
+	console.info("This focused.");
+}
+
+function hover_input_blur(id)
+{
+	var obj = document.getElementById(id);
+	console.info(obj.value);
+	if(obj.value == "")
+	{
+		console.info("This is null");
+		obj.value = "请输入单号";
+		obj.style.color = "#AAAAAA";
+		obj.setAttribute("HaveContains", "0");
+	}
+	else
+		obj.setAttribute("HaveContains", "1");
+}
