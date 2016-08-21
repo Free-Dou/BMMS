@@ -297,15 +297,18 @@ function searchProduct()
 	var searchStr = search_box.value;
 	var tempHTML = "";
 
+	var selnow = 0;
 	for(var i = 0; i < saved_item_spec.options.length; i++)
 	{
 		if(saved_item_spec.options[i].text.indexOf(searchStr) >= 0)
 		{
 			tempHTML = tempHTML + "<div class=\"table-line\">";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_head\" onclick=\"lineclick(\'" + saved_item_name.options[i].text + "\')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> </div>";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + saved_item_spec.options[i].text + " </div>";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + saved_item_name.options[i].text + " </div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_head\" onclick=\"lineclick(\'" + saved_item_name.options[i].text + "\')\" class=\"table-cell-" + ((selnow % 2) + 1) + " cell-head\"> </div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((selnow % 2) + 1) + "\"> " + saved_item_spec.options[i].text + " </div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((selnow % 2) + 1) + "\"> " + saved_item_name.options[i].text + " </div>";
 			tempHTML = tempHTML + "</div>";
+
+			selnow++;
 		}
 	}
 	table_inner_selectList.innerHTML = "";
