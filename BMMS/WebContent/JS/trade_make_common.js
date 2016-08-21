@@ -32,7 +32,7 @@ function add_click_trade(bName)
 	confirm_window.style.visibility = "visible";
 	confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
 	copy_table.innerHTML = full_table.innerHTML;
-	copy_tradeNum.innerHTML = obj.innerHTML;
+	copy_tradeNum.innerHTML = obj.value;
 	confirming = true;
 	setTimeout("show_window_trade()", 10);
 }
