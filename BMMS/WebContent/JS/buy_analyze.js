@@ -75,13 +75,13 @@ function check_search_result()
 				string_final = string_final + "<div class=\"table-line-little\">";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little cell-head\" style=\"width: 2%\" onclick=\"myremove(\'line_" + myobj[i].orderID + "\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].orderID + " </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[j].pSpec + " </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[j].pName + " </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[j].pCount).toFixed(3) + " </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[j].pPrice).toFixed(2) + "￥ </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[j].pTotalPrice).toFixed(2) + "￥ </div>";
-					if(myobj[i].Product[j].hasOwnProperty('pRemark'))
-						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> " + myobj[i].Product[j].pRemark + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[0].pSpec + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[0].pName + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[0].pCount).toFixed(3) + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[0].pPrice).toFixed(2) + "￥ </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[0].pTotalPrice).toFixed(2) + "￥ </div>";
+					if(myobj[i].Product[0].hasOwnProperty('pRemark'))
+						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> " + myobj[i].Product[0].pRemark + " </div>";
 					else
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].inTime + " </div>";
