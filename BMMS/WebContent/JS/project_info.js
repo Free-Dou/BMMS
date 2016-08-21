@@ -274,8 +274,10 @@ function check_search_result()
 			constructLoca.value = myobj.constructLoca;
 			if(myobj.contractContent == "水稳辅筑")
 				contractContent.options[0].selected = true;
-			else
+			else if(myobj.contractContent == "黑料辅筑")
 				contractContent.options[1].selected = true;
+			else
+				contractContent.options[2].selected = true;
 			water.value = myobj.water;
 			waterSelfProduct.value = myobj.waterSelfProduct;
 			waterBuy.value = myobj.waterBuy;
