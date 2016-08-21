@@ -19,6 +19,18 @@ var tip_goto = "";
 
 var data_add = null;
 
+function get_now_date()
+{
+	var myDate = new Date();
+	var month = Number(myDate.getMonth()) + 1;
+	if(month < 10)
+		month = "0" + month;
+	var day = Number(myDate.getDate());
+	if(day < 10)
+		day = "0" + day;
+	return myDate.getFullYear() + "-" + month + "-" + day;
+}
+
 function body_onload_common()
 {
 	var date_now = get_now_date();
