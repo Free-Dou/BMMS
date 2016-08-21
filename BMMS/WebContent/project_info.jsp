@@ -32,6 +32,8 @@
 				<div class="table-title-cell" style="width: 25%;"> 总额 </div>
 				<div class="table-title-cell" style="width: 25%;"> 已支付 </div>
 				<div class="table-title-cell" style="width: 10%;"> 查看修改 </div>
+				<div class="table-title-cell" style="width: 10%;"> 添加付款 </div>
+				<div class="table-title-cell" style="width: 10%;"> 扫描件 </div>
 			</div>
 			<div id="table_inner">
 				<%
@@ -51,7 +53,9 @@
 							out.print("<div id=\"pjtName" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + projectQunatityObject.getProjectName() + "</div>");
 							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
 							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
-							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 10%; cursor: pointer;\"> <img src=\"IMG/edit.png\" class=\"footer-button-img\"> </div>");
+							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 4%; cursor: pointer;\"> <img src=\"IMG/edit.png\" class=\"footer-button-img\"> </div>");
+							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 4%; cursor: pointer;\"> 💴 </div>");
+							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 4%; cursor: pointer;\"> 📄 </div>");
 							out.print("</div>");
 						}
 					}
