@@ -114,7 +114,7 @@ function check_search_result()
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> " + myobj[i].Product[0].pRemark + " </div>";
 					else
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].inTime.substr(0, 10) + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].outTime.substr(0, 10) + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 20%;\"> " + myobj[i].customerName + " </div>";
 					if(myobj[i].hasOwnProperty('carNum'))
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].carNum + " </div>";
