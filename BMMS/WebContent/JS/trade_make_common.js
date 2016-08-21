@@ -186,8 +186,9 @@ function confirm_click()
 
 	reset_final_cell();
 
+	resetSelected(data_add.id);
 	data_add = null;
-	
+
 	cancle_click();
 }
 
@@ -272,16 +273,19 @@ function hover_input_blur(id)
 		obj.setAttribute("HaveContains", "1");
 }
 
+function resetSelected(id)
+{
+	var oldHead = document.getElementById(id + "_head");
+	var oldSpec = document.getElementById(id + "_pSpec");
+	var oldName = document.getElementById(id + "_pName");
+
+	oldHead.innerHTML = "";
+}
+
 function lineclick(id)
 {
 	if(data_add != null)
-	{
-		var oldHead = document.getElementById(data_add.id + "_head");
-		var oldSpec = document.getElementById(data_add.id + "_pSpec");
-		var oldName = document.getElementById(data_add.id + "_pName");
-
-		oldHead.innerHTML = "";
-	}
+		resetSelected(data_add.id);
 	else
 		data_add = new Object();
 	var objHead = document.getElementById(id + "_head");
