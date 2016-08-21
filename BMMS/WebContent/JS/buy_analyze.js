@@ -50,17 +50,17 @@ function myremove_confirm(index)
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
-	parent.myxmlhttp = getXmlHttpObject();
+	myxmlhttp = getXmlHttpObject();
 	
-	if (parent.myxmlhttp)
+	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/DelWareHousingOrder?time=" + new Date();
 		var data = "del_warehousing_id=" + index;
 		
-		parent.myxmlhttp.open("post", aim_url, true);
-		parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
-		parent.myxmlhttp.send(data);
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = refresh_result;
+		myxmlhttp.send(data);
 	}
 }
 

@@ -23,3 +23,13 @@ function myremove(index)
 {
 	del_click_little(index);
 }
+
+function refresh_result()
+{
+	process_message.style.visibility = "hidden";
+	clearInterval(s_process_timer);
+
+	myxmlhttp = null;
+
+	get_result();
+}

@@ -12,52 +12,65 @@ function confirm_click()
 		projectName.style.backgroundColor = "rgba(255,255,128,1)";
 		input_all_corrent = false;
 	}
+	else
+		projectName.style.backgroundColor = "rgba(255,255,255,1)";
 	if(waterSelfProduct.value == "" || isNaN(waterSelfProduct.value))
 	{
-		waterSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		waterSelfProduct.value = 0;
+		// waterSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(waterBuy.value == "" || isNaN(waterBuy.value))
 	{
-		waterBuy.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		waterBuy.value = 0;
+		// waterBuy.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(blackMaterialSelfProduct.value == "" || isNaN(blackMaterialSelfProduct.value))
 	{
-		blackMaterialSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		blackMaterialSelfProduct = 0;
+		// blackMaterialSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(blackMaterialBuy.value == "" || isNaN(blackMaterialBuy.value))
 	{
-		blackMaterialBuy.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		blackMaterialBuy.value = 0;
+		// blackMaterialBuy.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(blackMaterialSell.value == "" || isNaN(blackMaterialSell.value))
 	{
-		blackMaterialSell.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		blackMaterialBuy.value = 0;
+		// blackMaterialSell.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(waterPrice.value == "" || isNaN(waterPrice.value))
 	{
-		waterPrice.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		waterPrice.value = 0;
+		// waterPrice.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(blackMaterialPrice.value == "" || isNaN(blackMaterialPrice.value))
 	{
-		blackMaterialPrice.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
+		blackMaterialPrice.value = 0;
+		// blackMaterialPrice.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_all_corrent = false;
 	}
 	if(budget.value == "" || isNaN(budget.value) || Number(budget.value) == 0)
 	{
 		budget.style.backgroundColor = "rgba(255,255,128,1)";
 		input_all_corrent = false;
 	}
+	else
+		budget.style.backgroundColor = "rgba(255,255,255,1)";
 	if(paid.value == "" || isNaN(paid.value))
 	{
 		paid.style.backgroundColor = "rgba(255,255,128,1)";
 		input_all_corrent = false;
 	}
-
+	else
+		paid.style.backgroundColor = "rgba(255,255,255,1)";
+	
 	if(input_all_corrent == false)
 		return;
 
