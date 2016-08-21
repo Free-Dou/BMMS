@@ -47,8 +47,7 @@ function get_result()
 
 function myremove(index)
 {
-	if(confirming == false)
-		del_click(index);
+	del_click(index);
 }
 
 function check_search_result()
@@ -67,9 +66,21 @@ function check_search_result()
 		var string_final = "";
 		// var result_now_date = "";
 		// var message_back = 1;
-
 		if(myobj != null)
 		{
+			string_final = string_final + "<div class=\"table-line-little\">";
+				string_final = string_final + "<div class=\"table-title-cell-little cell-head\" style=\"width: 2%\"></div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 10%;\"> 单号 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 10%;\"> 编号 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 10%;\"> 商品 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 数量 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 单价 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 金额 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 15%;\"> 备注 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 时间 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 20%;\"> 客户 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 车号 </div>";
+			string_final = string_final + "</div>";
 			for(var i = 0; i < myobj.length; i++)
 			{
 				string_final = string_final + "<div class=\"table-line-little\">";
@@ -84,7 +95,7 @@ function check_search_result()
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> " + myobj[i].Product[0].pRemark + " </div>";
 					else
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].inTime + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].inTime.substr(0, 10) + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 20%;\"> " + myobj[i].supplierName + " </div>";
 					if(myobj[i].hasOwnProperty('carNum'))
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].carNum + " </div>";
