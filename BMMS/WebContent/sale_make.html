@@ -147,7 +147,7 @@
 					<div class="table-title-cell"> 编号 </div>
 					<div class="table-title-cell"> 产品名称 </div>
 				</div>
-				<div id="table_inner">
+				<div id="table_inner_selectList">
 				<%
 					int i = 0;
 
@@ -165,50 +165,6 @@
 					out.print("<input id=\"productCount\" value=\"" + i + "\" style=\"visibility: hidden;\"></input>");
 				%>
 				</div>
-<!-- 				<div style="height: 30px; text-align: left;">
-					<span> 编号： </span>
-					<select style="width: 300px;" onchange="item_index_changed()" id="select_add_index">
-						<%
-							if (null != productList){
-								for (int i = 0; i < productList.size(); i++){
-									String pSpec = productList.get(i).getpSpec();
-									out.print("<option name=\"" + pSpec + "\" value=\"" + pSpec + "\">" + pSpec + "</option>");
-								}
-							}
-						%>
-					</select>
-				</div>
-				<div style="height: 30px; text-align: left;">
-					<span> 商品： </span>
-					<select style="width: 300px;" onchange="item_type_changed()" id="select_add_name">
-						<%
-							if (null != productList){
-								for (int i = 0; i < productList.size(); i++){
-									String pName = productList.get(i).getpName();
-									out.print("<option name=\"" + pName + "\" value=\"" + pName + "\">" + pName + "</option>");
-								}
-							}
-						%>
-					</select>
-					<div id="exist_tip" style="visibility: hidden; float: right; font-size: 12px; margin-top: 4px; color: #FFFF80;"> 已存在 </div>
-				</div>	
-				<div style="height: 30px; text-align: left;">
-					<span> 数量： </span> <span> <input style="width: 50px;" id="input_add_num" value="0"></input> </span>
-					<span style="margin-left: 10px;"> 单价： </span> <span> <input style="width: 50px;" id="input_add_price" value="0"></input> </span> <span> ￥ </span>
-				</div>
-				<div style="height: 30px; text-align: left;">
-					<span> 备注： </span> <span> <input style="width: 297px;" id="input_add_others"></input> </span>
-				</div>
-				<div id="cancle_button" class="red_button" style="margin-right: 46px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						取消
-					</p>
-				</div>
-				<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						确定
-					</p>
-				</div> -->
 			</div>
 		</div>
 		<div id="confirm_window" class="new_float_window">
