@@ -147,6 +147,7 @@
 				</div>
 				<div id="table_inner_selectList">
 				<%
+					int i = 0;
 					if (null != productList){
 						for (i = 0; i < productList.size(); i++){
 							Product productObject = productList.get(i);
@@ -163,7 +164,6 @@
 				</div>
 				<select style="visibility: hidden;" id="saved_item_name">
 				<%
-					int i = 0;
 					if (null != productList){
 						for (i = 0; i < productList.size(); i++){
 							String pName = productList.get(i).getpName();
