@@ -28,7 +28,7 @@ function confirm_click()
 	}
 	if(blackMaterialSelfProduct.value == "" || isNaN(blackMaterialSelfProduct.value))
 	{
-		blackMaterialSelfProduct = 0;
+		blackMaterialSelfProduct.value = 0;
 		// blackMaterialSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
 		// input_all_corrent = false;
 	}
@@ -70,7 +70,7 @@ function confirm_click()
 	}
 	else
 		paid.style.backgroundColor = "rgba(255,255,255,1)";
-	
+
 	if(input_all_corrent == false)
 		return;
 
