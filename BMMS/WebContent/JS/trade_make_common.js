@@ -13,6 +13,7 @@ var total_money = 0;
 var added_item = new Array();
 var now_index = 0;
 var confirming = false;
+var hasTradeNum = false;
 
 var tip_goto = "";
 
@@ -20,28 +21,20 @@ var data_add = null;
 
 function add_click_trade(bName)
 {
-	if(added_item.length != 0)
-	{
-		trade_confirm_button.style.visibility = "visible";
+	var obj = document.getElementById("trade_num");
 
-		Base = document.getElementById(bName);
-		confirm_window.style.visibility = "visible";
-		confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
-		copy_table.innerHTML = full_table.innerHTML;
-		confirming = true;
-		setTimeout("show_window_trade()", 10);
-	}
+	if(added_item.length != 0 && obj.getAttribute("HaveContains") == 1)
+		trade_confirm_button.style.visibility = "visible";
 	else
-	{
 		trade_confirm_button.style.visibility = "hidden";
 
-		Base = document.getElementById(bName);
-		confirm_window.style.visibility = "visible";
-		confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
-		copy_table.innerHTML = full_table.innerHTML;
-		confirming = true;
-		setTimeout("show_window_trade()", 10);
-	}
+	Base = document.getElementById(bName);
+	confirm_window.style.visibility = "visible";
+	confirm_window_inner.style.height = full_table.offsetHeight + 100 + "px";
+	copy_table.innerHTML = full_table.innerHTML;
+	copy_tradeNum.innerHTML = obj.innerHTML;
+	confirming = true;
+	setTimeout("show_window_trade()", 10);
 }
 
 function show_window_trade()
