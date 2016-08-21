@@ -49,7 +49,7 @@ function show_window_trade()
 	if(confirm_window.style.opacity >= 1.0)
 	{
 		confirm_window.style.opacity = 1.0;
-		Base.style.webkitFilter = "blur(6px)"
+		Base.style.webkitFilter = "blur(6px)";
 		Base.style.mozFilter = Base.style.webkitFilter;
 		Base.style.msFilter = Base.style.webkitFilter;
 		Base.style.Filter = Base.style.webkitFilter;
@@ -74,7 +74,7 @@ function hide_window_trade()
 	if(confirm_window.style.opacity <= 0.0)
 	{
 		confirm_window.style.opacity = 0.0;
-		Base.style.webkitFilter = "blur(0px)"
+		Base.style.webkitFilter = "blur(0px)";
 		Base.style.mozFilter = Base.style.webkitFilter;
 		Base.style.msFilter = Base.style.webkitFilter;
 		Base.style.Filter = Base.style.webkitFilter;
@@ -290,4 +290,24 @@ function lineclick(id)
 	data_add.id = id;
 	data_add.Spec = objSpec.innerHTML;
 	data_add.Name = objName.innerHTML;
+}
+
+function searchProduct()
+{
+	var searchStr = search_box.value;
+	var tempHTML = "";
+
+	for(var i = 0; i < saved_item_spec.options.length; i++)
+	{
+		if(saved_item_spec.options[i].text.indexOf(searchStr) >= 0)
+		{
+			tempHTML = tempHTML + "<div class=\"table-line\">";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_head\" onclick=\"lineclick(\'" + saved_item_name.options[i].text + "\')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> </div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + saved_item_spec.options[i].text + " </div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + saved_item_name.options[i].text + " </div>";
+			tempHTML = tempHTML + "</div>";
+		}
+	}
+	table_inner_selectList.innerHTML = "";
+	table_inner_selectList.innerHTML = tempHTML;
 }
