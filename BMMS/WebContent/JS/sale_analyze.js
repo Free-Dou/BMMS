@@ -105,8 +105,8 @@ function check_search_result()
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[0].pCount).toFixed(3) + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[0].pPrice).toFixed(2) + "￥ </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + Number(myobj[i].Product[0].pTotalPrice).toFixed(2) + "￥ </div>";
-					if(myobj[i].Product[0].hasOwnProperty('pRemark'))
-						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> " + myobj[i].Product[0].pRemark + " </div>";
+					if(myobj[i].hasOwnProperty('orderRemark'))
+						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> " + myobj[i].orderRemark + " </div>";
 					else
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 15%;\"> </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> " + myobj[i].outTime.substr(0, 10) + " </div>";
