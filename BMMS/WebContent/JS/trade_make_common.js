@@ -16,6 +16,8 @@ var confirming = false;
 
 var tip_goto = "";
 
+var data_add = null;
+
 function add_click_trade(bName)
 {
 	if(added_item.length != 0)
@@ -138,33 +140,42 @@ function reset_final_cell()
 
 function confirm_click()
 {
-	var input_correct = true;
+	// var input_correct = true;
 	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
 	// if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
+	if(data_add == null)
+	{
+		alert('请选择一个产品');
+		return;
+	}
 	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0)
 	{
-		input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
-		input_correct = false;
+		input_add_num.value = 0;
+		// input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_correct = false;
 	}
 	if(input_add_price.value == "" || isNaN(input_add_price.value) || Number(input_add_price.value) == 0)
 	{
-		input_add_price.style.backgroundColor = "rgba(255,255,128,1)";
-		input_correct = false;
+		input_add_price.value = 0;
+		// input_add_price.style.backgroundColor = "rgba(255,255,128,1)";
+		// input_correct = false;
 	}
-	for(var i = 0; i < added_item.length; i++)
-		if(added_item[i].Name == select_add_name.options[select_add_name.selectedIndex].text)
-		{
-			select_add_name.style.backgroundColor = "rgba(255,255,128,1)";
-			exist_tip.style.visibility = "visible";
-			input_correct = false;
-		}
+	// for(var i = 0; i < added_item.length; i++)
+	// 	if(added_item[i].Name == select_add_name.options[select_add_name.selectedIndex].text)
+	// 	{
+	// 		select_add_name.style.backgroundColor = "rgba(255,255,128,1)";
+	// 		exist_tip.style.visibility = "visible";
+	// 		input_correct = false;
+	// 	}
 
-	if(input_correct == false)
-		return;
+	// if(input_correct == false)
+	// 	return;
 	
 	var item = new Object();
-	item.SN = select_add_index.options[select_add_index.selectedIndex].text;
-	item.Name = select_add_name.options[select_add_name.selectedIndex].text;
+	// item.SN = select_add_index.options[select_add_index.selectedIndex].text;
+	// item.Name = select_add_name.options[select_add_name.selectedIndex].text;
+	item.SN = data_add.Spec;
+	item.Name = data_add.Name;
 	item.Count = input_add_num.value;
 	item.Price = input_add_price.value;
 	item.TotalPrice = Number(input_add_num.value) * Number(input_add_price.value);
@@ -175,6 +186,8 @@ function confirm_click()
 
 	reset_final_cell();
 
+	data_add = null;
+	
 	cancle_click();
 }
 
@@ -217,14 +230,14 @@ function item_type_changed()
 
 function cancle_click()
 {
-	select_add_index.options[0].selected = true;
-	select_add_name.options[0].selected = true;
+	// select_add_index.options[0].selected = true;
+	// select_add_name.options[0].selected = true;
 	input_add_num.value = 0;
 	input_add_price.value = 0;
 	input_add_others.value = "";
-	exist_tip.style.visibility = "hidden";
+	// exist_tip.style.visibility = "hidden";
 
-	select_add_name.style.backgroundColor = "#FFFFFF";
+	// select_add_name.style.backgroundColor = "#FFFFFF";
 	input_add_num.style.backgroundColor = "#FFFFFF";
 	input_add_price.style.backgroundColor = "#FFFFFF";
 	setTimeout("hide_window()", 10);
@@ -257,4 +270,27 @@ function hover_input_blur(id)
 	}
 	else
 		obj.setAttribute("HaveContains", "1");
+}
+
+function lineclick(id)
+{
+	if(data_add != null)
+	{
+		var oldHead = document.getElementById(data_add.id + "_head");
+		var oldSpec = document.getElementById(data_add.id + "_pSpec");
+		var oldName = document.getElementById(data_add.id + "_pName");
+
+		oldHead.innerHTML = "";
+	}
+	else
+		data_add = new Object();
+	var objHead = document.getElementById(id + "_head");
+	var objSpec = document.getElementById(id + "_pSpec");
+	var objName = document.getElementById(id + "_pName");
+
+	objHead.innerHTML = "√";
+
+	data_add.id = id;
+	data_add.Spec = objSpec.innerHTML;
+	data_add.Name = objName.innerHTML;
 }
