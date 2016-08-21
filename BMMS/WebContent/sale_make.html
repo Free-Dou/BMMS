@@ -126,7 +126,7 @@
 							<span style="margin-left: 10px;"> 备注 </span> <span> <input style="width: 297px; margin-left: 15px;" id="input_add_others"></input> </span>
 						</div>
 						<div style="height: 30px; text-align: left;">
-							<span style="margin-left: 50px;"> 搜索 </span> <span> <input id="search_box" onkeydown="searchProduct()" style="width: 297px; margin-left: 15px;"></input> </span>
+							<span style="margin-left: 50px;"> 搜索 </span> <span> <input id="search_box" onkeydown="searchProduct()" onkeyup="searchProduct()" onkeypress="searchProduct()" style="width: 297px; margin-left: 15px;"></input> </span>
 						</div>
 					</div>
 					<div id="cancle_button" class="red_button" style="margin-right: 46px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
@@ -145,7 +145,22 @@
 					<div class="table-title-cell"> 编号 </div>
 					<div class="table-title-cell"> 产品名称 </div>
 				</div>
+				<div id="table_inner_selectList">
+				<%
+					if (null != productList){
+						for (i = 0; i < productList.size(); i++){
+							Product productObject = productList.get(i);
 
+							out.print("<div class=\"table-line\">");
+							out.print("<div id=\"" + productObject.getpName() + "_head\" onclick=\"lineclick(\'" + productObject.getpName() + "\')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> </div>");
+							out.print("<div id=\"" + productObject.getpName() + "_pSpec\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpSpec() + " </div>");
+							out.print("<div id=\"" + productObject.getpName() + "_pName\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpName() + " </div>");
+							out.print("</div>");
+						}
+					}
+					out.print("<input id=\"productCount\" value=\"" + i + "\" style=\"visibility: hidden;\"></input>");
+				%>
+				</div>
 				<select style="visibility: hidden;" id="saved_item_name">
 				<%
 					int i = 0;
@@ -167,23 +182,6 @@
 					}
 				%>
 				</select>
-
-				<div id="table_inner_selectList">
-				<%
-					if (null != productList){
-						for (i = 0; i < productList.size(); i++){
-							Product productObject = productList.get(i);
-
-							out.print("<div class=\"table-line\">");
-							out.print("<div id=\"" + productObject.getpName() + "_head\" onclick=\"lineclick(\'" + productObject.getpName() + "\')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\"> </div>");
-							out.print("<div id=\"" + productObject.getpName() + "_pSpec\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpSpec() + " </div>");
-							out.print("<div id=\"" + productObject.getpName() + "_pName\" class=\"table-cell-" + ((i % 2) + 1) + "\"> " + productObject.getpName() + " </div>");
-							out.print("</div>");
-						}
-					}
-					out.print("<input id=\"productCount\" value=\"" + i + "\" style=\"visibility: hidden;\"></input>");
-				%>
-				</div>
 			</div>
 		</div>
 		<div id="confirm_window" class="new_float_window">
