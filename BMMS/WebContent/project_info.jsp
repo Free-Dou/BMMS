@@ -137,7 +137,7 @@
 						</div>
 					</div>
 					<div style="height: 42px;">
-						<div style="height: 40px; text-align: left; float: left; margin-left: 16px;">
+						<div style="height: 40px; text-align: left; float: left; margin-left: 32px;">
 							<span> 总额： </span> <input style="width: 225px;" id="budget"></input> <span> ￥ </span>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 30px;">
