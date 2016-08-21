@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/analyze_common.js"> </script>
+		<script type="text/javascript" src="JS/del_common.js"> </script>
 	</head>
 	<body onload="body_onload()">
 		<%
@@ -58,7 +59,7 @@
 					</div>
 					-->
 		 			<div style="height: 36px; padding-left: 35px;">
-						<div style="float:left; padding-left: 32px; height: 24px;">	客户： </div>
+						<div style="float:left; padding-left: 32px; height: 24px;">	供应商： </div>
 						<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_customer" class="textbox-common"></input> </div>
 						<div style="float:left; padding-left: 48px; height: 24px;"> 商品： </div>
 						<div style="float:left; padding-left: 15px; height: 24px;"> <input id="input_item" class="textbox-common"></input> </div>
@@ -82,6 +83,19 @@
 				</div>
 			</div>
 			<div id="result_board" style="visibility: hidden; height: 100%;">
+				<div class="table-line-little">
+					<div class="table-title-cell-little cell-head" style="width: 2%"></div>
+					<div class="table-title-cell-little" style="width: 10%;"> 单号 </div>
+					<div class="table-title-cell-little" style="width: 10%;"> 编号 </div>
+					<div class="table-title-cell-little" style="width: 10%;"> 商品 </div>
+					<div class="table-title-cell-little" style="width: 6%;"> 数量 </div>
+					<div class="table-title-cell-little" style="width: 6%;"> 单价 </div>
+					<div class="table-title-cell-little" style="width: 6%;"> 金额 </div>
+					<div class="table-title-cell-little" style="width: 15%;"> 备注 </div>
+					<div class="table-title-cell-little" style="width: 6%;"> 时间 </div>
+					<div class="table-title-cell-little" style="width: 20%;"> 客户 </div>
+					<div class="table-title-cell-little" style="width: 6%;"> 车号 </div>
+				</div>
 				<!-- <iframe id="result_loader" style="height: 100%; width: 100%; border-width: 0px; position: relative;" src="search_result.html"></iframe> -->
 			</div>
 		</div>

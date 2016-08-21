@@ -19,6 +19,12 @@ var tip_goto = "";
 
 var data_add = null;
 
+function body_onload_common()
+{
+	var date_now = get_now_date();
+	trade_time.value = date_now;
+}
+
 function add_click_trade(bName)
 {
 	var obj = document.getElementById("trade_num");
@@ -304,8 +310,8 @@ function searchProduct()
 		{
 			tempHTML = tempHTML + "<div class=\"table-line\">";
 			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_head\" onclick=\"lineclick(\'" + saved_item_name.options[i].text + "\')\" class=\"table-cell-" + ((selnow % 2) + 1) + " cell-head\"> </div>";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((selnow % 2) + 1) + "\"> " + saved_item_spec.options[i].text + " </div>";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((selnow % 2) + 1) + "\"> " + saved_item_name.options[i].text + " </div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((selnow % 2) + 1) + "\">" + saved_item_spec.options[i].text + "</div>";
+			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((selnow % 2) + 1) + "\">" + saved_item_name.options[i].text + "</div>";
 			tempHTML = tempHTML + "</div>";
 
 			selnow++;

@@ -24,6 +24,7 @@ function body_onload()
 		return;
 		// parent.title_onclick(1, 0);
 	}
+	body_onload_common();
 }
 
 function tip_button_click()
