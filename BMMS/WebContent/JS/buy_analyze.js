@@ -83,8 +83,8 @@ function check_search_result()
 			string_final = string_final + "</div>";
 			for(var i = 0; i < myobj.length; i++)
 			{
-				string_final = string_final + "<div class=\"table-line-little\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little cell-head\" style=\"width: 2%\" id=\"line_" + myobj[i].orderID + "\" onclick=\"myremove(\'line_" + myobj[i].orderID + "\')\"> - </div>";
+				string_final = string_final + "<div id=\"line_" + myobj[i].orderID + "\" class=\"table-line-little\">";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little cell-head\" style=\"width: 2%\" onclick=\"myremove(\'line_" + myobj[i].orderID + "\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].orderID + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[0].pSpec + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[0].pName + " </div>";
