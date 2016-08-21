@@ -40,7 +40,7 @@ function confirm_click()
 	}
 	if(blackMaterialSell.value == "" || isNaN(blackMaterialSell.value))
 	{
-		blackMaterialBuy.value = 0;
+		blackMaterialSell.value = 0;
 		// blackMaterialSell.style.backgroundColor = "rgba(255,255,128,1)";
 		// input_all_corrent = false;
 	}
