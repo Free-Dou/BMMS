@@ -253,4 +253,27 @@
   <servlet-name>GetProjectQunatityBatchInfo</servlet-name>
   <url-pattern>/GetProjectQunatityBatchInfo</url-pattern>
   </servlet-mapping>
+  
+<!-- 删除一个出库订单信息 -->
+  <servlet>
+  <servlet-name>DelSalesOrder</servlet-name>
+  <servlet-class>dou.webServlet.DelSalesOrderServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelSalesOrder</servlet-name>
+  <url-pattern>/DelSalesOrder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除一个入库订单信息 -->
+  <servlet>
+  <servlet-name>DelWareHousingOrder</servlet-name>
+  <servlet-class>dou.webServlet.DelWareHousingOrderServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelWareHousingOrder</servlet-name>
+  <url-pattern>/DelWareHousingOrder</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

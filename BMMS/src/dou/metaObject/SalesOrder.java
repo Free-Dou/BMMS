@@ -14,7 +14,7 @@ public class SalesOrder {
 	private String userName;
 	private String customerName;
 	private String orderRemark;
-	private String outTime; 		/* 只从数据库中取 */
+	private String outTime; 		
 	public ArrayList<SalesProduct> salesProductList = new ArrayList<>();
 	
 	public class SalesProduct {
@@ -81,14 +81,18 @@ public class SalesOrder {
 		logger.info("[SalesOrder.java:ProcSalesOrder] Processing a new Sales Order ： "
 				+ orderID);
 		
-		String sqls[] = new String[salesProductList.size()];
-		String params[][] = new String[salesProductList.size()][10];
+		String sqls[] = new String[salesProductList.size() * 2];
+		String params[][] = new String[salesProductList.size() * 2][13];
 		for (int i = 0; i < salesProductList.size(); i++){
 			SalesProduct salesProduct  = this.salesProductList.get(i);
-			sqls[i] = "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
+			/*sqls[i] = "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
 					+ "`username`, `relationName`, `approval`, `remark`, `orderRemark`, `number`, `price`, "
 					+ "`totalPrice`, `createTime`, `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-					+ salesProduct.getpCount() + ", " + salesProduct.getpPrice() + ", " + salesProduct.getpTotalPrice() + ",now(), 1);" ;
+					+ salesProduct.getpCount() + ", " + salesProduct.getpPrice() + ", " + salesProduct.getpTotalPrice() + ",now(), 1);" ;*/
+			
+			sqls[i] = "INSERT INTO `tb_materiaout` (`orderid`, `mname`, `carNum`, `mpspec`, `stockloca`, "
+					+ "`username`, `cname`, `remark`, `orderRemark`, `number`, `price` , `totalPrice`,"
+					+ " `outTime`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 			params[i][0] = this.getOrderID();
 			params[i][1] = salesProduct.getpName();
@@ -97,14 +101,21 @@ public class SalesOrder {
 			params[i][4] = this.getStockLoca();
 			params[i][5] = this.getUserName();
 			params[i][6] = this.getCustomerName();
-			params[i][7] = "0"; 		/* approval为0  表示当前订单未处理 */
-			params[i][8] = salesProduct.getpRemark();
-			params[i][9] = this.getOrderRemark();
+			params[i][7] = salesProduct.getpRemark();
+			params[i][8] = this.getOrderRemark();
+			params[i][9] = salesProduct.getpCount() + "";
+			params[i][10] = salesProduct.getpPrice() + "";
+			params[i][11] = salesProduct.getpTotalPrice() + "";
+			params[i][12] = this.getOutTime();
+
+			sqls[i + salesProductList.size()] = "UPDATE tb_materialstock SET number=(number-" + salesProduct.getpCount() + ") WHERE mname='"
+					+ salesProduct.getpName() + "';";
+			params[i + salesProductList.size()] = null;
 		}
 		
 		SqlUtilsInterface.updateManyInfos(sqls, params);
-		logger.info("[SalesOrder.java:ProcSalesOrder] Processing a new Sales Order  -->  add a persion message ： "
-				+ sqls[0] + " params:  " + params.toString());
+		logger.info("[SalesOrder.java:ProcSalesOrder] Add a new Sales Order ： "
+				+ sqls.toString());
 	}
 	
 	public void AddSalesProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, String pRemark){
@@ -130,6 +141,13 @@ public class SalesOrder {
 		salesOrderList = SqlUtilsInterface.querySalesOrderInfo(sql, params);
 		
 		return salesOrderList;
+	}
+	
+	public static void delSalesOrderFromDB(String sSalesOrderID) {
+		String sql = "delete from tb_materiaout where orderid=?";
+		String params[] = {sSalesOrderID};
+		
+		SqlUtilsInterface.delInfoFromDB(sql, params);
 	}
 	
 	public String getOrderID() {
