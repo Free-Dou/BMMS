@@ -29,7 +29,7 @@
 			<div class="table-line">
 				<div class="table-title-cell" style="width: 2%;"></div>
 				<div class="table-title-cell" style="width: 25%;"> 工程名 </div>
-				<div class="table-title-cell" style="width: 25%;"> 预算 </div>
+				<div class="table-title-cell" style="width: 25%;"> 总额 </div>
 				<div class="table-title-cell" style="width: 25%;"> 已支付 </div>
 				<div class="table-title-cell" style="width: 10%;"> 查看修改 </div>
 			</div>
@@ -93,6 +93,7 @@
 							<select id="contractContent" style="width: 254px;">
 								<option value="1"> 水稳辅筑 </option>
 								<option value="2"> 黑料辅筑 </option>
+								<option value="3"> 沥青辅筑 </option>
 							</select>
 						</div>
 					</div>
@@ -137,7 +138,7 @@
 					</div>
 					<div style="height: 42px;">
 						<div style="height: 40px; text-align: left; float: left; margin-left: 16px;">
-							<span> 预算额： </span> <input style="width: 225px;" id="budget"></input> <span> ￥ </span>
+							<span> 总额： </span> <input style="width: 225px;" id="budget"></input> <span> ￥ </span>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 30px;">
 							<span> 已付款： </span> <input style="width: 225px;" id="paid"></input> <span> ￥ </span>
