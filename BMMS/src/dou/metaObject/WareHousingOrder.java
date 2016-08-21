@@ -6,7 +6,7 @@ import dou.config.Config;
 import dou.sqlHelper.SqlUtilsInterface;
 
 public class WareHousingOrder {
-	
+
 	private Logger logger = Config.getLogger(this.getClass());
 	private String orderID;
 	private String carNum;
@@ -14,9 +14,9 @@ public class WareHousingOrder {
 	private String userName;
 	private String supplierName;
 	private String orderRemark;
-	private String inTime; 		/* 只从数据库中取 */
+	private String inTime; /* 只从数据库中取 */
 	public ArrayList<WareHousingProduct> wareHousingProductList = new ArrayList<>();
-	
+
 	public class WareHousingProduct {
 		private String pSpec;
 		private String pName;
@@ -24,9 +24,9 @@ public class WareHousingOrder {
 		private Float pPrice;
 		private Float pTotalPrice;
 		private String pRemark;
-		
-		public WareHousingProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, 
-				 String pRemark) {
+
+		public WareHousingProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice,
+				String pRemark) {
 			super();
 			this.pSpec = pSpec;
 			this.pName = pName;
@@ -34,8 +34,7 @@ public class WareHousingOrder {
 			this.pPrice = pPrice;
 			this.pTotalPrice = pTotalPrice;
 			this.pRemark = pRemark;
-			logger.info("[WareHousingOrder.java:WareHousingProduct] Create a new WareHousingProduct object ： "
-					+ pSpec);
+			logger.info("[WareHousingOrder.java:WareHousingProduct] Create a new WareHousingProduct object ： " + pSpec);
 		}
 
 		public String getpSpec() {
@@ -63,7 +62,8 @@ public class WareHousingOrder {
 		}
 	}
 
-	public WareHousingOrder(String orderID, String carNum, String stockLoca, String userName, String supplierName, String orderRemark, String inTime) {
+	public WareHousingOrder(String orderID, String carNum, String stockLoca, String userName, String supplierName,
+			String orderRemark, String inTime) {
 		super();
 		this.orderID = orderID;
 		this.carNum = carNum;
@@ -72,23 +72,32 @@ public class WareHousingOrder {
 		this.supplierName = supplierName;
 		this.orderRemark = orderRemark;
 		this.inTime = inTime;
-		logger.info("[WareHousingOrder.java:WareHousingOrder] Create a new WareHousingOrder object ： "
-				+ orderID);
+		logger.info("[WareHousingOrder.java:WareHousingOrder] Create a new WareHousingOrder object ： " + orderID);
 	}
-	
+
 	/* 处理订单信息，可以返回是否处理成功，后期实现 */
-	public void ProcWareHousingOrder() {	
-		logger.info("[WareHousingOrder.java:ProcWareHousingOrder] Processing a new WareHousing Order ： "
-				+ orderID);
-		
-		String sqls[] = new String[wareHousingProductList.size()];
-		String params[][] = new String[wareHousingProductList.size()][10];
-		for (int i = 0; i < wareHousingProductList.size(); i++){
-			WareHousingProduct wareHousingProduct  = this.wareHousingProductList.get(i);
-			sqls[i] = "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
-					+ "`username`, `relationName`, `approval`, `remark`, `orderRemark`, `number`, `price`, "
-					+ "`totalPrice`, `createTime`,  `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-					+ wareHousingProduct.getpCount() + ", " + wareHousingProduct.getpPrice() + ", " + wareHousingProduct.getpTotalPrice() + ",now(), 0);" ;
+	public void ProcWareHousingOrder() {
+		logger.info("[WareHousingOrder.java:ProcWareHousingOrder] Processing a new WareHousing Order ： " + orderID);
+
+		String sqls[] = new String[wareHousingProductList.size() * 2];
+		String params[][] = new String[wareHousingProductList.size() * 2][13];
+		for (int i = 0; i < wareHousingProductList.size(); i++) {
+			WareHousingProduct wareHousingProduct = this.wareHousingProductList.get(i);
+			/*
+			 * sqls[i] =
+			 * "INSERT INTO tb_personmessage (`orderid`, `mname`, `carNum`, `mpspec`, `stockLoca`,  "
+			 * +
+			 * "`username`, `relationName`, `approval`, `remark`, `orderRemark`, `number`, `price`, "
+			 * +
+			 * "`totalPrice`, `createTime`,  `operation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
+			 * + wareHousingProduct.getpCount() + ", " +
+			 * wareHousingProduct.getpPrice() + ", " +
+			 * wareHousingProduct.getpTotalPrice() + ",now(), 0);" ;
+			 */
+
+			sqls[i] = "INSERT INTO `tb_materiain` (`orderid`, `mname`, `carNum`, `mpspec`, `stockloca`, "
+					+ "`username`, `sname`, `remark`, `orderRemark`, `number`, `price` , `totalPrice`,"
+					+ " `inTime`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 			params[i][0] = this.getOrderID();
 			params[i][1] = wareHousingProduct.getpName();
@@ -97,43 +106,60 @@ public class WareHousingOrder {
 			params[i][4] = this.getStockLoca();
 			params[i][5] = this.getUserName();
 			params[i][6] = this.getSupplierName();
-			params[i][7] = "0"; 		/* approval为0  表示当前订单未处理 */
-			params[i][8] = wareHousingProduct.getpRemark();
-			params[i][9] = this.getOrderRemark();
+			params[i][7] = wareHousingProduct.getpRemark();
+			params[i][8] = this.getOrderRemark();
+			params[i][9] = wareHousingProduct.getpCount().toString();
+			params[i][10] = wareHousingProduct.getpPrice().toString();
+			params[i][11] = wareHousingProduct.getpTotalPrice().toString();
+			params[i][12] = this.getInTime();
+
+			sqls[i + wareHousingProductList.size()] = "UPDATE tb_materialstock SET number=(number+"
+					+ wareHousingProduct.getpCount() + ") WHERE mname='" + wareHousingProduct.getpName()
+					+ "';";
+			params[i + wareHousingProductList.size()] = null;
 		}
-		
+
 		SqlUtilsInterface.updateManyInfos(sqls, params);
-		logger.info("[WareHousingOrder.java:ProcWareHousingOrder] Processing a new wareHousing Order  -->  add a persion message ： "
-				+ sqls[0] + " params:  " + params.toString());
+		logger.info("[WareHousingOrder.java:ProcWareHousingOrder] Adding a new wareHousing Order： " + sqls.toString());
 	}
-	
+
 	/* 添加一个当前订单中包含的产品 */
-	public void AddWareHousingProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice, String pRemark){
-		WareHousingProduct wareHousingProduct = new WareHousingProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
+	public void AddWareHousingProduct(String pSpec, String pName, Float pCount, Float pPrice, Float pTotalPrice,
+			String pRemark) {
+		WareHousingProduct wareHousingProduct = new WareHousingProduct(pSpec, pName, pCount, pPrice, pTotalPrice,
+				pRemark);
 		this.wareHousingProductList.add(wareHousingProduct);
 	}
 
 	/*  */
-	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String startDate, String endDate, String supplier, String item, String remark ){
+	public static ArrayList<WareHousingOrder> queryWareHousingOrderInfo(String startDate, String endDate,
+			String supplier, String item, String remark) {
 		ArrayList<WareHousingOrder> wareHousingOrderList = new ArrayList<>();
-		
+
 		/* （模糊查询，%号之间填界面上的字符串，三个参数分别是：订单备注，供应商名称和产品名称） */
 		String sql = "SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE ? AND sname LIKE ? "
-					+ "AND inTime BETWEEN ? AND ?) AS a,"
-					+ "(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE ?) AS b "
-					+ "WHERE a.orderid=b.orderid order By inTime";
-		
-		//SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE '%发%'AND sname LIKE '%BmmsProduct%' AND inTime BETWEEN '2016-05-03' AND '2016-05-12') AS a,(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE '%沥青%') AS b WHERE a.orderid=b.orderid
-		String params[] = { "%" + remark + "%",
-							"%" + supplier + "%",
-							startDate, 
-							endDate + "  23:59:59",
-							"%" + item + "%"};
+				+ "AND inTime BETWEEN ? AND ?) AS a,"
+				+ "(SELECT DISTINCT orderid FROM tb_materiain WHERE mname LIKE ?) AS b "
+				+ "WHERE a.orderid=b.orderid order By inTime";
+
+		// SELECT * FROM (SELECT * FROM tb_materiain WHERE orderRemark LIKE
+		// '%发%'AND sname LIKE '%BmmsProduct%' AND inTime BETWEEN '2016-05-03'
+		// AND '2016-05-12') AS a,(SELECT DISTINCT orderid FROM tb_materiain
+		// WHERE mname LIKE '%沥青%') AS b WHERE a.orderid=b.orderid
+		String params[] = { "%" + remark + "%", "%" + supplier + "%", startDate, endDate + "  23:59:59",
+				"%" + item + "%" };
 		wareHousingOrderList = SqlUtilsInterface.queryWareHousingOrderInfo(sql, params);
-		
+
 		return wareHousingOrderList;
 	}
-	
+
+	public static void delWareHousingOrderFromDB(String sWareHousingOrderID) {
+		String sql = "delete from tb_materiain where orderid=?";
+		String params[] = { sWareHousingOrderID };
+
+		SqlUtilsInterface.delInfoFromDB(sql, params);
+	}
+
 	public String getOrderID() {
 		return orderID;
 	}

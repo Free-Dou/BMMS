@@ -52,7 +52,7 @@ public class WareHousingOrderProcServlet extends HttpServlet{
 				String supplierName = jsonObject.getString("name");
 				String orderRemark = jsonObject.getString("remark");
 				JSONArray productJsonArray = jsonObject.getJSONArray("Product");
-				String inTime = jsonObject.getString("createTime");
+				String inTime = jsonObject.getString("orderDate");
 				
 				WareHousingOrder warehousingOrder = new WareHousingOrder(orderID, carNum, stockLoca, username, supplierName, orderRemark, inTime);
 				for (int i = 0; i < productJsonArray.length(); i++){

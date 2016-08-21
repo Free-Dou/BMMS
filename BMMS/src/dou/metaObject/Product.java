@@ -18,8 +18,8 @@ public class Product {
 		this.pName = pName;
 		this.pPrice = pPrice;
 		
-		logger.info("[Product.java:Product] Create a new Product object ： "
-				+ pName);
+		logger.info("[Product.java:Product] Create a new Product object ： \""
+				+ pName + "\"");
 	}
 	
 	public static ArrayList<Product> getAllProductInfo(){
