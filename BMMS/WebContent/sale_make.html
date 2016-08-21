@@ -111,12 +111,10 @@
 			</div>
 		</div>
 		<div id="add_window" class="new_float_window">
-			<!-- <div class="set_center" style="height: 200px; width: 400px;"> -->
 			<div>
 				<div style="padding-right: 40px; height: 67px; overflow: hidden;">
 					<div class="right-page-title" style="float: left;"> 添加 </div>
 				</div>
-				<!-- <h2> 添加 </h2> -->
 				<%
 					ArrayList<Product> productList = Product.getAllProductInfo();
 				%>
@@ -128,7 +126,7 @@
 							<span style="margin-left: 10px;"> 备注 </span> <span> <input style="width: 297px; margin-left: 15px;" id="input_add_others"></input> </span>
 						</div>
 						<div style="height: 30px; text-align: left;">
-							<span style="margin-left: 50px;"> 搜索 </span> <span> <input style="width: 297px; margin-left: 15px;" id="input_add_others"></input> </span>
+							<span style="margin-left: 50px;"> 搜索 </span> <span> <input style="width: 297px; margin-left: 15px;"></input> </span>
 						</div>
 					</div>
 					<div id="cancle_button" class="red_button" style="margin-right: 46px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">

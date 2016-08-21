@@ -12,7 +12,7 @@ function body_onload()
 		return;
 		// parent.title_onclick(3, 2);
 	}
-	if(select_add_name.options.length == 0)
+	if(productCount.value == "0")
 	{
 		// alert('产品目录为空，清先添加一个产品。');
 		tip_window.style.visibility = "visible";
@@ -45,34 +45,36 @@ function trade_confirm_click()
 	{
 		var data = new Object();
 
-		var myDate = new Date();
-		var month = Number(myDate.getMonth()) + 1;
-		if(month < 10)
-			month = "0" + month;
-		var day = Number(myDate.getDate());
-		if(day < 10)
-			day = "0" + day;
+		// var myDate = new Date();
+		// var month = Number(myDate.getMonth()) + 1;
+		// if(month < 10)
+		// 	month = "0" + month;
+		// var day = Number(myDate.getDate());
+		// if(day < 10)
+		// 	day = "0" + day;
 		
-		var hour = Number(myDate.getHours());
-		if(hour < 10)
-			hour = "0" + hour;
-		var minute = Number(myDate.getMinutes());
-		if(minute < 10)
-			minute = "0" + minute;
-		var second = Number(myDate.getSeconds());
-		if(second < 10)
-			second = "0" + second;
-		var millisecond = Number(myDate.getMilliseconds());
-		if(millisecond < 10)
-			millisecond = "00" + millisecond;
-		else if(millisecond < 100)
-			millisecond = "0" + millisecond;
+		// var hour = Number(myDate.getHours());
+		// if(hour < 10)
+		// 	hour = "0" + hour;
+		// var minute = Number(myDate.getMinutes());
+		// if(minute < 10)
+		// 	minute = "0" + minute;
+		// var second = Number(myDate.getSeconds());
+		// if(second < 10)
+		// 	second = "0" + second;
+		// var millisecond = Number(myDate.getMilliseconds());
+		// if(millisecond < 10)
+		// 	millisecond = "00" + millisecond;
+		// else if(millisecond < 100)
+		// 	millisecond = "0" + millisecond;
 		
-		data.orderID = myDate.getFullYear() + month.toString() + day.toString() + hour.toString() + minute.toString() + second.toString() + millisecond.toString();
+		// data.orderID = myDate.getFullYear() + month.toString() + day.toString() + hour.toString() + minute.toString() + second.toString() + millisecond.toString();
+		data.orderID = trade_num.value;
 		data.carNum = trade_car.value;
 		data.stockLoca = trade_store.options[trade_store.selectedIndex].text;
 		data.name = trade_person.value;
 		data.remark = trade_remark.value;
+		data.orderDate = trade_time.value;
 		data.Product = added_item;
 
 		var data_send = JSON.stringify(data);
