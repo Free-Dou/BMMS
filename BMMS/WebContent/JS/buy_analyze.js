@@ -50,6 +50,25 @@ function myremove(index)
 	del_click(index);
 }
 
+function myremove_confirm(index)
+{
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	parent.myxmlhttp = getXmlHttpObject();
+	
+	if (parent.myxmlhttp)
+	{
+		var aim_url = "/BMMS/DelWareHousingOrder?time=" + new Date();
+		var data = "del_warehousing_id=" + index;
+		
+		parent.myxmlhttp.open("post", aim_url, true);
+		parent.myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
+		parent.myxmlhttp.send(data);
+	}
+}
+
 function check_search_result()
 {
 	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
@@ -78,13 +97,13 @@ function check_search_result()
 				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 金额 </div>";
 				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 15%;\"> 备注 </div>";
 				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 时间 </div>";
-				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 20%;\"> 客户 </div>";
+				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 20%;\"> 供应商 </div>";
 				string_final = string_final + "<div class=\"table-title-cell-little\" style=\"width: 6%;\"> 车号 </div>";
 			string_final = string_final + "</div>";
 			for(var i = 0; i < myobj.length; i++)
 			{
-				string_final = string_final + "<div id=\"line_" + myobj[i].orderID + "\" class=\"table-line-little\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little cell-head\" style=\"width: 2%\" onclick=\"myremove(\'line_" + myobj[i].orderID + "\')\"> - </div>";
+				string_final = string_final + "<div id=\"" + myobj[i].orderID + "\" class=\"table-line-little\">";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little cell-head\" style=\"width: 2%\" onclick=\"myremove(\'" + myobj[i].orderID + "\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].orderID + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[0].pSpec + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 10%;\"> " + myobj[i].Product[0].pName + " </div>";

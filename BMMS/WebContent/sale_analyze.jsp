@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="JS/common-js.js"> </script>
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/analyze_common.js"> </script>
+		<script type="text/javascript" src="JS/del_common.js"> </script>
 	</head>
 	<body onload="body_onload()">
 		<%
