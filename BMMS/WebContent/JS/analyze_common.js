@@ -18,3 +18,8 @@ function get_now_date()
 		day = "0" + day;
 	return myDate.getFullYear() + "-" + month + "-" + day;
 }
+
+function myremove(index)
+{
+	del_click_little(index);
+}

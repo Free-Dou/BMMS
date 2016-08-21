@@ -45,11 +45,6 @@ function get_result()
 	}
 }
 
-function myremove(index)
-{
-	del_click(index);
-}
-
 function myremove_confirm(index)
 {
 	process_message.style.visibility = "visible";
@@ -121,7 +116,7 @@ function check_search_result()
 					else
 						string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "-little\" style=\"width: 6%;\"> </div>";
 				string_final = string_final + "</div>";
-				
+
 				// result_now_date = myobj[i].outTime.substring(0,10);
 				// string_final = string_final + "<div class=\"message-box-" + message_back + "\">";
 				// 	string_final = string_final + "<div class=\"right-page-title\"> " + result_now_date + " </div>";

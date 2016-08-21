@@ -45,11 +45,6 @@ function get_result()
 	}
 }
 
-function myremove(index)
-{
-	del_click(index);
-}
-
 function myremove_confirm(index)
 {
 	process_message.style.visibility = "visible";
