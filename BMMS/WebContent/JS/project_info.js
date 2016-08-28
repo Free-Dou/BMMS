@@ -464,8 +464,8 @@ function check_paid_result()
 		{
 			for(var i = 0; i < myobj.length; i++)
 			{
-				string_final = string_final + "<div id=\"" + myobj[i].id + "\" class=\"table-line\" style=\"padding-left:20px;\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].id + "\', \'myremove_confirm_paid\')\"> - </div>";
+				string_final = string_final + "<div id=\"paid_" + myobj[i].id + "\" class=\"table-line\" style=\"padding-left:20px;\">";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'paid_" + myobj[i].id + "\', \'myremove_confirm_paid\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + myobj[i].payInfo + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + Number(myobj[i].paid).toFixed(2) + "￥ </div>";
 				string_final = string_final + "</div>";
@@ -500,8 +500,8 @@ function check_file_result()
 		{
 			for(var i = 0; i < myobj.length; i++)
 			{
-				string_final = string_final + "<div id=\"" + myobj[i].fildId + "\" class=\"table-line\" style=\"padding-left:20px;\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].fildId + "\', \'myremove_confirm_file\')\"> - </div>";
+				string_final = string_final + "<div id=\"file_" + myobj[i].fildId + "\" class=\"table-line\" style=\"padding-left:20px;\">";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'file_" + myobj[i].fildId + "\', \'myremove_confirm_file\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 90%; text-decoration: underline;\" onclick=\"download_file(\'" + update_projectID + "\', \'" + myobj[i].fileName + "\')\"> " + myobj[i].fileName + " </div>";
 				string_final = string_final + "</div>";
 			}
