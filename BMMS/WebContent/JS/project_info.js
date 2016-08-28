@@ -580,27 +580,28 @@ function confirm_click_file()
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
-	if(window.FileReader)
-	{
-		var fr = new FileReader();
-		fr.onloadend = function()
-		{
-			if (fr.error) {
-				alert("文件读取失败");
+	file_upload();
+	// if(window.FileReader)
+	// {
+	// 	var fr = new FileReader();
+	// 	fr.onloadend = function()
+	// 	{
+	// 		if (fr.error) {
+	// 			alert("文件读取失败");
 
-				process_message.style.visibility = "hidden";
-				clearInterval(s_process_timer);
-			} else {
-				file_upload(fr.result);
-			}
-		}
-		fr.readAsBinaryString(file_path.value);
-	}
-	else
-		alert("当前浏览器不支持上传文件，请使用最新的Chrome浏览器。");
+	// 			process_message.style.visibility = "hidden";
+	// 			clearInterval(s_process_timer);
+	// 		} else {
+	// 			file_upload(fr.result);
+	// 		}
+	// 	}
+	// 	fr.readAsBinaryString(file_path.value);
+	// }
+	// else
+	// 	alert("当前浏览器不支持上传文件，请使用最新的Chrome浏览器。");
 }
 
-function file_upload(databinary)
+function file_upload()
 {
 	myxmlhttp = getXmlHttpObject();
 	
