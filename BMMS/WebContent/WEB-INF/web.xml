@@ -287,6 +287,17 @@
   <url-pattern>/AddProjectPaidInfo</url-pattern>
   </servlet-mapping>
   
+  <!-- 获取一个项目的全部付款信息 -->
+  <servlet>
+  <servlet-name>GetAllProjectPaidInfo</servlet-name>
+  <servlet-class>dou.webServlet.GetProjectPaidInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>GetAllProjectPaidInfo</servlet-name>
+  <url-pattern>/GetAllProjectPaidInfo</url-pattern>
+  </servlet-mapping>
+  
   <!-- 删除一个付款信息 -->
   <servlet>
   <servlet-name>DelProjectPaidInfo</servlet-name>
