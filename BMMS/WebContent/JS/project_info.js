@@ -117,7 +117,7 @@ function confirm_click()
 			data.waterPrice = waterPrice.value;
 			data.blackMaterialPrice = blackMaterialPrice.value;
 			data.budget = budget.value;
-			data.paid = paid.value;
+			data.paid = 0;
 
 			var data_send = JSON.stringify(data);
 			// var data = "projectName=" + input_add_project.value + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
@@ -149,7 +149,7 @@ function confirm_click()
 			data.waterPrice = waterPrice.value;
 			data.blackMaterialPrice = blackMaterialPrice.value;
 			data.budget = budget.value;
-			data.paid = paid.value;
+			data.paid = 0;
 
 			var data_send = JSON.stringify(data);
 			// var data = "projectID=" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
@@ -192,7 +192,7 @@ function cancle_click()
 	waterPrice.style.backgroundColor = "#FFFFFF";
 	blackMaterialPrice.style.backgroundColor = "#FFFFFF";
 	budget.style.backgroundColor = "#FFFFFF";
-	paid.style.backgroundColor = "#FFFFFF";
+	// paid.style.backgroundColor = "#FFFFFF";
 
 	setTimeout("hide_window()", 10);
 }
@@ -335,7 +335,7 @@ function check_search_result()
 			waterPrice.value = myobj.waterPrice;
 			blackMaterialPrice.value = myobj.blackMaterialPrice;
 			budget.value = myobj.budget;
-			paid.value = myobj.paid;
+			// paid.value = myobj.paid;
 		}
 
 		process_message.style.visibility = "hidden";
