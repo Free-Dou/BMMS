@@ -61,8 +61,8 @@ public class GetProjectPaidInfoServlet extends HttpServlet{
 					
 					JSONObject onePaidInfoJson = new JSONObject();
 					onePaidInfoJson.put("id", paidInfoObject.getPaidID());
-					onePaidInfoJson.put("payInfo", paidInfoObject.getPayTime());
-					onePaidInfoJson.put("paid", paidInfoObject.getPaid());
+					onePaidInfoJson.put("payInfo", paidInfoObject.getPayInfo());
+					onePaidInfoJson.put("paidTime", paidInfoObject.getPayTime());
 					onePaidInfoJson.put("paid", String.format("%.2f", paidInfoObject.getPaid()));
 					onePaidInfoJson.put("remark", paidInfoObject.getRemark());
 					
