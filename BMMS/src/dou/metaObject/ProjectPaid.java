@@ -50,7 +50,7 @@ public class ProjectPaid {
 	public void addProjectPaidInfoToDB() {
 		String params[] = { this.projectID, this.payInfo, this.payTime, turnFloatToStr(this.paid, 2), this.remark };
 
-		String sql = "INSERT INTO tb_projectpaid(projectID,paidInfo,payTime,paid,remark)VALUES(?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO tb_projectpaid(projectID,payInfo,payTime,paid,remark)VALUES(?, ?, ?, ?, ?);";
 
 		/* 添加当前对象的信息到数据库 */
 		SqlUtilsInterface.addInfoToDB(sql, params);

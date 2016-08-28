@@ -5,6 +5,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectFile;
 import dou.metaObject.ProjectPaid;
 import dou.metaObject.ProjectQunatity;
 import dou.metaObject.ProjectQunatityBatch;
@@ -92,6 +93,18 @@ public class SqlUtilsInterface {
 	public static ArrayList<ProjectPaid> getAllProductPaidInfoById(String projectID) {
 		// TODO Auto-generated method stub
 		return new MySqlIO().getAllProductPaidInfoById(projectID);
+	}
+
+
+	public static String searchSavedPathFromDB(String projectID, String fileName) {
+		// TODO Auto-generated method stub
+		return new MySqlIO().searchSavedPathFromDB(projectID, fileName);
+	}
+
+
+	public static ArrayList<ProjectFile> getAllFileInfoFromDB(String projectID) {
+		// TODO Auto-generated method stub
+		return new MySqlIO().getAllFileInfoFromDB(projectID);
 	}
 	
 /*

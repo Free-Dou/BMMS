@@ -39,19 +39,20 @@ public class UploadFileServlet extends HttpServlet{
 		PrintWriter pw = resp.getWriter();
 		
 		/* 获取projectId */
-		String projectId = req.getParameter("id");
+		String projectId = req.getParameter("projectID ");
 		if (("" != projectId) && (null != projectId)){
 			logger.info("[UploadFileServlet.java:doPost] UploadFile for project whick Id = " + projectId);
 		} else {
 			logger.info("[UploadFileServlet.java:doPost] UploadFile for project failed !!!  ID is null or \"\" !!! id = " + projectId);
+			return;
 		}
 		
 		/* 得到上传文件的保存目录，将上传文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全 */
-		String savePath = Config.fileSavedFolderPath;
+		String savePath = Config.fileSavedFolderPath + "/" + projectId;
 		logger.info("[UploadFileServlet.java:doPost] File Be Saved Path: " + savePath);
 		
 		/* 判断上传文件的保存目录是否存在 */
-		File folder = new File(savePath + "/" + projectId);
+		File folder = new File(savePath);
 		if (!(folder.exists() && folder.isDirectory())) {
 			logger.info("[UploadFileServlet.java:doPost] Path: " + savePath + " is not exist ! Need Create! ");
 			folder.mkdir();
@@ -93,7 +94,7 @@ public class UploadFileServlet extends HttpServlet{
 				}
 				
 				/* 添加数据到数据库 */
-				ProjectFile fileObject = new ProjectFile(projectId, fileName, (savePath + "/" + fileName));
+				ProjectFile fileObject = new ProjectFile(projectId, fileName, (savePath + "/" + fileName), null);
 				fileObject.addFileToDB();
 				
 				/* 释放资源 */

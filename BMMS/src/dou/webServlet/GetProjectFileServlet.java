@@ -14,11 +14,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import dou.config.Config;
+import dou.metaObject.ProjectFile;
 import dou.metaObject.ProjectPaid;
 import dou.metaObject.ProjectQunatity;
 import dou.metaObject.ProjectQunatityBatch;
 
-public class GetProjectPaidInfoServlet extends HttpServlet{
+public class GetProjectFileServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -31,7 +32,7 @@ public class GetProjectPaidInfoServlet extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
-		ArrayList<ProjectPaid> paidInfoList = null;
+		ArrayList<ProjectFile> fileList = null;
 		
 		String username = (String) req.getSession().getAttribute("username");
 		if (null == username) {
@@ -41,33 +42,31 @@ public class GetProjectPaidInfoServlet extends HttpServlet{
 		String projectID = req.getParameter("projectID");
 
 		if (("" != projectID) && (null != projectID)) {
-			logger.info("[GetProjectPaidInfoServlet.java:doPost] projectID: " + projectID);
-			paidInfoList = ProjectPaid.getAllProjectPaidInfo(projectID);
+			logger.info("[GetProjectFileServlet.java:doPost] projectID: " + projectID);
+			fileList = ProjectFile.getAllFileInfoFromDB(projectID);
 			
-			if (null == paidInfoList){
+			if (null == fileList){
 				pw.print("null");
-				return;
 			}
 			
 			try {
 				JSONArray allPaidInfoJson = new JSONArray();
 
-				for (int i = 0; i < paidInfoList.size(); i++){
-					ProjectPaid paidInfoObject = paidInfoList.get(i);
+				for (int i = 0; i < fileList.size(); i++){
+					ProjectFile fileInfo = fileList.get(i);
 					
-					if (null == paidInfoObject){
-						logger.error("[GetProjectPaidInfoServlet.java:doPost] paidInfoObject is null!!!  index : " + i);
+					if (null == fileInfo){
+						logger.error("[GetProjectFileServlet.java:doPost] fileInfo is null!!!  index : " + i);
 						break;
 					}
 					
-					JSONObject onePaidInfoJson = new JSONObject();
-					onePaidInfoJson.put("id", paidInfoObject.getPaidID());
-					onePaidInfoJson.put("payInfo", paidInfoObject.getPayInfo());
-					onePaidInfoJson.put("paidTime", paidInfoObject.getPayTime());
-					onePaidInfoJson.put("paid", String.format("%.2f", paidInfoObject.getPaid()));
-					onePaidInfoJson.put("remark", paidInfoObject.getRemark());
+					JSONObject oneFileInfoJson = new JSONObject();
+					oneFileInfoJson.put("fildId", fileInfo.getId());
+					oneFileInfoJson.put("projectID", fileInfo.getProjectID());
+					oneFileInfoJson.put("fileName", fileInfo.getFileName());
+					oneFileInfoJson.put("remark", fileInfo.getRemark());
 					
-					allPaidInfoJson.put(onePaidInfoJson);
+					allPaidInfoJson.put(oneFileInfoJson);
 				}  
 
 				pw.print(allPaidInfoJson.toString());

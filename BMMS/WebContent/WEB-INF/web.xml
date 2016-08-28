@@ -199,6 +199,17 @@
   <url-pattern>/GetOneProjectQunatityInfo</url-pattern>
   </servlet-mapping>
   
+ <!-- 获取一个工程的全部文件信息 -->
+  <servlet>
+  <servlet-name>GetProjectFileInfo</servlet-name>
+  <servlet-class>dou.webServlet.GetProjectPaidInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>GetProjectFileInfo</servlet-name>
+  <url-pattern>/GetProjectFileInfo</url-pattern>
+  </servlet-mapping>
+  
   <!-- 上传文件 -->
   <servlet>
   <servlet-name>UploadFile</servlet-name>
@@ -219,6 +230,17 @@
   <servlet-mapping>
   <servlet-name>DownloadFile</servlet-name>
   <url-pattern>/DownloadFile</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除文件 -->
+  <servlet>
+  <servlet-name>DeleteFile</servlet-name>
+  <servlet-class>dou.webServlet.DelFileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DeleteFile</servlet-name>
+  <url-pattern>/DeleteFile</url-pattern>
   </servlet-mapping>
   
   <!-- 增加一个批次信息 -->
