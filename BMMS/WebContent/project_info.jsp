@@ -161,15 +161,20 @@
 		</div>
 		<div id="add_window_paid" class="new_float_window">
 			<div class="set_center" style="height: 400px; width: 725px;">
+				<div style="font-size: 10px;">
+					<div style="float: right;" id="close_paid" onmouseenter="button_mouseenter_footer('close_paid')" onmouseleave="button_mouseleave_footer('close_paid')" onmousedown="button_mousedown_footer('close_paid')" onmouseup="button_mouseup_footer('close_paid')" onclick="hide_window('project_info_pad','add_window_paid')">
+						关闭x
+					</div>
+				</div>
 				<h2> 付款项 </h2>
 				<div class="table-line" style="padding-left:20px;">
 					<div class="table-title-cell" style="width: 3%;"></div>
 					<div class="table-title-cell"> 款项 </div>
 					<div class="table-title-cell"> 金额 </div>
 				</div>
-				<div id="table_inner">
+				<div id="table_inner_paid">
 					<div class="table-line" style="padding-left:20px;">
-						<div class="table-cell-1" style="width: 3%;"> - </div>
+						<div class="table-cell-1 cell-head" style="width: 3%;"> - </div>
 						<div class="table-cell-1"> 项目一期 </div>
 						<div class="table-cell-1"> 10000.00￥ </div>
 					</div>
@@ -183,15 +188,48 @@
 			</div>
 		</div>
 		<div id="add_window_paid_add" class="new_float_window">
-			<div class="set_center" style="height: 400px; width: 725px;">
+			<div class="set_center" style="height: 400px; width: 400px;">
 				<h2> 添加付款项 </h2>
+				<div style="height: 40px; text-align: left;">
+					<span style="margin-left: 30px;"> 款项： </span> <input id="paid_name" class="textbox-common"></input>
+				</div>
+				<div style="height: 40px; text-align: left;">
+					<span style="margin-left: 30px;"> 金额： </span> <input id="paid_cash" class="textbox-common"></input>
+				</div>
+				<div id="cancle_button" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="hide_window('add_window_paid_add', 'add_window_paid')">
+					<p style="top: 50%; transform: translateY(-50%);">
+						取消
+					</p>
+				</div>
+				<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+					<p style="top: 50%; transform: translateY(-50%);">
+						确定
+					</p>
+				</div>
 			</div>
 		</div>
 		<div id="add_window_file" class="new_float_window">
 			<div class="set_center" style="height: 400px; width: 725px;">
+				<div style="font-size: 10px;">
+					<div style="float: right;" id="close_file" onmouseenter="button_mouseenter_footer('close_file')" onmouseleave="button_mouseleave_footer('close_file')" onmousedown="button_mousedown_footer('close_file')" onmouseup="button_mouseup_footer('close_file')" onclick="hide_window('project_info_pad','add_window_file')">
+						关闭x
+					</div>
+				</div>
 				<h2> 扫描件 </h2>
-				<div class="table-line" style="padding-left: 0px;"> 1.jpg </div>
-				<div class="table-line" style="padding-left: 0px;"> 2.jpg </div>
+				<div class="table-line" style="padding-left:20px;">
+					<div class="table-title-cell" style="width: 3%;"></div>
+					<div class="table-title-cell" style="width: 90%;"> 文件 </div>
+				</div>
+				<div id="table_inner_file">
+					<div class="table-line" style="padding-left:20px;">
+						<div class="table-cell-1 cell-head" style="width: 3%;"> - </div>
+						<div class="table-title-cell" style="width: 90%;"> 1.jpg </div>
+					</div>
+					<div class="table-line" style="padding-left:20px;">
+						<div class="table-cell-1 cell-head" style="width: 3%;"> - </div>
+						<div class="table-title-cell" style="width: 90%;"> 2.jpg </div>
+					</div>
+				</div>
 				<dir class="page-footer main-page-footer">
 					<div class="footer-button" id="item_footer_button_3" onmouseenter="button_mouseenter_footer('item_footer_button_3')" onmouseleave="button_mouseleave_footer('item_footer_button_3')" onmousedown="button_mousedown_footer('item_footer_button_3')" onmouseup="button_mouseup_footer('item_footer_button_3')" onclick="file_add_click()">
 						<img src="IMG/add.png" class="footer-button-img">
@@ -201,8 +239,19 @@
 			</div>
 		</div>
 		<div id="add_window_file_add" class="new_float_window">
-			<div class="set_center" style="height: 400px; width: 725px;">
+			<div class="set_center" style="height: 400px; width: 400px;">
 				<h2> 添加扫描件 </h2>
+				<input type="file"></input>
+				<div id="cancle_button" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="hide_window('add_window_file_add', 'add_window_file')">
+					<p style="top: 50%; transform: translateY(-50%);">
+						取消
+					</p>
+				</div>
+				<div id="confirm_button" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button')" onmouseleave="button_mouseleave('confirm_button')" onmousedown="button_mousedown('confirm_button')" onmouseup="button_mouseup('confirm_button')" onclick="confirm_click()">
+					<p style="top: 50%; transform: translateY(-50%);">
+						确定
+					</p>
+				</div>
 			</div>
 		</div>
 		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">
