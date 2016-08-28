@@ -259,7 +259,7 @@ function paid_refresh_handle()
 {
 	myxmlhttp = null;
 	cancle_click_paid();
-	refresh_paid();
+	refresh_paid(update_projectID);
 }
 
 function myremove_confirm_file(key)
@@ -329,7 +329,7 @@ function show_paid(key)
 	add_click("project_info_pad", "add_window_paid");
 }
 
-function refresh_paid()
+function refresh_paid(key)
 {
 	myxmlhttp = getXmlHttpObject();
 
@@ -377,7 +377,7 @@ function get_result_paid(key)
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
-	refresh_paid();
+	refresh_paid(key);
 }
 
 function get_result_file(key)
@@ -558,8 +558,17 @@ function confirm_click_file()
 	if(Window.FileReader)
 	{
 		var fr = new FileReader();
-		fr.onerror = read_error;
-		fr.onload = file_upload;
+		fr.onloadend = function()
+		{
+			if (fr.error) {
+				alert("文件读取失败");
+
+				process_message.style.visibility = "hidden";
+				clearInterval(s_process_timer);
+			} else {
+				file_upload(fr.result);
+			}
+		}
 		fr.readAsBinaryString(file_path.value);
 	}
 	else
@@ -574,19 +583,28 @@ function read_error()
 	clearInterval(s_process_timer);
 }
 
-function file_upload()
+function file_upload(databinary)
 {
 	myxmlhttp = getXmlHttpObject();
 	
 	if (myxmlhttp)
 	{
-		var aim_url = "/BMMS/UploadFile?time=" + new Date();
+		var aim_url = "/BMMS/UploadFile?time=" + new Date() + "&projectID=" + update_projectID;
 
 		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data; boundary=");
+		xmlHttp.sendAsBinary(databinary);
+		// myxmlhttp.setRequestHeader("Content-Type","multipart/form-data; boundary=");
 		myxmlhttp.onreadystatechange = paid_refresh_handle;
-		myxmlhttp.send(data_send);
+		// myxmlhttp.send(data_send);
 	}
+}
+xmlhttpobject.prototype.sendAsBinary = function(datastr) {
+	function byteValue(x) {
+		return x.charCodeAt(0) & 0xff;
+	}
+	var ords = Array.prototype.map.call(datastr, byteValue);
+	var ui8a = new Uint8Array(ords);
+	this.send(ui8a.buffer);
 }
 
 // xmlHttp.sendAsBinary(BinaryContent);
