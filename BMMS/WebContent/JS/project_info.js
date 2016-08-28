@@ -607,7 +607,7 @@ function file_upload()
 	
 	if (myxmlhttp)
 	{
-		var aim_url = "/BMMS/UploadFile?time=" + new Date() + "&projectID=" + update_projectID;
+		var aim_url = "/BMMS/UploadFile?time=" + new Date() + "&projectID =" + update_projectID;
 
 		var oData = new FormData(document.forms.namedItem("upload_file"));  
 		myxmlhttp.open("post", aim_url, true);
