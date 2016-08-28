@@ -181,7 +181,7 @@ function cancle_click()
 	waterPrice.value = "";
 	blackMaterialPrice.value = "";
 	budget.value = "";
-	paid.value = "";
+	// paid.value = "";
 
 	projectName.style.backgroundColor = "#FFFFFF";
 	waterSelfProduct.style.backgroundColor = "#FFFFFF";
