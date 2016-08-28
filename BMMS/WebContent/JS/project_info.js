@@ -465,7 +465,7 @@ function check_paid_result()
 			for(var i = 0; i < myobj.length; i++)
 			{
 				string_final = string_final + "<div id=\"" + myobj[i].id + "\" class=\"table-line\" style=\"padding-left:20px;\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].id + "\', \'myremove_confirm_paid\')> - </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].id + "\', \'myremove_confirm_paid\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + myobj[i].payInfo + " </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + Number(myobj[i].paid).toFixed(2) + "￥ </div>";
 				string_final = string_final + "</div>";
@@ -501,7 +501,7 @@ function check_file_result()
 			for(var i = 0; i < myobj.length; i++)
 			{
 				string_final = string_final + "<div id=\"" + myobj[i].fildId + "\" class=\"table-line\" style=\"padding-left:20px;\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].fildId + "\', \'myremove_confirm_file\')> - </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].fildId + "\', \'myremove_confirm_file\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 90%; text-decoration: underline;\" onclick=\"download_file(\'" + update_projectID + "\', \'" + myobj[i].fileName + "\')\"> " + myobj[i].fileName + " </div>";
 				string_final = string_final + "</div>";
 			}
@@ -646,13 +646,13 @@ function download_file_req_end()
 	}
 }
 
-xmlhttpobject.prototype.sendAsBinary = function(datastr) {
-	function byteValue(x) {
-		return x.charCodeAt(0) & 0xff;
-	}
-	var ords = Array.prototype.map.call(datastr, byteValue);
-	var ui8a = new Uint8Array(ords);
-	this.send(ui8a.buffer);
-}
+// xmlhttpobject.prototype.sendAsBinary = function(datastr) {
+// 	function byteValue(x) {
+// 		return x.charCodeAt(0) & 0xff;
+// 	}
+// 	var ords = Array.prototype.map.call(datastr, byteValue);
+// 	var ui8a = new Uint8Array(ords);
+// 	this.send(ui8a.buffer);
+// }
 
 // xmlHttp.sendAsBinary(BinaryContent);
