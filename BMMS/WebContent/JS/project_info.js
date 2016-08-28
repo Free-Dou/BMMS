@@ -194,7 +194,8 @@ function cancle_click()
 	budget.style.backgroundColor = "#FFFFFF";
 	// paid.style.backgroundColor = "#FFFFFF";
 
-	setTimeout("hide_window()", 10);
+	hide_window("project_info_pad", "add_window");
+	// setTimeout("hide_window()", 10);
 }
 
 function myremove_confirm(key)
