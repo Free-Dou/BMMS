@@ -248,7 +248,7 @@ function myremove_confirm_paid(key)
 	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/DelProjectPaidInfo?time=" + new Date();
-		var data = "id=" + key.substring(5, key.length - 5);
+		var data = "id=" + key.substring(5, key.length);
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -274,7 +274,7 @@ function myremove_confirm_file(key)
 	if (parent.myxmlhttp)
 	{
 		var aim_url = "/BMMS/DeleteFile?time=" + new Date();
-		var data = "projectID=" + update_projectID + "&fileName=" + key.substring(5, key.length - 5);
+		var data = "projectID=" + update_projectID + "&fileName=" + key.substring(5, key.length);
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
