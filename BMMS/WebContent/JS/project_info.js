@@ -205,8 +205,8 @@ function cancle_click_paid()
 	paid_name.value = "";
 	paid_cash.value = "";
 
-	paid_name.backgroundColor = "#FFFFFF";
-	paid_cash.backgroundColor = "#FFFFFF";
+	paid_name.style.backgroundColor = "#FFFFFF";
+	paid_cash.style.backgroundColor = "#FFFFFF";
 
 	hide_window("add_window_paid", "add_window_paid_add")
 }
