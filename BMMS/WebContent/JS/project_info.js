@@ -198,6 +198,25 @@ function cancle_click()
 	// setTimeout("hide_window()", 10);
 }
 
+function cancle_click_paid()
+{
+	paid_name.value = "";
+	paid_cash.value = "";
+
+	paid_name.backgroundColor = "#FFFFFF";
+	paid_cash.backgroundColor = "#FFFFFF";
+
+	hide_window("add_window_paid", "add_window_paid_add")
+}
+
+function cancle_click_file()
+{
+	file_path.value = "请添加文件";
+	upload_item.value = "";
+
+	hide_window("add_window_file", "add_window_file_add")
+}
+
 function myremove_confirm(key)
 {
 	process_message.style.visibility = "visible";
@@ -215,6 +234,80 @@ function myremove_confirm(key)
 		parent.myxmlhttp.onreadystatechange = parent.refresh_now_page;
 		parent.myxmlhttp.send(data);
 	}
+}
+
+function myremove_confirm_paid(key)
+{
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	myxmlhttp = getXmlHttpObject();
+	
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/DelProjectPaidInfo?time=" + new Date();
+		var data = "id=" + key;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = paid_refresh_handle;
+		myxmlhttp.send(data);
+	}
+}
+
+function paid_refresh_handle()
+{
+	myxmlhttp = null;
+	cancle_click_paid();
+	refresh_paid();
+}
+
+function myremove_confirm_file(key)
+{
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	myxmlhttp = getXmlHttpObject();
+	
+	if (parent.myxmlhttp)
+	{
+		// var aim_url = "/BMMS/DelProjectQunatity?time=" + new Date();
+		// var data = "projectID=" + key;
+		
+		// myxmlhttp.open("post", aim_url, true);
+		// myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
+		// myxmlhttp.onreadystatechange = file_refresh_handle;
+		// myxmlhttp.send(data);
+	}
+}
+
+function file_refresh_handle()
+{
+	myxmlhttp = null;
+	cancle_click_file();
+	refresh_file();
+}
+
+function project_add_click(bName)
+{
+	float_window_title.innerHTML = "添加工程";
+	constructDate.value = get_now_date();
+
+	confirm_operation = "add";
+
+	add_click(bName, "add_window");
+}
+
+function get_now_date()
+{
+	var myDate = new Date();
+	var month = Number(myDate.getMonth()) + 1;
+	if(month < 10)
+		month = "0" + month;
+	var day = Number(myDate.getDate());
+	if(day < 10)
+		day = "0" + day;
+	return myDate.getFullYear() + "-" + month + "-" + day;
 }
 
 function reedit_click(key)
@@ -236,44 +329,28 @@ function show_paid(key)
 	add_click("project_info_pad", "add_window_paid");
 }
 
+function refresh_paid()
+{
+	myxmlhttp = getXmlHttpObject();
+
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/GetAllProjectPaidInfo?time=" + new Date();
+		var data = "projectID=" + key;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = check_search_result;
+		myxmlhttp.send(data);
+	}
+}
+
 function show_file(key)
 {
 	get_result_file(key);
 
 	update_projectID = key;
 	add_click("project_info_pad", "add_window_file");
-}
-
-function project_add_click(bName)
-{
-	float_window_title.innerHTML = "添加工程";
-	constructDate.value = get_now_date();
-
-	confirm_operation = "add";
-
-	add_click(bName, "add_window");
-}
-
-function paid_add_click()
-{
-	add_click("add_window_paid", "add_window_paid_add");
-}
-
-function file_add_click()
-{
-	add_click("add_window_file", "add_window_file_add");
-}
-
-function get_now_date()
-{
-	var myDate = new Date();
-	var month = Number(myDate.getMonth()) + 1;
-	if(month < 10)
-		month = "0" + month;
-	var day = Number(myDate.getDate());
-	if(day < 10)
-		day = "0" + day;
-	return myDate.getFullYear() + "-" + month + "-" + day;
 }
 
 function get_result(key)
@@ -297,10 +374,29 @@ function get_result(key)
 
 function get_result_paid(key)
 {
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	refresh_paid();
 }
 
 function get_result_file(key)
 {
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	myxmlhttp = getXmlHttpObject();
+
+	if (myxmlhttp)
+	{
+		// var aim_url = "/BMMS/GetOneProjectQunatityInfo?time=" + new Date();
+		// var data = "projectID=" + key;
+		
+		// myxmlhttp.open("post", aim_url, true);
+		// myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		// myxmlhttp.onreadystatechange = check_file_result;
+		// myxmlhttp.send(data);
+	}
 }
 
 function check_search_result()
@@ -336,7 +432,6 @@ function check_search_result()
 			waterPrice.value = myobj.waterPrice;
 			blackMaterialPrice.value = myobj.blackMaterialPrice;
 			budget.value = myobj.budget;
-			// paid.value = myobj.paid;
 		}
 
 		process_message.style.visibility = "hidden";
@@ -345,3 +440,153 @@ function check_search_result()
 		myxmlhttp = null;
 	}
 }
+
+function check_paid_result()
+{
+	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
+	{
+		var b = myxmlhttp.responseText;
+		var myobj = JSON.parse(b);
+
+		console.info(b);
+		console.info(myobj);
+
+		var string_final = "";
+		var total_money = 0;
+		if(myobj != null)
+		{
+			for(var i = 0; i < myobj.length; i++)
+			{
+				string_final = string_final + "<div id=\"" + myobj[i].id + "\" class=\"table-line\" style=\"padding-left:20px;\">";
+					string_final = string_final + "<div class=\"table-cell-1 cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].id + "\', \'myremove_confirm_paid\')> - </div>"
+					string_final = string_final + "<div class=\"table-cell-1\"> " + myobj[i].payInfo + " </div>"
+					string_final = string_final + "<div class=\"table-cell-1\"> " + Number(myobj[i].paid).toFixed(2) + "￥ </div>"
+				string_final = string_final + "</div>"
+
+				total_money = total_money + Number(myobj[i].paid);
+			}
+		}
+		table_inner_paid.innerHTML = string_final;
+		var paid_cell = document.getElementById("pjtPaid" + update_projectID);
+		paid_cell.innerHTML = Number(total_money).toFixed(2) + "￥";
+
+		process_message.style.visibility = "hidden";
+		clearInterval(s_process_timer);
+
+		myxmlhttp = null;
+	}
+}
+
+function check_file_result()
+{
+	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
+	{
+		var b = myxmlhttp.responseText;
+		var myobj = JSON.parse(b);
+
+		console.info(b);
+		console.info(myobj);
+
+		if(myobj != null)
+		{
+		}
+
+		process_message.style.visibility = "hidden";
+		clearInterval(s_process_timer);
+
+		myxmlhttp = null;
+	}
+}
+
+function paid_add_click()
+{
+	add_click("add_window_paid", "add_window_paid_add");
+}
+
+function file_add_click()
+{
+	add_click("add_window_file", "add_window_file_add");
+}
+
+function confirm_click_paid()
+{
+	var input_all_corrent = true;
+
+	if(paid_cash.value == "" || isNaN(paid_cash.value) || Number(paid_cash.value) == 0)
+	{
+		paid_cash.style.backgroundColor = "rgba(255,255,128,1)";
+		input_all_corrent = false;
+	}
+	else
+		paid_cash.style.backgroundColor = "rgba(255,255,255,1)";
+
+	if(input_all_corrent == false)
+		return;
+
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	myxmlhttp = getXmlHttpObject();
+	
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/AddProjectPaidInfo?time=" + new Date();
+		var data = new Object();
+		data.projectID = update_projectID;
+		data.payInfo = paid_name.value;
+		data.payTime = get_now_date();
+		data.paid = paid_cash.value;
+
+		var data_send = JSON.stringify(data);
+		console.info(data_send);
+
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = paid_refresh_handle;
+		myxmlhttp.send(data_send);
+	}
+}
+
+function confirm_click_file()
+{
+	if(file_path.value == "请添加文件" || upload_item.value == null)
+		return;
+
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	if(Window.FileReader)
+	{
+		var fr = new FileReader();
+		fr.onerror = read_error;
+		fr.onload = file_upload;
+		fr.readAsBinaryString(file_path.value);
+	}
+	else
+		alert("当前浏览器不支持上传文件，请使用最新的Chrome浏览器。");
+}
+
+function read_error()
+{
+	alert("文件读取失败");
+
+	process_message.style.visibility = "hidden";
+	clearInterval(s_process_timer);
+}
+
+function file_upload()
+{
+	myxmlhttp = getXmlHttpObject();
+	
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/UploadFile?time=" + new Date();
+
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data; boundary=");
+		myxmlhttp.onreadystatechange = paid_refresh_handle;
+		myxmlhttp.send(data_send);
+	}
+}
+
+// xmlHttp.sendAsBinary(BinaryContent);

@@ -196,12 +196,12 @@
 				<div style="height: 40px; text-align: left;">
 					<span style="margin-left: 30px;"> 金额： </span> <input id="paid_cash" class="textbox-common"></input>
 				</div>
-				<div id="cancle_button_paid" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button_paid')" onmouseleave="button_mouseleave('cancle_button_paid')" onmousedown="button_mousedown('cancle_button_paid')" onmouseup="button_mouseup('cancle_button_paid')" onclick="hide_window('add_window_paid', 'add_window_paid_add')">
+				<div id="cancle_button_paid" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button_paid')" onmouseleave="button_mouseleave('cancle_button_paid')" onmousedown="button_mousedown('cancle_button_paid')" onmouseup="button_mouseup('cancle_button_paid')" onclick="cancle_click_paid()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						取消
 					</p>
 				</div>
-				<div id="confirm_button_paid" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button_paid')" onmouseleave="button_mouseleave('confirm_button_paid')" onmousedown="button_mousedown('confirm_button_paid')" onmouseup="button_mouseup('confirm_button_paid')" onclick="confirm_click()">
+				<div id="confirm_button_paid" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button_paid')" onmouseleave="button_mouseleave('confirm_button_paid')" onmousedown="button_mousedown('confirm_button_paid')" onmouseup="button_mouseup('confirm_button_paid')" onclick="confirm_click_paid()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						确定
 					</p>
@@ -249,12 +249,12 @@
 						</p>
 					</div>
 				</div>
-				<div id="cancle_button_file" class="red_button" style="margin-right: 0px;" onmouseenter="button_mouseenter('cancle_button_file')" onmouseleave="button_mouseleave('cancle_button_file')" onmousedown="button_mousedown('cancle_button_file')" onmouseup="button_mouseup('cancle_button_file')" onclick="hide_window('add_window_file', 'add_window_file_add')">
+				<div id="cancle_button_file" class="red_button" style="margin-right: 0px;" onmouseenter="button_mouseenter('cancle_button_file')" onmouseleave="button_mouseleave('cancle_button_file')" onmousedown="button_mousedown('cancle_button_file')" onmouseup="button_mouseup('cancle_button_file')" onclick="cancle_click_file()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						取消
 					</p>
 				</div>
-				<div id="confirm_button_file" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button_file')" onmouseleave="button_mouseleave('confirm_button_file')" onmousedown="button_mousedown('confirm_button_file')" onmouseup="button_mouseup('confirm_button_file')" onclick="confirm_click()">
+				<div id="confirm_button_file" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button_file')" onmouseleave="button_mouseleave('confirm_button_file')" onmousedown="button_mousedown('confirm_button_file')" onmouseup="button_mouseup('confirm_button_file')" onclick="confirm_click_file()">
 					<p style="top: 50%; transform: translateY(-50%);">
 						确定
 					</p>
