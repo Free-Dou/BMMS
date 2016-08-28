@@ -649,6 +649,11 @@ function download_file_req_end()
 
 function body_onload() //待优化
 {
+	setTimeout("refresh_page()", 500);
+}
+
+function refresh_page()
+{
 	for(var i = 0; i < saved_project_id.options.length; i++)
 		refresh_paid(saved_project_id.options[i].text);
 }
