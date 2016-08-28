@@ -173,11 +173,6 @@
 					<div class="table-title-cell"> 金额 </div>
 				</div>
 				<div id="table_inner_paid">
-					<div class="table-line" style="padding-left:20px;">
-						<div class="table-cell-1 cell-head" style="width: 3%;"> - </div>
-						<div class="table-cell-1"> 项目一期 </div>
-						<div class="table-cell-1"> 10000.00￥ </div>
-					</div>
 				</div>
 				<dir class="page-footer main-page-footer">
 					<div class="footer-button" id="item_footer_button_2" onmouseenter="button_mouseenter_footer('item_footer_button_2')" onmouseleave="button_mouseleave_footer('item_footer_button_2')" onmousedown="button_mousedown_footer('item_footer_button_2')" onmouseup="button_mouseup_footer('item_footer_button_2')" onclick="paid_add_click()">
@@ -221,14 +216,6 @@
 					<div class="table-title-cell" style="width: 90%;"> 文件 </div>
 				</div>
 				<div id="table_inner_file">
-					<div class="table-line" style="padding-left:20px;">
-						<div class="table-cell-1 cell-head" style="width: 3%;"> - </div>
-						<div class="table-cell-1" style="width: 90%;"> 1.jpg </div>
-					</div>
-					<div class="table-line" style="padding-left:20px;">
-						<div class="table-cell-1 cell-head" style="width: 3%;"> - </div>
-						<div class="table-cell-1" style="width: 90%;"> 2.jpg </div>
-					</div>
 				</div>
 				<dir class="page-footer main-page-footer">
 					<div class="footer-button" id="item_footer_button_3" onmouseenter="button_mouseenter_footer('item_footer_button_3')" onmouseleave="button_mouseleave_footer('item_footer_button_3')" onmousedown="button_mousedown_footer('item_footer_button_3')" onmouseup="button_mouseup_footer('item_footer_button_3')" onclick="file_add_click()">

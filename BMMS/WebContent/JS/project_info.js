@@ -358,7 +358,7 @@ function refresh_paid(key)
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = check_search_result;
+		myxmlhttp.onreadystatechange = check_paid_result;
 		myxmlhttp.send(data);
 	}
 }
@@ -507,6 +507,7 @@ function check_file_result()
 			}
 			file_array.push(myobj[i].fileName);
 		}
+		table_inner_file.innerHTML = string_final;
 
 		process_message.style.visibility = "hidden";
 		clearInterval(s_process_timer);
