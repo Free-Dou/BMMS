@@ -63,13 +63,13 @@ function confirm_click()
 	}
 	else
 		budget.style.backgroundColor = "rgba(255,255,255,1)";
-	if(paid.value == "" || isNaN(paid.value))
-	{
-		paid.style.backgroundColor = "rgba(255,255,128,1)";
-		input_all_corrent = false;
-	}
-	else
-		paid.style.backgroundColor = "rgba(255,255,255,1)";
+	// if(paid.value == "" || isNaN(paid.value))
+	// {
+	// 	paid.style.backgroundColor = "rgba(255,255,128,1)";
+	// 	input_all_corrent = false;
+	// }
+	// else
+	// 	paid.style.backgroundColor = "rgba(255,255,255,1)";
 
 	if(input_all_corrent == false)
 		return;
@@ -224,7 +224,23 @@ function reedit_click(key)
 	confirm_operation = "reedit";
 	update_projectID = key;
 
-	add_click("project_info_pad");
+	add_click("project_info_pad", "add_window");
+}
+
+function show_paid(key)
+{
+	get_result_paid(key);
+
+	update_projectID = key;
+	add_click("project_info_pad", "add_window_paid");
+}
+
+function show_file(key)
+{
+	get_result_file(key);
+
+	update_projectID = key;
+	add_click("project_info_pad", "add_window_file");
 }
 
 function project_add_click(bName)
@@ -234,7 +250,17 @@ function project_add_click(bName)
 
 	confirm_operation = "add";
 
-	add_click(bName);
+	add_click(bName, "add_window");
+}
+
+function paid_add_click()
+{
+	add_click("add_window_paid", "add_window_paid_add");
+}
+
+function file_add_click()
+{
+	add_click("add_window_file", "add_window_file_add");
 }
 
 function get_now_date()
@@ -266,6 +292,14 @@ function get_result(key)
 		myxmlhttp.onreadystatechange = check_search_result;
 		myxmlhttp.send(data);
 	}
+}
+
+function get_result_paid(key)
+{
+}
+
+function get_result_file(key)
+{
 }
 
 function check_search_result()

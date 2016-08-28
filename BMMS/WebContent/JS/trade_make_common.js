@@ -200,7 +200,7 @@ function confirm_click()
 	resetSelected(data_add.id);
 	data_add = null;
 
-	cancle_click();
+	cancle_click("buy_make_pad", "add_window");
 }
 
 function myremove_confirm(index)
@@ -240,7 +240,7 @@ function item_type_changed()
 	select_add_index.options[index].selected = true;
 }
 
-function cancle_click()
+function cancle_click(bName, aWindowName)
 {
 	// select_add_index.options[0].selected = true;
 	// select_add_name.options[0].selected = true;
@@ -252,7 +252,8 @@ function cancle_click()
 	// select_add_name.style.backgroundColor = "#FFFFFF";
 	input_add_num.style.backgroundColor = "#FFFFFF";
 	input_add_price.style.backgroundColor = "#FFFFFF";
-	setTimeout("hide_window()", 10);
+	hide_window(bName, aWindowName);
+	// setTimeout("hide_window()", 10);
 }
 
 function trade_cancle_click()

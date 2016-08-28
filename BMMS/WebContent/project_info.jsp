@@ -32,7 +32,7 @@
 				<div class="table-title-cell" style="width: 25%;"> 总额 </div>
 				<div class="table-title-cell" style="width: 25%;"> 已支付 </div>
 				<div class="table-title-cell" style="width: 5%;"> 查看修改 </div>
-				<div class="table-title-cell" style="width: 5%;"> 添加付款 </div>
+				<div class="table-title-cell" style="width: 5%;"> 付款项 </div>
 				<div class="table-title-cell" style="width: 5%;"> 扫描件 </div>
 			</div>
 			<div id="table_inner">
@@ -54,15 +54,15 @@
 							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
 							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
 							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/edit.png\" class=\"footer-button-img\"> </div>");
-							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> $ </div>");
-							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> 📄 </div>");
+							out.print("<div onclick=\"show_paid('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/cash.png\" class=\"footer-button-img\"> </div>");
+							out.print("<div onclick=\"show_file('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/picture.png\" class=\"footer-button-img\"> </div>");
 							out.print("</div>");
 						}
 					}
 				%>
 			</div>
 			<dir class="page-footer main-page-footer">
-				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="project_add_click('project_info_pad')">
+				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="project_add_click('project_info_pad', 'add_window')">
 					<img src="IMG/add.png" class="footer-button-img">
 					<p>添加</p>
 				</div>
@@ -141,11 +141,8 @@
 						</div>
 					</div>
 					<div style="height: 42px;">
-						<div style="height: 40px; text-align: left; float: left; margin-left: 32px;">
+						<div style="height: 40px; text-align: left; float: left; margin-left: 381px;">
 							<span> 总额： </span> <input style="width: 225px;" id="budget"></input> <span> ￥ </span>
-						</div>
-						<div style="height: 40px; text-align: left; float: left; margin-left: 30px;">
-							<span> 已付款： </span> <input style="width: 225px;" id="paid"></input> <span> ￥ </span>
 						</div>
 					</div>
 					<!-- <input type="submit" value="确定"/> -->
@@ -160,6 +157,52 @@
 						</p>
 					</div>
 				</form>
+			</div>
+		</div>
+		<div id="add_window_paid" class="new_float_window">
+			<div class="set_center" style="height: 400px; width: 725px;">
+				<h2> 付款项 </h2>
+				<div class="table-line" style="padding-left:20px;">
+					<div class="table-title-cell" style="width: 3%;"></div>
+					<div class="table-title-cell"> 款项 </div>
+					<div class="table-title-cell"> 金额 </div>
+				</div>
+				<div id="table_inner">
+					<div class="table-line" style="padding-left:20px;">
+						<div class="table-cell-1" style="width: 3%;"> - </div>
+						<div class="table-cell-1"> 项目一期 </div>
+						<div class="table-cell-1"> 10000.00￥ </div>
+					</div>
+				</div>
+				<dir class="page-footer main-page-footer">
+					<div class="footer-button" id="item_footer_button_2" onmouseenter="button_mouseenter_footer('item_footer_button_2')" onmouseleave="button_mouseleave_footer('item_footer_button_2')" onmousedown="button_mousedown_footer('item_footer_button_2')" onmouseup="button_mouseup_footer('item_footer_button_2')" onclick="paid_add_click()">
+						<img src="IMG/add.png" class="footer-button-img">
+						<p>添加</p>
+					</div>
+				</dir>
+			</div>
+		</div>
+		<div id="add_window_paid_add" class="new_float_window">
+			<div class="set_center" style="height: 400px; width: 725px;">
+				<h2> 添加付款项 </h2>
+			</div>
+		</div>
+		<div id="add_window_file" class="new_float_window">
+			<div class="set_center" style="height: 400px; width: 725px;">
+				<h2> 扫描件 </h2>
+				<div class="table-line" style="padding-left: 0px;"> 1.jpg </div>
+				<div class="table-line" style="padding-left: 0px;"> 2.jpg </div>
+				<dir class="page-footer main-page-footer">
+					<div class="footer-button" id="item_footer_button_3" onmouseenter="button_mouseenter_footer('item_footer_button_3')" onmouseleave="button_mouseleave_footer('item_footer_button_3')" onmousedown="button_mousedown_footer('item_footer_button_3')" onmouseup="button_mouseup_footer('item_footer_button_3')" onclick="file_add_click()">
+						<img src="IMG/add.png" class="footer-button-img">
+						<p>添加</p>
+					</div>
+				</dir>
+			</div>
+		</div>
+		<div id="add_window_file_add" class="new_float_window">
+			<div class="set_center" style="height: 400px; width: 725px;">
+				<h2> 添加扫描件 </h2>
 			</div>
 		</div>
 		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">

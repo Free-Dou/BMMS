@@ -2,6 +2,8 @@
 {
 	padding-left: 35px;
 	height: 38px;
+
+	overflow: hidden;
 }
 .table-title-cell
 {
@@ -51,6 +53,8 @@
 	padding-left: 35px;
 	height: 30px;
 	font-size: 12px;
+
+	overflow: hidden;
 }
 .table-title-cell-little
 {

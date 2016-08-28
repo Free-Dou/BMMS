@@ -1,4 +1,4 @@
-function cancle_click()
+function cancle_click(bName, aWindowName)
 {
 	input_add_name.style.backgroundColor = "#FFFFFF";
 	input_add_name.value = "";
@@ -6,5 +6,7 @@ function cancle_click()
 	input_add_fix.value = "";
 	input_add_phone1.value = "";
 	input_add_phone2.value = "";
-	setTimeout("hide_window()", 10);
+
+	hide_window(bName, aWindowName);
+	// setTimeout("hide_window()", 10);
 }

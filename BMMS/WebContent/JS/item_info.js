@@ -47,7 +47,7 @@ function confirm_click()
 	}
 }
 
-function cancle_click()
+function cancle_click(bName, aWindowName)
 {
 	input_add_spec.value = "";
 	input_add_name.value = "";
@@ -55,7 +55,8 @@ function cancle_click()
 	input_add_spec.style.backgroundColor = "#FFFFFF";
 	input_add_name.style.backgroundColor = "#FFFFFF";
 
-	setTimeout("hide_window()", 10);
+	hide_window(bName, aWindowName);
+	// setTimeout("hide_window()", 10);
 }
 
 function myremove_confirm(key)

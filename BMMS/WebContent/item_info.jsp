@@ -54,7 +54,7 @@
 			%>
 			</div>
 			<dir class="page-footer main-page-footer">
-				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="add_click('item_info_pad')">
+				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="add_click('item_info_pad', 'add_window')">
 					<img src="IMG/add.png" class="footer-button-img">
 					<p>添加</p>
 				</div>
@@ -71,7 +71,7 @@
 						<span> 产品名称： </span> <input class="textbox-common" name="input_add_name" id="input_add_name"></input>
 					</div>
 					<!-- <input type="submit" value="确定"/> -->
-					<div id="cancle_button" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click()">
+					<div id="cancle_button" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click('item_info_pad', 'add_window')">
 						<p style="top: 50%; transform: translateY(-50%);">
 							取消
 						</p>
