@@ -69,7 +69,7 @@ function hide_window_timer()
 		ADD_WINDOW.style.visibility = "hidden";
 		return;
 	}
-	setTimeout("hide_window()", 10);
+	setTimeout("hide_window_timer()", 10);
 }
 
 function hide_window(bName, aWindowName)
