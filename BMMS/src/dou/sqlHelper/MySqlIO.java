@@ -13,6 +13,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectFile;
 import dou.metaObject.ProjectPaid;
 import dou.metaObject.ProjectQunatity;
 import dou.metaObject.ProjectQunatityBatch;
@@ -693,7 +694,7 @@ public class MySqlIO {
 			/* 提取数据 */
 			while (rs.next()) {
 				String id = rs.getString("id");
-				String payInfo = rs.getString("eachBatch");
+				String payInfo = rs.getString("payInfo");
 				String payTime = rs.getString("payTime");
 				Float paid = rs.getFloat("paid");
 				String remark = rs.getString("remark");
@@ -718,6 +719,77 @@ public class MySqlIO {
 		}
 
 		return paidInfoList;
+	}
+
+	public String searchSavedPathFromDB(String projectID, String fileName) {
+		// TODO Auto-generated method stub
+		String savedPath = null;
+		String sql = "select * from tb_file where projectID = ? and fileName = ?;";
+		ResultSet resultSet = null;
+		String parameters[] = { projectID, fileName };
+
+		if ((null == projectID) || (null == fileName)){
+			logger.error("[MySqlIO.java:searchSavedPathFromDB]searchSavedPathFromDB Error: projectID = " + projectID + "  fileName = " + fileName);
+			return null;
+		}
+
+		logger.info("[MySqlIO.java:searchSavedPathFromDB] searchSavedPathFromDB projectID = " + projectID + "  fileName = " + fileName);
+		resultSet = sqlHelper.executeQuery(sql, parameters);
+		try {
+			if (resultSet.next()) {
+				savedPath = resultSet.getString("savedPath");
+				logger.info("[MySqlIO.java:searchSavedPathFromDB] searchSavedPathFromDB success !!! savedPath = " + savedPath + ";");
+			}
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:searchSavedPathFromDB] searchSavedPathFromDB Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(resultSet, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+
+		return savedPath;
+	}
+
+	public ArrayList<ProjectFile> getAllFileInfoFromDB(String projectID) {
+		// TODO Auto-generated method stub
+		ArrayList<ProjectFile> fileList = null;
+		ProjectFile fileObject = null;
+		String sql = "select * from tb_file where projectID = ?;";
+		String params[] = { projectID };
+		ResultSet rs = null;
+
+		logger.info("[MySqlIO.java:getAllFileInfoFromDB] " + sql);
+		rs = sqlHelper.executeQuery(sql, params);
+		try {
+			/* 提取数据 */
+			while (rs.next()) {
+				String fileID = rs.getString("id");
+				String fileName = rs.getString("fileName");
+				String savedPath = rs.getString("savedPath");
+				String remark = rs.getString("remark");
+
+				if (null == fileList) {
+					fileList = new ArrayList<ProjectFile>();
+				}
+
+				fileObject = new ProjectFile(projectID, fileName, savedPath, remark);
+				fileObject.setId(fileID);
+				fileList.add(fileObject);
+			}
+
+			logger.info("[MySqlIO.java:getAllFileInfoFromDB] Get All File Info Success!!! Project = " + projectID);
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllFileInfoFromDB] Get All File Info Failed!!! Project = " + projectID);
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+
+		return fileList;
 	}
 
 	// public List<WebPageObejct> getWebPageObejct_List(String table_name) {

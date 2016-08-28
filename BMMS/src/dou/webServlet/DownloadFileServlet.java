@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import dou.config.Config;
+import dou.metaObject.ProjectFile;
 
 public class DownloadFileServlet extends HttpServlet {
 
@@ -28,16 +29,32 @@ public class DownloadFileServlet extends HttpServlet {
 		Logger logger = Config.getLogger(this.getClass());
 		resp.setCharacterEncoding("utf-8");
 		req.setCharacterEncoding("utf-8");
-		String fileName = req.getParameter("filename");
-		String fileSaveRootPath = Config.fileSavedFolderPath;
-		String path = fileSaveRootPath + "/" + fileName;
 		
-		File file = new File(path);
+		/* 获取文件名和projectID */
+		String projectID = req.getParameter("projectID ");
+		if (("" != projectID) && (null != projectID)){
+			logger.info("[UploadFileServlet.java:doPost] download file for project whick Id = " + projectID);
+		} else {
+			logger.info("[UploadFileServlet.java:doPost] download file for project failed !!!  ID is null or \"\" !!! id = " + projectID);
+			return;
+		}
+		
+		String fileName = req.getParameter("filename");
+		if (("" != fileName) && (null != fileName)){
+			logger.info("[UploadFileServlet.java:doPost] UploadFile for project whick Id = " + fileName);
+		} else {
+			logger.info("[UploadFileServlet.java:doPost] UploadFile for project failed !!!  ID is null or \"\" !!! id = " + fileName);
+			return;
+		}
+		
+		/* 根据工程id和文件名，查找文件的保存路径 */
+		String savedPath = ProjectFile.searchSavedPathFromDB(projectID, fileName);
+		File file = new File(savedPath);
 		
 		if(!file.exists()){
 			/* 是否要输出结果信息？？？ */
 			PrintWriter pw = resp.getWriter();
-			logger.error("Download file error!!! file is not exist!!! file : " + path);
+			logger.error("Download file error!!! file is not exist!!! file : " + savedPath);
 			return;
 		}
 		
@@ -45,7 +62,7 @@ public class DownloadFileServlet extends HttpServlet {
 		resp.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
 		
 		/* 读取要下载的文件，保存到文件输入流 */
-		FileInputStream in = new FileInputStream(path);
+		FileInputStream in = new FileInputStream(savedPath);
 		OutputStream out = resp.getOutputStream();
 		
 		byte buffer[] = new byte[1024];
