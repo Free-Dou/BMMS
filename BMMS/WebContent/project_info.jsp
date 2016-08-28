@@ -241,11 +241,13 @@
 		<div id="add_window_file_add" class="new_float_window">
 			<div class="set_center" style="height: 400px; width: 400px;">
 				<h2> 添加扫描件 </h2>
-				<input id="paid_name" class="textbox-common" value="请添加文件"></input>
-				<div id="add_file" style="margin-right: 20px;" class="green_button" onmouseenter="button_mouseenter('add_file')" onmouseleave="button_mouseleave('add_file')" onmousedown="button_mousedown('add_file')" onmouseup="button_mouseup('add_file')" onclick="upload_item.click()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						添加文件
-					</p>
+				<div style="height: 30px;">
+					<input id="paid_name" class="textbox-common" value="请添加文件"></input>
+					<div id="add_file" style="width: 75px; height: 24px;" class="green_button" onmouseenter="button_mouseenter('add_file')" onmouseleave="button_mouseleave('add_file')" onmousedown="button_mousedown('add_file')" onmouseup="button_mouseup('add_file')" onclick="upload_item.click()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							添加文件
+						</p>
+					</div>
 				</div>
 				<div id="cancle_button_file" class="red_button" style="margin-right: 54px;" onmouseenter="button_mouseenter('cancle_button_file')" onmouseleave="button_mouseleave('cancle_button_file')" onmousedown="button_mousedown('cancle_button_file')" onmouseup="button_mouseup('cancle_button_file')" onclick="hide_window('add_window_file', 'add_window_file_add')">
 					<p style="top: 50%; transform: translateY(-50%);">
