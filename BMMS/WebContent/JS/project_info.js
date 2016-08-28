@@ -611,7 +611,7 @@ function file_upload()
 
 		var oData = new FormData(document.forms.namedItem("upload_file"));  
 		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.onreadystatechange = paid_refresh_handle;
+		myxmlhttp.onreadystatechange = file_refresh_handle;
 		myxmlhttp.send(oData);
 		// xmlHttp.sendAsBinary(databinary);
 	}
