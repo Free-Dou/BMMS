@@ -580,7 +580,7 @@ function confirm_click_file()
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
-	if(Window.FileReader)
+	if(window.FileReader)
 	{
 		var fr = new FileReader();
 		fr.onloadend = function()
