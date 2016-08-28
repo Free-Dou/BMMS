@@ -46,7 +46,7 @@ function show_window()
 	setTimeout("show_window()", 10);
 }
 
-function hide_window()
+function hide_window_timer()
 {
 	var opacity_now = Number(ADD_WINDOW.style.opacity);
 	opacity_now = opacity_now - 0.1;
@@ -76,5 +76,5 @@ function hide_window(bName, aWindowName)
 {
 	Base = document.getElementById(bName);
 	ADD_WINDOW = document.getElementById(aWindowName);
-	setTimeout("hide_window()", 10);
+	setTimeout("hide_window_timer()", 10);
 }
