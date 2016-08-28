@@ -241,25 +241,27 @@
 		<div id="add_window_file_add" class="new_float_window">
 			<div class="set_center" style="height: 400px; width: 400px;">
 				<h2> 添加扫描件 </h2>
-				<div style="height: 30px;">
-					<input id="file_path" style="width: 300px;" value="请添加文件" readonly="true"></input>
-					<div id="add_file" style="width: 75px; height: 24px; margin-right: 0px;" class="green_button" onmouseenter="button_mouseenter('add_file')" onmouseleave="button_mouseleave('add_file')" onmousedown="button_mousedown('add_file')" onmouseup="button_mouseup('add_file')" onclick="upload_item.click()">
-						<p style="top: 50%; transform: translateY(-50%); font-size: 12px;">
-							添加文件
+				<form enctype="multipart/form-data" method="post" name="upload_file">
+					<div style="height: 30px;">
+						<input id="file_path" style="width: 300px;" value="请添加文件" readonly="true"></input>
+						<div id="add_file" style="width: 75px; height: 24px; margin-right: 0px;" class="green_button" onmouseenter="button_mouseenter('add_file')" onmouseleave="button_mouseleave('add_file')" onmousedown="button_mousedown('add_file')" onmouseup="button_mouseup('add_file')" onclick="upload_item.click()">
+							<p style="top: 50%; transform: translateY(-50%); font-size: 12px;">
+								添加文件
+							</p>
+						</div>
+					</div>
+					<div id="cancle_button_file" class="red_button" style="margin-right: 0px;" onmouseenter="button_mouseenter('cancle_button_file')" onmouseleave="button_mouseleave('cancle_button_file')" onmousedown="button_mousedown('cancle_button_file')" onmouseup="button_mouseup('cancle_button_file')" onclick="cancle_click_file()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							取消
 						</p>
 					</div>
-				</div>
-				<div id="cancle_button_file" class="red_button" style="margin-right: 0px;" onmouseenter="button_mouseenter('cancle_button_file')" onmouseleave="button_mouseleave('cancle_button_file')" onmousedown="button_mousedown('cancle_button_file')" onmouseup="button_mouseup('cancle_button_file')" onclick="cancle_click_file()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						取消
-					</p>
-				</div>
-				<div id="confirm_button_file" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button_file')" onmouseleave="button_mouseleave('confirm_button_file')" onmousedown="button_mousedown('confirm_button_file')" onmouseup="button_mouseup('confirm_button_file')" onclick="confirm_click_file()">
-					<p style="top: 50%; transform: translateY(-50%);">
-						确定
-					</p>
-				</div>
-				<input style="visibility: hidden;" id="upload_item" type="file" onchange="file_path.value = this.value"></input>
+					<div id="confirm_button_file" class="blue_button" style="margin-right: 10px;" onmouseenter="button_mouseenter('confirm_button_file')" onmouseleave="button_mouseleave('confirm_button_file')" onmousedown="button_mousedown('confirm_button_file')" onmouseup="button_mouseup('confirm_button_file')" onclick="confirm_click_file()">
+						<p style="top: 50%; transform: translateY(-50%);">
+							确定
+						</p>
+					</div>
+					<input style="visibility: hidden;" id="upload_item" type="file" onchange="file_path.value = this.value"></input>
+				</form>
 			</div>
 		</div>
 		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">

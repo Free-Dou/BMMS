@@ -3,6 +3,8 @@ var update_projectID = "";
 
 var myxmlhttp = "";
 
+var file_array = new Array();
+
 function confirm_click()
 {
 	var input_all_corrent = true;
@@ -271,13 +273,13 @@ function myremove_confirm_file(key)
 	
 	if (parent.myxmlhttp)
 	{
-		// var aim_url = "/BMMS/DelProjectQunatity?time=" + new Date();
-		// var data = "projectID=" + key;
+		var aim_url = "/BMMS/DeleteFile?time=" + new Date();
+		var data = "projectID=" + pjtid + "&fileName=" + filename;
 		
-		// myxmlhttp.open("post", aim_url, true);
-		// myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
-		// myxmlhttp.onreadystatechange = file_refresh_handle;
-		// myxmlhttp.send(data);
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
+		myxmlhttp.onreadystatechange = file_refresh_handle;
+		myxmlhttp.send(data);
 	}
 }
 
@@ -285,7 +287,23 @@ function file_refresh_handle()
 {
 	myxmlhttp = null;
 	cancle_click_file();
-	refresh_file();
+	refresh_file(update_projectID);
+}
+
+function refresh_file(key)
+{
+	myxmlhttp = getXmlHttpObject();
+
+	if (myxmlhttp)
+	{
+		var aim_url = "/BMMS/GetProjectFileInfo?time=" + new Date();
+		var data = "projectID=" + key;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		myxmlhttp.onreadystatechange = check_file_result;
+		myxmlhttp.send(data);
+	}
 }
 
 function project_add_click(bName)
@@ -385,18 +403,7 @@ function get_result_file(key)
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
-	myxmlhttp = getXmlHttpObject();
-
-	if (myxmlhttp)
-	{
-		// var aim_url = "/BMMS/GetOneProjectQunatityInfo?time=" + new Date();
-		// var data = "projectID=" + key;
-		
-		// myxmlhttp.open("post", aim_url, true);
-		// myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		// myxmlhttp.onreadystatechange = check_file_result;
-		// myxmlhttp.send(data);
-	}
+	refresh_file(key);
 }
 
 function check_search_result()
@@ -458,10 +465,10 @@ function check_paid_result()
 			for(var i = 0; i < myobj.length; i++)
 			{
 				string_final = string_final + "<div id=\"" + myobj[i].id + "\" class=\"table-line\" style=\"padding-left:20px;\">";
-					string_final = string_final + "<div class=\"table-cell-1 cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].id + "\', \'myremove_confirm_paid\')> - </div>"
-					string_final = string_final + "<div class=\"table-cell-1\"> " + myobj[i].payInfo + " </div>"
-					string_final = string_final + "<div class=\"table-cell-1\"> " + Number(myobj[i].paid).toFixed(2) + "￥ </div>"
-				string_final = string_final + "</div>"
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].id + "\', \'myremove_confirm_paid\')> - </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + myobj[i].payInfo + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\"> " + Number(myobj[i].paid).toFixed(2) + "￥ </div>";
+				string_final = string_final + "</div>";
 
 				total_money = total_money + Number(myobj[i].paid);
 			}
@@ -487,8 +494,18 @@ function check_file_result()
 		console.info(b);
 		console.info(myobj);
 
+		file_array = [];
+		var string_final = "";
 		if(myobj != null)
 		{
+			for(var i = 0; i < myobj.length; i++)
+			{
+				string_final = string_final + "<div id=\"" + myobj[i].fildId + "\" class=\"table-line\" style=\"padding-left:20px;\">";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'" + myobj[i].fildId + "\', \'myremove_confirm_file\')> - </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 90%; text-decoration: underline;\" onclick=\"download_file(\'" + update_projectID + "\', \'" + myobj[i].fileName + "\')\"> " + myobj[i].fileName + " </div>";
+				string_final = string_final + "</div>";
+			}
+			file_array.push(myobj[i].fileName);
 		}
 
 		process_message.style.visibility = "hidden";
@@ -552,6 +569,13 @@ function confirm_click_file()
 	if(file_path.value == "请添加文件" || upload_item.value == null)
 		return;
 
+	for(var i = 0; i < file_array.length; i++)
+		if(file_path.value.indexOf(file_array[i]) >= 0)
+		{
+			alert("该工程存在同名文件，请修改文件名后重试。");
+			return;
+		}
+
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
 
@@ -575,14 +599,6 @@ function confirm_click_file()
 		alert("当前浏览器不支持上传文件，请使用最新的Chrome浏览器。");
 }
 
-function read_error()
-{
-	alert("文件读取失败");
-
-	process_message.style.visibility = "hidden";
-	clearInterval(s_process_timer);
-}
-
 function file_upload(databinary)
 {
 	myxmlhttp = getXmlHttpObject();
@@ -591,13 +607,44 @@ function file_upload(databinary)
 	{
 		var aim_url = "/BMMS/UploadFile?time=" + new Date() + "&projectID=" + update_projectID;
 
+		var oData = new FormData(document.forms.namedItem("upload_file"));  
 		myxmlhttp.open("post", aim_url, true);
-		xmlHttp.sendAsBinary(databinary);
-		// myxmlhttp.setRequestHeader("Content-Type","multipart/form-data; boundary=");
 		myxmlhttp.onreadystatechange = paid_refresh_handle;
-		// myxmlhttp.send(data_send);
+		oReq.send(oData);
+		// xmlHttp.sendAsBinary(databinary);
 	}
 }
+
+function download_file(pjtid, filename)
+{
+	process_message.style.visibility = "visible";
+	s_process_timer = setInterval("process_anime()", 10);
+
+	myxmlhttp = getXmlHttpObject();
+	
+	if (parent.myxmlhttp)
+	{
+		var aim_url = "/BMMS/DownloadFile?time=" + new Date();
+		var data = "projectID=" + pjtid + "&fileName=" + filename;
+		
+		myxmlhttp.open("post", aim_url, true);
+		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
+		myxmlhttp.onreadystatechange = download_file_req_end;
+		myxmlhttp.send(data);
+	}
+}
+
+function download_file_req_end()
+{
+	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
+	{
+		process_message.style.visibility = "visible";
+		s_process_timer = setInterval("process_anime()", 10);
+
+		myxmlhttp = null;
+	}
+}
+
 xmlhttpobject.prototype.sendAsBinary = function(datastr) {
 	function byteValue(x) {
 		return x.charCodeAt(0) & 0xff;
