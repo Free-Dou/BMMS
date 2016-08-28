@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/del_common.js"> </script>
 	</head>
-	<body>
+	<body onload="body_onload()">
 		<div id="project_info_pad" class="right-page-contains">
 			<div class="right-page-title"> 工程量管理 </div>
 			<div class="table-line">
@@ -59,6 +59,7 @@
 							out.print("</div>");
 						}
 					}
+
 				%>
 			</div>
 			<dir class="page-footer main-page-footer">
@@ -67,6 +68,16 @@
 					<p>添加</p>
 				</div>
 			</dir>
+			<select style="visibility: hidden;" id="saved_project_id">
+				<%
+					if (null != projectQunatityList){
+						for (int i = 0; i < projectQunatityList.size(); i++){
+							String pName = projectQunatityList.get(i).getProjectID();
+							out.print("<option name=\"" + pName + "\" value=\"" + pName + "\">" + pName + "</option>");
+						}
+					}
+				%>
+			</select>
 		</div>
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 400px; width: 725px;">
