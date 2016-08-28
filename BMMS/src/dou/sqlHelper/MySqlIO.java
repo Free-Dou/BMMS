@@ -13,6 +13,7 @@ import dou.metaObject.Customer;
 import dou.metaObject.MaterialInStock;
 import dou.metaObject.PersionMessage;
 import dou.metaObject.Product;
+import dou.metaObject.ProjectPaid;
 import dou.metaObject.ProjectQunatity;
 import dou.metaObject.ProjectQunatityBatch;
 import dou.metaObject.SalesOrder;
@@ -346,12 +347,12 @@ public class MySqlIO {
 
 		return projectQunatityList;
 	}
-	
+
 	public ProjectQunatity getOneProjectQunatityInfoById(String projectId) {
 		// TODO Auto-generated method stub
 		ProjectQunatity projectQunatityObject = null;
 		String sql = "SELECT * FROM tb_qunatity where id=?;";
-		String params[] = {projectId};
+		String params[] = { projectId };
 		ResultSet rs = null;
 
 		logger.info("[MySqlIO.java:getOneProjectQunatityInfoById] " + sql);
@@ -479,7 +480,8 @@ public class MySqlIO {
 				}
 
 				if (null == lastOrderID) { /* 如果是第一条数据 */
-					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark, outTime);
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark,
+							outTime);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
 					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
@@ -489,7 +491,8 @@ public class MySqlIO {
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
 				} else { /* 新订单的数据 */
 					salesOrderList.add(salesOrderObject);
-					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark, outTime);
+					salesOrderObject = new SalesOrder(orderID, carNum, stockLoca, userName, customerName, orderRemark,
+							outTime);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order : " + orderID);
 					salesOrderObject.AddSalesProduct(mpSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 					logger.info("[MySqlIO.java:getAllSalesOrderInfo]  Get sales order's product : " + mpSpec);
@@ -641,7 +644,7 @@ public class MySqlIO {
 		ArrayList<ProjectQunatityBatch> qunatityBatchList = null;
 		ProjectQunatityBatch qunatityBatchObject = null;
 		String sql = "select * from tb_qunatitybatch where projectID = ?;";
-		String params[] = {projectID};
+		String params[] = { projectID };
 		ResultSet rs = null;
 
 		logger.info("[MySqlIO.java:getAllQunatityBatchInfoBy] " + sql);
@@ -674,10 +677,48 @@ public class MySqlIO {
 			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
 		}
 
-		return null;
+		return qunatityBatchList;
 	}
 
+	public ArrayList<ProjectPaid> getAllProductPaidInfoById(String projectID) {
+		ArrayList<ProjectPaid> paidInfoList = null;
+		ProjectPaid paidIndoObject = null;
+		String sql = "select * from tb_projectpaid where projectID = ?;";
+		String params[] = { projectID };
+		ResultSet rs = null;
 
+		logger.info("[MySqlIO.java:getAllProductPaidInfoById] " + sql);
+		rs = sqlHelper.executeQuery(sql, params);
+		try {
+			/* 提取数据 */
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String payInfo = rs.getString("eachBatch");
+				String payTime = rs.getString("payTime");
+				Float paid = rs.getFloat("paid");
+				String remark = rs.getString("remark");
+
+				if (null == paidInfoList) {
+					paidInfoList = new ArrayList<ProjectPaid>();
+				}
+
+				paidIndoObject = new ProjectPaid(projectID, payInfo, payTime, paid, remark);
+				paidIndoObject.setPaidID(id);
+				paidInfoList.add(paidIndoObject);
+			}
+
+			logger.info("[MySqlIO.java:getAllProductPaidInfoById] Get All ProductPaid Info Success!!!");
+		} catch (SQLException e) {
+			logger.error("[MySqlIO.java:getAllProductPaidInfoById] Get All ProductPaid Info Failed!!!");
+			logger.error("Error Message : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			/* 关闭资源 */
+			sqlHelper.closeDB(rs, sqlHelper.getPreparedStatement(), sqlHelper.getConnection());
+		}
+
+		return paidInfoList;
+	}
 
 	// public List<WebPageObejct> getWebPageObejct_List(String table_name) {
 	//

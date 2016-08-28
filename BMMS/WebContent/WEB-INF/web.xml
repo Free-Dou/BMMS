@@ -210,7 +210,7 @@
   <url-pattern>/UploadFile</url-pattern>
   </servlet-mapping>
   
-  <!-- 上传文件 -->
+  <!-- 下载文件 -->
   <servlet>
   <servlet-name>DownloadFile</servlet-name>
   <servlet-class>dou.webServlet.DownloadFileServlet</servlet-class>
@@ -275,5 +275,39 @@
   <servlet-name>DelWareHousingOrder</servlet-name>
   <url-pattern>/DelWareHousingOrder</url-pattern>
   </servlet-mapping>
+  
+  <!-- 增加一个付款信息 -->
+  <servlet>
+  <servlet-name>AddProjectPaidInfo</servlet-name>
+  <servlet-class>dou.webServlet.AddProjectPaidInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>AddProjectPaidInfo</servlet-name>
+  <url-pattern>/AddProjectPaidInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 获取一个项目的全部付款信息 -->
+  <servlet>
+  <servlet-name>GetAllProjectPaidInfo</servlet-name>
+  <servlet-class>dou.webServlet.GetProjectPaidInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>GetAllProjectPaidInfo</servlet-name>
+  <url-pattern>/GetAllProjectPaidInfo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 删除一个付款信息 -->
+  <servlet>
+  <servlet-name>DelProjectPaidInfo</servlet-name>
+  <servlet-class>dou.webServlet.DelProjectPaidInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>DelProjectPaidInfo</servlet-name>
+  <url-pattern>/DelProjectPaidInfo</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

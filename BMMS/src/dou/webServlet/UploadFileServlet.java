@@ -19,6 +19,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
 import dou.config.Config;
+import dou.metaObject.Product;
+import dou.metaObject.ProjectFile;
 
 public class UploadFileServlet extends HttpServlet{
 
@@ -36,12 +38,20 @@ public class UploadFileServlet extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 		
+		/* 获取projectId */
+		String projectId = req.getParameter("id");
+		if (("" != projectId) && (null != projectId)){
+			logger.info("[UploadFileServlet.java:doPost] UploadFile for project whick Id = " + projectId);
+		} else {
+			logger.info("[UploadFileServlet.java:doPost] UploadFile for project failed !!!  ID is null or \"\" !!! id = " + projectId);
+		}
+		
 		/* 得到上传文件的保存目录，将上传文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全 */
 		String savePath = Config.fileSavedFolderPath;
 		logger.info("[UploadFileServlet.java:doPost] File Be Saved Path: " + savePath);
 		
 		/* 判断上传文件的保存目录是否存在 */
-		File folder = new File(savePath);
+		File folder = new File(savePath + "/" + projectId);
 		if (!(folder.exists() && folder.isDirectory())) {
 			logger.info("[UploadFileServlet.java:doPost] Path: " + savePath + " is not exist ! Need Create! ");
 			folder.mkdir();
@@ -81,6 +91,10 @@ public class UploadFileServlet extends HttpServlet{
 				while((len = fileInSteam.read(buffer)) > 0){
 					fileOutStream.write(buffer, 0, len);
 				}
+				
+				/* 添加数据到数据库 */
+				ProjectFile fileObject = new ProjectFile(projectId, fileName, (savePath + "/" + fileName));
+				fileObject.addFileToDB();
 				
 				/* 释放资源 */
 				fileInSteam.close();
