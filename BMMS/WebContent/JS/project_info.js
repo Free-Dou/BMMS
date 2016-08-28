@@ -248,7 +248,7 @@ function myremove_confirm_paid(key)
 	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/DelProjectPaidInfo?time=" + new Date();
-		var data = "id=" + key;
+		var data = "id=" + key.substring(5, key.length - 5);
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -274,7 +274,7 @@ function myremove_confirm_file(key)
 	if (parent.myxmlhttp)
 	{
 		var aim_url = "/BMMS/DeleteFile?time=" + new Date();
-		var data = "projectID=" + pjtid + "&fileName=" + filename;
+		var data = "projectID=" + update_projectID + "&fileName=" + key.substring(5, key.length - 5);
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
@@ -500,8 +500,8 @@ function check_file_result()
 		{
 			for(var i = 0; i < myobj.length; i++)
 			{
-				string_final = string_final + "<div id=\"file_" + myobj[i].fildId + "\" class=\"table-line\" style=\"padding-left:20px;\">";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'file_" + myobj[i].fildId + "\', \'myremove_confirm_file\')\"> - </div>";
+				string_final = string_final + "<div id=\"file_" + myobj[i].fileName + "\" class=\"table-line\" style=\"padding-left:20px;\">";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'file_" + myobj[i].fileName + "\', \'myremove_confirm_file\')\"> - </div>";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 90%; text-decoration: underline;\" onclick=\"download_file(\'" + update_projectID + "\', \'" + myobj[i].fileName + "\')\"> " + myobj[i].fileName + " </div>";
 				string_final = string_final + "</div>";
 			}
