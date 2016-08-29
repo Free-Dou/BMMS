@@ -583,24 +583,6 @@ function confirm_click_file()
 	s_process_timer = setInterval("process_anime()", 10);
 
 	file_upload();
-	// if(window.FileReader)
-	// {
-	// 	var fr = new FileReader();
-	// 	fr.onloadend = function()
-	// 	{
-	// 		if (fr.error) {
-	// 			alert("文件读取失败");
-
-	// 			process_message.style.visibility = "hidden";
-	// 			clearInterval(s_process_timer);
-	// 		} else {
-	// 			file_upload(fr.result);
-	// 		}
-	// 	}
-	// 	fr.readAsBinaryString(file_path.value);
-	// }
-	// else
-	// 	alert("当前浏览器不支持上传文件，请使用最新的Chrome浏览器。");
 }
 
 function file_upload()
@@ -629,7 +611,7 @@ function download_file(pjtid, filename)
 	if (parent.myxmlhttp)
 	{
 		var aim_url = "/BMMS/DownloadFile?time=" + new Date();
-		var data = "projectID=" + pjtid + "&fileName=" + filename;
+		var data = "projectID=" + pjtid + "&filename=" + filename;
 		
 		myxmlhttp.open("post", aim_url, true);
 		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
@@ -648,35 +630,3 @@ function download_file_req_end()
 		myxmlhttp = null;
 	}
 }
-
-// var opentime = 0;
-
-// function body_onload() //待优化
-// {
-// 	setTimeout("refresh_page()", 10);
-// }
-
-// function refresh_page()
-// {
-// 	opentime = opentime + 10;
-// 	if(opentime > 500)
-// 		refresh_page_act();
-// 	else
-// 		setTimeout("refresh_page()", 10);
-// }
-
-// function refresh_page_act()
-// {
-// 	for(var i = 0; i < saved_project_id.options.length; i++)
-// 		refresh_paid(saved_project_id.options[i].text);
-// }
-// xmlhttpobject.prototype.sendAsBinary = function(datastr) {
-// 	function byteValue(x) {
-// 		return x.charCodeAt(0) & 0xff;
-// 	}
-// 	var ords = Array.prototype.map.call(datastr, byteValue);
-// 	var ui8a = new Uint8Array(ords);
-// 	this.send(ui8a.buffer);
-// }
-
-// xmlHttp.sendAsBinary(BinaryContent);
