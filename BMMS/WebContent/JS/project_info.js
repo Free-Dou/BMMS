@@ -491,8 +491,8 @@ function check_file_result()
 		var b = myxmlhttp.responseText;
 		console.info(b);
 		if(b == "")
-			b = "[]";
-		
+			b = "null";
+
 		var myobj = JSON.parse(b);
 		console.info(myobj);
 
