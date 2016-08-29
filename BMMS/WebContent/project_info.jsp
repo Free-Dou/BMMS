@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="JS/float_window_common.js"> </script>
 		<script type="text/javascript" src="JS/del_common.js"> </script>
 	</head>
-	<body onload="body_onload()">
+	<body>
 		<div id="project_info_pad" class="right-page-contains">
 			<div class="right-page-title"> 工程量管理 </div>
 			<div class="table-line">
