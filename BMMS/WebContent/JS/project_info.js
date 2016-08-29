@@ -489,9 +489,11 @@ function check_file_result()
 	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
 	{
 		var b = myxmlhttp.responseText;
-		var myobj = JSON.parse(b);
-
 		console.info(b);
+		if(b == "")
+			b = "[]";
+		
+		var myobj = JSON.parse(b);
 		console.info(myobj);
 
 		file_array = [];
