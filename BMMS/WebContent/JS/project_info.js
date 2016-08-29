@@ -504,7 +504,7 @@ function check_file_result()
 			{
 				string_final = string_final + "<div id=\"file_" + myobj[i].fileName + "\" class=\"table-line\" style=\"padding-left:20px;\">";
 					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 3%;\" onclick=\"del_click_common(\'file_" + myobj[i].fileName + "\', \'myremove_confirm_file\')\"> - </div>";
-					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 90%; text-decoration: underline;\" onclick=\"download_file(\'" + update_projectID + "\', \'" + myobj[i].fileName + "\')\"> " + myobj[i].fileName + " </div>";
+					string_final = string_final + "<div class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 90%; cursor: pointer; text-decoration: underline;\" onclick=\"download_file(\'" + update_projectID + "\', \'" + myobj[i].fileName + "\')\"> " + myobj[i].fileName + " </div>";
 				string_final = string_final + "</div>";
 				file_array.push(myobj[i].fileName);
 			}
