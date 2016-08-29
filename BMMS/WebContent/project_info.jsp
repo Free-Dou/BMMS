@@ -252,6 +252,11 @@
 				</form>
 			</div>
 		</div>
+		<div style="visibility: hidden;">
+			<form method="post" action="DownloadFile?projectID=1" name="down_form" id="down_form">
+				<input type="text" name="filename" id="filename"></input>
+			</form>
+		</div>
 		<div class="login-process-cover" style="text-align: center; background-color: rgba(0,0,0,0.5);" id="process_message">
 			<div class="login-process-inner" id="pi_parent">
 				<div id="pi0" class="process-item"></div>
