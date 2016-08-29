@@ -70,7 +70,7 @@ public class UploadFileServlet extends HttpServlet{
 			return;
 		}
 		
-		logger.info("[UploadFileServlet.java:doPost] start upload file!!!!!!!!!!!!!!!!");
+		logger.info("[UploadFileServlet.java:doPost] start upload file ！！！！！");
 		try {
 			List<FileItem> list = upload.parseRequest(req);
 			

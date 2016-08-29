@@ -31,7 +31,7 @@ public class DownloadFileServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		
 		/* 获取文件名和projectID */
-		String projectID = req.getParameter("projectID ");
+		String projectID = req.getParameter("projectID");
 		if (("" != projectID) && (null != projectID)){
 			logger.info("[UploadFileServlet.java:doPost] download file for project whick Id = " + projectID);
 		} else {

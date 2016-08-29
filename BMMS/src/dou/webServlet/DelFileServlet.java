@@ -32,7 +32,7 @@ public class DelFileServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		
 		/* 获取文件名和projectID */
-		String projectID = req.getParameter("projectID ");
+		String projectID = req.getParameter("projectID");
 		if (("" != projectID) && (null != projectID)){
 			logger.info("[DelFileServlet.java:doPost] Delete file for project whick Id = " + projectID);
 		} else {
