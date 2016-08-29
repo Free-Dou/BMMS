@@ -273,11 +273,11 @@ function myremove_confirm_file(key)
 	
 	if (parent.myxmlhttp)
 	{
-		var aim_url = "DeleteFile?time=" + new Date();
+		var aim_url = "/BMMS/DeleteFile";
 		var data = "projectID=" + update_projectID + "&fileName=" + key.substring(5, key.length);
 		
 		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = file_refresh_handle;
 		myxmlhttp.send(data);
 	}
@@ -610,11 +610,11 @@ function download_file(pjtid, filename)
 	
 	if (parent.myxmlhttp)
 	{
-		var aim_url = "DownloadFile?time=" + new Date();
+		var aim_url = "/BMMS/DownloadFile";
 		var data = "projectID=" + pjtid + "&filename=" + filename;
 		
 		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.setRequestHeader("Content-Type","multipart/form-data");
+		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		myxmlhttp.onreadystatechange = download_file_req_end;
 		myxmlhttp.send(data);
 	}
