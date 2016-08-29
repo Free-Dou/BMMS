@@ -601,32 +601,36 @@ function file_upload()
 	}
 }
 
-function download_file(pjtid, filename)
+function download_file(pjtid, FN)
 {
-	process_message.style.visibility = "visible";
-	s_process_timer = setInterval("process_anime()", 10);
+	var down_item = document.getElementById("down_form");
+	down_form.action = "DownloadFile?projectID=" + pjtid;
+	filename.value = FN;
+	down_form.submit();
+	// process_message.style.visibility = "visible";
+	// s_process_timer = setInterval("process_anime()", 10);
 
-	myxmlhttp = getXmlHttpObject();
+	// myxmlhttp = getXmlHttpObject();
 	
-	if (myxmlhttp)
-	{
-		var aim_url = "/BMMS/DownloadFile?time=" + new Date();
-		var data = "projectID=" + pjtid + "&filename=" + filename;
+	// if (myxmlhttp)
+	// {
+	// 	var aim_url = "/BMMS/DownloadFile?time=" + new Date();
+	// 	var data = "projectID=" + pjtid + "&filename=" + filename;
 		
-		myxmlhttp.open("post", aim_url, true);
-		myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		myxmlhttp.onreadystatechange = download_file_req_end;
-		myxmlhttp.send(data);
-	}
+	// 	myxmlhttp.open("post", aim_url, true);
+	// 	myxmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	// 	myxmlhttp.onreadystatechange = download_file_req_end;
+	// 	myxmlhttp.send(data);
+	// }
 }
 
 function download_file_req_end()
 {
-	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
-	{
-		process_message.style.visibility = "hidden";
-		clearInterval(s_process_timer);
+	// if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
+	// {
+	// 	process_message.style.visibility = "hidden";
+	// 	clearInterval(s_process_timer);
 
-		myxmlhttp = null;
-	}
+	// 	myxmlhttp = null;
+	// }
 }
