@@ -271,7 +271,7 @@ function myremove_confirm_file(key)
 
 	myxmlhttp = getXmlHttpObject();
 	
-	if (parent.myxmlhttp)
+	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/DeleteFile?time=" + new Date();
 		var data = "projectID=" + update_projectID + "&fileName=" + key.substring(5, key.length);
@@ -608,7 +608,7 @@ function download_file(pjtid, filename)
 
 	myxmlhttp = getXmlHttpObject();
 	
-	if (parent.myxmlhttp)
+	if (myxmlhttp)
 	{
 		var aim_url = "/BMMS/DownloadFile?time=" + new Date();
 		var data = "projectID=" + pjtid + "&filename=" + filename;
