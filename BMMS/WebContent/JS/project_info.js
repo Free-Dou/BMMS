@@ -624,8 +624,8 @@ function download_file_req_end()
 {
 	if (myxmlhttp.readyState == 4 && myxmlhttp.status == 200)
 	{
-		process_message.style.visibility = "visible";
-		s_process_timer = setInterval("process_anime()", 10);
+		process_message.style.visibility = "hidden";
+		clearInterval(s_process_timer);
 
 		myxmlhttp = null;
 	}
