@@ -68,16 +68,6 @@
 					<p>添加</p>
 				</div>
 			</dir>
-			<select style="visibility: hidden;" id="saved_project_id">
-				<%
-					if (null != projectQunatityList){
-						for (int i = 0; i < projectQunatityList.size(); i++){
-							String pName = projectQunatityList.get(i).getProjectID();
-							out.print("<option name=\"" + pName + "\" value=\"" + pName + "\">" + pName + "</option>");
-						}
-					}
-				%>
-			</select>
 		</div>
 		<div id="add_window" class="new_float_window">
 			<div class="set_center" style="height: 400px; width: 725px;">

@@ -649,27 +649,27 @@ function download_file_req_end()
 	}
 }
 
-var opentime = 0;
+// var opentime = 0;
 
-function body_onload() //待优化
-{
-	setTimeout("refresh_page()", 10);
-}
+// function body_onload() //待优化
+// {
+// 	setTimeout("refresh_page()", 10);
+// }
 
-function refresh_page()
-{
-	opentime = opentime + 10;
-	if(opentime > 500)
-		refresh_page_act();
-	else
-		setTimeout("refresh_page()", 10);
-}
+// function refresh_page()
+// {
+// 	opentime = opentime + 10;
+// 	if(opentime > 500)
+// 		refresh_page_act();
+// 	else
+// 		setTimeout("refresh_page()", 10);
+// }
 
-function refresh_page_act()
-{
-	for(var i = 0; i < saved_project_id.options.length; i++)
-		refresh_paid(saved_project_id.options[i].text);
-}
+// function refresh_page_act()
+// {
+// 	for(var i = 0; i < saved_project_id.options.length; i++)
+// 		refresh_paid(saved_project_id.options[i].text);
+// }
 // xmlhttpobject.prototype.sendAsBinary = function(datastr) {
 // 	function byteValue(x) {
 // 		return x.charCodeAt(0) & 0xff;
