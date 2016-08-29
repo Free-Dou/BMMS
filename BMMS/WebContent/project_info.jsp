@@ -258,7 +258,7 @@
 							确定
 						</p>
 					</div>
-					<input style="visibility: hidden;" id="upload_item" type="file" onchange="file_path.value = this.value"></input>
+					<input style="visibility: hidden;" id="upload_item" name="file" type="file" onchange="file_path.value = this.value"></input>
 				</form>
 			</div>
 		</div>
