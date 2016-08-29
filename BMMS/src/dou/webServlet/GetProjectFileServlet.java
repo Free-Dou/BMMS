@@ -46,7 +46,7 @@ public class GetProjectFileServlet extends HttpServlet{
 			fileList = ProjectFile.getAllFileInfoFromDB(projectID);
 			
 			if (null == fileList){
-				pw.print("null");
+				logger.info("[GetProjectFileServlet.java:doPost] filelist is null ！！！");
 			}
 			
 			try {
@@ -67,6 +67,8 @@ public class GetProjectFileServlet extends HttpServlet{
 					oneFileInfoJson.put("remark", fileInfo.getRemark());
 					
 					allPaidInfoJson.put(oneFileInfoJson);
+					
+					logger.info("[GetProjectFileServlet.java:doPost] add a file to json : " + oneFileInfoJson.toString());
 				}  
 
 				pw.print(allPaidInfoJson.toString());
