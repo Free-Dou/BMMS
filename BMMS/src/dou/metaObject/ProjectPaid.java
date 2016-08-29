@@ -48,21 +48,38 @@ public class ProjectPaid {
 
 	/* 向数据库中添加一条付款信息 */
 	public void addProjectPaidInfoToDB() {
-		String params[] = { this.projectID, this.payInfo, this.payTime, turnFloatToStr(this.paid, 2), this.remark };
-
-		String sql = "INSERT INTO tb_projectpaid(projectID,payInfo,payTime,paid,remark)VALUES(?, ?, ?, ?, ?);";
-
+		String params[][] = new String[2][5];
+		String sqls[] = new String[2]; 
+		
+		sqls[0] = "INSERT INTO tb_projectpaid(projectID,payInfo,payTime,paid,remark)VALUES(?, ?, ?, ?, ?);";
+		sqls[1] = "UPDATE tb_qunatity SET paid=(paid + " + turnFloatToStr(this.paid, 2) + ") WHERE id='" + this.projectID + "';";
+		
+		String param1[] = { this.projectID, this.payInfo, this.payTime, turnFloatToStr(this.paid, 2), this.remark };
+		params[0] = param1;
+		params[1] = null;
+		
 		/* 添加当前对象的信息到数据库 */
-		SqlUtilsInterface.addInfoToDB(sql, params);
+		SqlUtilsInterface.updateManyInfos(sqls, params);
+		logger.info("[ProjectPaid.java:addProjectPaidInfoToDB] Add a new ProjectPaidInfo To DB ： "
+				+ sqls.toString());
 	}
 
 	/* 从数据库中删除一条付款信息 */
 	public static void delProjectPaidInfoToDB(String paidID) {
-		String params[] = { paidID };
+		String params[][] = new String[2][1];
+		String sqls[] = new String[2];
+		
 
-		String sql = "delete from tb_projectpaid where id = ?";
-
-		SqlUtilsInterface.delInfoFromDB(sql, params);
+		sqls[0] = "UPDATE tb_qunatity SET paid=(paid - (select paid from tb_projectpaid where id = " + paidID + ")) where id = (select projectID from tb_projectpaid where id = " + paidID + ");";
+		sqls[1] = "delete from tb_projectpaid where id = ?";
+		
+		String param1[] = { paidID };
+		params[0] = null;
+		params[1] = param1;
+		
+		SqlUtilsInterface.updateManyInfos(sqls, params);
+		Config.getLogger(Object.class).info("[ProjectPaid.java:addProjectPaidInfoToDB] Delete a new ProjectPaidInfo To DB ： "
+				+ sqls.toString());
 	}
 
 	public void setPaidID(String paidID) {

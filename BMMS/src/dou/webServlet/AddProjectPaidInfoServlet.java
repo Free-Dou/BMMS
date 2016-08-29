@@ -48,15 +48,16 @@ public class AddProjectPaidInfoServlet extends HttpServlet{
 		if ((null != reqParams) && (!reqParams.equals(""))){
 			try {
 				jsonObject = new JSONObject(reqParams);
+				logger.info("[AddProjectPaidInfoServlet.java:doPost] Get Add paid Info request json !!!" + jsonObject.toString());
 				
 				/* 提取订单数据 */
 				String projectID = jsonObject.getString("projectID");
 				String payInfo = jsonObject.getString("payInfo");
 				String payTime = jsonObject.getString("payTime");
-				Long paid = jsonObject.getLong("paid");
+				Float paid = Float.parseFloat(jsonObject.getString("paid"));
 				String remark = "NULL";
 				
-				ProjectPaid projectPaidObject = new ProjectPaid(projectID, payInfo, payTime, paid.floatValue(), remark);
+				ProjectPaid projectPaidObject = new ProjectPaid(projectID, payInfo, payTime, paid, remark);
 				projectPaidObject.addProjectPaidInfoToDB();
 				
 				logger.info("[AddProjectPaidInfoServlet.java:doPost] Create projectPaidObject By json success!!!");
