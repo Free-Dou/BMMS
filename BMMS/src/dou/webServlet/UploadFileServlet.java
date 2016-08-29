@@ -39,7 +39,7 @@ public class UploadFileServlet extends HttpServlet{
 		PrintWriter pw = resp.getWriter();
 		
 		/* 获取projectId */
-		String projectId = req.getParameter("projectID ");
+		String projectId = req.getParameter("projectID");
 		if (("" != projectId) && (null != projectId)){
 			logger.info("[UploadFileServlet.java:doPost] UploadFile for project whick Id = " + projectId);
 		} else {
@@ -70,6 +70,7 @@ public class UploadFileServlet extends HttpServlet{
 			return;
 		}
 		
+		logger.info("[UploadFileServlet.java:doPost] start upload file!!!!!!!!!!!!!!!!");
 		try {
 			List<FileItem> list = upload.parseRequest(req);
 			
@@ -81,7 +82,8 @@ public class UploadFileServlet extends HttpServlet{
 				
 				/* 获取文件名 */   
 				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-
+				logger.info("[UploadFileServlet.java:doPost] get filename ： " + fileName);
+				
 				/* 创建文件输出流，注意linux系统和windows系统的路径表示的差异，Linux：／   windows：\\ */
 				InputStream fileInSteam = item.getInputStream();
 				FileOutputStream fileOutStream = new FileOutputStream(savePath + "/" + fileName);
@@ -96,6 +98,7 @@ public class UploadFileServlet extends HttpServlet{
 				/* 添加数据到数据库 */
 				ProjectFile fileObject = new ProjectFile(projectId, fileName, (savePath + "/" + fileName), null);
 				fileObject.addFileToDB();
+				logger.info("[UploadFileServlet.java:doPost] Upload file info to DB !!! filename ： " + fileName);
 				
 				/* 释放资源 */
 				fileInSteam.close();
@@ -109,7 +112,7 @@ public class UploadFileServlet extends HttpServlet{
 			pw.print("文件上传失败！");
 		}
 		
-		pw.print("文件上传成功");
+		logger.info("文件上传成功");
 		//req.setAttribute("message", message);
 		//req.getRequestDispatcher("/ListFile").forward(req, resp);
 	}

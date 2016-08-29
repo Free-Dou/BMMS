@@ -202,7 +202,7 @@
  <!-- 获取一个工程的全部文件信息 -->
   <servlet>
   <servlet-name>GetProjectFileInfo</servlet-name>
-  <servlet-class>dou.webServlet.GetProjectPaidInfoServlet</servlet-class>
+  <servlet-class>dou.webServlet.GetProjectFileServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>

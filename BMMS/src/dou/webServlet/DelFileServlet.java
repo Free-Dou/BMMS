@@ -56,5 +56,6 @@ public class DelFileServlet extends HttpServlet {
 		}
 		ProjectFile fileInfo = new ProjectFile(projectID, fileName, savedPath, null);
 		fileInfo.delFile();
+		logger.info("[DelFileServlet.java:doPost] Delete for project success !!!!   fileName： " + fileName);
 	}
 }
