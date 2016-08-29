@@ -604,9 +604,9 @@ function file_upload()
 function download_file(pjtid, FN)
 {
 	var down_item = document.getElementById("down_form");
-	down_form.action = "DownloadFile?projectID=" + pjtid;
+	down_item.action = "DownloadFile?projectID=" + pjtid;
 	filename.value = FN;
-	down_form.submit();
+	down_item.submit();
 	// process_message.style.visibility = "visible";
 	// s_process_timer = setInterval("process_anime()", 10);
 
