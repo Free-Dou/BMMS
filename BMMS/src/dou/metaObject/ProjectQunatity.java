@@ -174,7 +174,8 @@ public class ProjectQunatity {
 				this.water, turnFloatToStr(this.waterSelfProduct, 3), turnFloatToStr(this.waterBuy, 3),
 				turnFloatToStr(this.waterPrice, 2), this.blackMaterial,
 				turnFloatToStr(this.blackMaterialSelfProduct, 3), turnFloatToStr(this.blackMaterialBuy, 3),
-				turnFloatToStr(this.blackMaterialPrice, 3), turnFloatToStr(this.blackMaterialSell, 3), this.remark, projectID };
+				turnFloatToStr(this.blackMaterialPrice, 3), turnFloatToStr(this.blackMaterialSell, 3), this.remark,
+				projectID };
 
 		String sql = "UPDATE tb_qunatity SET projectName=?,budget=?,paid=?,contractContent=?,contractNumber=?,partyA=?,constructLoca=?,constructDate=?,water=?,waterSelfProduct=?,waterBuy=?,waterPrice=?,blackMaterial=?,blackMaterialSelfProduct=?,blackMaterialBuy=?,blackMaterialPrice=?,blackMaterialSell=?,remark=? WHERE id=?";
 
@@ -188,15 +189,17 @@ public class ProjectQunatity {
 
 		/* 删除数据 */
 		SqlUtilsInterface.delInfoFromDB(sql, params);
-		
+
 		/* 删除批次信息 */
 		sql = "delete from tb_projectpaid where projectID=?;";
 		SqlUtilsInterface.delInfoFromDB(sql, params);
-		
+
 		/* 删除文件 */
 		ArrayList<ProjectFile> fileList = ProjectFile.getAllFileInfoFromDB(projectID);
-		for (ProjectFile projectFile :  fileList){
-			projectFile.delFile();
+		if (null != fileList) {
+			for (ProjectFile projectFile : fileList) {
+				projectFile.delFile();
+			}
 		}
 	}
 
@@ -207,12 +210,12 @@ public class ProjectQunatity {
 	public void setProjectID(String projectID) {
 		this.projectID = projectID;
 	}
-	
-	public static ArrayList<ProjectQunatityBatch> getAllQunatityBatchInfo(String projectID){
+
+	public static ArrayList<ProjectQunatityBatch> getAllQunatityBatchInfo(String projectID) {
 		ArrayList<ProjectQunatityBatch> qunatityBatchList = null;
-		
+
 		qunatityBatchList = SqlUtilsInterface.getAllQunatityBatchInfoById(projectID);
-				
+
 		return qunatityBatchList;
 	}
 }
