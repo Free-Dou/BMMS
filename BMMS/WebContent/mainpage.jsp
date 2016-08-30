@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>主要界面</title>
+		<title>工程物料管理系统</title>
 		<style type="text/css">
 			@import url(CSS/common-style.css);
 		</style>
