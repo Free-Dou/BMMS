@@ -42,15 +42,15 @@ public class DelFileServlet extends HttpServlet {
 		
 		String fileName = req.getParameter("filename");
 		if (("" != fileName) && (null != fileName)){
-			logger.info("[DelFileServlet.java:doPost] Delete for project whick Id = " + fileName);
+			logger.info("[DelFileServlet.java:doPost] Delete for fileName whick Id = " + fileName);
 		} else {
-			logger.error("[DelFileServlet.java:doPost] Delete for project failed !!!  ID is null or \"\" !!! id = " + fileName);
+			logger.error("[DelFileServlet.java:doPost] Delete for fileName failed !!!  fileName is null or \"\" !!! fileName = " + fileName);
 			return;
 		}
 		
 		/* 根据工程id和文件名，删除文件 */
 		String savedPath = SqlUtilsInterface.searchSavedPathFromDB(projectID, fileName);
-		if (null != savedPath){
+		if (null == savedPath){
 			logger.error("[DelFileServlet.java:doPost] Delete for project failed!!!  file is not exit!!! id = " + projectID + " fileName = " + fileName);
 			return;
 		}
