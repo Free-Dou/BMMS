@@ -5,6 +5,8 @@ var myxmlhttp = "";
 
 var file_array = new Array();
 
+var pjt_already_paid = 0;
+
 function confirm_click()
 {
 	var input_all_corrent = true;
@@ -151,7 +153,7 @@ function confirm_click()
 			data.waterPrice = waterPrice.value;
 			data.blackMaterialPrice = blackMaterialPrice.value;
 			data.budget = budget.value;
-			data.paid = 0;
+			data.paid = pjt_already_paid;
 
 			var data_send = JSON.stringify(data);
 			// var data = "projectID=" + update_projectID + "&budget=" + input_add_expmoney.value + "&paid=" + input_add_alrmoney.value ;
@@ -439,6 +441,8 @@ function check_search_result()
 			waterPrice.value = myobj.waterPrice;
 			blackMaterialPrice.value = myobj.blackMaterialPrice;
 			budget.value = myobj.budget;
+
+			pjt_already_paid = myobj.paid;
 		}
 
 		process_message.style.visibility = "hidden";
