@@ -190,8 +190,14 @@ public class ProjectQunatity {
 		SqlUtilsInterface.delInfoFromDB(sql, params);
 		
 		/* 删除批次信息 */
-		sql = "delete from tb_qunatitybatch where projectID=?;";
+		sql = "delete from tb_projectpaid where projectID=?;";
 		SqlUtilsInterface.delInfoFromDB(sql, params);
+		
+		/* 删除文件 */
+		ArrayList<ProjectFile> fileList = ProjectFile.getAllFileInfoFromDB(projectID);
+		for (ProjectFile projectFile :  fileList){
+			projectFile.delFile();
+		}
 	}
 
 	public String getProjectID() {

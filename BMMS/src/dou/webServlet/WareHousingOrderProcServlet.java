@@ -59,11 +59,11 @@ public class WareHousingOrderProcServlet extends HttpServlet{
 					JSONObject productJson = (JSONObject)productJsonArray.get(i);
 					String pSpec = productJson.getString("SN");
 					String pName = productJson.getString("Name");
-					Long pCount = productJson.getLong("Count");
-					Long pPrice = productJson.getLong("Price");
-					Long pTotalPrice = productJson.getLong("TotalPrice");
+					float pCount = Float.parseFloat(productJson.getString("Count"));
+					float pPrice = Float.parseFloat(productJson.getString("Price"));
+					float pTotalPrice = Float.parseFloat(productJson.getString("TotalPrice"));
 					String pRemark = productJson.getString("Others");
-					warehousingOrder.AddWareHousingProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
+					warehousingOrder.AddWareHousingProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 				}
 				warehousingOrder.ProcWareHousingOrder();
 				logger.info("[WareHousingOrderProcServlet.java:doPost] Create warehousing order Object By post-order json success!!!");

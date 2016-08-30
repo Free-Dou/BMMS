@@ -61,11 +61,11 @@ public class SalesOrderProcServlet extends HttpServlet{
 					JSONObject productJson = (JSONObject)productJsonArray.get(i);
 					String pSpec = productJson.getString("SN");
 					String pName = productJson.getString("Name");
-					Long pCount = productJson.getLong("Count");
-					Long pPrice = productJson.getLong("Price");
-					Long pTotalPrice = productJson.getLong("TotalPrice");
+					float pCount = Float.parseFloat(productJson.getString("Count"));
+					float pPrice = Float.parseFloat(productJson.getString("Price"));
+					float pTotalPrice = Float.parseFloat(productJson.getString("TotalPrice"));
 					String pRemark = productJson.getString("Others");
-					salesOrder.AddSalesProduct(pSpec, pName, pCount.floatValue(), pPrice.floatValue(), pTotalPrice.floatValue(), pRemark);
+					salesOrder.AddSalesProduct(pSpec, pName, pCount, pPrice, pTotalPrice, pRemark);
 				}
 				salesOrder.ProcSalesOrder();
 				logger.info("[SalesOrderProcServlet.java:doPost] Create SalseOrder Object By post-order json success!!!");
