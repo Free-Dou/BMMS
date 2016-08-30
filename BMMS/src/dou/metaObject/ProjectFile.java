@@ -59,12 +59,15 @@ public class ProjectFile {
 			String sql = "delete from tb_file where projectID = ? and fileName = ? and savedPath = ? ";
 			SqlUtilsInterface.delInfoFromDB(sql, params);
 		}
-		
+		logger.info(
+				"[ProjectFile.java:delFile] delete a File success !!! Project ： " + projectID + " filename:" + fileName);
 		/* 判断上层文件夹是否需要删除 */
-		String dirPath = this.savedPath.substring(0, this.savedPath.lastIndexOf("\\") + 1);
+		String dirPath = this.savedPath.substring(0, this.savedPath.lastIndexOf("/") );
 		File dir = new File(dirPath);
 		if ((dir.exists()) && (dir.isDirectory())){
 			File[] files = dir.listFiles();
+			logger.info(
+					"[ProjectFile.java:delFile] dir is  ： " + dirPath + " and files length is :" + files.length);
 			if (0 == files.length){
 				/* 没有文件了，将父文件夹删除 */
 				dir.delete();
