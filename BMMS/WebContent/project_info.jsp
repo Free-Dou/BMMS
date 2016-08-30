@@ -252,7 +252,7 @@
 				</form>
 			</div>
 		</div>
-		<div style="visibility: hidden;">
+		<div style="visibility: hidden; position: absolute;">
 			<form method="post" action="DownloadFile?projectID=1" name="down_form" id="down_form">
 				<input type="text" name="filename" id="filename"></input>
 			</form>
