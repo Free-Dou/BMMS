@@ -40,7 +40,7 @@ public class DelFileServlet extends HttpServlet {
 			return;
 		}
 		
-		String fileName = req.getParameter("filename");
+		String fileName = req.getParameter("fileName");
 		if (("" != fileName) && (null != fileName)){
 			logger.info("[DelFileServlet.java:doPost] Delete for fileName whick Id = " + fileName);
 		} else {
