@@ -21,6 +21,9 @@
 		<style type="text/css">
 			@import url(CSS/message_common.css);
 		</style>
+		<style type="text/css">
+			@import url(CSS/select_common.css);
+		</style>
 		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
 		<script type="text/javascript" src="JS/buy_make.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
@@ -42,23 +45,36 @@
 						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 供应商 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
-								<select style="width: 254px;" id="trade_person">
+								<!-- <select style="width: 254px;" id="trade_person"> -->
 								<%
 									String username = (String)session.getAttribute("username");
 									if (null == username){
 										out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
 									}
 									ArrayList<Supplier> supplierList = Supplier.getAllSupplierInfo();
-									if (null != supplierList){
-										for (int i = 0; i < supplierList.size(); i++){
-											String supplierName = supplierList.get(i).getsName();
-											out.print("<option name=\"" + supplierName + "\" value=\"" + supplierName + "\">" + supplierName + "</option>");
-										}
-									}
 								%>
-								</select>
-								<!-- <input id="trade_person" class="textbox-common"></input> -->
+								<!-- </select> -->
 							</div>
+							<div id="my_select_person" class="select-back">
+							<%
+								if (null != supplierList){
+									for (int i = 0; i < supplierList.size(); i++){
+										String customerName = supplierList.get(i).getcName();
+										out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
+									}
+								}
+							%>
+							</div>
+							<select style="visibility: hidden; position: absolute;" id="saved_person">
+							<%
+								if (null != supplierList){
+									for (i = 0; i < supplierList.size(); i++){
+										String customerName = supplierList.get(i).getcName();
+										out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
+									}
+								}
+							%>
+							</select>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common"></input> </div>
 						</div>

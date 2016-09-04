@@ -21,6 +21,9 @@
 		<style type="text/css">
 			@import url(CSS/message_common.css);
 		</style>
+		<style type="text/css">
+			@import url(CSS/select_common.css);
+		</style>
 		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
 		<script type="text/javascript" src="JS/sale_make.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
@@ -42,23 +45,37 @@
 						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 客户 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
-								<select style="width: 254px;" id="trade_person">
+								<input id="trade_person" class="select-input" onkeyup="show_person_search(event, 'trade_person', 'my_select_person')" onblur="select_lost_focus('my_select_person', 'trade_person')"></input>
+								<!-- <select style="width: 254px;" id="trade_person"> -->
 								<%
 									String username = (String)session.getAttribute("username");
 									if (null == username){
 										out.print("<script>alert('登录失效，请重新登录'); parent.window.document.location.href = 'index.html'</script>");
 									}
 									ArrayList<Customer> customerList = Customer.getAllCustomerInfo();
-									if (null != customerList){
-										for (int i = 0; i < customerList.size(); i++){
-											String customerName = customerList.get(i).getcName();
-											out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
-										}
-									}
 								%>
-								</select>
-								<!-- <input id="trade_person" class="textbox-common"></input> -->
+								<!-- </select> -->
 							</div>
+							<div id="my_select_person" class="select-back">
+							<%
+								if (null != customerList){
+									for (int i = 0; i < customerList.size(); i++){
+										String customerName = customerList.get(i).getcName();
+										out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
+									}
+								}
+							%>
+							</div>
+							<select style="visibility: hidden; position: absolute;" id="saved_person">
+							<%
+								if (null != customerList){
+									for (i = 0; i < customerList.size(); i++){
+										String customerName = customerList.get(i).getcName();
+										out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
+									}
+								}
+							%>
+							</select>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common"></input> </div>
 						</div>
@@ -126,7 +143,7 @@
 							<span style="margin-left: 10px;"> 备注 </span> <span> <input style="width: 297px; margin-left: 15px;" id="input_add_others"></input> </span>
 						</div>
 						<div style="height: 30px; text-align: left;">
-							<span style="margin-left: 50px;"> 搜索 </span> <span> <input id="search_box" onkeydown="searchProduct()" onkeyup="searchProduct()" onkeypress="searchProduct()" style="width: 297px; margin-left: 15px;"></input> </span>
+							<span style="margin-left: 50px;"> 搜索 </span> <span> <input id="search_box" onchange="searchProduct()" style="width: 297px; margin-left: 15px;"></input> </span>
 						</div>
 					</div>
 					<div id="cancle_button" class="red_button" style="margin-right: 46px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click('buy_make_pad', 'add_window')">

@@ -333,3 +333,82 @@ function searchProduct()
 	table_inner_selectList.innerHTML = "";
 	table_inner_selectList.innerHTML = tempHTML;
 }
+
+function select_item_enter(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,255,0,0.6)";
+}
+
+function select_item_leave(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,255,0,0)";
+}
+
+function select_item_down(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,255,0,0.4)";
+}
+
+function select_item_up(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,0,255,0.6)";
+}
+
+function select_item_click(id, input_id, select_id)
+{
+	var my_select = document.getElementById(select_id);
+	var select_item = document.getElementById(id);
+	var select_input = document.getElementById(input_id);
+	select_input.value = select_item.innerHTML;
+	my_select.style.visibility = "hidden";
+}
+
+function show_person_search(e, id, select_id)
+{
+	var keynum = 0;
+	if(window.event) // IE
+		keynum = e.keyCode
+	else if(e.which) // Netscape/Firefox/Opera
+		keynum = e.which
+
+	if(keynum == 13)
+	{
+		var my_select = document.getElementById(select_id);
+		var select_input = document.getElementById(id);
+
+		var searchStr = select_input.value;
+		var tempHTML = "";
+
+		for(var i = 0; i < saved_person.options.length; i++)
+			if(saved_person.options[i].text.indexOf(searchStr) >= 0)
+			{
+				var customerName = saved_item_name.options[i].text;
+				tempHTML = tempHTML + "<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>";
+			}
+		my_select.innerHTML = "";
+		my_select.innerHTML = tempHTML;
+
+		my_select.style.visibility = "visible";
+	}
+}
+
+function select_lost_focus(select_id, input_id)
+{
+	var my_select = document.getElementById(select_id);
+	var select_input = document.getElementById(input_id);
+
+	var person_exist = false;
+	for(var i = 0; i < saved_person.options.length; i++)
+		if(saved_person.options[i].text ==  select_input.value)
+		{
+			person_exist = true;
+			break;
+		}
+	if(person_exist == false)
+		select_input.value = "";
+	my_select.style.visibility = "hidden";
+}
