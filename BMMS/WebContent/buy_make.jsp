@@ -56,16 +56,6 @@
 								%>
 								<!-- </select> -->
 							</div>
-							<div id="my_select_person" style="margin-left: 63px;" class="select-back">
-							<%
-								if (null != supplierList){
-									for (int i = 0; i < supplierList.size(); i++){
-										String customerName = supplierList.get(i).getsName();
-										out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
-									}
-								}
-							%>
-							</div>
 							<select style="visibility: hidden; position: absolute;" id="saved_person">
 							<%
 								if (null != supplierList){
@@ -126,6 +116,16 @@
 					</div>
 				</dir>
 			</div>
+		</div>
+		<div id="my_select_person" style="margin-left: 98px;" class="select-back">
+		<%
+			if (null != supplierList){
+				for (int i = 0; i < supplierList.size(); i++){
+					String customerName = supplierList.get(i).getsName();
+					out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
+				}
+			}
+		%>
 		</div>
 		<div id="add_window" class="new_float_window">
 			<div>
