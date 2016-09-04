@@ -69,7 +69,7 @@
 							<select style="visibility: hidden; position: absolute;" id="saved_person">
 							<%
 								if (null != customerList){
-									for (i = 0; i < customerList.size(); i++){
+									for (int i = 0; i < customerList.size(); i++){
 										String customerName = customerList.get(i).getcName();
 										out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
 									}

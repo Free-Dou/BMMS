@@ -59,7 +59,7 @@
 							<%
 								if (null != supplierList){
 									for (int i = 0; i < supplierList.size(); i++){
-										String customerName = supplierList.get(i).getcName();
+										String customerName = supplierList.get(i).getsName();
 										out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
 									}
 								}
@@ -68,8 +68,8 @@
 							<select style="visibility: hidden; position: absolute;" id="saved_person">
 							<%
 								if (null != supplierList){
-									for (i = 0; i < supplierList.size(); i++){
-										String customerName = supplierList.get(i).getcName();
+									for (int i = 0; i < supplierList.size(); i++){
+										String customerName = supplierList.get(i).getsName();
 										out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
 									}
 								}
