@@ -386,7 +386,7 @@ function show_person_search(e, id, select_id)
 		for(var i = 0; i < saved_person.options.length; i++)
 			if(saved_person.options[i].text.indexOf(searchStr) >= 0)
 			{
-				var customerName = saved_item_name.options[i].text;
+				var customerName = saved_person.options[i].text;
 				tempHTML = tempHTML + "<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>";
 			}
 		my_select.innerHTML = "";
