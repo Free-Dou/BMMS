@@ -95,7 +95,7 @@
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
 							<span> 施工内容： </span>
-							<div id="contractContent_back" style="float: right; border: 1px solid rgba(255,255,128,1);">
+							<div id="contractContent_back" style="float: right;">
 								<input type="checkbox" id="sw_check">水稳辅筑</input>
 								<input type="checkbox" id="lq_check">沥青辅筑</input>
 							</div>
