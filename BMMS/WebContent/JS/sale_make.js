@@ -1,6 +1,6 @@
 function body_onload()
 {
-	if(trade_person.options.length == 0)
+	if(saved_person.options.length == 0)
 	{
 		// alert('客户列表为空，清先添加一个客户。');
 		tip_window.style.visibility = "visible";

@@ -1,6 +1,6 @@
 function body_onload()
 {
-	if(trade_person.options.length == 0)
+	if(saved_person.options.length == 0)
 	{
 		// alert('供应商列表为空，清先添加一个供应商。');
 		tip_window.style.visibility = "visible";
