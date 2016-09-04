@@ -95,11 +95,14 @@
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 10px;">
 							<span> 施工内容： </span>
-							<select id="contractContent" style="width: 254px;">
+							<div id="contractContent_back" style="float: right; border: 1px solid rgba(255,255,128,1);">
+								<input type="checkbox" id="sw_check">水稳辅筑</input>
+								<input type="checkbox" id="lq_check">沥青辅筑</input>
+							</div>
+							<!-- <select id="contractContent" style="width: 254px;">
 								<option value="1"> 水稳辅筑 </option>
-								<option value="2"> 黑料辅筑 </option>
 								<option value="3"> 沥青辅筑 </option>
-							</select>
+							</select> -->
 						</div>
 					</div>
 					<div style="height: 100px; padding-left: 32px;">

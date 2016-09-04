@@ -18,47 +18,51 @@ function confirm_click()
 	}
 	else
 		projectName.style.backgroundColor = "rgba(255,255,255,1)";
+
+	var contractContent = 0;
+	if(sw_check.checked)
+	{
+		contractContent = contractContent + 1;
+	}
+	if(lq_check.checked)
+	{
+		contractContent = contractContent + 2;
+	}
+	if(contractContent == 0)
+	{
+		contractContent_back.style.border = "1px solid rgba(255,255,128,1)";
+		input_all_corrent = false;
+	}
+	else
+		contractContent_back.style.border = "0px solid rgba(255,255,128,1)";
+
 	if(waterSelfProduct.value == "" || isNaN(waterSelfProduct.value))
 	{
 		waterSelfProduct.value = 0;
-		// waterSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(waterBuy.value == "" || isNaN(waterBuy.value))
 	{
 		waterBuy.value = 0;
-		// waterBuy.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(blackMaterialSelfProduct.value == "" || isNaN(blackMaterialSelfProduct.value))
 	{
 		blackMaterialSelfProduct.value = 0;
-		// blackMaterialSelfProduct.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(blackMaterialBuy.value == "" || isNaN(blackMaterialBuy.value))
 	{
 		blackMaterialBuy.value = 0;
-		// blackMaterialBuy.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(blackMaterialSell.value == "" || isNaN(blackMaterialSell.value))
 	{
 		blackMaterialSell.value = 0;
-		// blackMaterialSell.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(waterPrice.value == "" || isNaN(waterPrice.value))
 	{
 		waterPrice.value = 0;
-		// waterPrice.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(blackMaterialPrice.value == "" || isNaN(blackMaterialPrice.value))
 	{
 		blackMaterialPrice.value = 0;
-		// blackMaterialPrice.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_all_corrent = false;
 	}
 	if(budget.value == "" || isNaN(budget.value) || Number(budget.value) == 0)
 	{
@@ -67,32 +71,9 @@ function confirm_click()
 	}
 	else
 		budget.style.backgroundColor = "rgba(255,255,255,1)";
-	// if(paid.value == "" || isNaN(paid.value))
-	// {
-	// 	paid.style.backgroundColor = "rgba(255,255,128,1)";
-	// 	input_all_corrent = false;
-	// }
-	// else
-	// 	paid.style.backgroundColor = "rgba(255,255,255,1)";
 
 	if(input_all_corrent == false)
 		return;
-
-	// if (projectName.value.indexOf('&') >= 0 || projectName.value.indexOf('=') >= 0 || projectName.value.indexOf('|') >= 0 || projectName.value.indexOf('@') >= 0 || projectName.value.indexOf('!') >= 0)
-	// {
-	// 	alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
-	// 	return;
-	// }
-	// if (budget.value.indexOf('&') >= 0 || budget.value.indexOf('=') >= 0 || budget.value.indexOf('|') >= 0 || budget.value.indexOf('@') >= 0 || budget.value.indexOf('!') >= 0)
-	// {
-	// 	alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
-	// 	return;
-	// }
-	// if (paid.value.indexOf('&') >= 0 || paid.value.indexOf('=') >= 0 || paid.value.indexOf('|') >= 0 || paid.value.indexOf('@') >= 0 || paid.value.indexOf('!') >= 0)
-	// {
-	// 	alert("添加字段包含非法字符（&=|@!），请重新组织添加内容。");
-	// 	return;
-	// }
 
 	process_message.style.visibility = "visible";
 	s_process_timer = setInterval("process_anime()", 10);
@@ -110,7 +91,8 @@ function confirm_click()
 			data.constructDate = constructDate.value;
 			data.contractNumber = contractNumber.value;
 			data.constructLoca = constructLoca.value;
-			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
+			data.contractContent = contractContent;
+			// data.contractContent = contractContent.options[contractContent.selectedIndex].text;
 			data.water = water.value;
 			data.waterSelfProduct = waterSelfProduct.value;
 			data.waterBuy = waterBuy.value;
@@ -142,7 +124,8 @@ function confirm_click()
 			data.constructDate = constructDate.value;
 			data.contractNumber = contractNumber.value;
 			data.constructLoca = constructLoca.value;
-			data.contractContent = contractContent.options[contractContent.selectedIndex].text;
+			data.contractContent = contractContent;
+			// data.contractContent = contractContent.options[contractContent.selectedIndex].text;
 			data.water = water.value;
 			data.waterSelfProduct = waterSelfProduct.value;
 			data.waterBuy = waterBuy.value;
@@ -174,7 +157,9 @@ function cancle_click()
 	constructDate.value = "";
 	contractNumber.value = "";
 	constructLoca.value = "";
-	contractContent.options[0].selected = true;
+	sw_check.checked = false;
+	lq_check.checked = false;
+	// contractContent.options[0].selected = true;
 	water.value = "";
 	waterSelfProduct.value = "";
 	waterBuy.value = "";
@@ -425,12 +410,21 @@ function check_search_result()
 			constructDate.value = myobj.constructDate;
 			contractNumber.value = myobj.contractNumber;
 			constructLoca.value = myobj.constructLoca;
-			if(myobj.contractContent == "水稳辅筑")
-				contractContent.options[0].selected = true;
-			else if(myobj.contractContent == "黑料辅筑")
-				contractContent.options[1].selected = true;
+			if(myobj.contractContent == "1")
+				sw_check.checked = true;
+			else if(myobj.contractContent == "2")
+				lq_check.checked = true;
 			else
-				contractContent.options[2].selected = true;
+			{
+				sw_check.checked = true;
+				lq_check.checked = true;
+			}
+			// if(myobj.contractContent == "水稳辅筑")
+			// 	contractContent.options[0].selected = true;
+			// else if(myobj.contractContent == "黑料辅筑")
+			// 	contractContent.options[1].selected = true;
+			// else
+			// 	contractContent.options[2].selected = true;
 			water.value = myobj.water;
 			waterSelfProduct.value = myobj.waterSelfProduct;
 			waterBuy.value = myobj.waterBuy;

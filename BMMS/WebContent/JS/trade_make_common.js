@@ -49,7 +49,7 @@ function add_click_trade(bName)
 		}
 	if(person_exist == false)
 	{
-		alert('用户信息不存在');
+		alert('交易目标信息不存在');
 		return;
 	}
 
