@@ -39,6 +39,19 @@ function body_onload_common()
 
 function add_click_trade(bName)
 {
+	var person_exist = false;
+	for(var i = 0; i < saved_person.options.length; i++)
+		if(saved_person.options[i].text ==  trade_person.value)
+		{
+			person_exist = true;
+			break;
+		}
+	if(person_exist == false)
+	{
+		alert('用户信息不存在');
+		return;
+	}
+
 	var obj = document.getElementById("trade_num");
 
 	if(added_item.length != 0 && obj.getAttribute("HaveContains") == 1)
@@ -151,9 +164,6 @@ function reset_final_cell()
 
 function confirm_click()
 {
-	// var input_correct = true;
-	// console.info(Number(input_add_num.value) == NaN + "   " + Number(input_add_price.value) == NaN);
-	// if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0 || Number(input_add_num.value).toFixed(0) != Number(input_add_num.value))
 	if(data_add == null)
 	{
 		alert('请选择一个产品');
@@ -162,29 +172,13 @@ function confirm_click()
 	if(input_add_num.value == "" || isNaN(input_add_num.value) || Number(input_add_num.value) == 0)
 	{
 		input_add_num.value = 0;
-		// input_add_num.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_correct = false;
 	}
 	if(input_add_price.value == "" || isNaN(input_add_price.value) || Number(input_add_price.value) == 0)
 	{
 		input_add_price.value = 0;
-		// input_add_price.style.backgroundColor = "rgba(255,255,128,1)";
-		// input_correct = false;
 	}
-	// for(var i = 0; i < added_item.length; i++)
-	// 	if(added_item[i].Name == select_add_name.options[select_add_name.selectedIndex].text)
-	// 	{
-	// 		select_add_name.style.backgroundColor = "rgba(255,255,128,1)";
-	// 		exist_tip.style.visibility = "visible";
-	// 		input_correct = false;
-	// 	}
-
-	// if(input_correct == false)
-	// 	return;
 	
 	var item = new Object();
-	// item.SN = select_add_index.options[select_add_index.selectedIndex].text;
-	// item.Name = select_add_name.options[select_add_name.selectedIndex].text;
 	item.SN = data_add.Spec;
 	item.Name = data_add.Name;
 	item.Count = input_add_num.value;
@@ -242,18 +236,13 @@ function item_type_changed()
 
 function cancle_click(bName, aWindowName)
 {
-	// select_add_index.options[0].selected = true;
-	// select_add_name.options[0].selected = true;
 	input_add_num.value = 0;
 	input_add_price.value = 0;
 	input_add_others.value = "";
-	// exist_tip.style.visibility = "hidden";
 
-	// select_add_name.style.backgroundColor = "#FFFFFF";
 	input_add_num.style.backgroundColor = "#FFFFFF";
 	input_add_price.style.backgroundColor = "#FFFFFF";
 	hide_window(bName, aWindowName);
-	// setTimeout("hide_window()", 10);
 }
 
 function trade_cancle_click()
@@ -396,19 +385,117 @@ function show_person_search(e, id, select_id)
 	}
 }
 
-function select_lost_focus(select_id, input_id)
-{
-	var my_select = document.getElementById(select_id);
-	var select_input = document.getElementById(input_id);
+// function select_lost_focus(select_id, input_id)
+// {
+// 	var my_select = document.getElementById(select_id);
+// 	var select_input = document.getElementById(input_id);
 
-	var person_exist = false;
-	for(var i = 0; i < saved_person.options.length; i++)
-		if(saved_person.options[i].text ==  select_input.value)
-		{
-			person_exist = true;
-			break;
-		}
-	if(person_exist == false)
-		select_input.value = "";
-	my_select.style.visibility = "hidden";
-}
+// 	var person_exist = false;
+// 	for(var i = 0; i < saved_person.options.length; i++)
+// 		if(saved_person.options[i].text ==  select_input.value)
+// 		{
+// 			person_exist = true;
+// 			break;
+// 		}
+// 	if(person_exist == false)
+// 		select_input.value = "";
+// 	my_select.style.visibility = "hidden";
+// }
+
+//Select 控件相关
+// 1.动态创建select
+// function createSelect()
+// {
+// 	var mySelect = document.createElement("select");
+// 	mySelect.id = "mySelect";
+// 	document.body.appendChild(mySelect);
+// }
+
+// 2.添加选项option
+// function addOption()
+// {
+// 	//根据id查找对象，
+// 	var obj=document.getElementById('mySelect');
+// 	//添加一个选项
+// 	obj.add(new Option("文本","值"));
+// }
+
+// 3.删除所有选项option
+// function removeAll()
+// {
+// 	var obj=document.getElementById('mySelect');
+// 	obj.options.length=0;
+// }
+
+// 4.删除一个选项option
+// function removeOne()
+// {
+// 	var obj=document.getElementById('mySelect');
+// 	//index,要删除选项的序号，这里取当前选中选项的序号
+// 	var index=obj.selectedIndex;
+// 	obj.options.remove(index); 
+// }
+
+// 5.获得选项option的值
+// var obj=document.getElementById('mySelect');
+// var index=obj.selectedIndex; //序号，取当前选中选项的序号
+// var val = obj.options[index].value;
+
+// 6.获得选项option的文本
+// var obj=document.getElementById('mySelect');
+// var index=obj.selectedIndex; //序号，取当前选中选项的序号
+// var val = obj.options[index].text;
+
+// 7.修改选项option
+// var obj=document.getElementById('mySelect');
+// var index=obj.selectedIndex; //序号，取当前选中选项的序号
+// var val = obj.options[index]=new Option("新文本","新值");
+
+// 8.删除select
+// function removeSelect()
+// {
+// 	var mySelect = document.getElementById("mySelect");
+// 	mySelect.parentNode.removeChild(mySelect);
+// }
+
+// 9.设置select option被中
+// function removeSelect()
+// {
+// 	// 向办件人员下拉列表动态添加员工
+// 	for ( var i = 0; i < json.length; i++)
+// 	{
+// 		var newOption = new Option(json[i].empname, json[i].empid, i);
+// 		//向办件人员下拉列表添加员工信息
+// 		objDeal.options.add(newOption);
+// 		//客户业务员的Id不为空
+// 		if(empbyDealEmpId != "" || empbyDealEmpId != 0)
+// 		{
+// 			//员工id等于下拉列表中的值,则下拉列表被选中
+// 			if(empbyDealEmpId==objDeal.options[i].value)
+// 			{
+// 				//判断此下拉列表被选中
+// 				objDeal.options[i].selected=true;
+// 			}
+// 		}
+// 	}
+// }
+
+// 1 检测是否有选中
+// if(objSelect.selectedIndex > -1)
+// {
+// 	//说明选中 
+// }
+// else
+// {
+// 	//说明没有选中
+// }
+// 2 删除被选中的项
+// objSelect.options[objSelect.selectedIndex] = null;
+// 3 增加项
+// objSelect.options[objSelect.length] = new Option("你好","hello");
+// 4 修改所选择中的项
+// objSelect.options[objSelect.selectedIndex] = new Option("你好","hello");
+// 5 得到所选择项的文本
+// objSelect.options[objSelect.selectedIndex].text;
+// 6 得到所选择项的值
+// objSelect.options[objSelect.selectedIndex].value;

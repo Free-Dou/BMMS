@@ -45,6 +45,7 @@
 						<div style="height: 36px; padding-left: 35px;">
 							<div style="float:left; height: 24px;"> 供应商 </div>
 							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;">
+								<input id="trade_person" class="select-input" onkeyup="show_person_search(event, 'trade_person', 'my_select_person')""></input>
 								<!-- <select style="width: 254px;" id="trade_person"> -->
 								<%
 									String username = (String)session.getAttribute("username");
