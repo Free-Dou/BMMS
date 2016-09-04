@@ -39,6 +39,7 @@ function body_onload_common()
 
 function add_click_trade(bName)
 {
+	hide_myselect();
 	var person_exist = false;
 	for(var i = 0; i < saved_person.options.length; i++)
 		if(saved_person.options[i].text ==  trade_person.value)
@@ -66,6 +67,12 @@ function add_click_trade(bName)
 	copy_tradeNum.innerHTML = obj.value;
 	confirming = true;
 	setTimeout("show_window_trade()", 10);
+}
+
+function add_click_addon(bName, aWindowName)
+{
+	hide_myselect();
+	add_click(bName, aWindowName);
 }
 
 function show_window_trade()
@@ -383,6 +390,12 @@ function show_person_search(e, id, select_id)
 
 		my_select.style.visibility = "visible";
 	}
+}
+
+function hide_myselect()
+{
+	var my_select = document.getElementById('my_select_person');
+	my_select.style.visibility = "hidden";
 }
 
 // function select_lost_focus(select_id, input_id)

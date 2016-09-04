@@ -18,6 +18,7 @@ var ADD_WINDOW = null;
 
 function add_click(bName, aWindowName)
 {
+	
 	Base = document.getElementById(bName);
 	ADD_WINDOW = document.getElementById(aWindowName);
 	ADD_WINDOW.style.visibility = "visible";

@@ -67,7 +67,7 @@
 							%>
 							</select>
 							<div style="float:left; padding-left: 15px; height: 24px;"> 备注 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_remark" class="textbox-common" onclick="hide_myselect()"></input> </div>
 						</div>
 						<div style="height: 36px; padding-left: 50px;">
 							<div style="float:left; height: 24px;"> 仓库 </div>
@@ -77,9 +77,9 @@
 								</select>
 							</div>
 							<div style="float:left; padding-left: 12px; height: 24px;"> 车号 </div>
-							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_car" class="textbox-common"></input> </div>
+							<div style="float:left; padding-left: 15px; height: 24px; width: 250px;"> <input id="trade_car" class="textbox-common" onclick="hide_myselect()"></input> </div>
 							<div style="float:left; padding-left: 12px; height: 24px;"> 日期 </div>
-							<div class="title-button" style="float: left; padding-left: 15px; height: 24px;"> <input id="trade_time" type="date" value="2016-04-10" style="width: 150px"></input> </div>
+							<div class="title-button" style="float: left; padding-left: 15px; height: 24px;"> <input id="trade_time" type="date" value="2016-04-10" style="width: 150px" onclick="hide_myselect()"></input> </div>
 						</div>
 					</div>
 					<div class="title-button" id="make_buy" onmouseenter="button_mouseenter_footer('make_buy')" onmouseleave="button_mouseleave_footer('make_buy')" onmousedown="button_mousedown_footer('make_buy')" onmouseup="button_mouseup_footer('make_buy')" onclick="add_click_trade('buy_make_pad')">
@@ -110,7 +110,7 @@
 					</div>
 				</div>
 				<dir class="page-footer main-page-footer">
-					<div class="footer-button" id="buy_footer_button_1" onmouseenter="button_mouseenter_footer('buy_footer_button_1')" onmouseleave="button_mouseleave_footer('buy_footer_button_1')" onmousedown="button_mousedown_footer('buy_footer_button_1')" onmouseup="button_mouseup_footer('buy_footer_button_1')" onclick="add_click('buy_make_pad', 'add_window')">
+					<div class="footer-button" id="buy_footer_button_1" onmouseenter="button_mouseenter_footer('buy_footer_button_1')" onmouseleave="button_mouseleave_footer('buy_footer_button_1')" onmousedown="button_mousedown_footer('buy_footer_button_1')" onmouseup="button_mouseup_footer('buy_footer_button_1')" onclick="add_click_addon('buy_make_pad', 'add_window')">
 						<img src="IMG/add.png" class="footer-button-img">
 						<p>添加</p>
 					</div>
