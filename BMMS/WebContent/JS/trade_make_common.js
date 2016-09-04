@@ -307,27 +307,36 @@ function lineclick(id)
 	data_add.Name = objName.innerHTML;
 }
 
-function searchProduct()
+function searchProduct(e)
 {
-	var searchStr = search_box.value;
-	var tempHTML = "";
+	var keynum = 0;
+	if(window.event) // IE
+		keynum = e.keyCode
+	else if(e.which) // Netscape/Firefox/Opera
+		keynum = e.which
 
-	var selnow = 0;
-	for(var i = 0; i < saved_item_spec.options.length; i++)
+	if(keynum == 13)
 	{
-		if(saved_item_spec.options[i].text.indexOf(searchStr) >= 0)
-		{
-			tempHTML = tempHTML + "<div class=\"table-line\">";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_head\" onclick=\"lineclick(\'" + saved_item_name.options[i].text + "\')\" class=\"table-cell-" + ((selnow % 2) + 1) + " cell-head\"> </div>";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((selnow % 2) + 1) + "\">" + saved_item_spec.options[i].text + "</div>";
-			tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((selnow % 2) + 1) + "\">" + saved_item_name.options[i].text + "</div>";
-			tempHTML = tempHTML + "</div>";
+		var searchStr = search_box.value;
+		var tempHTML = "";
 
-			selnow++;
+		var selnow = 0;
+		for(var i = 0; i < saved_item_spec.options.length; i++)
+		{
+			if(saved_item_spec.options[i].text.indexOf(searchStr) >= 0)
+			{
+				tempHTML = tempHTML + "<div class=\"table-line\">";
+				tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_head\" onclick=\"lineclick(\'" + saved_item_name.options[i].text + "\')\" class=\"table-cell-" + ((selnow % 2) + 1) + " cell-head\"> </div>";
+				tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pSpec\" class=\"table-cell-" + ((selnow % 2) + 1) + "\">" + saved_item_spec.options[i].text + "</div>";
+				tempHTML = tempHTML + "<div id=\"" + saved_item_name.options[i].text + "_pName\" class=\"table-cell-" + ((selnow % 2) + 1) + "\">" + saved_item_name.options[i].text + "</div>";
+				tempHTML = tempHTML + "</div>";
+
+				selnow++;
+			}
 		}
+		table_inner_selectList.innerHTML = "";
+		table_inner_selectList.innerHTML = tempHTML;
 	}
-	table_inner_selectList.innerHTML = "";
-	table_inner_selectList.innerHTML = tempHTML;
 }
 
 function select_item_enter(id)

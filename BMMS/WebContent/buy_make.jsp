@@ -143,7 +143,7 @@
 							<span style="margin-left: 10px;"> 备注 </span> <span> <input style="width: 297px; margin-left: 15px;" id="input_add_others"></input> </span>
 						</div>
 						<div style="height: 30px; text-align: left;">
-							<span style="margin-left: 50px;"> 搜索 </span> <span> <input id="search_box" onkeydown="searchProduct()" onkeyup="searchProduct()" onkeypress="searchProduct()" style="width: 297px; margin-left: 15px;"></input> </span>
+							<span style="margin-left: 50px;"> 搜索 </span> <span> <input id="search_box" onkeyup="searchProduct(event)" style="width: 297px; margin-left: 15px;"></input> </span>
 						</div>
 					</div>
 					<div id="cancle_button" class="red_button" style="margin-right: 46px;" onmouseenter="button_mouseenter('cancle_button')" onmouseleave="button_mouseleave('cancle_button')" onmousedown="button_mousedown('cancle_button')" onmouseup="button_mouseup('cancle_button')" onclick="cancle_click('buy_make_pad', 'add_window')">
