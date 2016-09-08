@@ -74,6 +74,9 @@ body
 	padding-right: 30px;
 	padding-left: 30px;
 	padding-bottom: 12px;
+	cursor: default;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 	/*float: left;*/
 }
 .footer-button-img
