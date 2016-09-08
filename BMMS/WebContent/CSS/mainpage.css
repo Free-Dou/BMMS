@@ -76,7 +76,9 @@
 	font-size: 20px;
 	color: #B0B0FF;
 	font-weight: 100;
-	cursor: pointer;
+	cursor: default;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 .left-item-lv2
 {
@@ -92,7 +94,9 @@
 
 	font-size: 14px;
 	font-weight: 300;
-	cursor: pointer;
+	cursor: default;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 .left-item-lv2-pad
 {

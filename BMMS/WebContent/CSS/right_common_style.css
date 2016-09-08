@@ -91,7 +91,9 @@ body
 	/*float: left;*/
 	overflow: hidden;
 
-	cursor: pointer;
+	cursor: default;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 .new_float_window
