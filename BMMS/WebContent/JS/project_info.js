@@ -159,6 +159,7 @@ function cancle_click()
 	constructLoca.value = "";
 	sw_check.checked = false;
 	lq_check.checked = false;
+	contractContent_back.style.border = "0px solid rgba(255,255,128,1)";
 	// contractContent.options[0].selected = true;
 	water.value = "";
 	waterSelfProduct.value = "";
