@@ -695,3 +695,36 @@ function show_person_search(e, id, select_id)
 			my_select.style.visibility = "visible";
 	}
 }
+
+function select_item_enter(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,255,0,0.6)";
+}
+
+function select_item_leave(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,255,0,0)";
+}
+
+function select_item_down(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,255,0,0.4)";
+}
+
+function select_item_up(id)
+{
+	var select_item = document.getElementById(id);
+	select_item.style.backgroundColor = "rgba(0,0,255,0.6)";
+}
+
+function select_item_click(id, input_id, select_id)
+{
+	var my_select = document.getElementById(select_id);
+	var select_item = document.getElementById(id);
+	var select_input = document.getElementById(input_id);
+	select_input.value = select_item.innerHTML;
+	my_select.style.visibility = "hidden";
+}
