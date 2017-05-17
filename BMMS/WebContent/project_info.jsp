@@ -54,7 +54,7 @@
 							ProjectQunatity projectQunatityObject = projectQunatityList.get(i);
 						
 							float budget = projectQunatityObject.getBudget();
-							float paid = projectQunatityObject.getBudget();
+							float paid = projectQunatityObject.getPaid();
 							float last = budget - paid;
 
 							out.print("<div id=\"" + projectQunatityObject.getProjectID() + "\" class=\"table-line\">");
