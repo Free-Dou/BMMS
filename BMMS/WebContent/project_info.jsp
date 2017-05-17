@@ -96,7 +96,7 @@
 				<form action="/BMMS/AddProductInfo" method="post" id="form_post">
 					<div style="height: 42px;">
 						<div style="height: 40px; text-align: left; float: left; margin-left: 16px;">
-							<span> 工程名： </span> <input class="textbox-common" id="projectName" onkeyup="show_person_search(event, 'trade_person', 'my_select_person')"></input>
+							<span> 工程名： </span> <input class="textbox-common" id="projectName" onkeyup="show_person_search(event, 'projectName', 'my_select_person')"></input>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 42px;">
 							<span> 甲方： </span> <input class="textbox-common" id="partyA"></input>
