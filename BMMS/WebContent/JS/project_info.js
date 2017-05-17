@@ -476,6 +476,10 @@ function check_paid_result()
 		var paid_cell = document.getElementById("pjtPaid" + update_projectID);
 		paid_cell.innerHTML = Number(total_money).toFixed(2) + "￥";
 
+		var budget_cell = document.getElementById("pjtBudget" + update_projectID);
+		var budgetstr = budget_cell.innerHTML;
+		var last_cell = document.getElementById("pjtLast" + update_projectID);
+		last_cell.innerHTML = Number(budgetstr.substring(0, budgetstr.length - 1)).toFixed(2) - Number(total_money).toFixed(2) + "￥";
 		process_message.style.visibility = "hidden";
 		clearInterval(s_process_timer);
 
@@ -632,4 +636,33 @@ function download_file_req_end()
 
 	// 	myxmlhttp = null;
 	// }
+}
+
+function update_budget()
+{
+	var black1 = Number(blackMaterialSelfProduct.value);
+	if(isNaN(black1))
+		black1 = 0;
+	var black2 = Number(blackMaterialBuy.value);
+	if(isNaN(black2))
+		black2 = 0;
+	var black3 = Number(blackMaterialSell.value);
+	if(isNaN(black3))
+		black3 = 0;
+
+	var water1 = Number(waterSelfProduct.value);
+	if(isNaN(water1))
+		water1 = 0;
+	var water2 = Number(waterBuy.value);
+	if(isNaN(water2))
+		water2 = 0;
+
+	var blackprice = Number(blackMaterialPrice.value);
+	if(isNaN(blackprice))
+		blackprice = 0;
+	var waterprice = Number(waterPrice.value);
+	if(isNaN(waterprice))
+		waterprice = 0;
+
+	budget.value = (black1 + black2 + black3) * blackprice + (water1 + water2) * waterprice;
 }

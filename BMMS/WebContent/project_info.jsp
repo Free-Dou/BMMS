@@ -1,3 +1,4 @@
+<%@page import="dou.metaObject.Customer"%>
 <%@page import="dou.metaObject.ProjectQunatity"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,6 +18,9 @@
 		<style type="text/css">
 			@import url(CSS/right_common_style.css);
 		</style>
+		<style type="text/css">
+			@import url(CSS/select_common.css);
+		</style>
 		<script type="text/javascript" src="JS/httprequestclass.js"> </script>
 		<script type="text/javascript" src="JS/project_info.js"> </script>
 		<script type="text/javascript" src="JS/common-js.js"> </script>
@@ -29,8 +33,9 @@
 			<div class="table-line">
 				<div class="table-title-cell" style="width: 2%;"></div>
 				<div class="table-title-cell" style="width: 25%;"> 工程名 </div>
-				<div class="table-title-cell" style="width: 25%;"> 总额 </div>
-				<div class="table-title-cell" style="width: 25%;"> 已支付 </div>
+				<div class="table-title-cell" style="width: 15%;"> 工程款 </div>
+				<div class="table-title-cell" style="width: 15%;"> 已支付 </div>
+				<div class="table-title-cell" style="width: 15%;"> 余款 </div>
 				<div class="table-title-cell" style="width: 5%;"> 查看修改 </div>
 				<div class="table-title-cell" style="width: 5%;"> 付款项 </div>
 				<div class="table-title-cell" style="width: 5%;"> 扫描件 </div>
@@ -48,11 +53,16 @@
 						for (int i = 0; i < projectQunatityList.size(); i++){
 							ProjectQunatity projectQunatityObject = projectQunatityList.get(i);
 						
+							int budget = projectQunatityObject.getBudget();
+							int paid = projectQunatityObject.getBudget();
+							int last = budget - paid;
+
 							out.print("<div id=\"" + projectQunatityObject.getProjectID() + "\" class=\"table-line\">");
 							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 2%;\"> - </div>");
 							out.print("<div id=\"pjtName" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + projectQunatityObject.getProjectName() + "</div>");
-							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getBudget()) + "￥</div>");
-							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 25%;\">" + String.format("%.2f", projectQunatityObject.getPaid()) + "￥</div>");
+							out.print("<div id=\"pjtBudget" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 15%;\">" + String.format("%d", budget) + "￥</div>");
+							out.print("<div id=\"pjtPaid" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 15%;\">" + String.format("%d", paid) + "￥</div>");
+							out.print("<div id=\"pjtLast" + projectQunatityObject.getProjectID() + "\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 15%;\">" + String.format("%d", last) + "￥</div>");
 							out.print("<div onclick=\"reedit_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/edit.png\" class=\"footer-button-img\"> </div>");
 							out.print("<div onclick=\"show_paid('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/cash.png\" class=\"footer-button-img\"> </div>");
 							out.print("<div onclick=\"show_file('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + "\" style=\"width: 5%; cursor: pointer;\"> <img src=\"IMG/picture.png\" class=\"footer-button-img\"> </div>");
@@ -62,6 +72,17 @@
 
 				%>
 			</div>
+			<select style="visibility: hidden; position: absolute;" id="saved_person">
+			<%
+				ArrayList<Customer> customerList = Customer.getAllCustomerInfo();
+				if (null != customerList){
+					for (int i = 0; i < customerList.size(); i++){
+						String customerName = customerList.get(i).getcName();
+						out.print("<option name=\"" + customerName + "\" value=\"" + customerName + "\">" + customerName + "</option>");
+					}
+				}
+			%>
+			</select>
 			<dir class="page-footer main-page-footer">
 				<div class="footer-button" id="item_footer_button_1" onmouseenter="button_mouseenter_footer('item_footer_button_1')" onmouseleave="button_mouseleave_footer('item_footer_button_1')" onmousedown="button_mousedown_footer('item_footer_button_1')" onmouseup="button_mouseup_footer('item_footer_button_1')" onclick="project_add_click('project_info_pad', 'add_window')">
 					<img src="IMG/add.png" class="footer-button-img">
@@ -112,10 +133,10 @@
 						</div>
 						<div style="float: left; padding: 0px; margin-left: 42px;">
 							<div style="height: 40px; text-align: left;">
-								<span> 自产： </span> <input style="width: 225px;" id="waterSelfProduct"></input><span> 吨 </span>
+								<span> 自产： </span> <input style="width: 225px;" id="waterSelfProduct" onblur="update_budget()"></input><span> 吨 </span>
 							</div>
 							<div style="height: 40px; text-align: left;">
-								<span> 外购： </span> <input style="width: 225px;" id="waterBuy"></input><span> 吨 </span>
+								<span> 外购： </span> <input style="width: 225px;" id="waterBuy" onblur="update_budget()"></input><span> 吨 </span>
 							</div>
 						</div>
 					</div>
@@ -126,22 +147,22 @@
 						</div>
 						<div style="float: left; padding: 0px; margin-left: 42px;">
 							<div style="height: 40px; text-align: left;">
-								<span> 自产： </span> <input style="width: 225px;" id="blackMaterialSelfProduct"></input><span> 吨 </span>
+								<span> 自产： </span> <input style="width: 225px;" id="blackMaterialSelfProduct" onblur="update_budget()"></input><span> 吨 </span>
 							</div>
 							<div style="height: 40px; text-align: left;">
-								<span> 外购： </span> <input style="width: 225px;" id="blackMaterialBuy"></input><span> 吨 </span>
+								<span> 外购： </span> <input style="width: 225px;" id="blackMaterialBuy" onblur="update_budget()"></input><span> 吨 </span>
 							</div>
 							<div style="height: 40px; text-align: left;">
-								<span> 卖料： </span> <input style="width: 225px;" id="blackMaterialSell"></input><span> 吨 </span>
+								<span> 卖料： </span> <input style="width: 225px;" id="blackMaterialSell" onblur="update_budget()"></input><span> 吨 </span>
 							</div>
 						</div>
 					</div>
 					<div style="height: 42px;">
 						<div style="height: 40px; text-align: left; float: left;">
-							<span> 水稳单价： </span> <input style="width: 225px;" id="waterPrice"></input><span> ￥ </span>
+							<span> 水稳单价： </span> <input style="width: 225px;" id="waterPrice" onblur="update_budget()"></input><span> ￥ </span>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 14px;">
-							<span> 黑料单价： </span> <input style="width: 225px;" id="blackMaterialPrice"></input><span> ￥ </span>
+							<span> 黑料单价： </span> <input style="width: 225px;" id="blackMaterialPrice" onblur="update_budget()"></input><span> ￥ </span>
 						</div>
 					</div>
 					<div style="height: 42px;">
@@ -161,6 +182,16 @@
 						</p>
 					</div>
 				</form>
+				<div id="my_select_person" class="select-back">
+				<%
+					if (null != customerList){
+						for (int i = 0; i < customerList.size(); i++){
+							String customerName = customerList.get(i).getcName();
+							out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
+						}
+					}
+				%>
+				</div>
 			</div>
 		</div>
 		<div id="add_window_paid" class="new_float_window">
