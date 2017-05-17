@@ -96,7 +96,7 @@
 				<form action="/BMMS/AddProductInfo" method="post" id="form_post">
 					<div style="height: 42px;">
 						<div style="height: 40px; text-align: left; float: left; margin-left: 16px;">
-							<span> 工程名： </span> <input class="textbox-common" id="projectName"></input>
+							<span> 工程名： </span> <input class="textbox-common" id="projectName" onkeyup="show_person_search(event, 'trade_person', 'my_select_person')"></input>
 						</div>
 						<div style="height: 40px; text-align: left; float: left; margin-left: 42px;">
 							<span> 甲方： </span> <input class="textbox-common" id="partyA"></input>
@@ -182,16 +182,16 @@
 						</p>
 					</div>
 				</form>
-				<div id="my_select_person" class="select-back">
-				<%
-					if (null != customerList){
-						for (int i = 0; i < customerList.size(); i++){
-							String customerName = customerList.get(i).getcName();
-							out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
-						}
+			</div>
+			<div id="my_select_person" class="select-back" style="position: relative; margin-top: -410px; margin-left: 84px;">
+			<%
+				if (null != customerList){
+					for (int i = 0; i < customerList.size(); i++){
+						String customerName = customerList.get(i).getcName();
+						out.print("<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>");
 					}
-				%>
-				</div>
+				}
+			%>
 			</div>
 		</div>
 		<div id="add_window_paid" class="new_float_window">

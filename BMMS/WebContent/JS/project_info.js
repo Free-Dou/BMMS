@@ -666,3 +666,32 @@ function update_budget()
 
 	budget.value = (black1 + black2 + black3) * blackprice + (water1 + water2) * waterprice;
 }
+
+function show_person_search(e, id, select_id)
+{
+	var keynum = 0;
+	if(window.event) // IE
+		keynum = e.keyCode
+	else if(e.which) // Netscape/Firefox/Opera
+		keynum = e.which
+
+	if(keynum == 13)
+	{
+		var my_select = document.getElementById(select_id);
+		var select_input = document.getElementById(id);
+
+		var searchStr = select_input.value;
+		var tempHTML = "";
+
+		for(var i = 0; i < saved_person.options.length; i++)
+			if(saved_person.options[i].text.indexOf(searchStr) >= 0)
+			{
+				var customerName = saved_person.options[i].text;
+				tempHTML = tempHTML + "<div id=\"" + customerName + "\" class=\"select-item\" onmouseenter=\"select_item_enter('" + customerName + "')\" onmouseleave=\"select_item_leave('" + customerName + "')\" onmousedown=\"select_item_down('" + customerName + "')\" onmouseup=\"select_item_up('" + customerName + "')\" onclick=\"select_item_click('" + customerName + "', 'trade_person', 'my_select_person')\">" + customerName + "</div>";
+			}
+		my_select.innerHTML = "";
+		my_select.innerHTML = tempHTML;
+		if(my_select.innerHTML != "")
+			my_select.style.visibility = "visible";
+	}
+}
