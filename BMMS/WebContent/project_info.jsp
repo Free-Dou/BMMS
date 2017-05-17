@@ -53,9 +53,9 @@
 						for (int i = 0; i < projectQunatityList.size(); i++){
 							ProjectQunatity projectQunatityObject = projectQunatityList.get(i);
 						
-							int budget = projectQunatityObject.getBudget();
-							int paid = projectQunatityObject.getBudget();
-							int last = budget - paid;
+							float budget = projectQunatityObject.getBudget();
+							float paid = projectQunatityObject.getBudget();
+							float last = budget - paid;
 
 							out.print("<div id=\"" + projectQunatityObject.getProjectID() + "\" class=\"table-line\">");
 							out.print("<div onclick=\"del_click('" + projectQunatityObject.getProjectID() + "')\" class=\"table-cell-" + ((i % 2) + 1) + " cell-head\" style=\"width: 2%;\"> - </div>");
