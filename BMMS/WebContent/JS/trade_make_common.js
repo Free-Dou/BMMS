@@ -133,7 +133,7 @@ function table_add(data)
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 20%;\"> " + data.Name + " </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Count).toFixed(3) + " </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.Price).toFixed(2) + "￥ </div>";
-	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.TotalPrice).toFixed(2) + "￥ </div>";
+	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 8%;\"> " + Number(data.TotalPrice).toFixed(0) + "￥ </div>";
 	add_item_text = add_item_text + "<div class=\"table-cell-" + now_line_style + "\" style=\"width: 25%;\"> " + data.Others + " </div>";
 	add_item_text = add_item_text + "</div>";
 	now_index = now_index + 1;
@@ -141,7 +141,7 @@ function table_add(data)
 	table_inner.innerHTML = table_inner.innerHTML + add_item_text;
 
 	total_count = Number(Number(total_count) + Number(data.Count)).toFixed(3);
-	total_money = Number(Number(total_money) + Number(data.Count) * Number(data.Price)).toFixed(2);
+	total_money = Number(Number(total_money) + Number(data.Count) * Number(data.Price)).toFixed(0);
 
 	// console.info(total_count + "   " + total_money);
 	now_line_style = now_line_style + 1;
@@ -165,7 +165,7 @@ function reset_final_cell()
 		if(i == 3)
 			e.innerHTML = Number(total_count).toFixed(3);
 		else if(i == 5)
-			e.innerHTML = Number(total_money).toFixed(2) + "￥";
+			e.innerHTML = Number(total_money).toFixed(0) + "￥";
 	}
 }
 

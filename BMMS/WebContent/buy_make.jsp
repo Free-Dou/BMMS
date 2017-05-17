@@ -105,7 +105,7 @@
 						<div id="final_cell_2" class="table-cell-1" style="width: 20%;"> / </div>
 						<div id="final_cell_3" class="table-cell-1" style="width: 8%;"> 0.000 </div>
 						<div id="final_cell_4" class="table-cell-1" style="width: 8%;"> / </div>
-						<div id="final_cell_5" class="table-cell-1" style="width: 8%;"> 0.00￥ </div>
+						<div id="final_cell_5" class="table-cell-1" style="width: 8%;"> 0￥ </div>
 						<div id="final_cell_6" class="table-cell-1" style="width: 25%;"> / </div>
 					</div>
 				</div>
